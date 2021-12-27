@@ -322,6 +322,7 @@ namespace InsanKaynaklariBilgiSistem
             this.txt_okul_adi.Name = "txt_okul_adi";
             this.txt_okul_adi.Size = new System.Drawing.Size(100, 21);
             this.txt_okul_adi.TabIndex = 281;
+            this.txt_okul_adi.TextChanged += new System.EventHandler(this.txt_okul_adi_TextChanged);
             // 
             // gridLookUpEdit_yakin_bilgisi
             // 
@@ -427,6 +428,7 @@ namespace InsanKaynaklariBilgiSistem
             this.cb_merasim.Name = "cb_merasim";
             this.cb_merasim.Size = new System.Drawing.Size(121, 21);
             this.cb_merasim.TabIndex = 235;
+            this.cb_merasim.TextChanged += new System.EventHandler(this.cb_merasim_TextChanged);
             // 
             // lbl_yakin_hobi
             // 
@@ -604,6 +606,7 @@ namespace InsanKaynaklariBilgiSistem
             this.toggleSwitch_yakin_calisma.Properties.OnText = "ÇALIŞMIYOR";
             this.toggleSwitch_yakin_calisma.Size = new System.Drawing.Size(156, 18);
             this.toggleSwitch_yakin_calisma.TabIndex = 227;
+            this.toggleSwitch_yakin_calisma.Toggled += new System.EventHandler(this.toggleSwitch_yakin_calisma_Toggled);
             // 
             // lbl_calisma_durumu_yakin
             // 
@@ -639,6 +642,7 @@ namespace InsanKaynaklariBilgiSistem
             this.toggleSwitch_yakin_engel.Properties.OnText = "On";
             this.toggleSwitch_yakin_engel.Size = new System.Drawing.Size(95, 18);
             this.toggleSwitch_yakin_engel.TabIndex = 223;
+            this.toggleSwitch_yakin_engel.Toggled += new System.EventHandler(this.toggleSwitch_yakin_engel_Toggled);
             // 
             // lbl_engel_durum_yakin
             // 
@@ -742,6 +746,7 @@ namespace InsanKaynaklariBilgiSistem
             this.toggleSwitch_saglik_yakin.Properties.OnText = "On";
             this.toggleSwitch_saglik_yakin.Size = new System.Drawing.Size(95, 18);
             this.toggleSwitch_saglik_yakin.TabIndex = 210;
+            this.toggleSwitch_saglik_yakin.Toggled += new System.EventHandler(this.toggleSwitch_saglik_yakin_Toggled);
             // 
             // lbl_saglik_sorunu_durumu_yakin
             // 
@@ -1098,6 +1103,7 @@ namespace InsanKaynaklariBilgiSistem
             this.toggleSwitch_bakim_engel.Properties.OnText = "On";
             this.toggleSwitch_bakim_engel.Size = new System.Drawing.Size(219, 18);
             this.toggleSwitch_bakim_engel.TabIndex = 229;
+            this.toggleSwitch_bakim_engel.Toggled += new System.EventHandler(this.toggleSwitch_bakim_engel_Toggled);
             // 
             // lbl_bakim_dogum_yeri
             // 
@@ -1150,6 +1156,7 @@ namespace InsanKaynaklariBilgiSistem
             this.toggleSwitch_bakim_saglik.Properties.OnText = "On";
             this.toggleSwitch_bakim_saglik.Size = new System.Drawing.Size(95, 18);
             this.toggleSwitch_bakim_saglik.TabIndex = 225;
+            this.toggleSwitch_bakim_saglik.Toggled += new System.EventHandler(this.toggleSwitch_bakim_saglik_Toggled);
             // 
             // lbl_bakim_saglik_aciklama
             // 
@@ -1174,6 +1181,7 @@ namespace InsanKaynaklariBilgiSistem
             this.txt_bakim_yakin.Name = "txt_bakim_yakin";
             this.txt_bakim_yakin.Size = new System.Drawing.Size(100, 21);
             this.txt_bakim_yakin.TabIndex = 281;
+            this.txt_bakim_yakin.TextChanged += new System.EventHandler(this.txt_bakim_yakin_TextChanged);
             // 
             // labelControl2
             // 
