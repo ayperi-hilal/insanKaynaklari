@@ -151,7 +151,7 @@ namespace InsanKaynaklariBilgiSistem
         {
             if(Properties.Settings.Default.UserName!=string.Empty)
             {
-                if(Properties.Settings.Default.Remember==true)
+                if (Properties.Settings.Default.Remember == true)
                 {
                     textBox1.Text = Properties.Settings.Default.UserName;
                     textBox2.Text = Properties.Settings.Default.Password;
