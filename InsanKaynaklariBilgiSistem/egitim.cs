@@ -67,7 +67,7 @@ namespace InsanKaynaklariBilgiSistem
             cb_duzey.Items.Add("Ortaokul");
             cb_duzey.Items.Add("Lise");
             cb_duzey.Items.Add("Üniversite");
-            cb_duzey.Items.Add("YÜksek Lisans");
+            cb_duzey.Items.Add("Yüksek Lisans");
             cb_duzey.Items.Add("Doktora");
 
 
@@ -89,7 +89,7 @@ namespace InsanKaynaklariBilgiSistem
 
             //okulagiriş tarihi
             date_giris.MinDate = new DateTime(1900, 1, 1);
-            date_giris.MaxDate = new DateTime(yil, ay, gun);
+            date_giris.MaxDate = new DateTime(yil, ay, gun+1);
 
             //mezuniyet tarihi
             date_mezun.MinDate = new DateTime(1900, 1, 1);
@@ -140,16 +140,58 @@ namespace InsanKaynaklariBilgiSistem
                 dxErrorProvider1.SetError(mtxt_tc_no, "TC KİMLİK NO 11 KARAKTER OLMALIDIR.");
             else
                 dxErrorProvider1.ClearErrors();
+            if (mtxt_tc_no.Text.Length == 11)
+            {
+                SqlCommand selectsorgu = new SqlCommand("kisi_arama", baglantim.baglanti());
+                selectsorgu.CommandType = CommandType.StoredProcedure;
+
+                selectsorgu.Parameters.AddWithValue("@TC", mtxt_tc_no.Text);
+                selectsorgu.Parameters.AddWithValue("@pdks", txt_pdks.Text);
+
+                SqlDataReader kayitokuma = selectsorgu.ExecuteReader();
+
+                //kayıtokumanın içerisne attığımız değişkenin while döngüsü ile tüm veri tabanında arayalım.
+                while (kayitokuma.Read())
+                {   //kayıt var ise buradan true dönecek.
+                    if (mtxt_tc_no.Text != "")
+                        txt_pdks.Text = kayitokuma.GetValue(19).ToString();
+                    else if (txt_pdks.Text != "")
+                        mtxt_tc_no.Text = kayitokuma.GetValue(1).ToString();
+                    else if (mtxt_tc_no.Text != "" && txt_pdks.Text != "")
+                    {
+                        SqlCommand selectsorguiki = new SqlCommand("select *from Kisi where TC='" + mtxt_tc_no.Text + "'", baglantim.baglanti());
+                        SqlDataReader kayitokumaiki = selectsorgu.ExecuteReader();
+
+                        while (kayitokumaiki.Read())
+                        {
+
+                            string gelen;
+                            gelen = kayitokumaiki.GetValue(19).ToString();
+                            if (gelen != txt_pdks.Text)
+                            {
+                                txt_pdks.Text = kayitokumaiki.GetValue(19).ToString();
+                            }
+
+                        }
+                    }
+
+
+                    label3.Text = kayitokuma.GetValue(2).ToString();//ilgili tck ait değerin veritabanındaki tck getirilecek. veri tabanı 0,1,2,.. diye gider.
+                    label5.Text = kayitokuma.GetValue(3).ToString();//ad
+
+                    break;
+                }
+            }
         }
 
-        string mezuniyet_durumu="";
+        string mezuniyet_durumu= "Okuyor";
         //mezuniyet için
         private void toggleSwitch3_Toggled(object sender, EventArgs e)
         {
             if (toggleSwitch1.IsOn == true)
             {
                date_mezun.Enabled = true;
-                mezuniyet_durumu = "Okuyor.";
+                mezuniyet_durumu = "Okuyor";
             }
             else
             {
@@ -157,6 +199,7 @@ namespace InsanKaynaklariBilgiSistem
                 mezuniyet_durumu = "Mezun";
             }
         }
+      
         //ara butonu
         private void simpleButton5_Click(object sender, EventArgs e)
         {//tck yazılarak veri tablosundaki veri araştırılır
@@ -289,45 +332,88 @@ namespace InsanKaynaklariBilgiSistem
 
             if (mtxt_tc_no.Text.Length == 11 && txt_okuladi.Text.Length > 2)
             {
-                if (cb_duzey.Text != string.Empty && txt_bolum.Text != string.Empty
-                    && cb_sinif.Text != string.Empty )
+                if (cb_duzey.Text == "Lise" || cb_duzey.Text == "Üniversite" || cb_duzey.Text == "Doktora" || cb_duzey.Text == "Yüksek Lisans")
                 {
-                    try
-                    {                      
-                        SqlCommand eklekomutu = new SqlCommand("Kaydet_Egitim_Bilgisi", baglantim.baglanti());
-                        eklekomutu.CommandType = CommandType.StoredProcedure;
-                        eklekomutu.Parameters.AddWithValue("@kisi_tc", mtxt_tc_no.Text);
-                        eklekomutu.Parameters.AddWithValue("@okul_adi", txt_okuladi.Text);
-                        eklekomutu.Parameters.AddWithValue("@ogrenim_düzeyi", cb_duzey.Text);
-                        eklekomutu.Parameters.AddWithValue("@bolum", txt_bolum.Text);
-                        eklekomutu.Parameters.AddWithValue("@sinif", cb_sinif.Text);
-                        eklekomutu.Parameters.AddWithValue("@sehir_id", txt_sehir.Text);
-                        eklekomutu.Parameters.AddWithValue("@giris_tarihi", date_giris.Value);
-                        eklekomutu.Parameters.AddWithValue("@durum_bilgisi", mezuniyet_durumu);
-                        eklekomutu.Parameters.AddWithValue("@mezuniyet_tarihi", date_mezun.Value);
-                        eklekomutu.Parameters.AddWithValue("@derece", txt_derece.Text);
 
-
-                        eklekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
-                                                     
-                        listele();
-                        MessageBox.Show("Kişinin eğitim bilgisi başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
-
-                        ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
-
-                    }
-                    catch (Exception hatamjs)
+                    if (cb_duzey.Text != string.Empty && txt_bolum.Text != string.Empty && cb_sinif.Text != string.Empty)
                     {
-                        //kayıt esnasında herhangi bir hata ile karşılaşıldığında
-                        MessageBox.Show(hatamjs.Message);
-                     
+                        try
+                        {
+                            SqlCommand eklekomutu = new SqlCommand("Kaydet_Egitim_Bilgisi", baglantim.baglanti());
+                            eklekomutu.CommandType = CommandType.StoredProcedure;
+                            eklekomutu.Parameters.AddWithValue("@kisi_tc", mtxt_tc_no.Text);
+                            eklekomutu.Parameters.AddWithValue("@okul_adi", txt_okuladi.Text);
+                            eklekomutu.Parameters.AddWithValue("@ogrenim_düzeyi", cb_duzey.Text);
+                            eklekomutu.Parameters.AddWithValue("@bolum", txt_bolum.Text);
+                            eklekomutu.Parameters.AddWithValue("@sinif", cb_sinif.Text);
+                            eklekomutu.Parameters.AddWithValue("@sehir_id", txt_sehir.Text);
+                            eklekomutu.Parameters.AddWithValue("@giris_tarihi", date_giris.Value);
+                            eklekomutu.Parameters.AddWithValue("@durum_bilgisi", mezuniyet_durumu);
+                            eklekomutu.Parameters.AddWithValue("@mezuniyet_tarihi", date_mezun.Value);
+                            eklekomutu.Parameters.AddWithValue("@derece", txt_derece.Text);
+
+
+                            eklekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
+
+                            listele();
+                            MessageBox.Show("Kişinin eğitim bilgisi başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+
+                            // ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
+
+                        }
+                        catch (Exception hatamjs)
+                        {
+                            //kayıt esnasında herhangi bir hata ile karşılaşıldığında
+                            MessageBox.Show(hatamjs.Message);
+
+
+                        }
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("Yazı rengi kırmızı olan alanları yeniden gözden geçirniz", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                     }
                 }
                 else
                 {
-                    MessageBox.Show("yazı rengi kırmızı olan alanları yeniden gözden geçirniz", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (cb_duzey.Text != string.Empty )
+                    {
+                        try
+                        {
+                            SqlCommand eklekomutu = new SqlCommand("Kaydet_Egitim_Bilgisi", baglantim.baglanti());
+                            eklekomutu.CommandType = CommandType.StoredProcedure;
+                            eklekomutu.Parameters.AddWithValue("@kisi_tc", mtxt_tc_no.Text);
+                            eklekomutu.Parameters.AddWithValue("@okul_adi", txt_okuladi.Text);
+                            eklekomutu.Parameters.AddWithValue("@ogrenim_düzeyi", cb_duzey.Text);
+                            eklekomutu.Parameters.AddWithValue("@bolum", txt_bolum.Text);
+                            eklekomutu.Parameters.AddWithValue("@sinif", cb_sinif.Text);
+                            eklekomutu.Parameters.AddWithValue("@sehir_id", txt_sehir.Text);
+                            eklekomutu.Parameters.AddWithValue("@giris_tarihi", date_giris.Value);
+                            eklekomutu.Parameters.AddWithValue("@durum_bilgisi", mezuniyet_durumu);
+                            eklekomutu.Parameters.AddWithValue("@mezuniyet_tarihi", date_mezun.Value);
+                            eklekomutu.Parameters.AddWithValue("@derece", txt_derece.Text);
 
+
+                            eklekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
+
+                            listele();
+                            MessageBox.Show("Kişinin eğitim bilgisi başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+
+                            // ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
+
+                        }
+                        catch (Exception hatamjs)
+                        {
+                            //kayıt esnasında herhangi bir hata ile karşılaşıldığında
+                            MessageBox.Show(hatamjs.Message);
+
+
+                        }
+                    }
+
+                    
                 }
             }
             else//herhangi bir hata ile karşılaşılır ise 
@@ -351,7 +437,7 @@ namespace InsanKaynaklariBilgiSistem
             txt_bolum.Text = gridView1.GetFocusedRowCellValue("bolum").ToString();
             cb_sinif.Text = gridView1.GetFocusedRowCellValue("sinif").ToString();
             txt_sehir.Text = gridView1.GetFocusedRowCellValue("sehir_id").ToString();
-            date_giris.Text = gridView1.GetFocusedRowCellValue("giris_tarihi").ToString();
+            date_giris.Value = Convert.ToDateTime(gridView1.GetFocusedRowCellValue("giris_tarihi"));
             mezuniyet_durumu = gridView1.GetFocusedRowCellValue("durum_bilgisi").ToString();
 
             if (mezuniyet_durumu == "Mezun")
@@ -435,49 +521,93 @@ namespace InsanKaynaklariBilgiSistem
 
             if (mtxt_tc_no.Text.Length == 11 && txt_okuladi.Text.Length > 2)
             {
-                if (cb_duzey.Text != string.Empty && txt_bolum.Text != string.Empty
-                    && cb_sinif.Text != string.Empty)
+                if (cb_duzey.Text == "Lise" || cb_duzey.Text == "Üniversite" || cb_duzey.Text == "Doktora" || cb_duzey.Text == "Yüksek Lisans")
                 {
-                    try
+                    if (cb_duzey.Text != string.Empty && txt_bolum.Text != string.Empty && cb_sinif.Text != string.Empty)
                     {
-                        SqlCommand guncellekomutu = new SqlCommand("Guncelle_Egitim_Bilgisi", baglantim.baglanti());
-                        guncellekomutu.CommandType = CommandType.StoredProcedure;
+                        try
+                        {
+                            SqlCommand guncellekomutu = new SqlCommand("Guncelle_Egitim_Bilgisi", baglantim.baglanti());
+                            guncellekomutu.CommandType = CommandType.StoredProcedure;
 
-                        guncellekomutu.Parameters.AddWithValue("@kisi_tc", mtxt_tc_no.Text);
-                        guncellekomutu.Parameters.AddWithValue("@okul_adi", txt_okuladi.Text);
-                        guncellekomutu.Parameters.AddWithValue("@ogrenim_düzeyi", cb_duzey.Text);
-                        guncellekomutu.Parameters.AddWithValue("@bolum", txt_bolum.Text);
-                        guncellekomutu.Parameters.AddWithValue("@sinif", cb_sinif.Text);
-                        guncellekomutu.Parameters.AddWithValue("@sehir_id", txt_sehir.Text);
-                        guncellekomutu.Parameters.AddWithValue("@giris_tarihi", date_giris.Value);
-                        guncellekomutu.Parameters.AddWithValue("@durum_bilgisi", mezuniyet_durumu);
-                        guncellekomutu.Parameters.AddWithValue("@mezuniyet_tarihi", date_mezun.Value);
-                        guncellekomutu.Parameters.AddWithValue("@derece", txt_derece.Text);
-                        guncellekomutu.Parameters.AddWithValue("@id", txt_id.Text);
+                            guncellekomutu.Parameters.AddWithValue("@kisi_tc", mtxt_tc_no.Text);
+                            guncellekomutu.Parameters.AddWithValue("@okul_adi", txt_okuladi.Text);
+                            guncellekomutu.Parameters.AddWithValue("@ogrenim_düzeyi", cb_duzey.Text);
+                            guncellekomutu.Parameters.AddWithValue("@bolum", txt_bolum.Text);
+                            guncellekomutu.Parameters.AddWithValue("@sinif", cb_sinif.Text);
+                            guncellekomutu.Parameters.AddWithValue("@sehir_id", txt_sehir.Text);
+                            guncellekomutu.Parameters.AddWithValue("@giris_tarihi", date_giris.Value);
+                            guncellekomutu.Parameters.AddWithValue("@durum_bilgisi", mezuniyet_durumu);
+                            guncellekomutu.Parameters.AddWithValue("@mezuniyet_tarihi", date_mezun.Value);
+                            guncellekomutu.Parameters.AddWithValue("@derece", txt_derece.Text);
+                            guncellekomutu.Parameters.AddWithValue("@id", txt_id.Text);
 
 
 
-                        guncellekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
-                                                     // baglantim.baglanti().Close();
-                                                     //böylece kayıt ekleme işlemi gerçekleştirlmiş oldu
-                        listele();
-                        MessageBox.Show("Kişinin eğitim bilgisi başarılı bir şekilde güncellenmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+                            guncellekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
+                                                             // baglantim.baglanti().Close();
+                                                             //böylece kayıt ekleme işlemi gerçekleştirlmiş oldu
+                            listele();
+                            MessageBox.Show("Kişinin eğitim bilgisi başarılı bir şekilde güncellenmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
-                        ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
+                            // ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
+
+                        }
+                        catch (Exception hatamjs)
+                        {
+                            //kayıt esnasında herhangi bir hata ile karşılaşıldığında
+                            MessageBox.Show(hatamjs.Message);
+
+
+                        }
 
                     }
-                    catch (Exception hatamjs)
+                    else
                     {
-                        //kayıt esnasında herhangi bir hata ile karşılaşıldığında
-                        MessageBox.Show(hatamjs.Message);
-                        
+                        MessageBox.Show("Yazı rengi kırmızı olan alanları yeniden gözden geçirniz", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Yazı rengi kırmızı olan alanları yeniden gözden geçirniz", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (cb_duzey.Text != string.Empty)
+                    {
+                        try
+                        {
+                            SqlCommand guncellekomutu = new SqlCommand("Guncelle_Egitim_Bilgisi", baglantim.baglanti());
+                            guncellekomutu.CommandType = CommandType.StoredProcedure;
 
+                            guncellekomutu.Parameters.AddWithValue("@kisi_tc", mtxt_tc_no.Text);
+                            guncellekomutu.Parameters.AddWithValue("@okul_adi", txt_okuladi.Text);
+                            guncellekomutu.Parameters.AddWithValue("@ogrenim_düzeyi", cb_duzey.Text);
+                            guncellekomutu.Parameters.AddWithValue("@bolum", txt_bolum.Text);
+                            guncellekomutu.Parameters.AddWithValue("@sinif", cb_sinif.Text);
+                            guncellekomutu.Parameters.AddWithValue("@sehir_id", txt_sehir.Text);
+                            guncellekomutu.Parameters.AddWithValue("@giris_tarihi", date_giris.Value);
+                            guncellekomutu.Parameters.AddWithValue("@durum_bilgisi", mezuniyet_durumu);
+                            guncellekomutu.Parameters.AddWithValue("@mezuniyet_tarihi", date_mezun.Value);
+                            guncellekomutu.Parameters.AddWithValue("@derece", txt_derece.Text);
+                            guncellekomutu.Parameters.AddWithValue("@id", txt_id.Text);
+
+
+
+                            guncellekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
+                                                             // baglantim.baglanti().Close();
+                                                             //böylece kayıt ekleme işlemi gerçekleştirlmiş oldu
+                            listele();
+                            MessageBox.Show("Kişinin eğitim bilgisi başarılı bir şekilde güncellenmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+
+                            // ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
+
+                        }
+                        catch (Exception hatamjs)
+                        {
+                            //kayıt esnasında herhangi bir hata ile karşılaşıldığında
+                            MessageBox.Show(hatamjs.Message);
+
+
+                        }
+                    }
                 }
             }
             else//herhangi bir hata ile karşılaşılır ise 
@@ -509,7 +639,7 @@ namespace InsanKaynaklariBilgiSistem
                     MessageBox.Show("Kullanıcının eğitim kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                   
 
-                    ekrani_temizle();
+                    //ekrani_temizle();
                     listele();
                     break;
                 }

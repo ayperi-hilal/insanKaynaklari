@@ -37,7 +37,7 @@ namespace InsanKaynaklariBilgiSistem
             DataTable dt = new DataTable();
             da.Fill(dt);
             gridControl1.DataSource = dt;
-            gridView1.Columns["id"].Visible = false;
+      
             gridView1.OptionsBehavior.Editable = false;
             gridView1.OptionsView.ShowAutoFilterRow = true;
 
@@ -56,7 +56,7 @@ namespace InsanKaynaklariBilgiSistem
             DataTable dt = new DataTable();
             da.Fill(dt);
             gridControl1.DataSource = dt;
-            gridView1.Columns["id"].Visible = false;
+       
             gridView1.OptionsBehavior.Editable = false;
             gridView1.OptionsView.ShowAutoFilterRow = true;
         }
@@ -71,7 +71,7 @@ namespace InsanKaynaklariBilgiSistem
             DataTable dt = new DataTable();
             da.Fill(dt);
             gridControl1.DataSource = dt;
-            gridView1.Columns["id"].Visible = false;
+            
             gridView1.OptionsBehavior.Editable = false;
             gridView1.OptionsView.ShowAutoFilterRow = true;
         }
@@ -86,7 +86,7 @@ namespace InsanKaynaklariBilgiSistem
             DataTable dt = new DataTable();
             da.Fill(dt);
             gridControl1.DataSource = dt;
-            gridView1.Columns["id"].Visible = false;
+            
             gridView1.OptionsBehavior.Editable = false;
             gridView1.OptionsView.ShowAutoFilterRow = true;
         }

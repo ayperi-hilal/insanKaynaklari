@@ -88,7 +88,6 @@ namespace InsanKaynaklariBilgiSistem
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
-            this.txt_id = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txt_agirsertifika_id = new System.Windows.Forms.TextBox();
             this.txt_sertifika_id = new System.Windows.Forms.TextBox();
@@ -644,13 +643,6 @@ namespace InsanKaynaklariBilgiSistem
             this.xtraTabPage4,
             this.xtraTabPage5});
             // 
-            // txt_id
-            // 
-            this.txt_id.Location = new System.Drawing.Point(226, 35);
-            this.txt_id.Name = "txt_id";
-            this.txt_id.Size = new System.Drawing.Size(73, 20);
-            this.txt_id.TabIndex = 357;
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.txt_agirsertifika_id);
@@ -723,7 +715,6 @@ namespace InsanKaynaklariBilgiSistem
             this.Controls.Add(this.txt_pdks);
             this.Controls.Add(this.lbl_pdks);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.txt_id);
             this.Controls.Add(this.xtraTabControl1);
             this.Controls.Add(this.btn_evrak);
             this.Controls.Add(this.lbl_hobiler);
@@ -854,7 +845,6 @@ namespace InsanKaynaklariBilgiSistem
         private DevExpress.XtraGrid.Views.Grid.GridView gridView4;
         private DevExpress.XtraGrid.GridControl gridControl5;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView5;
-        private System.Windows.Forms.TextBox txt_id;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox txt_agirsertifika_id;
         private System.Windows.Forms.TextBox txt_sertifika_id;

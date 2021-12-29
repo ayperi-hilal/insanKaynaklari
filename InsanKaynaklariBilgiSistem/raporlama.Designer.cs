@@ -49,6 +49,7 @@ namespace InsanKaynaklariBilgiSistem
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.lbl_bolum = new System.Windows.Forms.Label();
             this.lbl_ozellikler = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -71,6 +72,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // btn_saglik
@@ -240,11 +242,20 @@ namespace InsanKaynaklariBilgiSistem
             this.lbl_ozellikler.Text = "ÖZELLİKLER";
             this.lbl_ozellikler.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(11, 315);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(201, 38);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "Özellikler kısmından görmek istemediğiniz özellkleri seçerek pasif yapınız...";
+            // 
             // raporlama
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1370, 450);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lbl_ozellikler);
             this.Controls.Add(this.lbl_bolum);
             this.Controls.Add(this.btn_listele);
@@ -289,5 +300,6 @@ namespace InsanKaynaklariBilgiSistem
         private DevExpress.XtraEditors.CheckButton btn_personel;
         private DevExpress.XtraEditors.CheckButton btn_arge;
         private DevExpress.XtraEditors.CheckButton btn_tum_personeller;
+        private System.Windows.Forms.Label label1;
     }
 }

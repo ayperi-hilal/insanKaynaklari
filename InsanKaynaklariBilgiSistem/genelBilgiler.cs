@@ -84,6 +84,7 @@ namespace InsanKaynaklariBilgiSistem
 
             openFileDialog2.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
 
+            cikis_tarihi.Visible = false;
 
             resim.SizeMode = PictureBoxSizeMode.StretchImage;
             resim.Height = 100;
@@ -615,6 +616,7 @@ namespace InsanKaynaklariBilgiSistem
                 {
                     calismaDurumu = "İşten Ayrıldı.";
                     cikis_tarihi.Enabled = true;
+                    cikis_tarihi.Visible = true;
                     cikisTarihi = cikis_tarihi.Value;
 
                 }

@@ -36,7 +36,7 @@ namespace InsanKaynaklariBilgiSistem
                 
                 SqlDataAdapter kullanicileri_listele = new SqlDataAdapter
                    //select tcno As[TC KİMLİK NO] DATAGRİTVİEW DE nasıl gözükmesini istiyoruz değişkenlerin yapar.
-                   ("select pdks AS 'PDKS', tc_no AS[TC KİMLİK NO],ad AS[ADI],soyad AS[SOYADI],yetki AS[YETKİ],kullanici_Adi AS[KULLANICI ADI]," +
+                   ("select  tc_no AS[TC KİMLİK NO],ad AS[ADI],soyad AS[SOYADI],yetki AS[YETKİ],kullanici_Adi AS[KULLANICI ADI]," +
                     "parola AS[PAROLA] from hesap_olustur Order By ad ASC", baglantim.baglanti());//neyi nasıl neye göresıralayacağımızı yazdık
 
                 DataSet dshafiza = new DataSet();
@@ -296,6 +296,7 @@ namespace InsanKaynaklariBilgiSistem
             label5.ForeColor = Color.Black;
             label6.ForeColor = Color.Black;
             label7.ForeColor = Color.Black;
+            txt_pdks.Text = string.Empty;
         }
 
         public void resim_goruntule()
@@ -483,70 +484,73 @@ namespace InsanKaynaklariBilgiSistem
 
 
                 SqlDataReader kayitokuma = selectsorgu.ExecuteReader();
+
                 //kayıtokumanın içerisne attığımız değişkenin while döngüsü ile tüm veri tabanında arayalım.
-                while (kayitokuma.Read())
-                {
-                    //kayıt var ise buradan true dönecek.
-                    kayit_arama_durumu = true;
-
-                    if (textBox1.Text != "")
-                        txt_pdks.Text = kayitokuma.GetValue(19).ToString();
-                    else if (txt_pdks.Text != "")
-                        textBox1.Text = kayitokuma.GetValue(1).ToString();
-                    else if (textBox1.Text != "" && txt_pdks.Text != "")
+                  while (kayitokuma.Read())
                     {
-                        SqlCommand selectsorguiki = new SqlCommand("select *from Kisi where TC='" + textBox1.Text + "'", baglantim.baglanti());
-                        SqlDataReader kayitokumaiki = selectsorgu.ExecuteReader();
+                        //kayıt var ise buradan true dönecek.
+                        kayit_arama_durumu = true;
 
-                      
-                        while (kayitokumaiki.Read())
+                        if (textBox1.Text != "")
+                            txt_pdks.Text = kayitokuma.GetValue(19).ToString();
+                        else if (txt_pdks.Text != "")
+                            textBox1.Text = kayitokuma.GetValue(1).ToString();
+                        else if (textBox1.Text != "" && txt_pdks.Text != "")
                         {
-                           
-                            string gelen;
-                            gelen = kayitokumaiki.GetValue(19).ToString();
-                            if (gelen != txt_pdks.Text)
+                            SqlCommand selectsorguiki = new SqlCommand("select *from Kisi where TC='" + textBox1.Text + "'", baglantim.baglanti());
+                            SqlDataReader kayitokumaiki = selectsorguiki.ExecuteReader();
+
+
+                            while (kayitokumaiki.Read())
                             {
-                                txt_pdks.Text = kayitokumaiki.GetValue(19).ToString();
+
+                                string gelen;
+                                gelen = kayitokumaiki.GetValue(19).ToString();
+                                if (gelen != txt_pdks.Text)
+                                {
+                                    txt_pdks.Text = kayitokumaiki.GetValue(19).ToString();
+                                }
+
                             }
-
                         }
+
+
+                        textBox2.Text = kayitokuma.GetValue(2).ToString();  //ad  ilgili tck ait değerin veritabanındaki tck getirilecek. veri tabanı 0,1,2,.. diye gider.
+                        textBox3.Text = kayitokuma.GetValue(3).ToString(); //soyad
+
+
+
+
+                        break;
                     }
-
-
-                    textBox2.Text = kayitokuma.GetValue(2).ToString();  //ad  ilgili tck ait değerin veritabanındaki tck getirilecek. veri tabanı 0,1,2,.. diye gider.
-                    textBox3.Text = kayitokuma.GetValue(3).ToString(); //soyad
-
-                    
-
-
-                    break;
-                }
-                if (kayit_arama_durumu == true)
-                {
-                    resim_goruntule();
-                    SqlCommand select_2_sorgu = new SqlCommand("select * from hesap_olustur where tc_no='" + textBox1.Text + "'", baglantim.baglanti());
-                    SqlDataReader kayitokuma_2 = select_2_sorgu.ExecuteReader();
-                    while (kayitokuma_2.Read())
+                    if (kayit_arama_durumu == true)
                     {
-                        hesap_arama_durumu = true;
-                        if (kayitokuma_2.GetValue(4).ToString() == "Yönetici")
-                            radioButton1.Checked = true;
-                        else
-                            radioButton2.Checked = true;
+                        resim_goruntule();
+                        SqlCommand select_2_sorgu = new SqlCommand("select * from hesap_olustur where tc_no='" + textBox1.Text + "'", baglantim.baglanti());
+                        SqlDataReader kayitokuma_2 = select_2_sorgu.ExecuteReader();
+                        while (kayitokuma_2.Read())
+                        {
+                            hesap_arama_durumu = true;
+                            if (kayitokuma_2.GetValue(4).ToString() == "Yönetici")
+                                radioButton1.Checked = true;
+                            else
+                                radioButton2.Checked = true;
 
-                        textBox5.Text = kayitokuma_2.GetValue(6).ToString();
-                        textBox4.Text = kayitokuma_2.GetValue(5).ToString(); //kullanici adi
+                            textBox5.Text = kayitokuma_2.GetValue(6).ToString();
+                            textBox4.Text = kayitokuma_2.GetValue(5).ToString(); //kullanici adi
 
-                        textBox6.Text = kayitokuma_2.GetValue(6).ToString();
+                            textBox6.Text = kayitokuma_2.GetValue(6).ToString();
+                        }
+                        if (hesap_arama_durumu == false)
+                        {
+                            MessageBox.Show("Kullanıcı mevcut fakat hesap kayıtı bulunamadı", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                        
                     }
-                    if (hesap_arama_durumu == false)
-                    {
-                        MessageBox.Show("Kullanıcı mevcut fakat hesap kayıtı bulunamadı", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
-                }
-            
-                    //eğer kayıt okuma durumu gerçekleşmemiş ise kayıt bulunamadı ise
-               if (kayit_arama_durumu == false)
+                   
+
+                //eğer kayıt okuma durumu gerçekleşmemiş ise kayıt bulunamadı ise
+                else if (kayit_arama_durumu == false)
                {
                     MessageBox.Show("Arama kayıtı bulunamadı", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
@@ -660,7 +664,7 @@ namespace InsanKaynaklariBilgiSistem
             }
             else//herhangi bir hata ile karşılaşılır ise örneğin paola uyuşmaz ise vb.
             {
-                MessageBox.Show("yazı rengi kırmızı olan alanları yeniden gözden geçirniz", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Yazı rengi kırmızı olan alanları yeniden gözden geçirniz", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
         }

@@ -334,6 +334,7 @@ namespace InsanKaynaklariBilgiSistem
             this.barButtonItem33.ImageOptions.LargeImage = global::InsanKaynaklariBilgiSistem.Properties.Resources.newmail_32x32;
             this.barButtonItem33.Name = "barButtonItem33";
             this.barButtonItem33.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.barButtonItem33.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem33_ItemClick);
             // 
             // b_btn_rapor
             // 
@@ -719,7 +720,6 @@ namespace InsanKaynaklariBilgiSistem
             this.sidePanel1.Size = new System.Drawing.Size(178, 319);
             this.sidePanel1.TabIndex = 2;
             this.sidePanel1.Text = "sidePanel1";
-      
             // 
             // simpleButton1
             // 

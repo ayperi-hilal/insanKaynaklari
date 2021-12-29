@@ -130,6 +130,9 @@ namespace InsanKaynaklariBilgiSistem
             mtxt_apartman.Mask = ">LL?????????????????????????????";//apartman adı
             mtxt_blok.Mask = ">LL????????????????????";//blok adı
 
+            txt_mahalle.CharacterCasing = CharacterCasing.Upper;
+            txt_sokak.CharacterCasing = CharacterCasing.Upper;
+
             cb_il.Text = string.Empty;
             cb_ilçe.Text = string.Empty;
             txt_adres.Text = string.Empty;
@@ -313,7 +316,7 @@ namespace InsanKaynaklariBilgiSistem
                         //böylece kayıt ekleme işlemi gerçekleştirlmiş oldu
                         MessageBox.Show("Kişinin iletişim bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
-                        ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
+                        //ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
                     }
                     catch (Exception hatamjs)
@@ -424,7 +427,7 @@ namespace InsanKaynaklariBilgiSistem
                     //böylece kayıt ekleme işlemi gerçekleştirlmiş oldu
                     MessageBox.Show("Kişinin iletişim bilgileri başarılı bir şekilde güncellenmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
-                    ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
+                    //ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
                 }
                 catch (Exception hatamjs)

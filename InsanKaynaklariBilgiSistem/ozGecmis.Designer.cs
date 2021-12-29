@@ -38,11 +38,7 @@ namespace InsanKaynaklariBilgiSistem
             this.simpleButton6 = new DevExpress.XtraEditors.SimpleButton();
             this.cb_sebep = new System.Windows.Forms.ComboBox();
             this.date_cikis = new System.Windows.Forms.DateTimePicker();
-            this.mtxt_yon = new System.Windows.Forms.MaskedTextBox();
             this.mtxt_maas = new System.Windows.Forms.MaskedTextBox();
-            this.mtxt_gorev = new System.Windows.Forms.MaskedTextBox();
-            this.mtxt_istel = new System.Windows.Forms.MaskedTextBox();
-            this.m_txt_isad = new System.Windows.Forms.MaskedTextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -64,6 +60,10 @@ namespace InsanKaynaklariBilgiSistem
             this.txt_id = new System.Windows.Forms.TextBox();
             this.txt_pdks = new System.Windows.Forms.TextBox();
             this.lbl_pdks = new System.Windows.Forms.Label();
+            this.txt_isad = new System.Windows.Forms.TextBox();
+            this.mtxt_istel = new System.Windows.Forms.MaskedTextBox();
+            this.txt_gorev = new System.Windows.Forms.TextBox();
+            this.txt_yon = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider1)).BeginInit();
@@ -96,10 +96,10 @@ namespace InsanKaynaklariBilgiSistem
             // 
             // gridControl1
             // 
-            this.gridControl1.Location = new System.Drawing.Point(388, 2);
+            this.gridControl1.Location = new System.Drawing.Point(498, 2);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(400, 331);
+            this.gridControl1.Size = new System.Drawing.Size(732, 331);
             this.gridControl1.TabIndex = 149;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -115,7 +115,7 @@ namespace InsanKaynaklariBilgiSistem
             // simpleButton6
             // 
             this.simpleButton6.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.insert_16x16;
-            this.simpleButton6.Location = new System.Drawing.Point(294, 155);
+            this.simpleButton6.Location = new System.Drawing.Point(354, 158);
             this.simpleButton6.Name = "simpleButton6";
             this.simpleButton6.Size = new System.Drawing.Size(75, 27);
             this.simpleButton6.TabIndex = 148;
@@ -137,41 +137,12 @@ namespace InsanKaynaklariBilgiSistem
             this.date_cikis.Size = new System.Drawing.Size(175, 20);
             this.date_cikis.TabIndex = 146;
             // 
-            // mtxt_yon
-            // 
-            this.mtxt_yon.Location = new System.Drawing.Point(194, 280);
-            this.mtxt_yon.Name = "mtxt_yon";
-            this.mtxt_yon.Size = new System.Drawing.Size(100, 20);
-            this.mtxt_yon.TabIndex = 145;
-            // 
             // mtxt_maas
             // 
             this.mtxt_maas.Location = new System.Drawing.Point(194, 251);
             this.mtxt_maas.Name = "mtxt_maas";
             this.mtxt_maas.Size = new System.Drawing.Size(100, 20);
             this.mtxt_maas.TabIndex = 144;
-            // 
-            // mtxt_gorev
-            // 
-            this.mtxt_gorev.Location = new System.Drawing.Point(194, 224);
-            this.mtxt_gorev.Name = "mtxt_gorev";
-            this.mtxt_gorev.Size = new System.Drawing.Size(100, 20);
-            this.mtxt_gorev.TabIndex = 143;
-            // 
-            // mtxt_istel
-            // 
-            this.mtxt_istel.Location = new System.Drawing.Point(194, 197);
-            this.mtxt_istel.Name = "mtxt_istel";
-            this.mtxt_istel.Size = new System.Drawing.Size(100, 20);
-            this.mtxt_istel.TabIndex = 142;
-            // 
-            // m_txt_isad
-            // 
-            this.m_txt_isad.Location = new System.Drawing.Point(194, 162);
-            this.m_txt_isad.Name = "m_txt_isad";
-            this.m_txt_isad.Size = new System.Drawing.Size(100, 20);
-            this.m_txt_isad.TabIndex = 141;
-            this.m_txt_isad.TextChanged += new System.EventHandler(this.m_txt_isad_TextChanged);
             // 
             // label12
             // 
@@ -341,6 +312,7 @@ namespace InsanKaynaklariBilgiSistem
             this.txt_id.Name = "txt_id";
             this.txt_id.Size = new System.Drawing.Size(27, 20);
             this.txt_id.TabIndex = 153;
+            this.txt_id.Visible = false;
             // 
             // txt_pdks
             // 
@@ -358,12 +330,44 @@ namespace InsanKaynaklariBilgiSistem
             this.lbl_pdks.TabIndex = 285;
             this.lbl_pdks.Text = "PDKS";
             // 
+            // txt_isad
+            // 
+            this.txt_isad.Location = new System.Drawing.Point(194, 162);
+            this.txt_isad.Name = "txt_isad";
+            this.txt_isad.Size = new System.Drawing.Size(100, 20);
+            this.txt_isad.TabIndex = 287;
+            // 
+            // mtxt_istel
+            // 
+            this.mtxt_istel.Location = new System.Drawing.Point(194, 193);
+            this.mtxt_istel.Name = "mtxt_istel";
+            this.mtxt_istel.Size = new System.Drawing.Size(100, 20);
+            this.mtxt_istel.TabIndex = 288;
+            // 
+            // txt_gorev
+            // 
+            this.txt_gorev.Location = new System.Drawing.Point(194, 224);
+            this.txt_gorev.Name = "txt_gorev";
+            this.txt_gorev.Size = new System.Drawing.Size(100, 20);
+            this.txt_gorev.TabIndex = 289;
+            // 
+            // txt_yon
+            // 
+            this.txt_yon.Location = new System.Drawing.Point(194, 284);
+            this.txt_yon.Name = "txt_yon";
+            this.txt_yon.Size = new System.Drawing.Size(100, 20);
+            this.txt_yon.TabIndex = 290;
+            // 
             // ozGecmis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1230, 450);
+            this.Controls.Add(this.txt_yon);
+            this.Controls.Add(this.txt_gorev);
+            this.Controls.Add(this.mtxt_istel);
+            this.Controls.Add(this.txt_isad);
             this.Controls.Add(this.txt_pdks);
             this.Controls.Add(this.lbl_pdks);
             this.Controls.Add(this.txt_id);
@@ -374,11 +378,7 @@ namespace InsanKaynaklariBilgiSistem
             this.Controls.Add(this.simpleButton6);
             this.Controls.Add(this.cb_sebep);
             this.Controls.Add(this.date_cikis);
-            this.Controls.Add(this.mtxt_yon);
             this.Controls.Add(this.mtxt_maas);
-            this.Controls.Add(this.mtxt_gorev);
-            this.Controls.Add(this.mtxt_istel);
-            this.Controls.Add(this.m_txt_isad);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
@@ -417,11 +417,7 @@ namespace InsanKaynaklariBilgiSistem
         private DevExpress.XtraEditors.SimpleButton simpleButton6;
         private System.Windows.Forms.ComboBox cb_sebep;
         private System.Windows.Forms.DateTimePicker date_cikis;
-        private System.Windows.Forms.MaskedTextBox mtxt_yon;
         private System.Windows.Forms.MaskedTextBox mtxt_maas;
-        private System.Windows.Forms.MaskedTextBox mtxt_gorev;
-        private System.Windows.Forms.MaskedTextBox mtxt_istel;
-        private System.Windows.Forms.MaskedTextBox m_txt_isad;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
@@ -443,5 +439,9 @@ namespace InsanKaynaklariBilgiSistem
         private System.Windows.Forms.TextBox txt_id;
         private System.Windows.Forms.TextBox txt_pdks;
         private System.Windows.Forms.Label lbl_pdks;
+        private System.Windows.Forms.TextBox txt_isad;
+        private System.Windows.Forms.MaskedTextBox mtxt_istel;
+        private System.Windows.Forms.TextBox txt_gorev;
+        private System.Windows.Forms.TextBox txt_yon;
     }
 }

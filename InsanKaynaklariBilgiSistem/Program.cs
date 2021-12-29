@@ -16,7 +16,7 @@ namespace InsanKaynaklariBilgiSistem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new aileBilgisi());
+            Application.Run(new genelKultur());
         }
     }
 }

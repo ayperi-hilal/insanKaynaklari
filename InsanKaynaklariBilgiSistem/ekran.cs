@@ -58,17 +58,11 @@ namespace InsanKaynaklariBilgiSistem
 
 
         private void barButtonItem29_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            /*frm5 = new Form5();
-            frm5.MdiParent = this;
-            frm5.Show();*/
+        {            
            kullaniciHesap frm1 = new kullaniciHesap();
 
             frm1.MdiParent = this;
             frm1.Show();
-
-            Form active = this.ActiveMdiChild;
-            MessageBox.Show("---", active.Name.ToString());
 
         }
 
@@ -77,34 +71,27 @@ namespace InsanKaynaklariBilgiSistem
         {
                 genelBilgiler frm2 = new genelBilgiler();
             
-                //frm6 = new Form6();
                 frm2.MdiParent = this;
                 frm2.Show();
-                Form active2 = this.ActiveMdiChild;
-                MessageBox.Show("---", active2.Name.ToString());
-            
+
         }
         
         private void iletişim_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             iletisimBilgisi frm3 = new iletisimBilgisi();
-
-            //frm6 = new Form6();
+                      
             frm3.MdiParent = this;
             frm3.Show();
-            Form active3 = this.ActiveMdiChild;
-            MessageBox.Show("---", active3.Name.ToString());
+
         }
         
         private void barButtonItem16_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             saglik frm4 = new saglik();
 
-            //frm6 = new Form6();
             frm4.MdiParent = this;
             frm4.Show();
-            Form active4 = this.ActiveMdiChild;
-            MessageBox.Show("---", active4.Name.ToString());
+
         }
 
         
@@ -112,11 +99,9 @@ namespace InsanKaynaklariBilgiSistem
         {
             ozGecmis frm5 = new ozGecmis();
 
-            //frm6 = new Form6();
             frm5.MdiParent = this;
             frm5.Show();
-            Form active5 = this.ActiveMdiChild;
-            MessageBox.Show("---", active5.Name.ToString());
+
         }
 
        
@@ -125,12 +110,8 @@ namespace InsanKaynaklariBilgiSistem
 
             egitim frm6 = new egitim();
 
-            //frm6 = new Form6();
             frm6.MdiParent = this;
             frm6.Show();
-            Form active6 = this.ActiveMdiChild;
-            MessageBox.Show("---", active6.Name.ToString());
-
         }
 
         
@@ -138,11 +119,9 @@ namespace InsanKaynaklariBilgiSistem
         {
             genelKultur frm7 = new genelKultur();
 
-            //frm6 = new Form6();
             frm7.MdiParent = this;
             frm7.Show();
-            Form active7 = this.ActiveMdiChild;
-            MessageBox.Show("---", active7.Name.ToString());
+
         }
         
         
@@ -150,44 +129,47 @@ namespace InsanKaynaklariBilgiSistem
         {
             aileBilgisi frm8 = new aileBilgisi();
 
-            //frm6 = new Form6();
             frm8.MdiParent = this;
             frm8.Show();
-            Form active8 = this.ActiveMdiChild;
-            MessageBox.Show("---", active8.Name.ToString());
+
         }
 
         private void b_btn_rapor_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            raporlama frm12 = new raporlama();
-            //frm6 = new Form6();
+            raporlama frm9 = new raporlama();
+            
+            frm9.MdiParent = this;
+            frm9.Show();
 
-            frm12.MdiParent = this;
-            frm12.Show();
-            Form active12 = this.ActiveMdiChild;
-            MessageBox.Show("---", active12.Name.ToString());
+        }
+
+        private void barButtonItem33_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            bildirimler frm10 = new bildirimler();
+
+            frm10.MdiParent = this;
+            frm10.Show();
+
         }
 
         private void barButtonItem34_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            maddiBilgi frm9 = new maddiBilgi();
+            maddiBilgi frm11 = new maddiBilgi();
 
-            //frm6 = new Form6();
-            frm9.MdiParent = this;
-            frm9.Show();
-            Form active9 = this.ActiveMdiChild;
-            MessageBox.Show("---", active9.Name.ToString());
+            frm11.MdiParent = this;
+            frm11.Show();
+
+           // Form active11 = this.ActiveMdiChild;
+            //MessageBox.Show("---", active11.Name.ToString());
         }
-        izinIslemleri frm14 = new izinIslemleri();
+        
         private void barButtonItem21_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            izinIslemleri frm10 = new izinIslemleri();
+            izinIslemleri frm12 = new izinIslemleri();
 
-            //frm6 = new Form6();
-            frm10.MdiParent = this;
-            frm10.Show();
-            Form active10 = this.ActiveMdiChild;
-            MessageBox.Show("---", active10.Name.ToString());
+            frm12.MdiParent = this;
+            frm12.Show();
+
         }
 
 
@@ -227,7 +209,9 @@ namespace InsanKaynaklariBilgiSistem
             }
             
         }
-
        
+        
+
+
     }
 }

@@ -418,7 +418,7 @@ namespace InsanKaynaklariBilgiSistem
                 }
                 else//herhangi bir hata ile karşılaşılır ise 
                 {
-                    MessageBox.Show("Hobi kısmı ile ilgili beklenmedik bir hata oluştu.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //MessageBox.Show("Hobi kısmı ile ilgili beklenmedik bir hata oluştu.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
 
@@ -927,7 +927,7 @@ namespace InsanKaynaklariBilgiSistem
 
                     //kayıt okuma gerçekleşti ise
                     kisi_hobi_arama_yakin = true;
-                    SqlCommand hobiSilsorgusu = new SqlCommand("delete from Kisi_Hobi where kisi_tc='" + mtxt_tc_no.Text + "'and id='" + txt_id.Text + "'", baglantim.baglanti());
+                    SqlCommand hobiSilsorgusu = new SqlCommand("delete from Kisi_Hobi where kisi_tc='" + mtxt_tc_no.Text + "'and id='" + txt_hobi_id.Text + "'", baglantim.baglanti());
                     //şimdi sorgunun sonucunun gerçekleştirilmesi sağlanacak 
                     hobiSilsorgusu.ExecuteNonQuery();
                     MessageBox.Show("Kullanıcının igili hobi bilgileri başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -956,7 +956,7 @@ namespace InsanKaynaklariBilgiSistem
 
                     //kayıt okuma gerçekleşti ise
                     kayit_arama_yabanci_dil = true;
-                    SqlCommand yabanciDilSilsorgusu = new SqlCommand("delete from Kisi_Dil_Bilgisi where kisi_tc='" + mtxt_tc_no.Text + "'and id='" + txt_id.Text + "'", baglantim.baglanti());
+                    SqlCommand yabanciDilSilsorgusu = new SqlCommand("delete from Kisi_Dil_Bilgisi where kisi_tc='" + mtxt_tc_no.Text + "'and id='" + txt_dil_id.Text + "'", baglantim.baglanti());
                     //şimdi sorgunun sonucunun gerçekleştirilmesi sağlanacak 
                     yabanciDilSilsorgusu.ExecuteNonQuery();
                     MessageBox.Show("ilgili kayıt başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -988,7 +988,7 @@ namespace InsanKaynaklariBilgiSistem
 
                     //kayıt okuma gerçekleşti ise
                     kayit_arama_bilgisayar_bilgisi = true;
-                    SqlCommand bilgisayarBilgisiSilsorgusu = new SqlCommand("delete from Kisi_Bilgisayar_Program_Bilgileri where kisi_tc='" + mtxt_tc_no.Text + "'and id='" + txt_id.Text + "'", baglantim.baglanti());
+                    SqlCommand bilgisayarBilgisiSilsorgusu = new SqlCommand("delete from Kisi_Bilgisayar_Program_Bilgileri where kisi_tc='" + mtxt_tc_no.Text + "'and id='" + txt_bilgisayar_id.Text + "'", baglantim.baglanti());
                     //şimdi sorgunun sonucunun gerçekleştirilmesi sağlanacak 
                     bilgisayarBilgisiSilsorgusu.ExecuteNonQuery();
                     MessageBox.Show("ilgili kayıt başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -1019,7 +1019,7 @@ namespace InsanKaynaklariBilgiSistem
 
                     //kayıt okuma gerçekleşti ise
                     kayit_arama_sertifika = true;
-                    SqlCommand sertifikaSilsorgusu = new SqlCommand("delete from Kisi_Sertifika_Bilgileri where kisi_tc='" + mtxt_tc_no.Text + "'and id='" + txt_id.Text + "'", baglantim.baglanti());
+                    SqlCommand sertifikaSilsorgusu = new SqlCommand("delete from Kisi_Sertifika_Bilgileri where kisi_tc='" + mtxt_tc_no.Text + "'and id='" + txt_sertifika_id.Text + "'", baglantim.baglanti());
                     //şimdi sorgunun sonucunun gerçekleştirilmesi sağlanacak 
                     sertifikaSilsorgusu.ExecuteNonQuery();
                     MessageBox.Show("ilgili kayıt başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

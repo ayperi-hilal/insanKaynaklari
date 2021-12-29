@@ -43,7 +43,7 @@ namespace InsanKaynaklariBilgiSistem
             {
                 //kullanıcının giriş hakkı var ise giriş yaptığında veri tabanı ile bağlantı kurulup sorgu oluşturulur.
                // baglantim.baglanti().Open();
-                SqlCommand eklemesorgusu = new SqlCommand("select*from kullanicilar", baglantim.baglanti());//veri tabanındaki tüm kayıtları getirdik.
+                SqlCommand eklemesorgusu = new SqlCommand("select*from hesap_olustur", baglantim.baglanti());//veri tabanındaki tüm kayıtları getirdik.
                 //veri tabanından veri okumammız gerekmektedir.
                 SqlDataReader kayitokuma = eklemesorgusu.ExecuteReader();//getirilen tüm kayıtlar kayit okumaya aktarıldı.
 
@@ -51,7 +51,7 @@ namespace InsanKaynaklariBilgiSistem
                 {
                    // if (radioButton1.Checked==true)
                     {
-                        if (kayitokuma["kullaniciadi"].ToString() == textBox1.Text && kayitokuma ["parola"].ToString()==textBox2.Text )
+                        if (kayitokuma["kullanici_Adi"].ToString() == textBox1.Text && kayitokuma ["parola"].ToString()==textBox2.Text )
                         // if (kayitokuma["kullaniciadi"].ToString() == textBox1.Text && kayitokuma["parola"].ToString() == textBox2.Text && kayitokuma["yetki"].ToString() == "Yönetici")
                             {
                             //beni hatırla 
@@ -66,10 +66,10 @@ namespace InsanKaynaklariBilgiSistem
                             tcno = kayitokuma.GetValue(0).ToString();//kayıt okuma belleğe aktarılmıştı bir üst tarafta.while döngüsü ile şartlar sağlandığında giriş yapılmıştı 
                             //şimdi giriş yapılan ilgili kullanıcının acseste tcnosu ilk sutunda olduğu için ve veri sisteminde 0 dan başladığı için getvalue(0) oldu.
                             aktifKullanici.tcno = tcno;//clasdaki tc ye buradaki tc yi atadık.
-                            MessageBox.Show("tc", aktifKullanici.tcno);
-                            adi = kayitokuma.GetValue(1).ToString();
-                            soyadi = kayitokuma.GetValue(2).ToString();
-                            yetki = kayitokuma.GetValue(3).ToString();
+                            MessageBox.Show("TC", aktifKullanici.tcno);
+                            adi = kayitokuma.GetValue(2).ToString();
+                            soyadi = kayitokuma.GetValue(3).ToString();
+                            yetki = kayitokuma.GetValue(4).ToString();
                             this.Hide();//kullanıcı başarılı bir şekilde giriş yapabildiği için bu form gizlenip form 2 ye geçiş yapılacaktır.
                             ekran frm4 = new ekran();
                             frm4.Show();
@@ -104,7 +104,7 @@ namespace InsanKaynaklariBilgiSistem
             if(hak==0)
             {
                 button1.Enabled = false;
-                MessageBox.Show("giriş hakkınız kalmadı", "scv personel takip programı", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Giriş hakkınız kalmadı", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         
         }

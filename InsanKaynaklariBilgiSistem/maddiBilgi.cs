@@ -71,6 +71,8 @@ namespace InsanKaynaklariBilgiSistem
             cb_destek_turu.Items.Add("Yol");
             cb_destek_turu.Items.Add("Gıda");
 
+            date_borc_tarihi.Visible = false;
+
         }
        //?
         private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
@@ -177,7 +179,17 @@ namespace InsanKaynaklariBilgiSistem
             date_borc_tarihi.ResetText();
         }
 
-         
+        private void radioButton_icra_var_CheckedChanged(object sender, EventArgs e)
+        {
+            date_borc_tarihi.Visible = true;
+        }
+
+        private void radioButton_icra_yok_CheckedChanged(object sender, EventArgs e)
+        {
+            date_borc_tarihi.Visible = false;
+        }
+
+
         //ARA BUTONU
         private void simpleButton5_Click(object sender, EventArgs e)
         {
@@ -401,6 +413,7 @@ namespace InsanKaynaklariBilgiSistem
             if (radioButton_icra_var.Checked==true)
             {
                 icra_durumu = "İcrası var.";
+                
                 if (txt_icra_konusu.Text == "")
                     lbl_icra_konusu.ForeColor = Color.Red;
                 else
@@ -413,6 +426,7 @@ namespace InsanKaynaklariBilgiSistem
                     lbl_icra_iban.ForeColor = Color.Red;
                 else
                     lbl_icra_iban.ForeColor = Color.Black;
+
             }
             else
             {

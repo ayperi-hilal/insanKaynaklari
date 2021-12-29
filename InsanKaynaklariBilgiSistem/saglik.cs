@@ -85,6 +85,10 @@ namespace InsanKaynaklariBilgiSistem
             txt_ameliyat.Text = string.Empty;
             txt_pdks.Text = string.Empty;
 
+            label3.Text = string.Empty;
+            label5.Text = string.Empty;
+            label6.Text = string.Empty;
+
         }
 
 
@@ -371,7 +375,7 @@ namespace InsanKaynaklariBilgiSistem
         {
             bool kayitkontrol = false;//bir kayıt yaparken daha önceden böyle bir kullanıcı var mı diye kontrolü yapılacak
       
-            SqlCommand selectsorgu = new SqlCommand("select * from Kisi_Saglik_Bilgisi where TC='" + mtxt_tc_no.Text + "'", baglantim.baglanti());
+            SqlCommand selectsorgu = new SqlCommand("select * from Kisi_Saglik_Bilgisi where kisi_tc='" + mtxt_tc_no.Text + "'", baglantim.baglanti());
 
             SqlDataReader kayitokuma = selectsorgu.ExecuteReader();//okuduğu sorguları tutuyoruz.
             //ilgili tc no ya ait vb de kayıt vamı diye kontrol edelim.
@@ -379,6 +383,7 @@ namespace InsanKaynaklariBilgiSistem
             while (kayitokuma.Read())
             {
                 kayitkontrol = true;//ilgili tc noya ait bir kullanıcı var demektir.
+                MessageBox.Show("Personele ait bir veri vardır. İsterseniz güncelleyebilirsiniz.");
                 break;
 
             }
@@ -774,7 +779,7 @@ namespace InsanKaynaklariBilgiSistem
 
                     //kayıt okuma gerçekleşti ise
                     kayit_arama_durumu = true;
-                    SqlCommand silsorgusu = new SqlCommand("delete *from Kisi_Saglik_Bilgisi where kisi_tc='" + mtxt_tc_no.Text + "'", baglantim.baglanti());
+                    SqlCommand silsorgusu = new SqlCommand("delete from Kisi_Saglik_Bilgisi where kisi_tc='" + mtxt_tc_no.Text + "'", baglantim.baglanti());
                     //şimdi sorgunun sonucunun gerçekleştirilmesi sağlanacak 
                     silsorgusu.ExecuteNonQuery();
                     MessageBox.Show("Kullanıcı kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

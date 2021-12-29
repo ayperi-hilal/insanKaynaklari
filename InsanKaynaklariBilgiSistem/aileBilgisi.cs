@@ -28,7 +28,7 @@ namespace InsanKaynaklariBilgiSistem
         
         string cinsiyet = "";
         string yasamBilgisi = "";
-        string olumAciklama = "";
+       
         string saglik_durumu, engel_durumu, calisma_durumu, mezuniyet_durumu, okul;
         string saglik_durumu_bakım = "", engel_durumu_bakim = "";
         public void listele_yakin_bilgileri()
@@ -86,6 +86,7 @@ namespace InsanKaynaklariBilgiSistem
             da2.Fill(dt2);
             gridControl2.DataSource = dt2;
             gridView2.Columns["id"].Visible = false;
+            gridView2.Columns["pdks"].Visible = false;
 
             gridView2.Columns["kisi_tc"].Caption = "TC NO";
             gridView2.Columns["adi_soyadi"].Caption = "ADI SOYADI";
@@ -97,8 +98,8 @@ namespace InsanKaynaklariBilgiSistem
             gridView2.Columns["engel_durumu"].Caption = "ENGEL DURUMU";
             gridView2.Columns["engel_aciklama"].Caption = "ENGEL DURUMU AÇIKLAMASI";
             gridView2.Columns["geliri"].Caption = "GELİRİ";
+            gridView2.Columns["bakim_yakini"].Caption = "YAKINLIK DERECESİ";
             gridView2.Columns["bakim_hobi"].Caption = "HOBİLERİ";
-            
 
         }
 
@@ -139,7 +140,7 @@ namespace InsanKaynaklariBilgiSistem
             mtxt_tel_no_yakin.Mask = "0000000000";//cep no
             mtxt_bakim_tel_no.Mask = "0000000000";//cep no
 
-
+            
 
             //yakınlık bbilgileri
             cb_yakin.Items.Add("EŞi");
@@ -199,22 +200,22 @@ namespace InsanKaynaklariBilgiSistem
 
             //yakının doğum tarihi
             date_dogum_tarihi.MinDate = new DateTime(1900, 1, 1);
-            date_dogum_tarihi.MaxDate = new DateTime(yil, ay, gun);
+            date_dogum_tarihi.MaxDate = new DateTime(yil, ay, gun+1);
 
 
 
             //yakının ÖLÜM tarihi
             date_olum_tarihi.MinDate = new DateTime(1900, 1, 1);
-            date_olum_tarihi.MaxDate = new DateTime(yil, ay, gun);
+            date_olum_tarihi.MaxDate = new DateTime(yil, ay, gun+1);
 
             //okulagiriş tarihi
             date_giris_tarihi.MinDate = new DateTime(1900, 1, 1);
-            date_giris_tarihi.MaxDate = new DateTime(yil, ay, gun);
+            date_giris_tarihi.MaxDate = new DateTime(yil, ay, gun+1);
 
 
             //mezuniyet tarihi
             date_mezuniyet.MinDate = new DateTime(1900, 1, 1);
-            date_mezuniyet.MaxDate = new DateTime(yil, ay, gun);
+            date_mezuniyet.MaxDate = new DateTime(yil, ay, gun+1);
 
             //merasim tarihi
             date_merasim.MinDate = new DateTime(1900, 1, 1);
@@ -223,13 +224,15 @@ namespace InsanKaynaklariBilgiSistem
 
             //bakmakla yükümlü olduğu yakının doğum tarihi
             date_bakim_dogum.MinDate = new DateTime(1900, 1, 1);
-            date_bakim_dogum.MaxDate = new DateTime(yil, ay, gun);
+            date_bakim_dogum.MaxDate = new DateTime(yil, ay, gun+1);
 
 
             lbl_olum_tarihi.Visible = false;
             date_olum_tarihi.Visible = false;
             lbl_olum_nedeni.Visible = false;
             txt_olum_nedeni.Visible = false;
+
+
 
             date_merasim.Visible = false;
 
@@ -302,6 +305,7 @@ namespace InsanKaynaklariBilgiSistem
         private void ekrani_temizle()
         {
             mtxt_tc_no.Clear();
+            txt_pdks.Text = string.Empty;
             txt_dogum_yeri.Clear();
             txt_ad_soyad_yakin.Clear();
             txt_olum_nedeni.Clear();
@@ -429,6 +433,50 @@ namespace InsanKaynaklariBilgiSistem
             else
                 dxErrorProvider1.ClearErrors();
 
+            if (mtxt_tc_no.Text.Length == 11)
+            {
+                SqlCommand selectsorgu = new SqlCommand("kisi_arama", baglantim.baglanti());
+                selectsorgu.CommandType = CommandType.StoredProcedure;
+
+                selectsorgu.Parameters.AddWithValue("@TC", mtxt_tc_no.Text);
+                selectsorgu.Parameters.AddWithValue("@pdks", txt_pdks.Text);
+
+                SqlDataReader kayitokuma = selectsorgu.ExecuteReader();
+
+                //kayıtokumanın içerisne attığımız değişkenin while döngüsü ile tüm veri tabanında arayalım.
+                while (kayitokuma.Read())
+                {   //kayıt var ise buradan true dönecek.
+                    if (mtxt_tc_no.Text != "")
+                        txt_pdks.Text = kayitokuma.GetValue(19).ToString();
+                    else if (txt_pdks.Text != "")
+                        mtxt_tc_no.Text = kayitokuma.GetValue(1).ToString();
+                    else if (mtxt_tc_no.Text != "" && txt_pdks.Text != "")
+                    {
+                        SqlCommand selectsorguiki = new SqlCommand("select *from Kisi where TC='" + mtxt_tc_no.Text + "'", baglantim.baglanti());
+                        SqlDataReader kayitokumaiki = selectsorgu.ExecuteReader();
+
+                        while (kayitokumaiki.Read())
+                        {
+
+                            string gelen;
+                            gelen = kayitokumaiki.GetValue(19).ToString();
+                            if (gelen != txt_pdks.Text)
+                            {
+                                txt_pdks.Text = kayitokumaiki.GetValue(19).ToString();
+                            }
+
+                        }
+                    }
+                    label3.Text = kayitokuma.GetValue(2).ToString();//ad
+                    label5.Text = kayitokuma.GetValue(3).ToString();//soyad
+                    label22.Text = kayitokuma.GetValue(6).ToString();//medeni hali
+
+                    break;
+
+                }
+
+
+            }
         }
               
         private void toggleSwitch_sag_olu_Toggled(object sender, EventArgs e)
@@ -471,6 +519,7 @@ namespace InsanKaynaklariBilgiSistem
         private void gridView3_DoubleClick(object sender, EventArgs e)
         {
             txt_yakin_id.Text = gridView3.GetFocusedRowCellValue("id").ToString();
+            mtxt_tc_no.Text = gridView3.GetFocusedRowCellValue("kisi_tc").ToString();
             cb_yakin.Text = gridView3.GetFocusedRowCellValue("yakinlik_derecesi").ToString();
             txt_ad_soyad_yakin.Text = gridView3.GetFocusedRowCellValue("yakin_adi_soyadi").ToString();
             cinsiyet = gridView3.GetFocusedRowCellValue("yakin_cinsiyeti").ToString();
@@ -480,10 +529,11 @@ namespace InsanKaynaklariBilgiSistem
 
             if (gridView3.GetFocusedRowCellValue("yakin_yasam_bilgisi").ToString() == "YAŞIYOR.")
             {
-                toggleSwitch_sag_olu.IsOn = true;
+                toggleSwitch_sag_olu.IsOn = false;
             }
             else
-                toggleSwitch_sag_olu.IsOn = false;
+                toggleSwitch_sag_olu.IsOn = true;
+
             date_olum_tarihi.Text = gridView3.GetFocusedRowCellValue("yakin_olum_tarihi").ToString();
 
             txt_olum_nedeni.Text = gridView3.GetFocusedRowCellValue("yakin_olum_aciklamasi").ToString();
@@ -552,8 +602,9 @@ namespace InsanKaynaklariBilgiSistem
         //ekranda kayıtların görünmesi-bakım bilgileri
         private void gridControl2_DoubleClick(object sender, EventArgs e)
         {
-
+            txt_bakim_id.Text = gridView2.GetFocusedRowCellValue("id").ToString();
             txt_bakim_yakin.Text = gridView2.GetFocusedRowCellValue("bakim_yakini").ToString();
+            mtxt_tc_no.Text = gridView2.GetFocusedRowCellValue("kisi_tc").ToString();
             txt_bakim_adsoyad.Text = gridView2.GetFocusedRowCellValue("adi_soyadi").ToString();
             txt_bakim_dogum_yeri.Text = gridView2.GetFocusedRowCellValue("dogum_yeri").ToString();
             date_bakim_dogum.Text = gridView2.GetFocusedRowCellValue("dogum_tarihi").ToString();
@@ -587,6 +638,7 @@ namespace InsanKaynaklariBilgiSistem
                     checkedListBox2.SetItemChecked(count, false);
                 }
             }
+
 
 
         }
@@ -763,6 +815,12 @@ namespace InsanKaynaklariBilgiSistem
             }
         }
 
+        //formu temizle butonu
+        private void simpleButton4_Click(object sender, EventArgs e)
+        {
+            ekrani_temizle();
+        }
+
         private void txt_bakim_yakin_TextChanged(object sender, EventArgs e)
         {
             txt_bakim_adsoyad.Enabled = true;
@@ -784,7 +842,7 @@ namespace InsanKaynaklariBilgiSistem
             {
                 bool kayit_arama_yakin = false;
 
-                SqlCommand YakinsecmeSorgusu = new SqlCommand("Select *from Kisi_Egitim_Bilgisi where kisi_tc='" + mtxt_tc_no.Text + "'", baglantim.baglanti());//ilgili tck verisine ait veriler seçiliyor.henüz silme yok. varmı yok mu ona bakıyoruz.
+                SqlCommand YakinsecmeSorgusu = new SqlCommand("Select *from Kisi_Yakini_Bilgileri where kisi_tc='" + mtxt_tc_no.Text + "'", baglantim.baglanti());//ilgili tck verisine ait veriler seçiliyor.henüz silme yok. varmı yok mu ona bakıyoruz.
                 SqlDataReader kayitokumayakin = YakinsecmeSorgusu.ExecuteReader();//veri okuyucu tanımlanıyor. sorgu sonucalrı secmesorgusuna eşitledik.
                 while (kayitokumayakin.Read())
                 {
@@ -802,7 +860,7 @@ namespace InsanKaynaklariBilgiSistem
                     break;
                 }
                 //girilen tck ya göre bir kayıt bulunmaz ise
-                if (kayit_arama_yakin == false)//while döngüsü çalışmamş demektir.
+               if (kayit_arama_yakin == false)//while döngüsü çalışmamş demektir.
                 {
                     MessageBox.Show("Böyle bir kayıt bulunamamıştır", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
@@ -828,9 +886,9 @@ namespace InsanKaynaklariBilgiSistem
                     break;
                 }
                 //girilen tck ya göre bir kayıt bulunmaz ise
-                if (kayit_arama_bakim == false)//while döngüsü çalışmamş demektir.
+               if (kayit_arama_bakim == false)//while döngüsü çalışmamş demektir.
                 {
-                    MessageBox.Show("Böyle bir kayıt bulunamamıştır", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Yakını ile ilgili böyle bir kayıt bulunamamıştır", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
 
@@ -1236,9 +1294,9 @@ namespace InsanKaynaklariBilgiSistem
                             }
                                           
                     }
-                    else
+                   /* else
                     { MessageBox.Show("Yakın bilgisi giriniz.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-
+                   */
                     if(txt_bakim_yakin.Text!="")//herhangi bir bakım kişisi eklenİr ise
                     {
                     try
@@ -1663,108 +1721,110 @@ namespace InsanKaynaklariBilgiSistem
 
                 if (mtxt_tc_no.Text.Length == 11)
                 {
-                    if (cb_yakin.Text != "")//herhangi bir yakını eklenir ise
+                if (cb_yakin.Text != "")//herhangi bir yakını eklenir ise
+                {
+
+                    try
                     {
-                    if (cb_yakin.Text != "")//herhangi bir yakını eklenir ise
-                    {
-                        try
-                        {
-                            SqlCommand guncellekomutuyakin = new SqlCommand("Guncelle_Yakini_Bilgisi", baglantim.baglanti());
-                            guncellekomutuyakin.CommandType = CommandType.StoredProcedure;
+                        SqlCommand guncellekomutuyakin = new SqlCommand("Guncelle_Yakini_Bilgisi", baglantim.baglanti());
+                        guncellekomutuyakin.CommandType = CommandType.StoredProcedure;
 
-                            guncellekomutuyakin.Parameters.AddWithValue("@kisi_tc", mtxt_tc_no.Text);
-                            guncellekomutuyakin.Parameters.AddWithValue("@yakinlik_derecesi", cb_yakin.Text);
-                            guncellekomutuyakin.Parameters.AddWithValue("@yakin_adi_soyadi", txt_ad_soyad_yakin.Text);
-                            guncellekomutuyakin.Parameters.AddWithValue("@yakin_cinsiyeti", cinsiyet);
-                            guncellekomutuyakin.Parameters.AddWithValue("@yakin_dogum_yeri", txt_dogum_yeri.Text);
-                            guncellekomutuyakin.Parameters.AddWithValue("@yakin_dogum_tarihi", date_dogum_tarihi.Value);
-                            guncellekomutuyakin.Parameters.AddWithValue("@yakin_yasam_bilgisi", yasamBilgisi);
-                            guncellekomutuyakin.Parameters.AddWithValue("@yakin_olum_tarihi", date_olum_tarihi.Value);
-                            guncellekomutuyakin.Parameters.AddWithValue("@yakin_olum_aciklamasi", txt_olum_nedeni.Text);
-                            guncellekomutuyakin.Parameters.AddWithValue("@yakin_medeni_hali", cb_medinhal.Text);
-                            guncellekomutuyakin.Parameters.AddWithValue("@yakin_kan_grubu", cb_kangrubu.Text);
-                            guncellekomutuyakin.Parameters.AddWithValue("@yakin_tel_no", mtxt_tel_no_yakin.Text);
-                            guncellekomutuyakin.Parameters.AddWithValue("@yakin_saglik_sorunu", saglik_durumu);
-                            guncellekomutuyakin.Parameters.AddWithValue("@yakin_saglik_aciklama", txt_saglik_aciklama_yakin.Text);
-                            guncellekomutuyakin.Parameters.AddWithValue("@yakin_engel_durumu", engel_durumu);
-                            guncellekomutuyakin.Parameters.AddWithValue("@yakin_engel_aciklama", txt_yakin_engel_aciklama.Text);
-                            guncellekomutuyakin.Parameters.AddWithValue("@yakin_çalisma_durumu", calisma_durumu);
-                            guncellekomutuyakin.Parameters.AddWithValue("@yakin_meslegi", txt_yakin_meslek.Text);
-                            guncellekomutuyakin.Parameters.AddWithValue("@yakin_geliri", txt_gelir_yakin.Text);
-                            guncellekomutuyakin.Parameters.AddWithValue("@yakin_calistigi_yer", txt_calistiği_yer.Text);
-                            guncellekomutuyakin.Parameters.AddWithValue("@yakin_okul", okul);
-                            guncellekomutuyakin.Parameters.AddWithValue("@yakin_okul_adi", txt_okul_adi.Text);
-                            guncellekomutuyakin.Parameters.AddWithValue("@yakin_ogrenim_duzeyi", cb_duzey.Text);
-                            guncellekomutuyakin.Parameters.AddWithValue("@yakin_okul_bolumu", txt_bolum.Text);
-                            guncellekomutuyakin.Parameters.AddWithValue("@yakin_okul_sinif", cb_sinif.Text);
-                            guncellekomutuyakin.Parameters.AddWithValue("@yakin_okul_sehir", txt_sehir.Text);
-                            guncellekomutuyakin.Parameters.AddWithValue("@yakin_okul_giris_tarihi", date_giris_tarihi.Value);
-                            guncellekomutuyakin.Parameters.AddWithValue("@yakin_okul_durumu", mezuniyet_durumu);
-                            guncellekomutuyakin.Parameters.AddWithValue("@yakin_okul_mezuniyet_tarihi", date_mezuniyet.Value);
-                            guncellekomutuyakin.Parameters.AddWithValue("@yakin_mezuniyet_derecesi", txt_yakin_okul_derece.Text);
-                            guncellekomutuyakin.Parameters.AddWithValue("@yakin_merasim_turu", cb_merasim.Text);
-                            guncellekomutuyakin.Parameters.AddWithValue("@yakin_merasim_tarihi", date_merasim.Value);
-                            guncellekomutuyakin.Parameters.AddWithValue("@yakin_hobileri", hobiler);
-                            guncellekomutuyakin.Parameters.AddWithValue("@id", txt_yakin_id.Text);
+                        guncellekomutuyakin.Parameters.AddWithValue("@kisi_tc", mtxt_tc_no.Text);
+                        guncellekomutuyakin.Parameters.AddWithValue("@yakinlik_derecesi", cb_yakin.Text);
+                        guncellekomutuyakin.Parameters.AddWithValue("@yakin_adi_soyadi", txt_ad_soyad_yakin.Text);
+                        guncellekomutuyakin.Parameters.AddWithValue("@yakin_cinsiyeti", cinsiyet);
+                        guncellekomutuyakin.Parameters.AddWithValue("@yakin_dogum_yeri", txt_dogum_yeri.Text);
+                        guncellekomutuyakin.Parameters.AddWithValue("@yakin_dogum_tarihi", date_dogum_tarihi.Value);
+                        guncellekomutuyakin.Parameters.AddWithValue("@yakin_yasam_bilgisi", yasamBilgisi);
+                        guncellekomutuyakin.Parameters.AddWithValue("@yakin_olum_tarihi", date_olum_tarihi.Value);
+                        guncellekomutuyakin.Parameters.AddWithValue("@yakin_olum_aciklamasi", txt_olum_nedeni.Text);
+                        guncellekomutuyakin.Parameters.AddWithValue("@yakin_medeni_hali", cb_medinhal.Text);
+                        guncellekomutuyakin.Parameters.AddWithValue("@yakin_kan_grubu", cb_kangrubu.Text);
+                        guncellekomutuyakin.Parameters.AddWithValue("@yakin_tel_no", mtxt_tel_no_yakin.Text);
+                        guncellekomutuyakin.Parameters.AddWithValue("@yakin_saglik_sorunu", saglik_durumu);
+                        guncellekomutuyakin.Parameters.AddWithValue("@yakin_saglik_aciklama", txt_saglik_aciklama_yakin.Text);
+                        guncellekomutuyakin.Parameters.AddWithValue("@yakin_engel_durumu", engel_durumu);
+                        guncellekomutuyakin.Parameters.AddWithValue("@yakin_engel_aciklama", txt_yakin_engel_aciklama.Text);
+                        guncellekomutuyakin.Parameters.AddWithValue("@yakin_çalisma_durumu", calisma_durumu);
+                        guncellekomutuyakin.Parameters.AddWithValue("@yakin_meslegi", txt_yakin_meslek.Text);
+                        guncellekomutuyakin.Parameters.AddWithValue("@yakin_geliri", txt_gelir_yakin.Text);
+                        guncellekomutuyakin.Parameters.AddWithValue("@yakin_calistigi_yer", txt_calistiği_yer.Text);
+                        guncellekomutuyakin.Parameters.AddWithValue("@yakin_okul", okul);
+                        guncellekomutuyakin.Parameters.AddWithValue("@yakin_okul_adi", txt_okul_adi.Text);
+                        guncellekomutuyakin.Parameters.AddWithValue("@yakin_ogrenim_duzeyi", cb_duzey.Text);
+                        guncellekomutuyakin.Parameters.AddWithValue("@yakin_okul_bolumu", txt_bolum.Text);
+                        guncellekomutuyakin.Parameters.AddWithValue("@yakin_okul_sinif", cb_sinif.Text);
+                        guncellekomutuyakin.Parameters.AddWithValue("@yakin_okul_sehir", txt_sehir.Text);
+                        guncellekomutuyakin.Parameters.AddWithValue("@yakin_okul_giris_tarihi", date_giris_tarihi.Value);
+                        guncellekomutuyakin.Parameters.AddWithValue("@yakin_okul_durumu", mezuniyet_durumu);
+                        guncellekomutuyakin.Parameters.AddWithValue("@yakin_okul_mezuniyet_tarihi", date_mezuniyet.Value);
+                        guncellekomutuyakin.Parameters.AddWithValue("@yakin_mezuniyet_derecesi", txt_yakin_okul_derece.Text);
+                        guncellekomutuyakin.Parameters.AddWithValue("@yakin_merasim_turu", cb_merasim.Text);
+                        guncellekomutuyakin.Parameters.AddWithValue("@yakin_merasim_tarihi", date_merasim.Value);
+                        guncellekomutuyakin.Parameters.AddWithValue("@yakin_hobileri", hobiler);
+                        guncellekomutuyakin.Parameters.AddWithValue("@id", txt_yakin_id.Text);
 
-                            guncellekomutuyakin.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
+                        guncellekomutuyakin.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
 
-                            MessageBox.Show("Kişinin yakınları ile ilgili bilgiler başarılı bir şekilde güncellenmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+                        MessageBox.Show("Kişinin yakınları ile ilgili bilgiler başarılı bir şekilde güncellenmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
-                            ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
+                        ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
-                            listele_yakin_bilgileri();
-                        }
-                        catch (Exception hatamjs)
-                        {
-                            MessageBox.Show(hatamjs.Message);
-                        }
+                        listele_yakin_bilgileri();
                     }
-                    else
-                    { MessageBox.Show("Yakın bilgisi giriniz.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-
-
-                    if (txt_bakim_yakin.Text != "")//herhangi bir bakım kişisi eklenşr ise
+                    catch (Exception hatamjs)
                     {
-                        try
-                        {
-                            SqlCommand guncellekomutubakim = new SqlCommand("Guncelle_Bakim_Yükümlü_Bilgisi", baglantim.baglanti());
-                            guncellekomutubakim.CommandType = CommandType.StoredProcedure;
+                        MessageBox.Show(hatamjs.Message);
+                    }
+                }
+                /*
+                else
+                 { MessageBox.Show("Yakın bilgisi giriniz.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                */
+                 
+                else if (txt_bakim_yakin.Text != "")//herhangi bir bakım kişisi eklenşr ise
+                {
+                    try
+                    {
+                        SqlCommand guncellekomutubakim = new SqlCommand("Guncelle_Bakim_Yükümlü_Bilgisi", baglantim.baglanti());
+                        guncellekomutubakim.CommandType = CommandType.StoredProcedure;
 
-                            guncellekomutubakim.Parameters.AddWithValue("@kisi_tc", mtxt_tc_no.Text);
-                            guncellekomutubakim.Parameters.AddWithValue("@bakim_yakini", txt_bakim_yakin.Text);
-                            guncellekomutubakim.Parameters.AddWithValue("@adi_soyadi", txt_bakim_adsoyad.Text);
-                            guncellekomutubakim.Parameters.AddWithValue("@dogum_yeri", txt_bakim_dogum_yeri.Text);
-                            guncellekomutubakim.Parameters.AddWithValue("@dogum_tarihi", date_bakim_dogum.Value);
-                            guncellekomutubakim.Parameters.AddWithValue("@tel_no", mtxt_bakim_tel_no.Text);
-                            guncellekomutubakim.Parameters.AddWithValue("@saglik_sorunu", saglik_durumu_bakım);
-                            guncellekomutubakim.Parameters.AddWithValue("@saglik_sorunu_aciklama", txt_bakim_saglik_aciklama.Text);
-                            guncellekomutubakim.Parameters.AddWithValue("@engel_durumu", engel_durumu_bakim);
-                            guncellekomutubakim.Parameters.AddWithValue("@engel_aciklama", txt_bakim_engel_aciklama.Text);
-                            guncellekomutubakim.Parameters.AddWithValue("@bakim_hobi", bakımHobi);
-                            guncellekomutubakim.Parameters.AddWithValue("@geliri", txt_bakim_maas.Text);
-                            guncellekomutubakim.Parameters.AddWithValue("@id", txt_bakim_id.Text);
-
-                            guncellekomutubakim.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
-                                                                  //baglantim.baglanti().Close();
-                                                                  //böylece kayıt ekleme işlemi gerçekleştirlmiş oldu
-                            listele_bakim();
-                            MessageBox.Show("Kişinin bakımı ile yükümlü olduğu bilgiler başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
-
-                            ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
-
-                          
+                        guncellekomutubakim.Parameters.AddWithValue("@kisi_tc", mtxt_tc_no.Text);
+                        guncellekomutubakim.Parameters.AddWithValue("@bakim_yakini", txt_bakim_yakin.Text);
+                        guncellekomutubakim.Parameters.AddWithValue("@adi_soyadi", txt_bakim_adsoyad.Text);
+                        guncellekomutubakim.Parameters.AddWithValue("@dogum_yeri", txt_bakim_dogum_yeri.Text);
+                        guncellekomutubakim.Parameters.AddWithValue("@dogum_tarihi", date_bakim_dogum.Value);
+                        guncellekomutubakim.Parameters.AddWithValue("@tel_no", mtxt_bakim_tel_no.Text);
+                        guncellekomutubakim.Parameters.AddWithValue("@saglik_sorunu", saglik_durumu_bakım);
+                        guncellekomutubakim.Parameters.AddWithValue("@saglik_sorunu_aciklama", txt_bakim_saglik_aciklama.Text);
+                        guncellekomutubakim.Parameters.AddWithValue("@engel_durumu", engel_durumu_bakim);
+                        guncellekomutubakim.Parameters.AddWithValue("@engel_aciklama", txt_bakim_engel_aciklama.Text);
+                        guncellekomutubakim.Parameters.AddWithValue("@bakim_hobi", bakımHobi);
+                        guncellekomutubakim.Parameters.AddWithValue("@geliri", txt_bakim_maas.Text);
+                        guncellekomutubakim.Parameters.AddWithValue("@id", txt_bakim_id.Text);
 
 
 
-                        }
-                        catch (Exception hataamsj)
-                        {
+                        guncellekomutubakim.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
+                                                              //baglantim.baglanti().Close();
+                                                              //böylece kayıt ekleme işlemi gerçekleştirlmiş oldu
+                        listele_bakim();
+                        MessageBox.Show("Kişinin bakımı ile yükümlü olduğu bilgiler başarılı bir şekilde güncellenmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
-                            MessageBox.Show(hataamsj.Message);
-                        }
+                        ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
+
+
+
+
 
                     }
+                    catch (Exception hataamsj)
+                    {
+
+                        MessageBox.Show(hataamsj.Message);
+                    }
+
+                }
 
 
                 }
@@ -1778,15 +1838,11 @@ namespace InsanKaynaklariBilgiSistem
          }
 
 
-        }
+     }
 
 
-        //formu temizle butonu
-         private void simpleButton3_Click(object sender, EventArgs e)
-    {
-        ekrani_temizle();
-    }
+      
+    
 
     }
 
-}

@@ -209,7 +209,7 @@ namespace InsanKaynaklariBilgiSistem
             this.gridControl1.Location = new System.Drawing.Point(353, 2);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(438, 378);
+            this.gridControl1.Size = new System.Drawing.Size(711, 378);
             this.gridControl1.TabIndex = 150;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -354,6 +354,7 @@ namespace InsanKaynaklariBilgiSistem
             this.txt_id.Name = "txt_id";
             this.txt_id.Size = new System.Drawing.Size(30, 20);
             this.txt_id.TabIndex = 174;
+            this.txt_id.Visible = false;
             // 
             // panel1
             // 
@@ -387,7 +388,7 @@ namespace InsanKaynaklariBilgiSistem
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1068, 450);
             this.Controls.Add(this.txt_pdks);
             this.Controls.Add(this.lbl_pdks);
             this.Controls.Add(this.panel1);

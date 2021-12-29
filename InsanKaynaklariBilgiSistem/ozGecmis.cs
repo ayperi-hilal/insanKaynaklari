@@ -54,12 +54,17 @@ namespace InsanKaynaklariBilgiSistem
         private void ozGecmis_Load(object sender, EventArgs e)
         {
             mtxt_tc_no.Mask = "00000000000";//kullnıcı 11 haneli tc numarası girebilecek.
-            m_txt_isad.Text.ToUpper();
-            mtxt_istel.Mask = "0000000000";//cep no
-            mtxt_gorev.Mask = "LL????????????????????";//görevi
-            mtxt_maas.Mask = "00009";//toplam gelir
-            mtxt_yon.Mask = "LL????????????????????????????????????????";//önceki yöneticinin ad soy adı
 
+            txt_isad.CharacterCasing=CharacterCasing.Upper;
+            txt_gorev.CharacterCasing = CharacterCasing.Upper;
+            txt_yon.CharacterCasing = CharacterCasing.Upper;
+
+            mtxt_istel.Mask = "0000000000";//cep no
+            
+            mtxt_maas.Mask = "00009";//toplam gelir
+           
+
+           
 
             DateTime zaman = DateTime.Now;
             int yil = int.Parse(zaman.ToString("yyyy"));
@@ -86,13 +91,16 @@ namespace InsanKaynaklariBilgiSistem
         {
 
             mtxt_tc_no.Clear();
-            m_txt_isad.Clear();
+          
             mtxt_istel.Clear();
-            mtxt_gorev.Clear();
+          
             mtxt_maas.Clear();
-            mtxt_yon.Clear();
+          
 
             txt_pdks.Text = string.Empty;
+            txt_isad.Text = string.Empty;
+            txt_gorev.Text = string.Empty;
+            txt_yon.Text = string.Empty;
 
             date_cikis.ResetText();
             date_giris.ResetText();
@@ -212,10 +220,10 @@ namespace InsanKaynaklariBilgiSistem
                     label1.ForeColor = Color.Black;
 
                 //eğer iş yerinin adına herhangi bir veri girilirse diğerlerine de yazılmak zorunda olsun.
-                if (m_txt_isad.Text != "" && m_txt_isad.Text.Length > 2)
+                if (txt_isad.Text != "" && txt_isad.Text.Length > 2)
                 {
                    
-                    if (mtxt_gorev.Text == "")
+                    if (txt_gorev.Text == "")
                         label8.ForeColor = Color.Red;
                     else
                         label8.ForeColor = Color.Black;
@@ -225,7 +233,7 @@ namespace InsanKaynaklariBilgiSistem
                     else
                         label9.ForeColor = Color.Black;
 
-                    if (mtxt_yon.Text == "")
+                    if (txt_yon.Text == "")
                         label10.ForeColor = Color.Red;
                     else
                         label10.ForeColor = Color.Black;
@@ -240,18 +248,18 @@ namespace InsanKaynaklariBilgiSistem
                 else
                 {
                     mtxt_istel.Enabled = false;
-                    mtxt_gorev.Enabled = false;
+                    txt_gorev.Enabled = false;
                     mtxt_maas.Enabled = false;
-                    mtxt_yon.Enabled = false;
+                    txt_yon.Enabled = false;
                     date_cikis.Enabled = false;
                     date_giris.Enabled = false;
                     cb_sebep.Enabled = false;
                 }
 
 
-                if (mtxt_tc_no.Text.Length == 11 && m_txt_isad.Text.Length > 2)
+                if (mtxt_tc_no.Text.Length == 11 && txt_isad.Text.Length > 2)
                 {
-                    if ( mtxt_gorev.Text != string.Empty && mtxt_yon.Text != string.Empty && cb_sebep.Text != string.Empty)
+                    if ( txt_gorev.Text != string.Empty && txt_yon.Text != string.Empty && cb_sebep.Text != string.Empty)
                     {
                         try
                         {
@@ -261,11 +269,11 @@ namespace InsanKaynaklariBilgiSistem
                         eklekomutu.CommandType = CommandType.StoredProcedure;
 
                         eklekomutu.Parameters.AddWithValue("@kisi_tc", mtxt_tc_no.Text);
-                        eklekomutu.Parameters.AddWithValue("@isyeri_adi", m_txt_isad.Text);
+                        eklekomutu.Parameters.AddWithValue("@isyeri_adi", txt_isad.Text);
                         eklekomutu.Parameters.AddWithValue("@tel", mtxt_istel.Text);
-                        eklekomutu.Parameters.AddWithValue("@gorev", mtxt_gorev.Text);
+                        eklekomutu.Parameters.AddWithValue("@gorev", txt_gorev.Text);
                         eklekomutu.Parameters.AddWithValue("@maaş", mtxt_maas.Text);
-                        eklekomutu.Parameters.AddWithValue("@yon_adi", mtxt_yon.Text);
+                        eklekomutu.Parameters.AddWithValue("@yon_adi", txt_yon.Text);
                         eklekomutu.Parameters.AddWithValue("@giris_tarihi", date_giris.Value);
                         eklekomutu.Parameters.AddWithValue("@cikis_tarihi", date_cikis.Value);
                         eklekomutu.Parameters.AddWithValue("@sebep", cb_sebep.Text);
@@ -314,11 +322,11 @@ namespace InsanKaynaklariBilgiSistem
         private void gridControl1_DoubleClick(object sender, EventArgs e)
         {
            
-            m_txt_isad.Text = gridView1.GetFocusedRowCellValue("isyeri_adi").ToString();
+            txt_isad.Text = gridView1.GetFocusedRowCellValue("isyeri_adi").ToString();
             mtxt_istel.Text = gridView1.GetFocusedRowCellValue("tel").ToString();
-            mtxt_gorev.Text = gridView1.GetFocusedRowCellValue("gorev").ToString();
+            txt_gorev.Text = gridView1.GetFocusedRowCellValue("gorev").ToString();
             mtxt_maas.Text = gridView1.GetFocusedRowCellValue("maaş").ToString();
-            mtxt_yon.Text = gridView1.GetFocusedRowCellValue("yon_adi").ToString();
+            txt_yon.Text = gridView1.GetFocusedRowCellValue("yon_adi").ToString();
             date_giris.Text = gridView1.GetFocusedRowCellValue("giris_tarihi").ToString();
             date_cikis.Text = gridView1.GetFocusedRowCellValue("cikis_tarihi").ToString();
             cb_sebep.Text = gridView1.GetFocusedRowCellValue("sebep").ToString();
@@ -340,10 +348,10 @@ namespace InsanKaynaklariBilgiSistem
                 label1.ForeColor = Color.Black;
 
             //eğer iş yerinin adına herhangi bir veri girilirse diğerlerine de yazılmak zorunda olsun.
-            if (m_txt_isad.Text != "" && m_txt_isad.Text.Length > 2)
+            if (txt_isad.Text != "" && txt_isad.Text.Length > 2)
             {
 
-                if (mtxt_gorev.Text == "")
+                if (txt_gorev.Text == "")
                     label8.ForeColor = Color.Red;
                 else
                     label8.ForeColor = Color.Black;
@@ -353,7 +361,7 @@ namespace InsanKaynaklariBilgiSistem
                 else
                     label9.ForeColor = Color.Black;
 
-                if (mtxt_yon.Text == "")
+                if (txt_yon.Text == "")
                     label10.ForeColor = Color.Red;
                 else
                     label10.ForeColor = Color.Black;
@@ -368,19 +376,19 @@ namespace InsanKaynaklariBilgiSistem
             else
             {
                 mtxt_istel.Enabled = false;
-                mtxt_gorev.Enabled = false;
+                txt_gorev.Enabled = false;
                 mtxt_maas.Enabled = false;
-                mtxt_yon.Enabled = false;
+                txt_yon.Enabled = false;
                 date_cikis.Enabled = false;
                 date_giris.Enabled = false;
                 cb_sebep.Enabled = false;
             }
 
 
-            if (mtxt_tc_no.Text.Length == 11 && m_txt_isad.Text.Length > 2)
+            if (mtxt_tc_no.Text.Length == 11 && txt_isad.Text.Length > 2)
             {
-                if (mtxt_gorev.Text != string.Empty && mtxt_maas.Text != string.Empty
-                    && mtxt_yon.Text != string.Empty && cb_sebep.Text != string.Empty)
+                if (txt_gorev.Text != string.Empty && mtxt_maas.Text != string.Empty
+                    && txt_yon.Text != string.Empty && cb_sebep.Text != string.Empty)
                 {
                     try
                     {
@@ -390,11 +398,11 @@ namespace InsanKaynaklariBilgiSistem
                         guncellekomutu.CommandType = CommandType.StoredProcedure;
 
                         guncellekomutu.Parameters.AddWithValue("@kisi_tc", mtxt_tc_no.Text);
-                        guncellekomutu.Parameters.AddWithValue("@isyeri_adi", m_txt_isad.Text);
+                        guncellekomutu.Parameters.AddWithValue("@isyeri_adi", txt_isad.Text);
                         guncellekomutu.Parameters.AddWithValue("@tel", mtxt_istel.Text);
-                        guncellekomutu.Parameters.AddWithValue("@gorev", mtxt_gorev.Text);
+                        guncellekomutu.Parameters.AddWithValue("@gorev", txt_gorev.Text);
                         guncellekomutu.Parameters.AddWithValue("@maas", mtxt_maas.Text);
-                        guncellekomutu.Parameters.AddWithValue("@yon_adi", mtxt_yon.Text);
+                        guncellekomutu.Parameters.AddWithValue("@yon_adi", txt_yon.Text);
                         guncellekomutu.Parameters.AddWithValue("@giris_tarihi", date_giris.Value);
                         guncellekomutu.Parameters.AddWithValue("@cikis_tarihi", date_cikis.Value);
                         guncellekomutu.Parameters.AddWithValue("@sebep", cb_sebep.Text);
@@ -476,12 +484,12 @@ namespace InsanKaynaklariBilgiSistem
         private void m_txt_isad_TextChanged(object sender, EventArgs e)
         {
 
-            if (m_txt_isad.Text.Length > 2)
+            if (txt_isad.Text.Length > 2)
             {
                 mtxt_istel.Enabled = true;
-                mtxt_gorev.Enabled = true;
+                txt_gorev.Enabled = true;
                 mtxt_maas.Enabled = true;
-                mtxt_yon.Enabled = true;
+                txt_yon.Enabled = true;
                 date_giris.Enabled = true;
                 date_cikis.Enabled = true;
                 cb_sebep.Enabled = true;
