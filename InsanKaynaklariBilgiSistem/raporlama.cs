@@ -24,7 +24,26 @@ namespace InsanKaynaklariBilgiSistem
         }
         sqlBaglantisi baglantim = new sqlBaglantisi();
 
-        
+        public void formu_temizle()
+        {
+            btn_tum_personeller.Checked = false;
+            btn_arge.Checked = false;
+            btn_personel.Checked = false;
+            btn_cikanlar.Checked = false;
+
+            btn_saglik.Checked = false;
+            btn_aile.Checked = false;
+            btn_iletisim.Checked = false;
+            btn_egitim.Checked = false;
+            btn_hobi.Checked = false;
+            btn_maddi.Checked = false;
+            btn_ozgecmis.Checked = false;
+            btn_tumu.Checked = false;
+
+            gridView1.Columns.Clear();
+            //DataGridView.items.Clear();
+
+        }
 
         public void listele_Tum_Personeller()
         {
@@ -182,7 +201,6 @@ namespace InsanKaynaklariBilgiSistem
             gridView1.Columns["PERSONELİN HOBİLERİ"].Visible = false;
         }
 
-
         public void ozgecmis_gizle()
         {
             
@@ -196,6 +214,7 @@ namespace InsanKaynaklariBilgiSistem
             gridView1.Columns["ÖNCEKİ İŞYERİNDEN ÇIKIŞ SEBEBİ"].Visible = false;
             
         }
+
         public void maddi_gizle()
         {
             gridView1.Columns["PERSONELİN MAAŞI"].Visible = false;
@@ -212,7 +231,6 @@ namespace InsanKaynaklariBilgiSistem
             gridView1.Columns["BORÇ MİKTARI"].Visible = false;
             gridView1.Columns["İCRA/BORÇ HESAP NO"].Visible = false;
         }
-
        
         private void btn_aktar_Click(object sender, EventArgs e)
         {
@@ -371,8 +389,6 @@ namespace InsanKaynaklariBilgiSistem
                 {
                     maddi_gizle();
                 }
-
-
             }
             if (btn_cikanlar.Checked == true)
             {
@@ -405,6 +421,8 @@ namespace InsanKaynaklariBilgiSistem
                 {
                     maddi_gizle();
                 }
+
+                
             }
         }
 
@@ -418,6 +436,11 @@ namespace InsanKaynaklariBilgiSistem
             //gridView1.Columns[2].BestFit();
             //gridView1.Columns[3].BestFit();
 
+        }
+
+        private void btn_formu_temizle_Click(object sender, EventArgs e)
+        {
+            formu_temizle();
         }
     }
 }

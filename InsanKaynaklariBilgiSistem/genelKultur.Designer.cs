@@ -410,7 +410,7 @@ namespace InsanKaynaklariBilgiSistem
             // simpleButton4
             // 
             this.simpleButton4.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.resetmodeldifferences_32x32;
-            this.simpleButton4.Location = new System.Drawing.Point(685, 682);
+            this.simpleButton4.Location = new System.Drawing.Point(685, 678);
             this.simpleButton4.Name = "simpleButton4";
             this.simpleButton4.Size = new System.Drawing.Size(139, 39);
             this.simpleButton4.TabIndex = 338;
@@ -421,7 +421,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.btn_sil.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btn_sil.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.cancel_32x32;
-            this.btn_sil.Location = new System.Drawing.Point(588, 686);
+            this.btn_sil.Location = new System.Drawing.Point(588, 678);
             this.btn_sil.Name = "btn_sil";
             this.btn_sil.Size = new System.Drawing.Size(91, 40);
             this.btn_sil.TabIndex = 337;
@@ -431,7 +431,7 @@ namespace InsanKaynaklariBilgiSistem
             // btn_guncelle
             // 
             this.btn_guncelle.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.refreshallpivottable_32x32;
-            this.btn_guncelle.Location = new System.Drawing.Point(488, 687);
+            this.btn_guncelle.Location = new System.Drawing.Point(488, 679);
             this.btn_guncelle.Name = "btn_guncelle";
             this.btn_guncelle.Size = new System.Drawing.Size(91, 39);
             this.btn_guncelle.TabIndex = 336;
@@ -507,7 +507,7 @@ namespace InsanKaynaklariBilgiSistem
             // btn_evrak
             // 
             this.btn_evrak.ImageOptions.SvgImage = global::InsanKaynaklariBilgiSistem.Properties.Resources.open2;
-            this.btn_evrak.Location = new System.Drawing.Point(383, 343);
+            this.btn_evrak.Location = new System.Drawing.Point(390, 343);
             this.btn_evrak.Name = "btn_evrak";
             this.btn_evrak.Size = new System.Drawing.Size(131, 35);
             this.btn_evrak.TabIndex = 355;
@@ -526,7 +526,7 @@ namespace InsanKaynaklariBilgiSistem
             this.gridControl5.Location = new System.Drawing.Point(-2, -34);
             this.gridControl5.MainView = this.gridView5;
             this.gridControl5.Name = "gridControl5";
-            this.gridControl5.Size = new System.Drawing.Size(443, 344);
+            this.gridControl5.Size = new System.Drawing.Size(693, 344);
             this.gridControl5.TabIndex = 0;
             this.gridControl5.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView5});
@@ -536,6 +536,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.gridView5.GridControl = this.gridControl5;
             this.gridView5.Name = "gridView5";
+            this.gridView5.OptionsBehavior.Editable = false;
             // 
             // xtraTabPage4
             // 
@@ -549,7 +550,7 @@ namespace InsanKaynaklariBilgiSistem
             this.gridControl4.Location = new System.Drawing.Point(0, -34);
             this.gridControl4.MainView = this.gridView4;
             this.gridControl4.Name = "gridControl4";
-            this.gridControl4.Size = new System.Drawing.Size(441, 343);
+            this.gridControl4.Size = new System.Drawing.Size(695, 343);
             this.gridControl4.TabIndex = 0;
             this.gridControl4.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView4});
@@ -559,6 +560,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.gridView4.GridControl = this.gridControl4;
             this.gridView4.Name = "gridView4";
+            this.gridView4.OptionsBehavior.Editable = false;
             // 
             // xtraTabPage3
             // 
@@ -572,7 +574,7 @@ namespace InsanKaynaklariBilgiSistem
             this.gridControl3.Location = new System.Drawing.Point(-1, -34);
             this.gridControl3.MainView = this.gridView3;
             this.gridControl3.Name = "gridControl3";
-            this.gridControl3.Size = new System.Drawing.Size(442, 344);
+            this.gridControl3.Size = new System.Drawing.Size(692, 344);
             this.gridControl3.TabIndex = 0;
             this.gridControl3.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView3});
@@ -582,6 +584,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.gridView3.GridControl = this.gridControl3;
             this.gridView3.Name = "gridView3";
+            this.gridView3.OptionsBehavior.Editable = false;
             // 
             // xtraTabPage1
             // 
@@ -595,7 +598,7 @@ namespace InsanKaynaklariBilgiSistem
             this.gridControl2.Location = new System.Drawing.Point(-1, -33);
             this.gridControl2.MainView = this.gridView2;
             this.gridControl2.Name = "gridControl2";
-            this.gridControl2.Size = new System.Drawing.Size(442, 342);
+            this.gridControl2.Size = new System.Drawing.Size(696, 342);
             this.gridControl2.TabIndex = 0;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -605,12 +608,13 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.gridView2.GridControl = this.gridControl2;
             this.gridView2.Name = "gridView2";
+            this.gridView2.OptionsBehavior.Editable = false;
             // 
             // xtraTabPage2
             // 
             this.xtraTabPage2.Controls.Add(this.gridControl1);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(440, 309);
+            this.xtraTabPage2.Size = new System.Drawing.Size(694, 309);
             this.xtraTabPage2.Text = "HOBİLER";
             // 
             // gridControl1
@@ -618,7 +622,7 @@ namespace InsanKaynaklariBilgiSistem
             this.gridControl1.Location = new System.Drawing.Point(0, -33);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(441, 342);
+            this.gridControl1.Size = new System.Drawing.Size(695, 342);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -628,13 +632,14 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
             // 
             // xtraTabControl1
             // 
-            this.xtraTabControl1.Location = new System.Drawing.Point(382, -5);
+            this.xtraTabControl1.Location = new System.Drawing.Point(389, 1);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.xtraTabPage2;
-            this.xtraTabControl1.Size = new System.Drawing.Size(442, 334);
+            this.xtraTabControl1.Size = new System.Drawing.Size(696, 334);
             this.xtraTabControl1.TabIndex = 356;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage2,
@@ -654,6 +659,7 @@ namespace InsanKaynaklariBilgiSistem
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(408, 100);
             this.panel1.TabIndex = 358;
+            this.panel1.Visible = false;
             // 
             // txt_agirsertifika_id
             // 
@@ -711,7 +717,7 @@ namespace InsanKaynaklariBilgiSistem
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(825, 730);
+            this.ClientSize = new System.Drawing.Size(1085, 722);
             this.Controls.Add(this.txt_pdks);
             this.Controls.Add(this.lbl_pdks);
             this.Controls.Add(this.panel1);

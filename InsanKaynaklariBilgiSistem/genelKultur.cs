@@ -33,6 +33,7 @@ namespace InsanKaynaklariBilgiSistem
             da.Fill(dt);
             gridControl2.DataSource = dt;
             gridView2.Columns["id"].Visible = false;
+            gridView2.Columns["pdks"].Visible = false;
 
             gridView2.Columns["kisi_tc"].Caption = "TC NO";
             gridView2.Columns["yabanci_dil"].Caption = "YABANCI DİL";
@@ -50,6 +51,7 @@ namespace InsanKaynaklariBilgiSistem
             da2.Fill(dt2);
             gridControl3.DataSource = dt2;
             gridView3.Columns["id"].Visible = false;
+            gridView3.Columns["pdks"].Visible = false;
 
             gridView3.Columns["kisi_tc"].Caption = "TC NO";
             gridView3.Columns["program_ad"].Caption = "PROGRAM ADI";
@@ -67,6 +69,7 @@ namespace InsanKaynaklariBilgiSistem
             da3.Fill(dt3);
             gridControl4.DataSource = dt3;
             gridView4.Columns["id"].Visible = false;
+            gridView4.Columns["pdks"].Visible = false;
 
             gridView4.Columns["kisi_tc"].Caption = "TC NO";
             gridView4.Columns["sertifika_adi"].Caption = "SERTİFİKA ADI";
@@ -84,6 +87,7 @@ namespace InsanKaynaklariBilgiSistem
             da4.Fill(dt4);
             gridControl1.DataSource = dt4;
             gridView1.Columns["id"].Visible = false;
+            gridView1.Columns["pdks"].Visible = false;
 
             gridView1.Columns["kisi_tc"].Caption = "TC NO";
             gridView1.Columns["kisi_hobileri"].Caption = "HOBİLER";
@@ -100,6 +104,7 @@ namespace InsanKaynaklariBilgiSistem
             da5.Fill(dt5);
             gridControl5.DataSource = dt5;
             gridView5.Columns["id"].Visible = false;
+            gridView5.Columns["pdks"].Visible = false;
 
             gridView5.Columns["kisi_tc"].Caption = "TC NO";
             gridView5.Columns["agir_is_sertifika_adi"].Caption = "SERTİFİKA ADI";
@@ -142,14 +147,20 @@ namespace InsanKaynaklariBilgiSistem
 
             //sertifikanın alınış tarihi
             date_sertf_tarih.MinDate = new DateTime(1900, 1, 1);
-            date_sertf_tarih.MaxDate = new DateTime(yil, ay, gun);
+            date_sertf_tarih.MaxDate = new DateTime(yil, ay, gun+1);
 
             //sertifikanın alınış tarihi
             date_sertf_agir.MinDate = new DateTime(1900, 1, 1);
-            date_sertf_agir.MaxDate = new DateTime(yil, ay, gun);
+            date_sertf_agir.MaxDate = new DateTime(yil, ay, gun+1);
         }
         private void ekrani_temizle()
         {
+            txt_hobi_id.Text = string.Empty;
+            txt_dil_id.Text = string.Empty;
+            txt_bilgisayar_id.Text = string.Empty;
+            txt_sertifika_id.Text = string.Empty;
+            txt_agirsertifika_id.Text = string.Empty;
+
             mtxt_tc_no.Clear();
             txt_agir.Text = string.Empty;
             txt_pc.Text = string.Empty;
@@ -201,6 +212,57 @@ namespace InsanKaynaklariBilgiSistem
                 dxErrorProvider1.SetError(mtxt_tc_no, "TC KİMLİK NO 11 KARAKTER OLMALIDIR.");
             else
                 dxErrorProvider1.ClearErrors();
+
+
+
+            if (mtxt_tc_no.Text.Length == 11)
+            {
+                SqlCommand selectsorgu = new SqlCommand("kisi_arama", baglantim.baglanti());
+                selectsorgu.CommandType = CommandType.StoredProcedure;
+
+                selectsorgu.Parameters.AddWithValue("@TC", mtxt_tc_no.Text);
+                selectsorgu.Parameters.AddWithValue("@pdks", txt_pdks.Text);
+
+
+                SqlDataReader kayitokuma = selectsorgu.ExecuteReader();
+
+                //kayıtokumanın içerisne attığımız değişkenin while döngüsü ile tüm veri tabanında arayalım.
+                while (kayitokuma.Read())
+                {   //kayıt var ise buradan true dönecek.
+                    if (mtxt_tc_no.Text != "")
+                        txt_pdks.Text = kayitokuma.GetValue(19).ToString();
+                    else if (txt_pdks.Text != "")
+                        mtxt_tc_no.Text = kayitokuma.GetValue(1).ToString();
+                    else if (mtxt_tc_no.Text != "" && txt_pdks.Text != "")
+                    {
+                        SqlCommand selectsorguiki = new SqlCommand("select *from Kisi where TC='" + mtxt_tc_no.Text + "'", baglantim.baglanti());
+                        SqlDataReader kayitokumaiki = selectsorgu.ExecuteReader();
+
+                        while (kayitokumaiki.Read())
+                        {
+
+                            string gelen;
+                            gelen = kayitokumaiki.GetValue(19).ToString();
+                            if (gelen != txt_pdks.Text)
+                            {
+                                txt_pdks.Text = kayitokumaiki.GetValue(19).ToString();
+                            }
+
+                        }
+                    }
+
+
+                    label3.Text = kayitokuma.GetValue(2).ToString();//ilgili tck ait değerin veritabanındaki tck getirilecek. veri tabanı 0,1,2,.. diye gider.
+                    label5.Text = kayitokuma.GetValue(3).ToString();//ad
+
+                    break;
+                }
+            }
+
+
+
+
+
         }
 
         string hobiler = "";
@@ -552,6 +614,10 @@ namespace InsanKaynaklariBilgiSistem
                     }
                 }
 
+            }
+            else
+            {
+                MessageBox.Show("Lütfen 11 haneli TC no veya geçerli bir pdks giriniz.");
             }
             listele_bilgisayar_bilgisi();
             listele_hobi();
@@ -930,21 +996,21 @@ namespace InsanKaynaklariBilgiSistem
                     SqlCommand hobiSilsorgusu = new SqlCommand("delete from Kisi_Hobi where kisi_tc='" + mtxt_tc_no.Text + "'and id='" + txt_hobi_id.Text + "'", baglantim.baglanti());
                     //şimdi sorgunun sonucunun gerçekleştirilmesi sağlanacak 
                     hobiSilsorgusu.ExecuteNonQuery();
-                    MessageBox.Show("Kullanıcının igili hobi bilgileri başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    baglantim.baglanti().Close();
+                   // MessageBox.Show("Kullanıcının igili hobi bilgileri başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    
 
-                    ekrani_temizle();
+                    //ekrani_temizle();
                     listele_hobi();
                     break;
                 }
                 //girilen tck ya göre bir kayıt bulunmaz ise
-                if (kisi_hobi_arama_yakin == false)//while döngüsü çalışmamş demektir.
+              /*  if (kisi_hobi_arama_yakin == false)//while döngüsü çalışmamş demektir.
                 {
                     MessageBox.Show("Böyle bir kayıt bulunamamıştır", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                }
+                }*/
 
-                ekrani_temizle();
+               // ekrani_temizle();
 
 
                 //yabancı dilinmesi
@@ -959,21 +1025,21 @@ namespace InsanKaynaklariBilgiSistem
                     SqlCommand yabanciDilSilsorgusu = new SqlCommand("delete from Kisi_Dil_Bilgisi where kisi_tc='" + mtxt_tc_no.Text + "'and id='" + txt_dil_id.Text + "'", baglantim.baglanti());
                     //şimdi sorgunun sonucunun gerçekleştirilmesi sağlanacak 
                     yabanciDilSilsorgusu.ExecuteNonQuery();
-                    MessageBox.Show("ilgili kayıt başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    //MessageBox.Show("ilgili kayıt başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
 
-                    ekrani_temizle();
+                   // ekrani_temizle();
                     listele_yabanci_dil();
                     break;
                 }
                 //girilen tck ya göre bir kayıt bulunmaz ise
-                if (kayit_arama_yabanci_dil == false)//while döngüsü çalışmamş demektir.
+                /*if (kayit_arama_yabanci_dil == false)//while döngüsü çalışmamş demektir.
                 {
                     MessageBox.Show("Böyle bir kayıt bulunamamıştır", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                }
+                }*/
 
-                ekrani_temizle();
+               // ekrani_temizle();
 
 
 
@@ -991,21 +1057,21 @@ namespace InsanKaynaklariBilgiSistem
                     SqlCommand bilgisayarBilgisiSilsorgusu = new SqlCommand("delete from Kisi_Bilgisayar_Program_Bilgileri where kisi_tc='" + mtxt_tc_no.Text + "'and id='" + txt_bilgisayar_id.Text + "'", baglantim.baglanti());
                     //şimdi sorgunun sonucunun gerçekleştirilmesi sağlanacak 
                     bilgisayarBilgisiSilsorgusu.ExecuteNonQuery();
-                    MessageBox.Show("ilgili kayıt başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                   // MessageBox.Show("ilgili kayıt başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
 
-                    ekrani_temizle();
+                   // ekrani_temizle();
                     listele_bilgisayar_bilgisi();
                     break;
                 }
                 //girilen tck ya göre bir kayıt bulunmaz ise
-                if (kayit_arama_bilgisayar_bilgisi == false)//while döngüsü çalışmamş demektir.
+              /*  if (kayit_arama_bilgisayar_bilgisi == false)//while döngüsü çalışmamş demektir.
                 {
                     MessageBox.Show("Böyle bir kayıt bulunamamıştır", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
 
-                ekrani_temizle();
+                ekrani_temizle();*/
 
 
 
@@ -1022,21 +1088,22 @@ namespace InsanKaynaklariBilgiSistem
                     SqlCommand sertifikaSilsorgusu = new SqlCommand("delete from Kisi_Sertifika_Bilgileri where kisi_tc='" + mtxt_tc_no.Text + "'and id='" + txt_sertifika_id.Text + "'", baglantim.baglanti());
                     //şimdi sorgunun sonucunun gerçekleştirilmesi sağlanacak 
                     sertifikaSilsorgusu.ExecuteNonQuery();
-                    MessageBox.Show("ilgili kayıt başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                   // MessageBox.Show("ilgili kayıt başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
 
-                    ekrani_temizle();
+                  //  ekrani_temizle();
                     listele_sertifika();
                     break;
                 }
                 //girilen tck ya göre bir kayıt bulunmaz ise
-                if (kayit_arama_sertifika == false)//while döngüsü çalışmamş demektir.
+               /* if (kayit_arama_sertifika == false)//while döngüsü çalışmamş demektir.
                 {
                     MessageBox.Show("Böyle bir kayıt bulunamamıştır", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
 
                 ekrani_temizle();
+               */
 
                 // ağır sertifika
                 bool kayit_arama_agir = false;
@@ -1050,21 +1117,24 @@ namespace InsanKaynaklariBilgiSistem
                     SqlCommand agirSilsorgusu = new SqlCommand("delete from Kisi_Sertifika_Agir_is where kisi_tc='" + mtxt_tc_no.Text + "'", baglantim.baglanti());
                     //şimdi sorgunun sonucunun gerçekleştirilmesi sağlanacak 
                     agirSilsorgusu.ExecuteNonQuery();
-                    MessageBox.Show("ilgili kayıt başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    //MessageBox.Show("Seçmiş olduğunuz tüm kayıtlar başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
 
-                    ekrani_temizle();
-
+                    // ekrani_temizle();
+                    listele_sertifika_agir_is();
                     break;
                 }
                 //girilen tck ya göre bir kayıt bulunmaz ise
-                if (kayit_arama_agir == false)//while döngüsü çalışmamş demektir.
-                {
-                    MessageBox.Show("Böyle bir kayıt bulunamamıştır", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                /* if (kayit_arama_agir == false)//while döngüsü çalışmamş demektir.
+                 {
+                     MessageBox.Show("Böyle bir kayıt bulunamamıştır", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                }
+                 }
+                */
+                MessageBox.Show("Seçmiş olduğunuz tüm kayıtlar başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                 ekrani_temizle();
+               
             }
             else
             {

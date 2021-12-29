@@ -1324,7 +1324,6 @@ namespace InsanKaynaklariBilgiSistem
             this.txt_bakim_id.Name = "txt_bakim_id";
             this.txt_bakim_id.Size = new System.Drawing.Size(36, 20);
             this.txt_bakim_id.TabIndex = 236;
-            this.txt_bakim_id.Visible = false;
             // 
             // txt_yakin_id
             // 
@@ -1332,7 +1331,6 @@ namespace InsanKaynaklariBilgiSistem
             this.txt_yakin_id.Name = "txt_yakin_id";
             this.txt_yakin_id.Size = new System.Drawing.Size(36, 20);
             this.txt_yakin_id.TabIndex = 237;
-            this.txt_yakin_id.Visible = false;
             // 
             // xtraTabControl1
             // 

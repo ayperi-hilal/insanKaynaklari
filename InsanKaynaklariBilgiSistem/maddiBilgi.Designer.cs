@@ -57,12 +57,12 @@ namespace InsanKaynaklariBilgiSistem
             this.txt_destek_miktari = new System.Windows.Forms.TextBox();
             this.txt_maas = new System.Windows.Forms.TextBox();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
-            this.txt_kira_geliri_toplami = new System.Windows.Forms.TextBox();
-            this.radioButton_kirada_yok = new System.Windows.Forms.RadioButton();
             this.radioButton_elektrik = new System.Windows.Forms.RadioButton();
-            this.radioButton_kirada_var = new System.Windows.Forms.RadioButton();
             this.radioButton_dogalgaz = new System.Windows.Forms.RadioButton();
             this.radioButton_soba = new System.Windows.Forms.RadioButton();
+            this.txt_kira_geliri_toplami = new System.Windows.Forms.TextBox();
+            this.radioButton_kirada_yok = new System.Windows.Forms.RadioButton();
+            this.radioButton_kirada_var = new System.Windows.Forms.RadioButton();
             this.lbl_kira_geliri = new System.Windows.Forms.Label();
             this.lbl_kirada_ev_durumu = new System.Windows.Forms.Label();
             this.txt_kira_miktari = new System.Windows.Forms.TextBox();
@@ -99,6 +99,7 @@ namespace InsanKaynaklariBilgiSistem
             this.txt_id = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -125,7 +126,6 @@ namespace InsanKaynaklariBilgiSistem
             this.txt_isinma_aciklamasi.Name = "txt_isinma_aciklamasi";
             this.txt_isinma_aciklamasi.Size = new System.Drawing.Size(204, 41);
             this.txt_isinma_aciklamasi.TabIndex = 208;
-            this.txt_isinma_aciklamasi.Text = "Diğer ise belirtiniz...";
             // 
             // cb_destek_turu
             // 
@@ -220,7 +220,7 @@ namespace InsanKaynaklariBilgiSistem
             this.gridControl1.Location = new System.Drawing.Point(384, -5);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(433, 331);
+            this.gridControl1.Size = new System.Drawing.Size(810, 331);
             this.gridControl1.TabIndex = 187;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -230,6 +230,8 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsView.ColumnAutoWidth = false;
             // 
             // label5
             // 
@@ -350,6 +352,7 @@ namespace InsanKaynaklariBilgiSistem
             // panelControl3
             // 
             this.panelControl3.AutoSize = true;
+            this.panelControl3.Controls.Add(this.label1);
             this.panelControl3.Controls.Add(this.radioButton_elektrik);
             this.panelControl3.Controls.Add(this.radioButton_dogalgaz);
             this.panelControl3.Controls.Add(this.radioButton_soba);
@@ -357,6 +360,39 @@ namespace InsanKaynaklariBilgiSistem
             this.panelControl3.Name = "panelControl3";
             this.panelControl3.Size = new System.Drawing.Size(354, 134);
             this.panelControl3.TabIndex = 209;
+            // 
+            // radioButton_elektrik
+            // 
+            this.radioButton_elektrik.AutoSize = true;
+            this.radioButton_elektrik.Location = new System.Drawing.Point(276, 67);
+            this.radioButton_elektrik.Name = "radioButton_elektrik";
+            this.radioButton_elektrik.Size = new System.Drawing.Size(71, 17);
+            this.radioButton_elektrik.TabIndex = 236;
+            this.radioButton_elektrik.TabStop = true;
+            this.radioButton_elektrik.Text = "ELEKTRİK";
+            this.radioButton_elektrik.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_dogalgaz
+            // 
+            this.radioButton_dogalgaz.AutoSize = true;
+            this.radioButton_dogalgaz.Location = new System.Drawing.Point(191, 67);
+            this.radioButton_dogalgaz.Name = "radioButton_dogalgaz";
+            this.radioButton_dogalgaz.Size = new System.Drawing.Size(79, 17);
+            this.radioButton_dogalgaz.TabIndex = 235;
+            this.radioButton_dogalgaz.TabStop = true;
+            this.radioButton_dogalgaz.Text = "DOĞALGAZ";
+            this.radioButton_dogalgaz.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_soba
+            // 
+            this.radioButton_soba.AutoSize = true;
+            this.radioButton_soba.Location = new System.Drawing.Point(140, 67);
+            this.radioButton_soba.Name = "radioButton_soba";
+            this.radioButton_soba.Size = new System.Drawing.Size(52, 17);
+            this.radioButton_soba.TabIndex = 234;
+            this.radioButton_soba.TabStop = true;
+            this.radioButton_soba.Text = "SOBA";
+            this.radioButton_soba.UseVisualStyleBackColor = true;
             // 
             // txt_kira_geliri_toplami
             // 
@@ -376,17 +412,6 @@ namespace InsanKaynaklariBilgiSistem
             this.radioButton_kirada_yok.Text = "YOK";
             this.radioButton_kirada_yok.UseVisualStyleBackColor = true;
             // 
-            // radioButton_elektrik
-            // 
-            this.radioButton_elektrik.AutoSize = true;
-            this.radioButton_elektrik.Location = new System.Drawing.Point(276, 64);
-            this.radioButton_elektrik.Name = "radioButton_elektrik";
-            this.radioButton_elektrik.Size = new System.Drawing.Size(71, 17);
-            this.radioButton_elektrik.TabIndex = 236;
-            this.radioButton_elektrik.TabStop = true;
-            this.radioButton_elektrik.Text = "ELEKTRİK";
-            this.radioButton_elektrik.UseVisualStyleBackColor = true;
-            // 
             // radioButton_kirada_var
             // 
             this.radioButton_kirada_var.AutoSize = true;
@@ -397,28 +422,6 @@ namespace InsanKaynaklariBilgiSistem
             this.radioButton_kirada_var.TabStop = true;
             this.radioButton_kirada_var.Text = "VAR";
             this.radioButton_kirada_var.UseVisualStyleBackColor = true;
-            // 
-            // radioButton_dogalgaz
-            // 
-            this.radioButton_dogalgaz.AutoSize = true;
-            this.radioButton_dogalgaz.Location = new System.Drawing.Point(191, 62);
-            this.radioButton_dogalgaz.Name = "radioButton_dogalgaz";
-            this.radioButton_dogalgaz.Size = new System.Drawing.Size(79, 17);
-            this.radioButton_dogalgaz.TabIndex = 235;
-            this.radioButton_dogalgaz.TabStop = true;
-            this.radioButton_dogalgaz.Text = "DOĞALGAZ";
-            this.radioButton_dogalgaz.UseVisualStyleBackColor = true;
-            // 
-            // radioButton_soba
-            // 
-            this.radioButton_soba.AutoSize = true;
-            this.radioButton_soba.Location = new System.Drawing.Point(143, 60);
-            this.radioButton_soba.Name = "radioButton_soba";
-            this.radioButton_soba.Size = new System.Drawing.Size(52, 17);
-            this.radioButton_soba.TabIndex = 234;
-            this.radioButton_soba.TabStop = true;
-            this.radioButton_soba.Text = "SOBA";
-            this.radioButton_soba.UseVisualStyleBackColor = true;
             // 
             // lbl_kira_geliri
             // 
@@ -540,6 +543,7 @@ namespace InsanKaynaklariBilgiSistem
             this.simpleButton4.Size = new System.Drawing.Size(139, 39);
             this.simpleButton4.TabIndex = 218;
             this.simpleButton4.Text = "FORMU TEMİZLE";
+            this.simpleButton4.Click += new System.EventHandler(this.simpleButton4_Click);
             // 
             // btn_sil
             // 
@@ -761,12 +765,21 @@ namespace InsanKaynaklariBilgiSistem
             this.panel2.Size = new System.Drawing.Size(354, 61);
             this.panel2.TabIndex = 236;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(4, 93);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(102, 13);
+            this.label1.TabIndex = 237;
+            this.label1.Text = "Diğer ise belirtiniz...";
+            // 
             // maddiBilgi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(815, 749);
+            this.ClientSize = new System.Drawing.Size(1194, 749);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.txt_id);
@@ -908,5 +921,6 @@ namespace InsanKaynaklariBilgiSistem
         private System.Windows.Forms.TextBox txt_pdks;
         private System.Windows.Forms.Label lbl_pdks;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label1;
     }
 }

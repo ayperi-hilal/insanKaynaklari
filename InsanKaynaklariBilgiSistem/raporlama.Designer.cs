@@ -50,6 +50,7 @@ namespace InsanKaynaklariBilgiSistem
             this.lbl_bolum = new System.Windows.Forms.Label();
             this.lbl_ozellikler = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btn_formu_temizle = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -113,7 +114,7 @@ namespace InsanKaynaklariBilgiSistem
             this.btn_iletisim.Name = "btn_iletisim";
             this.btn_iletisim.Size = new System.Drawing.Size(75, 23);
             this.btn_iletisim.TabIndex = 10;
-            this.btn_iletisim.Text = "İletişimBilgileri";
+            this.btn_iletisim.Text = "İletişim Bilgileri";
             // 
             // btn_aile
             // 
@@ -250,11 +251,22 @@ namespace InsanKaynaklariBilgiSistem
             this.label1.TabIndex = 20;
             this.label1.Text = "Özellikler kısmından görmek istemediğiniz özellkleri seçerek pasif yapınız...";
             // 
+            // btn_formu_temizle
+            // 
+            this.btn_formu_temizle.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.clear_32x321;
+            this.btn_formu_temizle.Location = new System.Drawing.Point(14, 405);
+            this.btn_formu_temizle.Name = "btn_formu_temizle";
+            this.btn_formu_temizle.Size = new System.Drawing.Size(143, 49);
+            this.btn_formu_temizle.TabIndex = 21;
+            this.btn_formu_temizle.Text = "FORMU TEMİZLE";
+            this.btn_formu_temizle.Click += new System.EventHandler(this.btn_formu_temizle_Click);
+            // 
             // raporlama
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1370, 450);
+            this.Controls.Add(this.btn_formu_temizle);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbl_ozellikler);
             this.Controls.Add(this.lbl_bolum);
@@ -301,5 +313,6 @@ namespace InsanKaynaklariBilgiSistem
         private DevExpress.XtraEditors.CheckButton btn_arge;
         private DevExpress.XtraEditors.CheckButton btn_tum_personeller;
         private System.Windows.Forms.Label label1;
+        private DevExpress.XtraEditors.SimpleButton btn_formu_temizle;
     }
 }

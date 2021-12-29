@@ -31,6 +31,7 @@ namespace InsanKaynaklariBilgiSistem
             da.Fill(dt);
             gridControl1.DataSource = dt;
             gridView1.Columns["id"].Visible = false;
+            //gridView1.Columns["pdks"].Visible = false;
 
             gridView1.Columns["kisi_tc"].Caption = "TC NO";
             gridView1.Columns["maas"].Caption = "MAAŞ";
@@ -58,9 +59,19 @@ namespace InsanKaynaklariBilgiSistem
        
         //veri tabanı doaya yoluve provider nesnesinin belirlenmesi
         sqlBaglantisi baglantim = new sqlBaglantisi();
-        string ev_durumu, arac_durumu, isinma_türü, kirada_evi,arazi_durumu,icra_durumu;
+        string ev_durumu, arac_durumu, isinma_türü, kirada_evi,icra_durumu;
+        string arazi_durumu = "Arazisi yok";
         private void maddiBilgi_Load(object sender, EventArgs e)
         {
+            radioButton_evSahibi.Checked = true;
+            radioButton_dogalgaz.Checked = true;
+            radioButton_kirada_yok.Checked = true;
+            radioButton_araci_yok.Checked = true;
+            radioButton_arazi_yok.Checked = true;
+            radioButton_icra_yok.Checked = true;
+
+            
+
             mtxt_tc_no.Mask = "00000000000";//kullnıcı 11 haneli tc numarası girebilecek.
             mtxt_ıban.Mask = "00000000000000000000000000";//hesap numarası
             txt_kira_miktari.MaxLength = 6;
@@ -95,10 +106,55 @@ namespace InsanKaynaklariBilgiSistem
                 dxErrorProvider1.SetError(mtxt_tc_no, "TC KİMLİK NO 11 KARAKTER OLMALIDIR.");
             else
                 dxErrorProvider1.ClearErrors();
+
+            if (mtxt_tc_no.Text.Length == 11)
+            {
+                SqlCommand selectsorgu = new SqlCommand("kisi_arama", baglantim.baglanti());
+                selectsorgu.CommandType = CommandType.StoredProcedure;
+
+                selectsorgu.Parameters.AddWithValue("@TC", mtxt_tc_no.Text);
+                selectsorgu.Parameters.AddWithValue("@pdks", txt_pdks.Text);
+
+
+                SqlDataReader kayitokuma = selectsorgu.ExecuteReader();
+
+                //kayıtokumanın içerisne attığımız değişkenin while döngüsü ile tüm veri tabanında arayalım.
+                while (kayitokuma.Read())
+                {   //kayıt var ise buradan true dönecek.
+                    if (mtxt_tc_no.Text != "")
+                        txt_pdks.Text = kayitokuma.GetValue(19).ToString();
+                    else if (txt_pdks.Text != "")
+                        mtxt_tc_no.Text = kayitokuma.GetValue(1).ToString();
+                    else if (mtxt_tc_no.Text != "" && txt_pdks.Text != "")
+                    {
+                        SqlCommand selectsorguiki = new SqlCommand("select *from Kisi where TC='" + mtxt_tc_no.Text + "'", baglantim.baglanti());
+                        SqlDataReader kayitokumaiki = selectsorgu.ExecuteReader();
+
+                        while (kayitokumaiki.Read())
+                        {
+
+                            string gelen;
+                            gelen = kayitokumaiki.GetValue(19).ToString();
+                            if (gelen != txt_pdks.Text)
+                            {
+                                txt_pdks.Text = kayitokumaiki.GetValue(19).ToString();
+                            }
+
+                        }
+                    }
+
+
+                    label3.Text = kayitokuma.GetValue(2).ToString();//ilgili tck ait değerin veritabanındaki tck getirilecek. veri tabanı 0,1,2,.. diye gider.
+                    label5.Text = kayitokuma.GetValue(3).ToString();//ad
+
+                    break;
+                }
+            }
         }
 
         private void gridControl1_DoubleClick(object sender, EventArgs e)
         {
+            mtxt_tc_no.Text = gridView1.GetFocusedRowCellValue("kisi_tc").ToString();
             txt_maas.Text = gridView1.GetFocusedRowCellValue("maas").ToString();
             cb_destek_turu.Text = gridView1.GetFocusedRowCellValue("aldigi_destek_turu").ToString();
             txt_destek_miktari.Text = gridView1.GetFocusedRowCellValue("aldigi_destek_miktari").ToString();
@@ -166,6 +222,7 @@ namespace InsanKaynaklariBilgiSistem
 
             cb_destek_turu.Text = string.Empty;
 
+            txt_id.Text = string.Empty;
             txt_pdks.Text = string.Empty;
             txt_isinma_aciklamasi.Text = string.Empty;
             txt_arac_kullanim_amaci.Text = string.Empty;
@@ -187,6 +244,13 @@ namespace InsanKaynaklariBilgiSistem
         private void radioButton_icra_yok_CheckedChanged(object sender, EventArgs e)
         {
             date_borc_tarihi.Visible = false;
+        }
+
+
+        //formu temizle
+        private void simpleButton4_Click(object sender, EventArgs e)
+        {
+            ekrani_temizle();
         }
 
 
@@ -262,190 +326,220 @@ namespace InsanKaynaklariBilgiSistem
         //forma ekle
         private void simpleButton6_Click(object sender, EventArgs e)
         {
+
+            //yetki belirleyelim.yeni kayıtın yetkisi kullanıcı mı yoksa kullanıcı mı bunu belirlemek için kullanılan değişkendir.
+
+
+            //veri tabanı bağlantısını açaçlım . bağlantıyı daha önce tanımlamıştık.
+
+
+            //ilgili tc no ya ait vb de kayıt vamı diye kontrol edelim.
+
+
             //bu kısım için veri tabanında ad soyad için bir arama yapılması gerektedir.
 
-          //  bool kayitkontrol = false;//bir kayıt yaparken daha önceden böyle bir kullanıcı var mı diye kontrolü yapılacak
-            
-          
+            //  bool kayitkontrol = false;//bir kayıt yaparken daha önceden böyle bir kullanıcı var mı diye kontrolü yapılacak
+
+
             if (mtxt_tc_no.Text.Length < 11 || mtxt_tc_no.Text == "")//tc kimlik numarsaı 11 den küçük olmamalıdr. veya boş olmalaıdr. eğer olur ise tc kimlik no yazısı kırmızı olacaktır.
                 lbl_tc.ForeColor = Color.Red;
             else
                 lbl_tc.ForeColor = Color.Black;
 
+            bool kayitkontrol = false;//bir kayıt yaparken daha önceden böyle bir kullanıcı var mı diye kontrolü yapılacak
 
-            SqlCommand selectsorgu = new SqlCommand("select * from Kisi_maddi_durum_Bilgileri where kisi_tc='" + mtxt_tc_no.Text +  "'", baglantim.baglanti());
+            SqlCommand selectsorgu = new SqlCommand("select * from Kisi_maddi_durum_Bilgileri where kisi_tc='" + mtxt_tc_no.Text + "'", baglantim.baglanti());
 
             SqlDataReader kayitokuma = selectsorgu.ExecuteReader();//okuduğu sorguları tutuyoruz.
 
-            //ilgili tc no ya ait vb de kayıt vamı diye kontrol edelim.
-
-            //önce girilen alanlar için uygun koşullar koyalım.
-
-           
-
-            if (txt_maas.Text == "")//maaş bilgisi girilsin
-
-                lbl_maasi.ForeColor = Color.Red;
-            else
-                lbl_maasi.ForeColor = Color.Black;
-
-            //hesap numarası mutlaka olmalıdır.
-            if (mtxt_ıban.Text == "")
-                lbl_iban.ForeColor = Color.Red;
-            else
-                lbl_iban.ForeColor = Color.Black;
-
-            //destek türü seçili ise destek miktarı da girilmelidir.
-            if (cb_destek_turu.Text != "")
+            while (kayitokuma.Read())
             {
-                if (txt_destek_miktari.Text == "")
-                    lbl_destek_miktari.ForeColor = Color.Red;
+                kayitkontrol = true;//ilgili tc noya ait bir kullanıcı var demektir.
+                break;
+
+            }
+            if (kayitkontrol == false)
+            {
+
+
+                //ilgili tc no ya ait vb de kayıt vamı diye kontrol edelim.
+
+                //önce girilen alanlar için uygun koşullar koyalım.
+
+
+
+                if (txt_maas.Text == "")//maaş bilgisi girilsin
+
+                    lbl_maasi.ForeColor = Color.Red;
                 else
-                    lbl_destek_miktari.ForeColor = Color.Black;
-            }
-            else
-            {
-                txt_destek_miktari.Enabled = false;
-                lbl_destek_miktari.ForeColor = Color.Black;
-            }
+                    lbl_maasi.ForeColor = Color.Black;
 
-            //ev durumu
-            if(radioButton_kira.Checked==true)//kira ise kira miktarı girilmelidir.
-            {
-                if (txt_kira_miktari.Text == "")
-                    lbl_kira_ucreti.ForeColor = Color.Red;
+                //hesap numarası mutlaka olmalıdır.
+                if (mtxt_ıban.Text == "")
+                    lbl_iban.ForeColor = Color.Red;
+                else
+                    lbl_iban.ForeColor = Color.Black;
+
+                //destek türü seçili ise destek miktarı da girilmelidir.
+                if (cb_destek_turu.Text != "")
+                {
+                    if (txt_destek_miktari.Text == "")
+                        lbl_destek_miktari.ForeColor = Color.Red;
+                    else
+                        lbl_destek_miktari.ForeColor = Color.Black;
+                }
                 else
                 {
-                    ev_durumu = "Kira";
-                    lbl_kira_ucreti.ForeColor = Color.Black;
+                    txt_destek_miktari.Enabled = false;
+                    lbl_destek_miktari.ForeColor = Color.Black;
                 }
-            }
-            else
-            {
-                ev_durumu = "Kendisine ait";
-                lbl_kira_ucreti.ForeColor = Color.Black;
-                txt_kira_miktari.Enabled = false;
-            }
 
-            //ısınma sistemi herhangi biri değil ise kendi belirtmellidir.
-            if (radioButton_soba.Checked == false && radioButton_dogalgaz.Checked == false && radioButton_elektrik.Checked == false)
-            {
-                txt_isinma_aciklamasi.Enabled = false;
-                if (txt_isinma_aciklamasi.Text == "")
-                    lbl_isinma_sistemi.ForeColor = Color.Red;
+                //ev durumu
+                if (radioButton_kira.Checked == true)//kira ise kira miktarı girilmelidir.
+                {
+                    if (txt_kira_miktari.Text == "")
+                        lbl_kira_ucreti.ForeColor = Color.Red;
+                    else
+                    {
+                        ev_durumu = "Kira";
+                        lbl_kira_ucreti.ForeColor = Color.Black;
+                    }
+                }
+                else
+                {
+                    ev_durumu = "Kendisine ait";
+                    lbl_kira_ucreti.ForeColor = Color.Black;
+                    txt_kira_miktari.Enabled = false;
+                }
+
+                //ısınma sistemi herhangi biri değil ise kendi belirtmellidir.
+                if (radioButton_soba.Checked == false && radioButton_dogalgaz.Checked == false && radioButton_elektrik.Checked == false)
+                {
+                    txt_isinma_aciklamasi.Enabled = false;
+                    if (txt_isinma_aciklamasi.Text == "")
+                        lbl_isinma_sistemi.ForeColor = Color.Red;
+                    else
+                    {
+                        lbl_isinma_sistemi.ForeColor = Color.Black;
+                        isinma_türü = txt_isinma_aciklamasi.Text;
+                    }
+
+
+                }
                 else
                 {
                     lbl_isinma_sistemi.ForeColor = Color.Black;
-                    isinma_türü = txt_isinma_aciklamasi.Text;
+                    txt_isinma_aciklamasi.Enabled = true;
+                    //isinma_türü = txt_isinma_aciklamasi.Text;
+                    if (txt_isinma_aciklamasi.Text == "")
+                    {
+                        if (radioButton_soba.Checked == true)
+                            isinma_türü = radioButton_soba.Text;
+                        else if (radioButton_dogalgaz.Checked == true)
+                            isinma_türü = radioButton_dogalgaz.Text;
+                        else if (radioButton_elektrik.Checked == true)
+                            isinma_türü = radioButton_elektrik.Text;
+                    }
+                    else
+                    {
+                        radioButton_soba.Checked = false;
+                        radioButton_dogalgaz.Checked = false;
+                        radioButton_elektrik.Checked = false;
+                        isinma_türü = txt_isinma_aciklamasi.Text;
+                    }
+
                 }
 
-               
-            }
-            else
-            {
-                lbl_isinma_sistemi.ForeColor = Color.Black;
-                txt_isinma_aciklamasi.Enabled = true;
-                //isinma_türü = txt_isinma_aciklamasi.Text;
-
-                if (radioButton_soba.Checked == true)
-                    isinma_türü = radioButton_soba.Text;
-                else if (radioButton_dogalgaz.Checked == true)
-                    isinma_türü = radioButton_dogalgaz.Text;
-                else if (radioButton_elektrik.Checked == true)
-                    isinma_türü = radioButton_elektrik.Text;
-            }
-
-            //kirada evi var ise miktar girsin
-            if(radioButton_kirada_var.Checked==true)
-            {
-                if (txt_kira_geliri_toplami.Text == "")
-                    lbl_kira_geliri.ForeColor = Color.Red;
+                //kirada evi var ise miktar girsin
+                if (radioButton_kirada_var.Checked == true)
+                {
+                    if (txt_kira_geliri_toplami.Text == "")
+                        lbl_kira_geliri.ForeColor = Color.Red;
+                    else
+                    {
+                        kirada_evi = "Kirada evi vardır.";
+                        lbl_kira_geliri.ForeColor = Color.Black;
+                    }
+                }
                 else
                 {
-                    kirada_evi = "Kirada evi vardır.";
                     lbl_kira_geliri.ForeColor = Color.Black;
+                    txt_kira_geliri_toplami.Enabled = false;
+                    kirada_evi = "Kirada evi yoktur.";
                 }
-            }
-            else
-            {
-                lbl_kira_geliri.ForeColor = Color.Black;
-                txt_kira_geliri_toplami.Enabled = false;
-                kirada_evi = "Kirada evi yoktur.";
-            }
-            //arabası var ise
-            if (radioButton_araci_var.Checked == true)
-            {
-                if (txt_arac_kullanim_amaci.Text == "")
-                    lbl_arac_kullanim_amaci.ForeColor = Color.Red;
+                //arabası var ise
+                if (radioButton_araci_var.Checked == true)
+                {
+                    if (txt_arac_kullanim_amaci.Text == "")
+                        lbl_arac_kullanim_amaci.ForeColor = Color.Red;
+                    else
+                    {
+                        arac_durumu = "Aracı var";
+                        lbl_arac_kullanim_amaci.ForeColor = Color.Black;
+                    }
+                }
                 else
                 {
-                    arac_durumu = "Aracı var";
                     lbl_arac_kullanim_amaci.ForeColor = Color.Black;
+                    txt_arac_kullanim_amaci.Enabled = false;
+                    arac_durumu = "Aracı yok";
                 }
-            }
-            else
-            {
-                lbl_arac_kullanim_amaci.ForeColor = Color.Black;
-                txt_arac_kullanim_amaci.Enabled = false;
-                arac_durumu = "Aracı yok";
-            }
 
-            //arazi durumu
-            if (radioButton_arazi_var.Checked == true)
-            {
-                if (txt_arazi_kullanim_amaci.Text == "")
-                    lbl_arazi_amaci.ForeColor = Color.Red;
+                //arazi durumu
+                if (radioButton_arazi_var.Checked == true)
+                {
+                    if (txt_arazi_kullanim_amaci.Text == "")
+                        lbl_arazi_amaci.ForeColor = Color.Red;
+                    else
+                    {
+                        arazi_durumu = "Arazisi var";
+                        lbl_arazi_amaci.ForeColor = Color.Black;
+                    }
+                }
                 else
                 {
-                    arazi_durumu = "Arazisi var";
                     lbl_arazi_amaci.ForeColor = Color.Black;
+                    txt_arazi_kullanim_amaci.Enabled = false;
+                    arazi_durumu = "Arazisi yok";
                 }
-            }
-            else
-            {
-                lbl_arazi_amaci.ForeColor = Color.Black;
-                txt_arazi_kullanim_amaci.Enabled = false;
-                arac_durumu = "Arazisi yok";
-            }
 
 
-            //icra durumu söz konusu ise
-            if (radioButton_icra_var.Checked==true)
-            {
-                icra_durumu = "İcrası var.";
-                
-                if (txt_icra_konusu.Text == "")
-                    lbl_icra_konusu.ForeColor = Color.Red;
-                else
-                    lbl_icra_konusu.ForeColor = Color.Black;
-               if (txt_icra_miktari.Text == "")
-                    lbl_icra_kesinti_miktari.ForeColor = Color.Red;
-                else
-                    lbl_icra_kesinti_miktari.ForeColor = Color.Black;
-                 if(mtxt_icra_iban.Text == "")
-                    lbl_icra_iban.ForeColor = Color.Red;
-                else
-                    lbl_icra_iban.ForeColor = Color.Black;
-
-            }
-            else
-            {
-                icra_durumu = "İcrası yok.";
-                lbl_icra_konusu.ForeColor = Color.Black;
-                lbl_icra_kesinti_miktari.ForeColor = Color.Black;
-                lbl_icra_iban.ForeColor = Color.Black;
-                txt_icra_konusu.Enabled = false;
-                txt_icra_miktari.Enabled = false;
-                mtxt_icra_iban.Enabled = false;
-                date_borc_tarihi.Enabled = false;
-            }
-
-            //kayıt işlemine başlayalım.
-            if (mtxt_tc_no.Text.Length == 11)
-            {
-                //nu kısımda sadece maaş zorunlu bir veridir. 
-                if(txt_maas.Text!="" && mtxt_ıban.Text!="")
+                //icra durumu söz konusu ise
+                if (radioButton_icra_var.Checked == true)
                 {
+                    icra_durumu = "İcrası var.";
+
+                    if (txt_icra_konusu.Text == "")
+                        lbl_icra_konusu.ForeColor = Color.Red;
+                    else
+                        lbl_icra_konusu.ForeColor = Color.Black;
+                    if (txt_icra_miktari.Text == "")
+                        lbl_icra_kesinti_miktari.ForeColor = Color.Red;
+                    else
+                        lbl_icra_kesinti_miktari.ForeColor = Color.Black;
+                    if (mtxt_icra_iban.Text == "")
+                        lbl_icra_iban.ForeColor = Color.Red;
+                    else
+                        lbl_icra_iban.ForeColor = Color.Black;
+
+                }
+                else
+                {
+                    icra_durumu = "İcrası yok.";
+                    lbl_icra_konusu.ForeColor = Color.Black;
+                    lbl_icra_kesinti_miktari.ForeColor = Color.Black;
+                    lbl_icra_iban.ForeColor = Color.Black;
+                    txt_icra_konusu.Enabled = false;
+                    txt_icra_miktari.Enabled = false;
+                    mtxt_icra_iban.Enabled = false;
+                    date_borc_tarihi.Enabled = false;
+                }
+
+                //kayıt işlemine başlayalım.
+                if (mtxt_tc_no.Text.Length == 11)
+                {
+                    //nu kısımda sadece maaş zorunlu bir veridir. 
+
                     try
                     {
                         SqlCommand eklekomutu = new SqlCommand("Kaydet_Kisi_Maddi_Durum", baglantim.baglanti());
@@ -476,7 +570,7 @@ namespace InsanKaynaklariBilgiSistem
 
                         //böylece kayıt ekleme işlemi gerçekleştirlmiş oldu
                         listele();
-                         MessageBox.Show("Kişinin maddi durum bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("Kişinin maddi durum bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
                     }
@@ -484,26 +578,31 @@ namespace InsanKaynaklariBilgiSistem
                     {
                         //kayıt esnasında herhangi bir hata ile karşılaşıldığında
                         MessageBox.Show(hatamjs.Message);
-                        
+
 
                     }
+
                 }
 
+                else
+                {
+                    MessageBox.Show("Yazı rengi kırmızı olan alanları yeniden gözden geçirniz", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
             }
             else
             {
-                MessageBox.Show("Yazı rengi kırmızı olan alanları yeniden gözden geçirniz", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //aynı tc ye ait bir kayıt var ise
+                MessageBox.Show("Girilen tc kimlik numarasına ait bir kayıt mevcuttur.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
+        
+            
             listele();
 
         }
 
-        //formu temizle
-        private void simpleButton4_Click(object sender, EventArgs e)
-        {
-            ekrani_temizle();
-        }
+        
 
         private void btn_guncelle_Click(object sender, EventArgs e)
         {  
@@ -639,7 +738,7 @@ namespace InsanKaynaklariBilgiSistem
             {
                 lbl_arazi_amaci.ForeColor = Color.Black;
                 txt_arazi_kullanim_amaci.Enabled = false;
-                arac_durumu = "Arazisi yok";
+                arazi_durumu = "Arazisi yok";
             }
 
 
@@ -710,7 +809,7 @@ namespace InsanKaynaklariBilgiSistem
                         //böylece kayıt ekleme işlemi gerçekleştirlmiş oldu
                         listele();
                         MessageBox.Show("Kişinin maddi durum bilgileri başarılı bir şekilde güncellenmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
+                       // ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
                     }
                     catch (Exception hatamjs)
@@ -736,30 +835,41 @@ namespace InsanKaynaklariBilgiSistem
             {
                 bool kayit_arama_durumu = false;
       
-                SqlCommand secmeSorgusu = new SqlCommand("Select *from Kisi_maddi_durum_Bilgileri where tc_bilgisi='" + mtxt_tc_no.Text + "'", baglantim.baglanti());//ilgili tck verisine ait veriler seçiliyor.henüz silme yok. varmı yok mu ona bakıyoruz.
+                SqlCommand secmeSorgusu = new SqlCommand("Select *from Kisi_maddi_durum_Bilgileri where kisi_tc='" + mtxt_tc_no.Text + "'", baglantim.baglanti());//ilgili tck verisine ait veriler seçiliyor.henüz silme yok. varmı yok mu ona bakıyoruz.
                 SqlDataReader kayitokuma = secmeSorgusu.ExecuteReader();//veri okuyucu tanımlanıyor. sorgu sonucalrı secmesorgusuna eşitledik.
                 while (kayitokuma.Read())
                 {
+                    if (txt_id.Text != "")
+                    {
+                        //kayıt okuma gerçekleşti ise
+                        kayit_arama_durumu = true;
+                        SqlCommand silsorgusu = new SqlCommand("delete from Kisi_maddi_durum_Bilgileri where kisi_tc='" + mtxt_tc_no.Text + "'and id='" + txt_id.Text + "'", baglantim.baglanti());
+                        //şimdi sorgunun sonucunun gerçekleştirilmesi sağlanacak 
+                        silsorgusu.ExecuteNonQuery();
 
-                    //kayıt okuma gerçekleşti ise
-                    kayit_arama_durumu = true;
-                    SqlCommand silsorgusu = new SqlCommand("delete from Kisi_maddi_durum_Bilgileri where tc_bilgisi='" + mtxt_tc_no.Text + "'and id='"+txt_id.Text+"'", baglantim.baglanti());
-                    //şimdi sorgunun sonucunun gerçekleştirilmesi sağlanacak 
-                    silsorgusu.ExecuteNonQuery();
+                        MessageBox.Show("Kullanıcı kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        //baglantim.baglanti().Close();
+                        ekrani_temizle();
 
-                    MessageBox.Show("Kullanıcı kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    //baglantim.baglanti().Close();
-
-                    ekrani_temizle();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Silinmesini istediğiniz kaydı seçiniz.");
+                    }
+                    
                     listele();
                     break;
                 }
                 //girilen tck ya göre bir kayıt bulunmaz ise
-                if (kayit_arama_durumu == false)//while döngüsü çalışmamş demektir.
+                /*if (kayit_arama_durumu == false)//while döngüsü çalışmamş demektir.
                 {
                     MessageBox.Show("Böyle bir kayıt bulunamamıştır", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
+                else
+                {
+
+                }*/
                 //baglantim.baglanti().Close();
                 ekrani_temizle();
 
@@ -767,7 +877,7 @@ namespace InsanKaynaklariBilgiSistem
             }
             else
             {
-                MessageBox.Show("TC kimlik no 11 haneli girilmelidir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lütfen 11 haneli TC veya geçerli bir pdks giriniz.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

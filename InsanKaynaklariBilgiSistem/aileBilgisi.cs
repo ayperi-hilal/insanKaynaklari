@@ -304,6 +304,9 @@ namespace InsanKaynaklariBilgiSistem
         
         private void ekrani_temizle()
         {
+           
+            txt_bakim_id.Text = string.Empty;
+            txt_yakin_id.Text = string.Empty;
             mtxt_tc_no.Clear();
             txt_pdks.Text = string.Empty;
             txt_dogum_yeri.Clear();
@@ -329,12 +332,12 @@ namespace InsanKaynaklariBilgiSistem
             mtxt_tc_no.Clear();
             mtxt_tel_no_yakin.Clear();
             mtxt_bakim_tel_no.Clear();
-            cb_yakin.Text = "";
-            cb_medinhal.Text = "";
-            cb_kangrubu.Text = "";
-            cb_duzey.Text = "";
-            cb_sinif.Text = "";
-            cb_merasim.Text = "";
+            cb_yakin.Text = string.Empty;
+            cb_medinhal.Text = string.Empty;
+            cb_kangrubu.Text = string.Empty;
+            cb_duzey.Text = string.Empty;
+            cb_sinif.Text = string.Empty;
+            cb_merasim.Text = string.Empty;
 
             date_dogum_tarihi.ResetText();
             date_olum_tarihi.ResetText();
@@ -424,6 +427,37 @@ namespace InsanKaynaklariBilgiSistem
 
         }
 
+      /*  public void bos()
+        {
+            cb_medinhal.Text = "";
+            cb_kangrubu.Text = "";
+            mtxt_tel_no_yakin.Text = "";
+            toggleSwitch_saglik_yakin.Reset();
+            txt_saglik_aciklama_yakin.Text = "";
+            toggleSwitch_yakin_engel.Reset();
+            txt_yakin_engel_aciklama.Text = "";
+            toggleSwitch_yakin_calisma.Reset();
+            txt_yakin_meslek.Text = "";
+            txt_gelir_yakin.Text = "";
+            txt_calistiği_yer.Text = "";
+            txt_okul_adi.Text="";
+            cb_duzey.Text="";
+            cb_sinif.Text="";
+            txt_bolum.Text="";
+            txt_sehir.Text="";
+            date_giris_tarihi.Text=null;
+            toggleSwitch_okul_durum.Reset();
+            date_mezuniyet.Text = null;
+            txt_yakin_okul_derece.Text="";
+            cb_merasim.Text="";
+            date_merasim.Text=null;
+            checkedListBox1.Text="";
+
+            
+
+            
+        }*/
+
         //tc karakter kontrolü
         private void mtxt_tc_no_TextChanged(object sender, EventArgs e)
         {//tc kimlik no giriş kısmı için kısıtlamalar yazılacaktır.
@@ -500,6 +534,7 @@ namespace InsanKaynaklariBilgiSistem
                 txt_olum_nedeni.Visible = true;
 
                 yasam_bilgisi_togled(false);
+             //   bos();
                 yasamBilgisi = "ÖLDÜ.";
             }
 
@@ -602,7 +637,7 @@ namespace InsanKaynaklariBilgiSistem
         //ekranda kayıtların görünmesi-bakım bilgileri
         private void gridControl2_DoubleClick(object sender, EventArgs e)
         {
-            txt_bakim_id.Text = gridView2.GetFocusedRowCellValue("id").ToString();
+            
             txt_bakim_yakin.Text = gridView2.GetFocusedRowCellValue("bakim_yakini").ToString();
             mtxt_tc_no.Text = gridView2.GetFocusedRowCellValue("kisi_tc").ToString();
             txt_bakim_adsoyad.Text = gridView2.GetFocusedRowCellValue("adi_soyadi").ToString();
@@ -638,6 +673,8 @@ namespace InsanKaynaklariBilgiSistem
                     checkedListBox2.SetItemChecked(count, false);
                 }
             }
+
+            txt_bakim_id.Text = gridView2.GetFocusedRowCellValue("id").ToString();
 
 
 
@@ -841,57 +878,88 @@ namespace InsanKaynaklariBilgiSistem
 
             {
                 bool kayit_arama_yakin = false;
+                bool yakin_sorgula_bool = false;
 
-                SqlCommand YakinsecmeSorgusu = new SqlCommand("Select *from Kisi_Yakini_Bilgileri where kisi_tc='" + mtxt_tc_no.Text + "'", baglantim.baglanti());//ilgili tck verisine ait veriler seçiliyor.henüz silme yok. varmı yok mu ona bakıyoruz.
-                SqlDataReader kayitokumayakin = YakinsecmeSorgusu.ExecuteReader();//veri okuyucu tanımlanıyor. sorgu sonucalrı secmesorgusuna eşitledik.
-                while (kayitokumayakin.Read())
+                if (txt_yakin_id.Text != "")
                 {
+                    SqlCommand YakinsecmeSorgusu = new SqlCommand("Select *from Kisi_Yakini_Bilgileri where kisi_tc='" + mtxt_tc_no.Text + "'", baglantim.baglanti());//ilgili tck verisine ait veriler seçiliyor.henüz silme yok. varmı yok mu ona bakıyoruz.
+                    SqlDataReader kayitokumayakin = YakinsecmeSorgusu.ExecuteReader();//veri okuyucu tanımlanıyor. sorgu sonucalrı secmesorgusuna eşitledik.
+                    while (kayitokumayakin.Read())
+                    {
 
-                    //kayıt okuma gerçekleşti ise
-                    kayit_arama_yakin = true;
-                    SqlCommand YakinSilsorgusu = new SqlCommand("delete from Kisi_Yakini_Bilgileri where kisi_tc='" + mtxt_tc_no.Text + "'and id='" + txt_yakin_id.Text + "'", baglantim.baglanti());
-                    //şimdi sorgunun sonucunun gerçekleştirilmesi sağlanacak 
-                    YakinSilsorgusu.ExecuteNonQuery();
-                    MessageBox.Show("Kullanıcının igili yakınının kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        //kayıt okuma gerçekleşti ise
+                        kayit_arama_yakin = true;
+                        SqlCommand YakinSilsorgusu = new SqlCommand("delete from Kisi_Yakini_Bilgileri where kisi_tc='" + mtxt_tc_no.Text + "'and id='" + txt_yakin_id.Text + "'", baglantim.baglanti());
+                        //şimdi sorgunun sonucunun gerçekleştirilmesi sağlanacak 
+                        SqlCommand Yakinsorgula = new SqlCommand("select * from Kisi_Yakini_Bilgileri where kisi_tc='" + mtxt_tc_no.Text + "'and id='" + txt_yakin_id.Text + "'", baglantim.baglanti());
+                        SqlDataReader yakin_sorgula = Yakinsorgula.ExecuteReader();
+                        while (yakin_sorgula.Read())
+                        {
+                            
+                            yakin_sorgula_bool = true;
 
+                            YakinSilsorgusu.ExecuteNonQuery();
+                            MessageBox.Show("Kullanıcının igili yakınının kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
 
-                    ekrani_temizle();
-                    listele_yakin_bilgileri();
-                    break;
+                        yakin_sorgula.Close();
+
+                        //  ekrani_temizle();
+                      
+                        break;
+                    }
+                    //girilen tck ya göre bir kayıt bulunmaz ise
+                    if (kayit_arama_yakin == false)//while döngüsü çalışmamş demektir.
+                    {
+                        MessageBox.Show("Böyle bir kayıt bulunamamıştır", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    }
                 }
-                //girilen tck ya göre bir kayıt bulunmaz ise
-               if (kayit_arama_yakin == false)//while döngüsü çalışmamş demektir.
+                else
                 {
-                    MessageBox.Show("Böyle bir kayıt bulunamamıştır", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                    MessageBox.Show("Lütfen 11 haneli TC veya geçerli bir pdks giriniz.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                
-                ekrani_temizle();
-
-                bool kayit_arama_bakim = false;
-                SqlCommand secmeSorgusuBakim = new SqlCommand("Select *from Kisi_Bakmakla_Yukumlu where kisi_tc='" + mtxt_tc_no.Text + "'", baglantim.baglanti());//ilgili tck verisine ait veriler seçiliyor.henüz silme yok. varmı yok mu ona bakıyoruz.
-                SqlDataReader kayitokumabakim = secmeSorgusuBakim.ExecuteReader();//veri okuyucu tanımlanıyor. sorgu sonucalrı secmesorgusuna eşitledik.
-                while (kayitokumabakim.Read())
+                listele_yakin_bilgileri();
+               // ekrani_temizle();
+                if (txt_bakim_id.Text!= "")
                 {
-                    //kayıt okuma gerçekleşti ise
-                    kayit_arama_bakim = true;
-                    SqlCommand BakimSilsorgusu = new SqlCommand("delete from Kisi_Bakmakla_Yukumlu where kisi_tc='" + mtxt_tc_no.Text + "'and id='" + txt_bakim_id.Text + "'", baglantim.baglanti());
-                    //şimdi sorgunun sonucunun gerçekleştirilmesi sağlanacak 
-                    BakimSilsorgusu.ExecuteNonQuery();
-                    MessageBox.Show("ilgili kayıt başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    bool kayit_arama_bakim = false;
+                    bool bakim_sorgula_bool = false;
+                    SqlCommand secmeSorgusuBakim = new SqlCommand("Select *from Kisi_Bakmakla_Yukumlu where kisi_tc='" + mtxt_tc_no.Text + "'", baglantim.baglanti());//ilgili tck verisine ait veriler seçiliyor.henüz silme yok. varmı yok mu ona bakıyoruz.
+                    SqlDataReader kayitokumabakim = secmeSorgusuBakim.ExecuteReader();//veri okuyucu tanımlanıyor. sorgu sonucalrı secmesorgusuna eşitledik.
+                    while (kayitokumabakim.Read())
+                    {
+                        //kayıt okuma gerçekleşti ise
+                        kayit_arama_bakim = true;
+
+                        SqlCommand BakimSilsorgusu = new SqlCommand("delete from Kisi_Bakmakla_Yukumlu where kisi_tc='" + mtxt_tc_no.Text + "'and id='" + txt_bakim_id.Text + "'", baglantim.baglanti());
+                        //şimdi sorgunun sonucunun gerçekleştirilmesi sağlanacak 
 
 
-                    ekrani_temizle();
-                    listele_bakim();
-                    break;
+                        SqlCommand Bakimsorgula = new SqlCommand("select * from Kisi_Bakmakla_Yukumlu where kisi_tc='" + mtxt_tc_no.Text + "'and id='" + txt_bakim_id.Text + "'", baglantim.baglanti());
+                        SqlDataReader bakim_sorgula = Bakimsorgula.ExecuteReader();
+                        while (bakim_sorgula.Read())
+                        {
+                          
+
+                            bakim_sorgula_bool = true;
+
+                            BakimSilsorgusu.ExecuteNonQuery();
+                            MessageBox.Show("Kullanıcının igili yakınının kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                        bakim_sorgula.Close();
+
+                        // ekrani_temizle();
+                       
+                        break;
+                    }
+                    //girilen tck ya göre bir kayıt bulunmaz ise
+                    if (kayit_arama_bakim == false)//while döngüsü çalışmamş demektir.
+                    {
+                        MessageBox.Show("Yakını ile ilgili böyle bir kayıt bulunamamıştır", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    }
                 }
-                //girilen tck ya göre bir kayıt bulunmaz ise
-               if (kayit_arama_bakim == false)//while döngüsü çalışmamş demektir.
-                {
-                    MessageBox.Show("Yakını ile ilgili böyle bir kayıt bulunamamıştır", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                }
-
                 ekrani_temizle();
 
             }
@@ -899,6 +967,11 @@ namespace InsanKaynaklariBilgiSistem
             {
                 MessageBox.Show("Lütfen 11 haneli TC veya geçerli bir pdks giriniz.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            ekrani_temizle();
+            listele_bakim();
+            
+
         }
 
         private void toggleSwitch_okul_durum_Toggled(object sender, EventArgs e)
@@ -1282,9 +1355,9 @@ namespace InsanKaynaklariBilgiSistem
 
                         eklekomutuyakin.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
 
-                                 MessageBox.Show("Kişinin yakınları ile ilgili bilgiler başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
-
-                                 ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
+                         MessageBox.Show("Kişinin yakınları ile ilgili bilgiler başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+                        listele_yakin_bilgileri();
+                        ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
                             }
                             catch (Exception hatamjs)
@@ -1419,6 +1492,7 @@ namespace InsanKaynaklariBilgiSistem
                         if (txt_saglik_aciklama_yakin.Text == "")
                             lbl_yakin_saglik_aciklama.ForeColor = Color.Red;
                         saglik_durumu = "Bir sağlık sorunu vardır.";
+
                     }
 
                     else
