@@ -47,10 +47,12 @@ namespace InsanKaynaklariBilgiSistem
             this.btn_arge = new DevExpress.XtraEditors.CheckButton();
             this.btn_tum_personeller = new DevExpress.XtraEditors.CheckButton();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.kisi_listesi = new DevExpress.XtraEditors.CheckButton();
             this.lbl_bolum = new System.Windows.Forms.Label();
             this.lbl_ozellikler = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_formu_temizle = new DevExpress.XtraEditors.SimpleButton();
+            this.btn_calisan = new DevExpress.XtraEditors.CheckButton();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -215,6 +217,7 @@ namespace InsanKaynaklariBilgiSistem
             this.panelControl2.Controls.Add(this.btn_maddi);
             this.panelControl2.Controls.Add(this.btn_iletisim);
             this.panelControl2.Controls.Add(this.btn_egitim);
+            this.panelControl2.Controls.Add(this.kisi_listesi);
             this.panelControl2.Controls.Add(this.btn_tumu);
             this.panelControl2.Controls.Add(this.btn_ozgecmis);
             this.panelControl2.Controls.Add(this.btn_hobi);
@@ -222,6 +225,15 @@ namespace InsanKaynaklariBilgiSistem
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(75, 276);
             this.panelControl2.TabIndex = 17;
+            // 
+            // kisi_listesi
+            // 
+            this.kisi_listesi.Location = new System.Drawing.Point(-1, 252);
+            this.kisi_listesi.Name = "kisi_listesi";
+            this.kisi_listesi.Size = new System.Drawing.Size(75, 23);
+            this.kisi_listesi.TabIndex = 14;
+            this.kisi_listesi.Text = "Kişi Listesi";
+            this.kisi_listesi.CheckedChanged += new System.EventHandler(this.kisi_listesi_CheckedChanged);
             // 
             // lbl_bolum
             // 
@@ -249,7 +261,7 @@ namespace InsanKaynaklariBilgiSistem
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(201, 38);
             this.label1.TabIndex = 20;
-            this.label1.Text = "Özellikler kısmından görmek istemediğiniz özellkleri seçerek pasif yapınız...";
+            this.label1.Text = "Özellikler kısmından görmek istediğiniz özellkleri seçiniz...";
             // 
             // btn_formu_temizle
             // 
@@ -261,6 +273,15 @@ namespace InsanKaynaklariBilgiSistem
             this.btn_formu_temizle.Text = "FORMU TEMİZLE";
             this.btn_formu_temizle.Click += new System.EventHandler(this.btn_formu_temizle_Click);
             // 
+            // btn_calisan
+            // 
+            this.btn_calisan.Location = new System.Drawing.Point(82, -6);
+            this.btn_calisan.Name = "btn_calisan";
+            this.btn_calisan.Size = new System.Drawing.Size(75, 23);
+            this.btn_calisan.TabIndex = 14;
+            this.btn_calisan.Text = "çalışanlar";
+            this.btn_calisan.CheckedChanged += new System.EventHandler(this.btn_calisan_CheckedChanged);
+            // 
             // raporlama
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -270,6 +291,7 @@ namespace InsanKaynaklariBilgiSistem
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbl_ozellikler);
             this.Controls.Add(this.lbl_bolum);
+            this.Controls.Add(this.btn_calisan);
             this.Controls.Add(this.btn_listele);
             this.Controls.Add(this.btn_aktar);
             this.Controls.Add(this.btn_saglik);
@@ -314,5 +336,7 @@ namespace InsanKaynaklariBilgiSistem
         private DevExpress.XtraEditors.CheckButton btn_tum_personeller;
         private System.Windows.Forms.Label label1;
         private DevExpress.XtraEditors.SimpleButton btn_formu_temizle;
+        private DevExpress.XtraEditors.CheckButton kisi_listesi;
+        private DevExpress.XtraEditors.CheckButton btn_calisan;
     }
 }

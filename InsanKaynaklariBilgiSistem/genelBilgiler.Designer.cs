@@ -101,13 +101,15 @@ namespace InsanKaynaklariBilgiSistem
             // 
             // toggleSwitch1
             // 
+            this.toggleSwitch1.EditValue = true;
             this.toggleSwitch1.Location = new System.Drawing.Point(124, 154);
             this.toggleSwitch1.Name = "toggleSwitch1";
             this.toggleSwitch1.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
-            this.toggleSwitch1.Properties.OffText = "Off";
-            this.toggleSwitch1.Properties.OnText = "On";
-            this.toggleSwitch1.Size = new System.Drawing.Size(84, 18);
+            this.toggleSwitch1.Properties.OffText = "ÇALIŞIYOR";
+            this.toggleSwitch1.Properties.OnText = "İŞTEN AYRILDI";
+            this.toggleSwitch1.Size = new System.Drawing.Size(155, 18);
             this.toggleSwitch1.TabIndex = 122;
+            this.toggleSwitch1.Toggled += new System.EventHandler(this.toggleSwitch1_Toggled);
             // 
             // comboBox_gorev_yeri
             // 

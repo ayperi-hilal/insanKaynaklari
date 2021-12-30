@@ -26,7 +26,7 @@ namespace InsanKaynaklariBilgiSistem
 
         string cinsiyet = "";
         string oncekisoyadi = "";
-        string calismaDurumu = "";
+        string calismaDurumu = "Çalışıyor.";
         DateTime? cikisTarihi = null;
         //veri tabanı doaya yoluve provider nesnesinin belirlenmesi
         sqlBaglantisi baglantim = new sqlBaglantisi();
@@ -153,11 +153,11 @@ namespace InsanKaynaklariBilgiSistem
             dogum_tarihi.MaxDate = new DateTime(yil - 18, ay, gun);//18 yaşından küçükler çalışamaz!!!
 
             //işe giriş tarihi
-            giris_tarihi.MinDate = new DateTime(2007, 1, 1);
-            giris_tarihi.MaxDate = new DateTime(2100, 12, 31);
+            giris_tarihi.MinDate = new DateTime(1900, 1, 1);
+            giris_tarihi.MaxDate = new DateTime(yil, 12, 31);
 
             //işten çıkış tarihi
-            cikis_tarihi.MinDate = new DateTime(2007, 1, 1);
+            cikis_tarihi.MinDate = new DateTime(1900, 1, 1);
             cikis_tarihi.MaxDate = new DateTime(yil, ay, gun);
 
             
@@ -328,7 +328,7 @@ namespace InsanKaynaklariBilgiSistem
 
 
                 //çalıma durmu  açıklama yazılmalıdır               
-                if (toggleSwitch1.IsOn == true)
+                if (toggleSwitch1.IsOn == false)
                 {
 
                     calismaDurumu = "Çalışıyor.";
@@ -384,7 +384,11 @@ namespace InsanKaynaklariBilgiSistem
 
                     cmdResimKaydet.Parameters.Add("@resim", SqlDbType.Image, resim.Length).Value = resim;
 
-                    cmdResimKaydet.Parameters.Add("@cikis_Tarihi", SqlDbType.DateTime).Value = cikis_tarihi.Value;
+                    if (calismaDurumu == "İşten Ayrıldı.")
+                    { cmdResimKaydet.Parameters.Add("@cikis_Tarihi", SqlDbType.DateTime).Value = cikis_tarihi.Value; }
+                    else
+                    { cmdResimKaydet.Parameters.Add("@cikis_Tarihi", SqlDbType.DateTime).Value = DBNull.Value; }
+
                     cmdResimKaydet.Parameters.Add("@pdks", SqlDbType.NVarChar, 50).Value = txt_pdks.Text;
 
                     try
@@ -483,13 +487,13 @@ namespace InsanKaynaklariBilgiSistem
                     giris_tarihi.Value = kayitokuma.GetDateTime(15);//giriş tarihi
                     //iş durumu
                     if (kayitokuma.GetValue(16).ToString() == "Çalışıyor.")
-                        toggleSwitch1.IsOn = true;
-                    else
                         toggleSwitch1.IsOn = false;
+                    else
+                        toggleSwitch1.IsOn = true;
 
                     if (kayitokuma.GetValue(16).ToString() == "Çalışıyor.")
                     {
-                        cikis_tarihi.Value = DateTime.MinValue;
+                       // cikis_tarihi.Value = DateTime.MinValue;
                         cikis_tarihi.Enabled = false;
                     }
                     else
@@ -603,7 +607,7 @@ namespace InsanKaynaklariBilgiSistem
 
 
                 //çalıma durmu  açıklama yazılmalıdır               
-                if (toggleSwitch1.IsOn == true)
+                if (toggleSwitch1.IsOn ==false)
                 {
 
                     calismaDurumu = "Çalışıyor.";
@@ -662,8 +666,10 @@ namespace InsanKaynaklariBilgiSistem
                     guncellekomutu.Parameters.Add("@Aktif", SqlDbType.NVarChar, 50).Value = calismaDurumu;
 
                     guncellekomutu.Parameters.Add("@resim", SqlDbType.Image, resim.Length).Value = resim;
-
-                    guncellekomutu.Parameters.Add("@cikis_Tarihi", SqlDbType.DateTime).Value = cikis_tarihi.Value;
+                    if (calismaDurumu == "İşten Ayrıldı.")
+                    { guncellekomutu.Parameters.Add("@cikis_Tarihi", SqlDbType.DateTime).Value = cikis_tarihi.Value; }
+                    else
+                    { guncellekomutu.Parameters.Add("@cikis_Tarihi", SqlDbType.DateTime).Value = DBNull.Value; }
 
 
 
@@ -683,17 +689,54 @@ namespace InsanKaynaklariBilgiSistem
                     ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
                 }
-                    catch (Exception hatamjs)
+                    catch 
                     {
-                        //kayıt esnasında herhangi bir hata ile karşılaşıldığında
-                        MessageBox.Show(hatamjs.Message);
-                        //baglantim.baglanti().Close();
-
-                    }
+                    SqlCommand guncellekomutu = new SqlCommand("update Kisi set TC=@TC, ad=@ad, soyad=@soyad, uyruk=@uyruk, cinsiyet=@cinsiyet, medeni_hal=@medeni_hal, dogum_Tarihi=@dogum_Tarihi, dogum_Yeri=@dogum_Yeri, onceki_soyadi=@onceki_soyadi, ana_Adi_Soyadi=@ana_Adi_Soyadi, baba_Adi_Soyadi=@baba_Adi_Soyadi, meslekID=@meslekID, gorevi=@gorevi, gorev_Yeri=@gorev_Yeri, giris_Tarihi=@giris_Tarihi, Aktif=@Aktif, cikis_Tarihi= @cikis_Tarihi where TC=@TC", baglantim.baglanti());
 
 
+                    guncellekomutu.Parameters.Add("@TC", SqlDbType.NVarChar, 11).Value = tc_no.Text;
+                    guncellekomutu.Parameters.Add("@ad", SqlDbType.NVarChar, 50).Value = maskedTextBox_ad.Text;
+                    guncellekomutu.Parameters.Add("@soyad", SqlDbType.NVarChar, 50).Value = maskedTextBox_soyad.Text;
+                    guncellekomutu.Parameters.Add("@uyruk", SqlDbType.NVarChar, 50).Value = uyruk.Text;
+                    guncellekomutu.Parameters.Add("@cinsiyet", SqlDbType.NVarChar, 5).Value = cinsiyet;
+                    guncellekomutu.Parameters.Add("@medeni_hal", SqlDbType.NVarChar, 50).Value = medeni_hal.Text;
+
+                    guncellekomutu.Parameters.Add("@dogum_Tarihi", SqlDbType.DateTime).Value = dogum_tarihi.Value;
+                    guncellekomutu.Parameters.Add("@dogum_Yeri", SqlDbType.NVarChar, 50).Value = maskedTextBox_dogum_yeri.Text;
+                    guncellekomutu.Parameters.Add("@onceki_soyadi", SqlDbType.NVarChar, 50).Value = maskedTextBox_o_soyadi.Text;
+                    guncellekomutu.Parameters.Add("@ana_Adi_Soyadi", SqlDbType.NVarChar, 50).Value = maskedTextBox_anneadi.Text;
+                    guncellekomutu.Parameters.Add("@baba_Adi_Soyadi", SqlDbType.NVarChar, 50).Value = maskedTextBox_baba_adi.Text;
+                    guncellekomutu.Parameters.Add("@meslekID", SqlDbType.NVarChar, 50).Value = comboBox_meslek_kodu.Text;
+                    guncellekomutu.Parameters.Add("@gorevi", SqlDbType.NVarChar, 50).Value = comboBox_gorevi.Text;
+                    guncellekomutu.Parameters.Add("@gorev_Yeri", SqlDbType.NVarChar, 50).Value = comboBox_gorev_yeri.Text;
+
+                    guncellekomutu.Parameters.Add("@giris_Tarihi", SqlDbType.DateTime).Value = giris_tarihi.Value;
+                    guncellekomutu.Parameters.Add("@Aktif", SqlDbType.NVarChar, 50).Value = calismaDurumu;
+
+
+
+                    if (calismaDurumu == "İşten Ayrıldı.")
+                    { guncellekomutu.Parameters.Add("@cikis_Tarihi", SqlDbType.DateTime).Value = cikis_tarihi.Value; }
+                    else
+                    { guncellekomutu.Parameters.Add("@cikis_Tarihi", SqlDbType.DateTime).Value = DBNull.Value; }
+
+
+                    guncellekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
+                                                     //baglantim.baglanti().Close();
+                                                     //böylece kayıt ekleme işlemi gerçekleştirlmiş oldu
+                    MessageBox.Show("Kişinin Temel Bilgileri başarılı bir şekilde güncellenmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+
+                    ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
                 }
+                finally
+                {
+
+                }
+
+
+
+            }
                 else//herhangi bir hata ile karşılaşılır ise 
                 {
                     MessageBox.Show("Yazı rengi kırmızı olan alanları yeniden gözden geçirniz", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -756,6 +799,20 @@ namespace InsanKaynaklariBilgiSistem
         private void tc_no_KeyPress(object sender, KeyPressEventArgs e)
         {           
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void toggleSwitch1_Toggled(object sender, EventArgs e)
+        {
+            if(toggleSwitch1.IsOn==true)
+            {
+                cikis_tarihi.Visible = true;
+                cikis_tarihi.Enabled = true;
+            }
+            else
+            {
+                cikis_tarihi.Visible = false;
+                cikis_tarihi.Enabled = false;
+            }
         }
     }
 }

@@ -44,6 +44,38 @@ namespace InsanKaynaklariBilgiSistem
             //DataGridView.items.Clear();
 
         }
+        public void tum_personeller()
+        {
+            SqlCommand sorgu = new SqlCommand("select * from  Kisi", baglantim.baglanti());
+           
+            SqlDataAdapter da = new SqlDataAdapter(sorgu);
+
+
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            gridControl1.DataSource = dt;
+
+            gridView1.OptionsBehavior.Editable = false;
+            gridView1.OptionsView.ShowAutoFilterRow = true;
+        }
+
+        public void calisan_personeller()
+        {
+            SqlCommand sorgu = new SqlCommand("select * from Kisi ", baglantim.baglanti());
+
+            SqlDataAdapter da = new SqlDataAdapter(sorgu);
+
+
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            gridControl1.DataSource = dt;
+
+            gridView1.OptionsBehavior.Editable = false;
+            gridView1.OptionsView.ShowAutoFilterRow = true;
+        }
+
+
+
 
         public void listele_Tum_Personeller()
         {
@@ -288,7 +320,7 @@ namespace InsanKaynaklariBilgiSistem
             }
         }
 
-        
+      
 
         private void btn_listele_Click(object sender, EventArgs e)
         {
@@ -441,6 +473,16 @@ namespace InsanKaynaklariBilgiSistem
         private void btn_formu_temizle_Click(object sender, EventArgs e)
         {
             formu_temizle();
+        }
+
+        private void kisi_listesi_CheckedChanged(object sender, EventArgs e)
+        {
+            tum_personeller();
+        }
+
+        private void btn_calisan_CheckedChanged(object sender, EventArgs e)
+        {
+            calisan_personeller();
         }
     }
 }
