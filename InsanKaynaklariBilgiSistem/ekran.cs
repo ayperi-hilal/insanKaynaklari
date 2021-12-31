@@ -18,14 +18,14 @@ namespace InsanKaynaklariBilgiSistem
         {
             InitializeComponent();
         }
-        string tc = "";
+        string tc = giris.tcno;
         sqlBaglantisi baglantim = new sqlBaglantisi();
 
         public void resim_goruntule()
         {
             try
             {
-                SqlDataAdapter dataAdapter = new SqlDataAdapter(new SqlCommand("SELECT resim FROM Kisi WHERE TC = '" + tc + "'", baglantim.baglanti()));
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(new SqlCommand("SELECT resim FROM Kisi WHERE TC = '" + aktifKullanici.tcno + "'", baglantim.baglanti()));
 
                 DataSet dataSet = new DataSet();
                 dataAdapter.Fill(dataSet);
@@ -56,122 +56,248 @@ namespace InsanKaynaklariBilgiSistem
             }
         }
 
-
+        kullaniciHesap frm1;
         private void barButtonItem29_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {            
+        {
+            /*
            kullaniciHesap frm1 = new kullaniciHesap();
 
             frm1.MdiParent = this;
-            frm1.Show();
+            frm1.Show();*/
+            
+            if(frm1==null||frm1.IsDisposed)
+            {
+                frm1 = new kullaniciHesap();
+                frm1.MdiParent = this;
+                frm1.Show();
+            }
+            else
+            {
+             xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm1];
+            }
 
         }
 
-        
+        genelBilgiler frm2;
         private void barButtonItem15_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-                genelBilgiler frm2 = new genelBilgiler();
-            
+
+            if (frm2 == null || frm2.IsDisposed)
+            {
+                frm2 = new genelBilgiler();
                 frm2.MdiParent = this;
                 frm2.Show();
+            }
+            else
+            {
+                xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm2];
+
+            }
 
         }
         
+        iletisimBilgisi frm3;
         private void iletişim_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            iletisimBilgisi frm3 = new iletisimBilgisi();
+            if (frm3 == null || frm3.IsDisposed)
+            {
+                frm3 = new iletisimBilgisi();
                       
             frm3.MdiParent = this;
             frm3.Show();
+             }
+            else
+            {
+                xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm3];
 
-        }
+            }
+
+}
         
+        saglik frm4;
         private void barButtonItem16_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            saglik frm4 = new saglik();
+            if (frm4 == null || frm4.IsDisposed)
+            { 
+                frm4 = new saglik();
 
             frm4.MdiParent = this;
             frm4.Show();
+            }
+            else
+            {
+                xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm4];
+
+            }
 
         }
 
-        
+        ozGecmis frm5;
         private void barButtonItem17_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            ozGecmis frm5 = new ozGecmis();
+            if (frm5 == null || frm5.IsDisposed)
+            {
+                frm5 = new ozGecmis();
 
-            frm5.MdiParent = this;
-            frm5.Show();
+                frm5.MdiParent = this;
+                frm5.Show();
+            }
+            else
+            {
+                xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm5];
 
+            }
         }
 
-       
+       egitim frm6;
+
         private void barButtonItem18_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+        if (frm6 == null || frm6.IsDisposed)
+        { 
+            frm6 = new egitim();
 
-            egitim frm6 = new egitim();
+             frm6.MdiParent = this;
+             frm6.Show();
+        }
+            else
+        {
+                xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm6];
 
-            frm6.MdiParent = this;
-            frm6.Show();
+            }
         }
 
-        
+         genelKultur frm7;
+
         private void barButtonItem19_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            genelKultur frm7 = new genelKultur();
+            if (frm7 == null || frm7.IsDisposed)
+            {
+                frm7 = new genelKultur();
 
-            frm7.MdiParent = this;
-            frm7.Show();
+                frm7.MdiParent = this;
+                frm7.Show();
 
+            }
+            else
+            {
+                xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm7];
+
+            }
         }
-        
-        
+
+            aileBilgisi frm8;
+
         private void barButtonItem35_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            aileBilgisi frm8 = new aileBilgisi();
+            if (frm8 == null || frm8.IsDisposed)
+            { 
+                 frm8 = new aileBilgisi();
 
-            frm8.MdiParent = this;
-            frm8.Show();
+                frm8.MdiParent = this;
+                frm8.Show();
+
+             }
+             else
+             {
+                xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm8];
+
+            }
 
         }
+
+            raporlama frm9;
 
         private void b_btn_rapor_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            raporlama frm9 = new raporlama();
+            if (frm9 == null || frm9.IsDisposed)
+            { 
+                frm9 = new raporlama();
             
-            frm9.MdiParent = this;
-            frm9.Show();
+                frm9.MdiParent = this;
+                frm9.Show();
+            }
+            else
+            {
+                xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm9];
+
+            }
 
         }
+            bildirimler frm10;
 
         private void barButtonItem33_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            bildirimler frm10 = new bildirimler();
+             if (frm10 == null || frm10.IsDisposed)
+             { 
+                     frm10 = new bildirimler();
 
-            frm10.MdiParent = this;
-            frm10.Show();
+                    frm10.MdiParent = this;
+                    frm10.Show();
+             }
+            else
+            {
+                xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm10];
+
+            }
 
         }
 
+            maddiBilgi frm11;
+
         private void barButtonItem34_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            maddiBilgi frm11 = new maddiBilgi();
+            if (frm11 == null || frm11.IsDisposed)
+            { 
+                 frm11 = new maddiBilgi();
 
-            frm11.MdiParent = this;
-            frm11.Show();
+                frm11.MdiParent = this;
+                frm11.Show();
+            }
+            else
+            {
+                xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm11];
+
+            }
 
            // Form active11 = this.ActiveMdiChild;
             //MessageBox.Show("---", active11.Name.ToString());
         }
-        
+
+        izinIslemleri frm12;
         private void barButtonItem21_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            izinIslemleri frm12 = new izinIslemleri();
+            if (frm12 == null || frm12.IsDisposed)
+            { 
+                frm12 = new izinIslemleri();
 
-            frm12.MdiParent = this;
-            frm12.Show();
+                    frm12.MdiParent = this;
+                    frm12.Show();
+             }
+            else
+            {
+                xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm12];
+
+            }
 
         }
 
+        durumGrafiği frm13;
+        private void barButtonItem38_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (frm13 == null || frm13.IsDisposed)
+            {
+                frm13 = new durumGrafiği();
+
+                frm13.MdiParent = this;
+                frm13.Show();
+            }
+            else
+            {
+                xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm13];
+
+            }
+        }
 
         private void Form4_Load(object sender, EventArgs e)
         {
@@ -209,9 +335,7 @@ namespace InsanKaynaklariBilgiSistem
             }
             
         }
-       
+
         
-
-
     }
 }

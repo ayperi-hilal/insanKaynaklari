@@ -94,7 +94,7 @@ namespace InsanKaynaklariBilgiSistem
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(210, 21);
             this.textBox1.TabIndex = 3;
-            this.textBox1.Text = "ahmetylz";
+            this.textBox1.Text = "HİLAL";
             // 
             // label4
             // 
@@ -148,7 +148,7 @@ namespace InsanKaynaklariBilgiSistem
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(22, 36);
+            this.pictureBox1.Location = new System.Drawing.Point(23, 36);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(126, 121);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -162,7 +162,7 @@ namespace InsanKaynaklariBilgiSistem
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(210, 21);
             this.textBox2.TabIndex = 4;
-            this.textBox2.Text = "+Ahmet35+";
+            this.textBox2.Text = "12asWE+*";
             this.textBox2.UseSystemPasswordChar = true;
             // 
             // fluentDesignFormControl1

@@ -123,6 +123,7 @@ namespace InsanKaynaklariBilgiSistem
 
         private void iletisimBilgisi_Load(object sender, EventArgs e)
         {
+            mtxt_tc_no.Mask = "00000000000";//kullnıcı 11 haneli tc numarası girebilecek.
             mtxt_tel_no.Mask = "0000000000";//telefon no
             mtxt_cep_no.Mask = "0000000000";//cep no
             txt_email.CharacterCasing = CharacterCasing.Lower;//email
@@ -130,13 +131,12 @@ namespace InsanKaynaklariBilgiSistem
             mtxt_apartman.Mask = ">LL?????????????????????????????";//apartman adı
             mtxt_blok.Mask = ">LL????????????????????";//blok adı
 
-            txt_mahalle.CharacterCasing = CharacterCasing.Upper;
-            txt_sokak.CharacterCasing = CharacterCasing.Upper;
-
             cb_il.Text = string.Empty;
             cb_ilçe.Text = string.Empty;
             txt_adres.Text = string.Empty;
 
+            txt_mahalle.CharacterCasing = CharacterCasing.Upper;
+            txt_sokak.CharacterCasing = CharacterCasing.Upper;
             txt_kapi.CharacterCasing = CharacterCasing.Upper;
             txt_yakini.CharacterCasing = CharacterCasing.Upper;
             txt_adres.Enabled = false;
@@ -316,7 +316,7 @@ namespace InsanKaynaklariBilgiSistem
                         //böylece kayıt ekleme işlemi gerçekleştirlmiş oldu
                         MessageBox.Show("Kişinin iletişim bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
-                        //ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
+                        ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
                     }
                     catch (Exception hatamjs)
@@ -427,7 +427,7 @@ namespace InsanKaynaklariBilgiSistem
                     //böylece kayıt ekleme işlemi gerçekleştirlmiş oldu
                     MessageBox.Show("Kişinin iletişim bilgileri başarılı bir şekilde güncellenmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
-                    //ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
+                    ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
                 }
                 catch (Exception hatamjs)

@@ -47,24 +47,9 @@ namespace InsanKaynaklariBilgiSistem
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.btn_myb2 = new DevExpress.XtraEditors.SimpleButton();
             this.lbl_kisi = new System.Windows.Forms.Label();
-            this.btn_tamamlandi = new DevExpress.XtraEditors.SimpleButton();
             this.xtraSaveFileDialog1 = new DevExpress.XtraEditors.XtraSaveFileDialog(this.components);
             this.xtraOpenFileDialog1 = new DevExpress.XtraEditors.XtraOpenFileDialog(this.components);
-            this.l_lbl_kan = new System.Windows.Forms.LinkLabel();
-            this.l_lbl_muayene = new System.Windows.Forms.LinkLabel();
-            this.l_lbl_odyo = new System.Windows.Forms.LinkLabel();
-            this.l_lbl_hepatit = new System.Windows.Forms.LinkLabel();
-            this.l_lbl_akciger = new System.Windows.Forms.LinkLabel();
-            this.l_lbl_kimlik = new System.Windows.Forms.LinkLabel();
-            this.l_lbl_sgk = new System.Windows.Forms.LinkLabel();
-            this.l_lbl_sabika = new System.Windows.Forms.LinkLabel();
-            this.l_lbl_ikametgah = new System.Windows.Forms.LinkLabel();
-            this.l_lbl_myb1 = new System.Windows.Forms.LinkLabel();
-            this.l_lbl_diploma = new System.Windows.Forms.LinkLabel();
-            this.l_lbl_isg = new System.Windows.Forms.LinkLabel();
-            this.l_lbl_tetanoz = new System.Windows.Forms.LinkLabel();
-            this.l_lbl_myb2 = new System.Windows.Forms.LinkLabel();
-            this.l_lbl_dil = new System.Windows.Forms.LinkLabel();
+            this.btn_tamamlandi = new DevExpress.XtraEditors.SimpleButton();
             this.SuspendLayout();
             // 
             // btn_kimlik
@@ -200,6 +185,7 @@ namespace InsanKaynaklariBilgiSistem
             this.simpleButton2.Size = new System.Drawing.Size(157, 23);
             this.simpleButton2.TabIndex = 14;
             this.simpleButton2.Text = "DİĞER EVRAKLAR";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
             // 
             // btn_myb2
             // 
@@ -219,6 +205,14 @@ namespace InsanKaynaklariBilgiSistem
             this.lbl_kisi.TabIndex = 17;
             this.lbl_kisi.Text = "label1";
             // 
+            // xtraSaveFileDialog1
+            // 
+            this.xtraSaveFileDialog1.FileName = "xtraSaveFileDialog1";
+            // 
+            // xtraOpenFileDialog1
+            // 
+            this.xtraOpenFileDialog1.FileName = "xtraOpenFileDialog1";
+            // 
             // btn_tamamlandi
             // 
             this.btn_tamamlandi.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.apply_32x321;
@@ -230,184 +224,11 @@ namespace InsanKaynaklariBilgiSistem
             this.btn_tamamlandi.Text = "TAMAMLANDI";
             this.btn_tamamlandi.Click += new System.EventHandler(this.btn_tamamlandi_Click);
             // 
-            // xtraSaveFileDialog1
-            // 
-            this.xtraSaveFileDialog1.FileName = "xtraSaveFileDialog1";
-            // 
-            // xtraOpenFileDialog1
-            // 
-            this.xtraOpenFileDialog1.FileName = "xtraOpenFileDialog1";
-            // 
-            // l_lbl_kan
-            // 
-            this.l_lbl_kan.AutoSize = true;
-            this.l_lbl_kan.Location = new System.Drawing.Point(208, 199);
-            this.l_lbl_kan.Name = "l_lbl_kan";
-            this.l_lbl_kan.Size = new System.Drawing.Size(55, 13);
-            this.l_lbl_kan.TabIndex = 18;
-            this.l_lbl_kan.TabStop = true;
-            this.l_lbl_kan.Text = "linkLabel1";
-            // 
-            // l_lbl_muayene
-            // 
-            this.l_lbl_muayene.AutoSize = true;
-            this.l_lbl_muayene.Location = new System.Drawing.Point(208, 247);
-            this.l_lbl_muayene.Name = "l_lbl_muayene";
-            this.l_lbl_muayene.Size = new System.Drawing.Size(55, 13);
-            this.l_lbl_muayene.TabIndex = 18;
-            this.l_lbl_muayene.TabStop = true;
-            this.l_lbl_muayene.Text = "linkLabel1";
-            // 
-            // l_lbl_odyo
-            // 
-            this.l_lbl_odyo.AutoSize = true;
-            this.l_lbl_odyo.Location = new System.Drawing.Point(208, 303);
-            this.l_lbl_odyo.Name = "l_lbl_odyo";
-            this.l_lbl_odyo.Size = new System.Drawing.Size(55, 13);
-            this.l_lbl_odyo.TabIndex = 18;
-            this.l_lbl_odyo.TabStop = true;
-            this.l_lbl_odyo.Text = "linkLabel1";
-            // 
-            // l_lbl_hepatit
-            // 
-            this.l_lbl_hepatit.AutoSize = true;
-            this.l_lbl_hepatit.Location = new System.Drawing.Point(208, 356);
-            this.l_lbl_hepatit.Name = "l_lbl_hepatit";
-            this.l_lbl_hepatit.Size = new System.Drawing.Size(55, 13);
-            this.l_lbl_hepatit.TabIndex = 18;
-            this.l_lbl_hepatit.TabStop = true;
-            this.l_lbl_hepatit.Text = "linkLabel1";
-            // 
-            // l_lbl_akciger
-            // 
-            this.l_lbl_akciger.AutoSize = true;
-            this.l_lbl_akciger.Location = new System.Drawing.Point(208, 91);
-            this.l_lbl_akciger.Name = "l_lbl_akciger";
-            this.l_lbl_akciger.Size = new System.Drawing.Size(55, 13);
-            this.l_lbl_akciger.TabIndex = 18;
-            this.l_lbl_akciger.TabStop = true;
-            this.l_lbl_akciger.Text = "linkLabel1";
-            // 
-            // l_lbl_kimlik
-            // 
-            this.l_lbl_kimlik.AutoSize = true;
-            this.l_lbl_kimlik.Location = new System.Drawing.Point(208, 43);
-            this.l_lbl_kimlik.Name = "l_lbl_kimlik";
-            this.l_lbl_kimlik.Size = new System.Drawing.Size(55, 13);
-            this.l_lbl_kimlik.TabIndex = 18;
-            this.l_lbl_kimlik.TabStop = true;
-            this.l_lbl_kimlik.Text = "linkLabel1";
-            // 
-            // l_lbl_sgk
-            // 
-            this.l_lbl_sgk.AutoSize = true;
-            this.l_lbl_sgk.Location = new System.Drawing.Point(507, 199);
-            this.l_lbl_sgk.Name = "l_lbl_sgk";
-            this.l_lbl_sgk.Size = new System.Drawing.Size(55, 13);
-            this.l_lbl_sgk.TabIndex = 18;
-            this.l_lbl_sgk.TabStop = true;
-            this.l_lbl_sgk.Text = "linkLabel1";
-            // 
-            // l_lbl_sabika
-            // 
-            this.l_lbl_sabika.AutoSize = true;
-            this.l_lbl_sabika.Location = new System.Drawing.Point(507, 147);
-            this.l_lbl_sabika.Name = "l_lbl_sabika";
-            this.l_lbl_sabika.Size = new System.Drawing.Size(55, 13);
-            this.l_lbl_sabika.TabIndex = 18;
-            this.l_lbl_sabika.TabStop = true;
-            this.l_lbl_sabika.Text = "linkLabel1";
-            // 
-            // l_lbl_ikametgah
-            // 
-            this.l_lbl_ikametgah.AutoSize = true;
-            this.l_lbl_ikametgah.Location = new System.Drawing.Point(507, 91);
-            this.l_lbl_ikametgah.Name = "l_lbl_ikametgah";
-            this.l_lbl_ikametgah.Size = new System.Drawing.Size(55, 13);
-            this.l_lbl_ikametgah.TabIndex = 18;
-            this.l_lbl_ikametgah.TabStop = true;
-            this.l_lbl_ikametgah.Text = "linkLabel1";
-            // 
-            // l_lbl_myb1
-            // 
-            this.l_lbl_myb1.AutoSize = true;
-            this.l_lbl_myb1.Location = new System.Drawing.Point(744, 43);
-            this.l_lbl_myb1.Name = "l_lbl_myb1";
-            this.l_lbl_myb1.Size = new System.Drawing.Size(55, 13);
-            this.l_lbl_myb1.TabIndex = 18;
-            this.l_lbl_myb1.TabStop = true;
-            this.l_lbl_myb1.Text = "linkLabel1";
-            // 
-            // l_lbl_diploma
-            // 
-            this.l_lbl_diploma.AutoSize = true;
-            this.l_lbl_diploma.Location = new System.Drawing.Point(507, 43);
-            this.l_lbl_diploma.Name = "l_lbl_diploma";
-            this.l_lbl_diploma.Size = new System.Drawing.Size(55, 13);
-            this.l_lbl_diploma.TabIndex = 18;
-            this.l_lbl_diploma.TabStop = true;
-            this.l_lbl_diploma.Text = "linkLabel1";
-            // 
-            // l_lbl_isg
-            // 
-            this.l_lbl_isg.AutoSize = true;
-            this.l_lbl_isg.Location = new System.Drawing.Point(507, 247);
-            this.l_lbl_isg.Name = "l_lbl_isg";
-            this.l_lbl_isg.Size = new System.Drawing.Size(55, 13);
-            this.l_lbl_isg.TabIndex = 18;
-            this.l_lbl_isg.TabStop = true;
-            this.l_lbl_isg.Text = "linkLabel1";
-            // 
-            // l_lbl_tetanoz
-            // 
-            this.l_lbl_tetanoz.AutoSize = true;
-            this.l_lbl_tetanoz.Location = new System.Drawing.Point(208, 147);
-            this.l_lbl_tetanoz.Name = "l_lbl_tetanoz";
-            this.l_lbl_tetanoz.Size = new System.Drawing.Size(55, 13);
-            this.l_lbl_tetanoz.TabIndex = 18;
-            this.l_lbl_tetanoz.TabStop = true;
-            this.l_lbl_tetanoz.Text = "linkLabel1";
-            // 
-            // l_lbl_myb2
-            // 
-            this.l_lbl_myb2.AutoSize = true;
-            this.l_lbl_myb2.Location = new System.Drawing.Point(744, 91);
-            this.l_lbl_myb2.Name = "l_lbl_myb2";
-            this.l_lbl_myb2.Size = new System.Drawing.Size(55, 13);
-            this.l_lbl_myb2.TabIndex = 18;
-            this.l_lbl_myb2.TabStop = true;
-            this.l_lbl_myb2.Text = "linkLabel1";
-            // 
-            // l_lbl_dil
-            // 
-            this.l_lbl_dil.AutoSize = true;
-            this.l_lbl_dil.Location = new System.Drawing.Point(744, 147);
-            this.l_lbl_dil.Name = "l_lbl_dil";
-            this.l_lbl_dil.Size = new System.Drawing.Size(55, 13);
-            this.l_lbl_dil.TabIndex = 18;
-            this.l_lbl_dil.TabStop = true;
-            this.l_lbl_dil.Text = "linkLabel1";
-            // 
             // evrakEkleme
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.l_lbl_tetanoz);
-            this.Controls.Add(this.l_lbl_isg);
-            this.Controls.Add(this.l_lbl_diploma);
-            this.Controls.Add(this.l_lbl_dil);
-            this.Controls.Add(this.l_lbl_myb2);
-            this.Controls.Add(this.l_lbl_myb1);
-            this.Controls.Add(this.l_lbl_ikametgah);
-            this.Controls.Add(this.l_lbl_sabika);
-            this.Controls.Add(this.l_lbl_sgk);
-            this.Controls.Add(this.l_lbl_kimlik);
-            this.Controls.Add(this.l_lbl_akciger);
-            this.Controls.Add(this.l_lbl_hepatit);
-            this.Controls.Add(this.l_lbl_odyo);
-            this.Controls.Add(this.l_lbl_muayene);
-            this.Controls.Add(this.l_lbl_kan);
             this.Controls.Add(this.lbl_kisi);
             this.Controls.Add(this.btn_tamamlandi);
             this.Controls.Add(this.simpleButton2);
@@ -456,20 +277,5 @@ namespace InsanKaynaklariBilgiSistem
         private System.Windows.Forms.Label lbl_kisi;
         private DevExpress.XtraEditors.XtraSaveFileDialog xtraSaveFileDialog1;
         private DevExpress.XtraEditors.XtraOpenFileDialog xtraOpenFileDialog1;
-        private System.Windows.Forms.LinkLabel l_lbl_kan;
-        private System.Windows.Forms.LinkLabel l_lbl_muayene;
-        private System.Windows.Forms.LinkLabel l_lbl_odyo;
-        private System.Windows.Forms.LinkLabel l_lbl_hepatit;
-        private System.Windows.Forms.LinkLabel l_lbl_akciger;
-        private System.Windows.Forms.LinkLabel l_lbl_kimlik;
-        private System.Windows.Forms.LinkLabel l_lbl_sgk;
-        private System.Windows.Forms.LinkLabel l_lbl_sabika;
-        private System.Windows.Forms.LinkLabel l_lbl_ikametgah;
-        private System.Windows.Forms.LinkLabel l_lbl_myb1;
-        private System.Windows.Forms.LinkLabel l_lbl_diploma;
-        private System.Windows.Forms.LinkLabel l_lbl_isg;
-        private System.Windows.Forms.LinkLabel l_lbl_tetanoz;
-        private System.Windows.Forms.LinkLabel l_lbl_myb2;
-        private System.Windows.Forms.LinkLabel l_lbl_dil;
     }
 }

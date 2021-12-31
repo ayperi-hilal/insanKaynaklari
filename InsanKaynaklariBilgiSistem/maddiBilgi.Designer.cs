@@ -99,7 +99,7 @@ namespace InsanKaynaklariBilgiSistem
             this.txt_id = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.radioButton_diger = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -352,7 +352,7 @@ namespace InsanKaynaklariBilgiSistem
             // panelControl3
             // 
             this.panelControl3.AutoSize = true;
-            this.panelControl3.Controls.Add(this.label1);
+            this.panelControl3.Controls.Add(this.radioButton_diger);
             this.panelControl3.Controls.Add(this.radioButton_elektrik);
             this.panelControl3.Controls.Add(this.radioButton_dogalgaz);
             this.panelControl3.Controls.Add(this.radioButton_soba);
@@ -411,6 +411,7 @@ namespace InsanKaynaklariBilgiSistem
             this.radioButton_kirada_yok.TabStop = true;
             this.radioButton_kirada_yok.Text = "YOK";
             this.radioButton_kirada_yok.UseVisualStyleBackColor = true;
+            this.radioButton_kirada_yok.CheckedChanged += new System.EventHandler(this.radioButton_kirada_yok_CheckedChanged);
             // 
             // radioButton_kirada_var
             // 
@@ -422,6 +423,7 @@ namespace InsanKaynaklariBilgiSistem
             this.radioButton_kirada_var.TabStop = true;
             this.radioButton_kirada_var.Text = "VAR";
             this.radioButton_kirada_var.UseVisualStyleBackColor = true;
+            this.radioButton_kirada_var.CheckedChanged += new System.EventHandler(this.radioButton_kirada_var_CheckedChanged);
             // 
             // lbl_kira_geliri
             // 
@@ -765,14 +767,16 @@ namespace InsanKaynaklariBilgiSistem
             this.panel2.Size = new System.Drawing.Size(354, 61);
             this.panel2.TabIndex = 236;
             // 
-            // label1
+            // radioButton_diger
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 93);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(102, 13);
-            this.label1.TabIndex = 237;
-            this.label1.Text = "Diğer ise belirtiniz...";
+            this.radioButton_diger.AutoSize = true;
+            this.radioButton_diger.Location = new System.Drawing.Point(11, 94);
+            this.radioButton_diger.Name = "radioButton_diger";
+            this.radioButton_diger.Size = new System.Drawing.Size(120, 17);
+            this.radioButton_diger.TabIndex = 238;
+            this.radioButton_diger.TabStop = true;
+            this.radioButton_diger.Text = "Diğer ise belirtiniz...";
+            this.radioButton_diger.UseVisualStyleBackColor = true;
             // 
             // maddiBilgi
             // 
@@ -921,6 +925,6 @@ namespace InsanKaynaklariBilgiSistem
         private System.Windows.Forms.TextBox txt_pdks;
         private System.Windows.Forms.Label lbl_pdks;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RadioButton radioButton_diger;
     }
 }

@@ -27,7 +27,7 @@ namespace InsanKaynaklariBilgiSistem
 
         
         string cinsiyet = "";
-        string yasamBilgisi = "";
+        string yasamBilgisi = "YAŞIYOR.";
        
         string saglik_durumu, engel_durumu, calisma_durumu, mezuniyet_durumu, okul;
         string saglik_durumu_bakım = "", engel_durumu_bakim = "";
@@ -106,6 +106,7 @@ namespace InsanKaynaklariBilgiSistem
 
         private void aileBilgisi_Load(object sender, EventArgs e)
         {
+
             txt_ad_soyad_yakin.CharacterCasing = CharacterCasing.Upper; //yakınının adı ve soyad
             txt_dogum_yeri.CharacterCasing = CharacterCasing.Upper; ;
             txt_olum_nedeni.CharacterCasing = CharacterCasing.Upper; ;//ölüm bilgisi
@@ -338,6 +339,7 @@ namespace InsanKaynaklariBilgiSistem
             cb_duzey.Text = string.Empty;
             cb_sinif.Text = string.Empty;
             cb_merasim.Text = string.Empty;
+            cb_yakin.Text = "";
 
             date_dogum_tarihi.ResetText();
             date_olum_tarihi.ResetText();
@@ -1305,7 +1307,7 @@ namespace InsanKaynaklariBilgiSistem
 
                 if (mtxt_tc_no.Text.Length == 11)
                 {
-                    if (cb_yakin.Text != "")//herhangi bir yakını eklenir ise
+                    if (cb_yakin.Text != ""&&txt_ad_soyad_yakin.Text!="")//herhangi bir yakını eklenir ise
                     {
                                                
                             try
@@ -1795,7 +1797,7 @@ namespace InsanKaynaklariBilgiSistem
 
                 if (mtxt_tc_no.Text.Length == 11)
                 {
-                if (cb_yakin.Text != "")//herhangi bir yakını eklenir ise
+                if (cb_yakin.Text != "" && txt_ad_soyad_yakin.Text!="")//herhangi bir yakını eklenir ise
                 {
 
                     try
@@ -1856,7 +1858,7 @@ namespace InsanKaynaklariBilgiSistem
                  { MessageBox.Show("Yakın bilgisi giriniz.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 */
                  
-                else if (txt_bakim_yakin.Text != "")//herhangi bir bakım kişisi eklenşr ise
+               if (txt_bakim_yakin.Text != "")//herhangi bir bakım kişisi eklenşr ise
                 {
                     try
                     {

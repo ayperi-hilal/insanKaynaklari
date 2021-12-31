@@ -331,6 +331,8 @@ namespace InsanKaynaklariBilgiSistem
                 string dosya_yolu = "C:\\Dosyalar\\" + mtxt_tc_no.Text;
                 if (Directory.Exists(dosya_yolu))
                 {
+                    aktifKullanici.kisi = mtxt_tc_no.Text;
+
                     MessageBox.Show("Dosya bulundu", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     evrakEkleme evrak = new evrakEkleme();
                     evrak.ShowDialog();

@@ -182,9 +182,7 @@ namespace InsanKaynaklariBilgiSistem
             }
             else
             {
-                radioButton_soba.Enabled = false;
-                radioButton_dogalgaz.Enabled = false;
-                radioButton_elektrik.Enabled = false;
+               
                 txt_isinma_aciklamasi.Text = isinma_türü;
             }
             kirada_evi = gridView1.GetFocusedRowCellValue("kirada_ev_var_mi").ToString();
@@ -251,6 +249,16 @@ namespace InsanKaynaklariBilgiSistem
         private void simpleButton4_Click(object sender, EventArgs e)
         {
             ekrani_temizle();
+        }
+
+        private void radioButton_kirada_yok_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_kira_geliri_toplami.Enabled = false;
+        }
+
+        private void radioButton_kirada_var_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_kira_geliri_toplami.Enabled = true;
         }
 
 
@@ -383,6 +391,7 @@ namespace InsanKaynaklariBilgiSistem
                 //destek türü seçili ise destek miktarı da girilmelidir.
                 if (cb_destek_turu.Text != "")
                 {
+                    txt_destek_miktari.Enabled = true;
                     if (txt_destek_miktari.Text == "")
                         lbl_destek_miktari.ForeColor = Color.Red;
                     else
@@ -397,6 +406,7 @@ namespace InsanKaynaklariBilgiSistem
                 //ev durumu
                 if (radioButton_kira.Checked == true)//kira ise kira miktarı girilmelidir.
                 {
+                    txt_kira_miktari.Enabled = true;
                     if (txt_kira_miktari.Text == "")
                         lbl_kira_ucreti.ForeColor = Color.Red;
                     else
@@ -415,7 +425,8 @@ namespace InsanKaynaklariBilgiSistem
                 //ısınma sistemi herhangi biri değil ise kendi belirtmellidir.
                 if (radioButton_soba.Checked == false && radioButton_dogalgaz.Checked == false && radioButton_elektrik.Checked == false)
                 {
-                    txt_isinma_aciklamasi.Enabled = false;
+                    txt_isinma_aciklamasi.Enabled = true;
+                    txt_isinma_aciklamasi.Enabled = true;
                     if (txt_isinma_aciklamasi.Text == "")
                         lbl_isinma_sistemi.ForeColor = Color.Red;
                     else
@@ -431,28 +442,25 @@ namespace InsanKaynaklariBilgiSistem
                     lbl_isinma_sistemi.ForeColor = Color.Black;
                     txt_isinma_aciklamasi.Enabled = true;
                     //isinma_türü = txt_isinma_aciklamasi.Text;
-                    if (txt_isinma_aciklamasi.Text == "")
-                    {
+                    
                         if (radioButton_soba.Checked == true)
                             isinma_türü = radioButton_soba.Text;
                         else if (radioButton_dogalgaz.Checked == true)
                             isinma_türü = radioButton_dogalgaz.Text;
                         else if (radioButton_elektrik.Checked == true)
                             isinma_türü = radioButton_elektrik.Text;
-                    }
-                    else
-                    {
-                        radioButton_soba.Checked = false;
-                        radioButton_dogalgaz.Checked = false;
-                        radioButton_elektrik.Checked = false;
-                        isinma_türü = txt_isinma_aciklamasi.Text;
-                    }
+                                           
+                         else
+                    
+                               isinma_türü = txt_isinma_aciklamasi.Text;
+                    
 
                 }
 
                 //kirada evi var ise miktar girsin
                 if (radioButton_kirada_var.Checked == true)
                 {
+                    txt_kira_geliri_toplami.Enabled = true;
                     if (txt_kira_geliri_toplami.Text == "")
                         lbl_kira_geliri.ForeColor = Color.Red;
                     else
@@ -470,6 +478,7 @@ namespace InsanKaynaklariBilgiSistem
                 //arabası var ise
                 if (radioButton_araci_var.Checked == true)
                 {
+                    txt_arac_kullanim_amaci.Enabled = true;
                     if (txt_arac_kullanim_amaci.Text == "")
                         lbl_arac_kullanim_amaci.ForeColor = Color.Red;
                     else
@@ -488,6 +497,7 @@ namespace InsanKaynaklariBilgiSistem
                 //arazi durumu
                 if (radioButton_arazi_var.Checked == true)
                 {
+                    txt_arazi_kullanim_amaci.Enabled = true;
                     if (txt_arazi_kullanim_amaci.Text == "")
                         lbl_arazi_amaci.ForeColor = Color.Red;
                     else
@@ -507,6 +517,10 @@ namespace InsanKaynaklariBilgiSistem
                 //icra durumu söz konusu ise
                 if (radioButton_icra_var.Checked == true)
                 {
+                    txt_icra_konusu.Enabled = true;
+                    txt_icra_miktari.Enabled = true;
+                    mtxt_icra_iban.Enabled = true;
+                    date_borc_tarihi.Enabled = true;
                     icra_durumu = "İcrası var.";
 
                     if (txt_icra_konusu.Text == "")
@@ -629,6 +643,7 @@ namespace InsanKaynaklariBilgiSistem
             //destek türü seçili ise destek miktarı da girilmelidir.
             if (cb_destek_turu.Text != "")
             {
+                txt_destek_miktari.Enabled = true;
                 if (txt_destek_miktari.Text == "")
                     lbl_destek_miktari.ForeColor = Color.Red;
                 else
@@ -643,6 +658,7 @@ namespace InsanKaynaklariBilgiSistem
             //ev durumu
             if (radioButton_kira.Checked == true)//kira ise kira miktarı girilmelidir.
             {
+                txt_kira_miktari.Enabled = true;
                 if (txt_kira_miktari.Text == "")
                     lbl_kira_ucreti.ForeColor = Color.Red;
                 else
@@ -661,7 +677,8 @@ namespace InsanKaynaklariBilgiSistem
             //ısınma sistemi herhangi biri değil ise kendi belirtmellidir.
             if (radioButton_soba.Checked == false && radioButton_dogalgaz.Checked == false && radioButton_elektrik.Checked == false)
             {
-                txt_isinma_aciklamasi.Enabled = false;
+                radioButton_diger.Checked = true;
+                txt_isinma_aciklamasi.Enabled = true;
                 if (txt_isinma_aciklamasi.Text == "")
                     lbl_isinma_sistemi.ForeColor = Color.Red;
                 else
@@ -682,12 +699,14 @@ namespace InsanKaynaklariBilgiSistem
                     isinma_türü = radioButton_dogalgaz.Text;
                 else if (radioButton_elektrik.Checked == true)
                     isinma_türü = radioButton_elektrik.Text;
-
+                else
+                    isinma_türü= txt_isinma_aciklamasi.Text;
             }
 
             //kirada evi var ise miktar girsin
             if (radioButton_kirada_var.Checked == true)
             {
+                txt_kira_geliri_toplami.Enabled = true;
                 if (txt_kira_geliri_toplami.Text == "")
                     lbl_kira_geliri.ForeColor = Color.Red;
                 else
@@ -706,6 +725,7 @@ namespace InsanKaynaklariBilgiSistem
             if (radioButton_araci_var.Checked == true)
             {
                 arac_durumu = "Aracı var";
+                txt_arac_kullanim_amaci.Enabled = true;
                 if (txt_arac_kullanim_amaci.Text == "")
                     lbl_arac_kullanim_amaci.ForeColor = Color.Red;
                 else
@@ -725,6 +745,7 @@ namespace InsanKaynaklariBilgiSistem
             if (radioButton_arazi_var.Checked == true)
             {
                 arazi_durumu = "Arazisi var";
+                txt_arazi_kullanim_amaci.Enabled = true;
 
                 if (txt_arazi_kullanim_amaci.Text == "")
                     lbl_arazi_amaci.ForeColor = Color.Red;
@@ -746,6 +767,11 @@ namespace InsanKaynaklariBilgiSistem
             if (radioButton_icra_var.Checked == true)
             {
                 icra_durumu = "İcrası var.";
+                txt_icra_konusu.Enabled = true;
+                txt_icra_miktari.Enabled = true;
+                mtxt_icra_iban.Enabled = true;
+                date_borc_tarihi.Enabled = true;
+
                 if (txt_icra_konusu.Text == "")
                     lbl_icra_konusu.ForeColor = Color.Red;
                 else
@@ -827,7 +853,7 @@ namespace InsanKaynaklariBilgiSistem
                 MessageBox.Show("Yazı rengi kırmızı olan alanları yeniden gözden geçirniz", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
-            listele();
+            //listele();
         }
         private void btn_sil_Click(object sender, EventArgs e)
         {
