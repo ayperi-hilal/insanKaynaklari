@@ -533,6 +533,26 @@ namespace InsanKaynaklariBilgiSistem.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
+        internal static System.Drawing.Bitmap chartchangestyle_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("chartchangestyle_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap chartchangestyle_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("chartchangestyle_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
         internal static System.Drawing.Bitmap chartsshowlegend_32x32 {
             get {
                 object obj = ResourceManager.GetObject("chartsshowlegend_32x32", resourceCulture);
@@ -556,6 +576,16 @@ namespace InsanKaynaklariBilgiSistem.Properties {
         internal static System.Drawing.Bitmap clear_32x32 {
             get {
                 object obj = ResourceManager.GetObject("clear_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap clear_32x321 {
+            get {
+                object obj = ResourceManager.GetObject("clear_32x321", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -616,6 +646,26 @@ namespace InsanKaynaklariBilgiSistem.Properties {
         internal static System.Drawing.Bitmap customer_32x32 {
             get {
                 object obj = ResourceManager.GetObject("customer_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap drilldownonseries_chart_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("drilldownonseries_chart_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap drilldownonseries_chart_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("drilldownonseries_chart_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1026,6 +1076,16 @@ namespace InsanKaynaklariBilgiSistem.Properties {
         internal static System.Drawing.Bitmap search_16x16 {
             get {
                 object obj = ResourceManager.GetObject("search_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap show_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("show_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
