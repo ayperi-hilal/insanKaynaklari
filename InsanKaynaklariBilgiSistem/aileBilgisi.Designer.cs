@@ -190,9 +190,9 @@ namespace InsanKaynaklariBilgiSistem
             this.label22.AutoSize = true;
             this.label22.Location = new System.Drawing.Point(103, 92);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(41, 13);
+            this.label22.Size = new System.Drawing.Size(16, 13);
             this.label22.TabIndex = 222;
-            this.label22.Text = "label22";
+            this.label22.Text = "...";
             // 
             // lbl_medeni_hal
             // 
@@ -208,9 +208,9 @@ namespace InsanKaynaklariBilgiSistem
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(103, 67);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.Size = new System.Drawing.Size(16, 13);
             this.label5.TabIndex = 220;
-            this.label5.Text = "label5";
+            this.label5.Text = "...";
             // 
             // lbl_soyad
             // 
@@ -226,9 +226,9 @@ namespace InsanKaynaklariBilgiSistem
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(103, 43);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.Size = new System.Drawing.Size(16, 13);
             this.label3.TabIndex = 218;
-            this.label3.Text = "label3";
+            this.label3.Text = "...";
             // 
             // lbl_ad
             // 
@@ -333,6 +333,7 @@ namespace InsanKaynaklariBilgiSistem
             this.gridLookUpEdit_yakin_bilgisi.Properties.PopupView = this.gridLookUpEdit1View;
             this.gridLookUpEdit_yakin_bilgisi.Size = new System.Drawing.Size(100, 20);
             this.gridLookUpEdit_yakin_bilgisi.TabIndex = 235;
+            this.gridLookUpEdit_yakin_bilgisi.Visible = false;
             // 
             // gridLookUpEdit1View
             // 
@@ -1324,6 +1325,7 @@ namespace InsanKaynaklariBilgiSistem
             this.txt_bakim_id.Name = "txt_bakim_id";
             this.txt_bakim_id.Size = new System.Drawing.Size(36, 20);
             this.txt_bakim_id.TabIndex = 236;
+            this.txt_bakim_id.Visible = false;
             // 
             // txt_yakin_id
             // 
@@ -1331,6 +1333,7 @@ namespace InsanKaynaklariBilgiSistem
             this.txt_yakin_id.Name = "txt_yakin_id";
             this.txt_yakin_id.Size = new System.Drawing.Size(36, 20);
             this.txt_yakin_id.TabIndex = 237;
+            this.txt_yakin_id.Visible = false;
             // 
             // xtraTabControl1
             // 

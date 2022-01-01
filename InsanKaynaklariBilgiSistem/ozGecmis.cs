@@ -188,7 +188,7 @@ namespace InsanKaynaklariBilgiSistem
                 if (kayit_arama_durumu == false)
                 {
                     MessageBox.Show("Arama kayıtı bulunamadı", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
+                    ekrani_temizle();
                 }
                 label1.ForeColor = Color.Black;
 
@@ -467,7 +467,7 @@ namespace InsanKaynaklariBilgiSistem
                 if (kayit_arama_durumu == false)//while döngüsü çalışmamş demektir.
                 {
                     MessageBox.Show("Böyle bir kayıt bulunamamıştır", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                    ekrani_temizle();
                 }
                
                 ekrani_temizle();

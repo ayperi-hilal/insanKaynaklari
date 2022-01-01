@@ -23,14 +23,37 @@ namespace InsanKaynaklariBilgiSistem
 
         private void durumGrafiği_Load(object sender, EventArgs e)
         {
-            SqlCommand komut=new SqlCommand("SELECT cinsiyet,COUNT(*) as 'sayi' FROM Kisi GROUP BY cinsiyet", baglantim.baglanti());
-            SqlDataReader dr = komut.ExecuteReader();
+            SqlCommand cinsiyet=new SqlCommand("SELECT cinsiyet,COUNT(*) as 'sayi' FROM Kisi GROUP BY cinsiyet", baglantim.baglanti());
+            SqlDataReader dr = cinsiyet.ExecuteReader();
             while(dr.Read())
             {
 
                 tablo_cinsiyet.Series["Cinsiyet"].Points.AddPoint(Convert.ToString( dr[0]),int.Parse(dr[1].ToString()));
                 
+                
             }
+
+
+            SqlCommand gorevYeri = new SqlCommand("SELECT gorev_Yeri,COUNT(*) as 'sayi' FROM Kisi GROUP BY gorev_Yeri", baglantim.baglanti());
+            SqlDataReader gy = gorevYeri.ExecuteReader();
+            while (dr.Read())
+            {
+
+                tablo_gorevYeri.Series["Görev Yeri"].Points.AddPoint(Convert.ToString(dr[0]), int.Parse(dr[1].ToString()));
+
+            }
+
+
+
+
+
+
+
+        }
+
+        private void chartControl1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
