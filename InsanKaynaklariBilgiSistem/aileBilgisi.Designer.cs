@@ -437,9 +437,9 @@ namespace InsanKaynaklariBilgiSistem
             this.lbl_yakin_hobi.AutoSize = true;
             this.lbl_yakin_hobi.Location = new System.Drawing.Point(395, 601);
             this.lbl_yakin_hobi.Name = "lbl_yakin_hobi";
-            this.lbl_yakin_hobi.Size = new System.Drawing.Size(41, 13);
+            this.lbl_yakin_hobi.Size = new System.Drawing.Size(19, 13);
             this.lbl_yakin_hobi.TabIndex = 266;
-            this.lbl_yakin_hobi.Text = "label49";
+            this.lbl_yakin_hobi.Text = "...";
             // 
             // checkedListBox1
             // 
@@ -1210,9 +1210,9 @@ namespace InsanKaynaklariBilgiSistem
             this.lbl_bakim_hobi.AutoSize = true;
             this.lbl_bakim_hobi.Location = new System.Drawing.Point(918, 679);
             this.lbl_bakim_hobi.Name = "lbl_bakim_hobi";
-            this.lbl_bakim_hobi.Size = new System.Drawing.Size(41, 13);
+            this.lbl_bakim_hobi.Size = new System.Drawing.Size(16, 13);
             this.lbl_bakim_hobi.TabIndex = 277;
-            this.lbl_bakim_hobi.Text = "label48";
+            this.lbl_bakim_hobi.Text = "...";
             // 
             // gridControl3
             // 

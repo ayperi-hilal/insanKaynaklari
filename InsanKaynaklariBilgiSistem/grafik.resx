@@ -117,28 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="kisiBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>308, 17</value>
-  </metadata>
-  <metadata name="sqlDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>172, 17</value>
-  </metadata>
-  <metadata name="sqlDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>172, 17</value>
-  </metadata>
-  <data name="sqlDataSource1.ResultSchemaSerializable" xml:space="preserve">
-    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9Iktpc2kiPjxGaWVsZCBOYW1lPSJpZCIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9IlRDIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9ImFkIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9InNveWFkIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9InV5cnVrIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9ImNpbnNpeWV0IiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9Im1lZGVuaV9oYWwiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iZG9ndW1fVGFyaWhpIiBUeXBlPSJEYXRlVGltZSIgLz48RmllbGQgTmFtZT0iZG9ndW1fWWVyaSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJvbmNla2lfc295YWRpIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9ImFuYV9BZGlfU295YWRpIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9ImJhYmFfQWRpX1NveWFkaSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJtZXNsZWtJRCIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJnb3JldmkiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iZ29yZXZfWWVyaSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJnaXJpc19UYXJpaGkiIFR5cGU9IkRhdGVUaW1lIiAvPjxGaWVsZCBOYW1lPSJBa3RpZiIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJyZXNpbSIgVHlwZT0iQnl0ZUFycmF5IiAvPjxGaWVsZCBOYW1lPSJjaWtpc19UYXJpaGkiIFR5cGU9IkRhdGVUaW1lIiAvPjxGaWVsZCBOYW1lPSJwZGtzIiBUeXBlPSJTdHJpbmciIC8+PC9WaWV3PjwvRGF0YVNldD4=</value>
-  </data>
-  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
-  </metadata>
-  <metadata name="kisiBindingSource2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>610, 17</value>
-  </metadata>
-  <metadata name="kisiBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>456, 17</value>
-  </metadata>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>25</value>
   </metadata>
 </root>

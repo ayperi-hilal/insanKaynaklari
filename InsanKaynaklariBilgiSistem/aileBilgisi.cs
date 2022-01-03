@@ -632,7 +632,10 @@ namespace InsanKaynaklariBilgiSistem
                     checkedListBox1.SetItemChecked(count, false);
                 }
             }
-                  
+
+            btn_guncelle.Enabled = true;
+            simpleButton1.Enabled = true;
+            btn_sil.Enabled = true;
         }
 
 
@@ -678,7 +681,9 @@ namespace InsanKaynaklariBilgiSistem
 
             txt_bakim_id.Text = gridView2.GetFocusedRowCellValue("id").ToString();
 
-
+            btn_guncelle.Enabled = true;
+            simpleButton1.Enabled = true;
+            btn_sil.Enabled = true;
 
         }
 
@@ -731,14 +736,25 @@ namespace InsanKaynaklariBilgiSistem
                     label3.Text = kayitokuma.GetValue(2).ToString();//ilgili tck ait değerin veritabanındaki tck getirilecek. veri tabanı 0,1,2,.. diye gider.
                     label5.Text = kayitokuma.GetValue(3).ToString();//ad
                     label22.Text = kayitokuma.GetValue(6).ToString();//soyad
+                  
+                    
+                    btn_guncelle.Enabled = true;
+                    simpleButton1.Enabled = true;
+                    btn_sil.Enabled = true;
+
+
                     break;
+
+
                 }
                
                 //eğer kayıt okuma durumu gerçekleşmemiş ise kayıt bulunamadı ise
                 if (kayit_arama_durumu == false)
                 {
                     MessageBox.Show("Arama kayıtı bulunamadı", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
+                    btn_guncelle.Enabled = false;
+                    simpleButton1.Enabled = false;
+                    btn_sil.Enabled = false;
                 }
                 
             }

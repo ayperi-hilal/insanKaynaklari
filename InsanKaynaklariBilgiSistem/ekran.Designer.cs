@@ -325,9 +325,9 @@ namespace InsanKaynaklariBilgiSistem
             // 
             // ribbonPageGroup1
             // 
+            this.ribbonPageGroup1.ItemLinks.Add(this.barButtonItem38);
             this.ribbonPageGroup1.ItemLinks.Add(this.barButtonItem33);
             this.ribbonPageGroup1.ItemLinks.Add(this.b_btn_rapor);
-            this.ribbonPageGroup1.ItemLinks.Add(this.barButtonItem38);
             this.ribbonPageGroup1.ItemLinks.Add(this.barButtonItem39);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             // 
@@ -365,7 +365,7 @@ namespace InsanKaynaklariBilgiSistem
             this.barButtonItem39.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.chartchangestyle_16x16;
             this.barButtonItem39.ImageOptions.LargeImage = global::InsanKaynaklariBilgiSistem.Properties.Resources.chartchangestyle_32x32;
             this.barButtonItem39.Name = "barButtonItem39";
-            this.barButtonItem39.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem39_ItemClick);
+            this.barButtonItem39.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // barButtonItem37
             // 

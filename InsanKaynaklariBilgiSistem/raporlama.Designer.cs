@@ -39,34 +39,63 @@ namespace InsanKaynaklariBilgiSistem
             this.btn_aile = new DevExpress.XtraEditors.CheckButton();
             this.btn_egitim = new DevExpress.XtraEditors.CheckButton();
             this.btn_aktar = new DevExpress.XtraEditors.SimpleButton();
-            this.btn_tumu = new DevExpress.XtraEditors.CheckButton();
             this.btn_listele = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.btn_cikanlar = new DevExpress.XtraEditors.CheckButton();
             this.btn_personel = new DevExpress.XtraEditors.CheckButton();
+            this.label3 = new System.Windows.Forms.Label();
             this.btn_arge = new DevExpress.XtraEditors.CheckButton();
             this.btn_tum_personeller = new DevExpress.XtraEditors.CheckButton();
+            this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
+            this.checkButton6 = new DevExpress.XtraEditors.CheckButton();
+            this.checkButton7 = new DevExpress.XtraEditors.CheckButton();
+            this.checkButton8 = new DevExpress.XtraEditors.CheckButton();
+            this.checkButton9 = new DevExpress.XtraEditors.CheckButton();
+            this.checkButton10 = new DevExpress.XtraEditors.CheckButton();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.btn_sertifika = new DevExpress.XtraEditors.CheckButton();
             this.kisi_listesi = new DevExpress.XtraEditors.CheckButton();
+            this.ch_merasim = new DevExpress.XtraEditors.CheckButton();
             this.lbl_bolum = new System.Windows.Forms.Label();
             this.lbl_ozellikler = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_formu_temizle = new DevExpress.XtraEditors.SimpleButton();
-            this.btn_calisan = new DevExpress.XtraEditors.CheckButton();
+            this.ch_saglik = new System.Windows.Forms.CheckBox();
+            this.ch_aile = new System.Windows.Forms.CheckBox();
+            this.ch_iletisim = new System.Windows.Forms.CheckBox();
+            this.ch_egitim = new System.Windows.Forms.CheckBox();
+            this.ch_hobi = new System.Windows.Forms.CheckBox();
+            this.ch_ozgecmis = new System.Windows.Forms.CheckBox();
+            this.ch_maddi = new System.Windows.Forms.CheckBox();
+            this.ch_tum = new System.Windows.Forms.CheckBox();
+            this.ch_kisi = new System.Windows.Forms.CheckBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.ch_calisanlar = new System.Windows.Forms.CheckBox();
+            this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
+            this.checkButton1 = new DevExpress.XtraEditors.CheckButton();
+            this.checkButton2 = new DevExpress.XtraEditors.CheckButton();
+            this.checkButton3 = new DevExpress.XtraEditors.CheckButton();
+            this.checkButton4 = new DevExpress.XtraEditors.CheckButton();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
+            this.panelControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
+            this.panelControl3.SuspendLayout();
             this.SuspendLayout();
             // 
             // gridControl1
             // 
-            this.gridControl1.Location = new System.Drawing.Point(216, -1);
+            this.gridControl1.Location = new System.Drawing.Point(345, -1);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1154, 455);
+            this.gridControl1.Size = new System.Drawing.Size(1025, 455);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -80,33 +109,33 @@ namespace InsanKaynaklariBilgiSistem
             // 
             // btn_saglik
             // 
-            this.btn_saglik.Location = new System.Drawing.Point(138, 41);
+            this.btn_saglik.Location = new System.Drawing.Point(0, 5);
             this.btn_saglik.Name = "btn_saglik";
-            this.btn_saglik.Size = new System.Drawing.Size(75, 23);
+            this.btn_saglik.Size = new System.Drawing.Size(147, 23);
             this.btn_saglik.TabIndex = 6;
             this.btn_saglik.Text = "Sağlık Bilgileri";
             // 
             // btn_maddi
             // 
-            this.btn_maddi.Location = new System.Drawing.Point(0, 185);
+            this.btn_maddi.Location = new System.Drawing.Point(0, 246);
             this.btn_maddi.Name = "btn_maddi";
-            this.btn_maddi.Size = new System.Drawing.Size(75, 23);
+            this.btn_maddi.Size = new System.Drawing.Size(147, 23);
             this.btn_maddi.TabIndex = 7;
             this.btn_maddi.Text = "Maddi Bilgileri";
             // 
             // btn_ozgecmis
             // 
-            this.btn_ozgecmis.Location = new System.Drawing.Point(0, 156);
+            this.btn_ozgecmis.Location = new System.Drawing.Point(0, 212);
             this.btn_ozgecmis.Name = "btn_ozgecmis";
-            this.btn_ozgecmis.Size = new System.Drawing.Size(75, 23);
+            this.btn_ozgecmis.Size = new System.Drawing.Size(147, 23);
             this.btn_ozgecmis.TabIndex = 12;
             this.btn_ozgecmis.Text = "Özgeçmiş";
             // 
             // btn_hobi
             // 
-            this.btn_hobi.Location = new System.Drawing.Point(0, 127);
+            this.btn_hobi.Location = new System.Drawing.Point(0, 181);
             this.btn_hobi.Name = "btn_hobi";
-            this.btn_hobi.Size = new System.Drawing.Size(75, 23);
+            this.btn_hobi.Size = new System.Drawing.Size(147, 23);
             this.btn_hobi.TabIndex = 11;
             this.btn_hobi.Text = "Hobi";
             // 
@@ -114,7 +143,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.btn_iletisim.Location = new System.Drawing.Point(0, 68);
             this.btn_iletisim.Name = "btn_iletisim";
-            this.btn_iletisim.Size = new System.Drawing.Size(75, 23);
+            this.btn_iletisim.Size = new System.Drawing.Size(147, 23);
             this.btn_iletisim.TabIndex = 10;
             this.btn_iletisim.Text = "İletişim Bilgileri";
             // 
@@ -122,7 +151,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.btn_aile.Location = new System.Drawing.Point(0, 34);
             this.btn_aile.Name = "btn_aile";
-            this.btn_aile.Size = new System.Drawing.Size(75, 23);
+            this.btn_aile.Size = new System.Drawing.Size(147, 23);
             this.btn_aile.TabIndex = 9;
             this.btn_aile.Text = "Aile Bilgileri";
             // 
@@ -130,14 +159,14 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.btn_egitim.Location = new System.Drawing.Point(0, 98);
             this.btn_egitim.Name = "btn_egitim";
-            this.btn_egitim.Size = new System.Drawing.Size(75, 23);
+            this.btn_egitim.Size = new System.Drawing.Size(147, 23);
             this.btn_egitim.TabIndex = 12;
             this.btn_egitim.Text = "Eğitim Bilgileri";
             // 
             // btn_aktar
             // 
             this.btn_aktar.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.exporttoxlsx_32x32;
-            this.btn_aktar.Location = new System.Drawing.Point(14, 359);
+            this.btn_aktar.Location = new System.Drawing.Point(141, 410);
             this.btn_aktar.Name = "btn_aktar";
             this.btn_aktar.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
             this.btn_aktar.Size = new System.Drawing.Size(97, 40);
@@ -145,18 +174,10 @@ namespace InsanKaynaklariBilgiSistem
             this.btn_aktar.Text = "Dışa Aktar";
             this.btn_aktar.Click += new System.EventHandler(this.btn_aktar_Click);
             // 
-            // btn_tumu
-            // 
-            this.btn_tumu.Location = new System.Drawing.Point(0, 223);
-            this.btn_tumu.Name = "btn_tumu";
-            this.btn_tumu.Size = new System.Drawing.Size(75, 23);
-            this.btn_tumu.TabIndex = 14;
-            this.btn_tumu.Text = "Tüm Bilgiler";
-            // 
             // btn_listele
             // 
             this.btn_listele.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.chartsshowlegend_32x32;
-            this.btn_listele.Location = new System.Drawing.Point(104, 359);
+            this.btn_listele.Location = new System.Drawing.Point(235, 401);
             this.btn_listele.Name = "btn_listele";
             this.btn_listele.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
             this.btn_listele.Size = new System.Drawing.Size(109, 53);
@@ -168,8 +189,11 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.panelControl1.Controls.Add(this.btn_cikanlar);
             this.panelControl1.Controls.Add(this.btn_personel);
+            this.panelControl1.Controls.Add(this.label3);
             this.panelControl1.Controls.Add(this.btn_arge);
             this.panelControl1.Controls.Add(this.btn_tum_personeller);
+            this.panelControl1.Controls.Add(this.panelControl4);
+            this.panelControl1.Controls.Add(this.checkButton10);
             this.panelControl1.Location = new System.Drawing.Point(14, 36);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(118, 263);
@@ -193,6 +217,16 @@ namespace InsanKaynaklariBilgiSistem
             this.btn_personel.TabIndex = 0;
             this.btn_personel.Text = "Personel\r\nListesi";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(121, -16);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 13);
+            this.label3.TabIndex = 19;
+            this.label3.Text = "ÖZELLİKLER";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // btn_arge
             // 
             this.btn_arge.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.newemployee_32x32;
@@ -211,29 +245,104 @@ namespace InsanKaynaklariBilgiSistem
             this.btn_tum_personeller.TabIndex = 0;
             this.btn_tum_personeller.Text = "Tüm\r\nPersonel Listesi";
             // 
+            // panelControl4
+            // 
+            this.panelControl4.Controls.Add(this.checkButton6);
+            this.panelControl4.Controls.Add(this.checkButton7);
+            this.panelControl4.Controls.Add(this.checkButton8);
+            this.panelControl4.Controls.Add(this.checkButton9);
+            this.panelControl4.Location = new System.Drawing.Point(0, 0);
+            this.panelControl4.Name = "panelControl4";
+            this.panelControl4.Size = new System.Drawing.Size(118, 263);
+            this.panelControl4.TabIndex = 16;
+            // 
+            // checkButton6
+            // 
+            this.checkButton6.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.assignto_32x32;
+            this.checkButton6.Location = new System.Drawing.Point(0, 206);
+            this.checkButton6.Name = "checkButton6";
+            this.checkButton6.Size = new System.Drawing.Size(118, 57);
+            this.checkButton6.TabIndex = 0;
+            this.checkButton6.Text = "İşten\r\nAyrılanlar";
+            // 
+            // checkButton7
+            // 
+            this.checkButton7.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.team_32x322;
+            this.checkButton7.Location = new System.Drawing.Point(0, 140);
+            this.checkButton7.Name = "checkButton7";
+            this.checkButton7.Size = new System.Drawing.Size(118, 56);
+            this.checkButton7.TabIndex = 0;
+            this.checkButton7.Text = "Personel\r\nListesi";
+            // 
+            // checkButton8
+            // 
+            this.checkButton8.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.newemployee_32x32;
+            this.checkButton8.Location = new System.Drawing.Point(0, 68);
+            this.checkButton8.Name = "checkButton8";
+            this.checkButton8.Size = new System.Drawing.Size(118, 53);
+            this.checkButton8.TabIndex = 0;
+            this.checkButton8.Text = "AR & GE\r\nMerkezi";
+            // 
+            // checkButton9
+            // 
+            this.checkButton9.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.usergroup_32x325;
+            this.checkButton9.Location = new System.Drawing.Point(0, 0);
+            this.checkButton9.Name = "checkButton9";
+            this.checkButton9.Size = new System.Drawing.Size(118, 62);
+            this.checkButton9.TabIndex = 0;
+            this.checkButton9.Text = "Tüm\r\nPersonel Listesi";
+            // 
+            // checkButton10
+            // 
+            this.checkButton10.Location = new System.Drawing.Point(124, 5);
+            this.checkButton10.Name = "checkButton10";
+            this.checkButton10.Size = new System.Drawing.Size(75, 23);
+            this.checkButton10.TabIndex = 6;
+            this.checkButton10.Text = "Sağlık Bilgileri";
+            // 
             // panelControl2
             // 
             this.panelControl2.Controls.Add(this.btn_aile);
             this.panelControl2.Controls.Add(this.btn_maddi);
             this.panelControl2.Controls.Add(this.btn_iletisim);
             this.panelControl2.Controls.Add(this.btn_egitim);
+            this.panelControl2.Controls.Add(this.btn_sertifika);
             this.panelControl2.Controls.Add(this.kisi_listesi);
-            this.panelControl2.Controls.Add(this.btn_tumu);
             this.panelControl2.Controls.Add(this.btn_ozgecmis);
+            this.panelControl2.Controls.Add(this.btn_saglik);
+            this.panelControl2.Controls.Add(this.ch_merasim);
             this.panelControl2.Controls.Add(this.btn_hobi);
-            this.panelControl2.Location = new System.Drawing.Point(138, 36);
+            this.panelControl2.Location = new System.Drawing.Point(141, 36);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(75, 276);
+            this.panelControl2.Size = new System.Drawing.Size(147, 305);
             this.panelControl2.TabIndex = 17;
+            // 
+            // btn_sertifika
+            // 
+            this.btn_sertifika.Location = new System.Drawing.Point(0, 127);
+            this.btn_sertifika.Name = "btn_sertifika";
+            this.btn_sertifika.Size = new System.Drawing.Size(147, 23);
+            this.btn_sertifika.TabIndex = 14;
+            this.btn_sertifika.Text = "Sertifika/Dil Bilgisi";
+            this.btn_sertifika.CheckedChanged += new System.EventHandler(this.kisi_listesi_CheckedChanged);
             // 
             // kisi_listesi
             // 
-            this.kisi_listesi.Location = new System.Drawing.Point(-1, 252);
+            this.kisi_listesi.Location = new System.Drawing.Point(0, 275);
             this.kisi_listesi.Name = "kisi_listesi";
-            this.kisi_listesi.Size = new System.Drawing.Size(75, 23);
+            this.kisi_listesi.Size = new System.Drawing.Size(147, 23);
             this.kisi_listesi.TabIndex = 14;
             this.kisi_listesi.Text = "Kişi Listesi";
+            this.kisi_listesi.Visible = false;
             this.kisi_listesi.CheckedChanged += new System.EventHandler(this.kisi_listesi_CheckedChanged);
+            // 
+            // ch_merasim
+            // 
+            this.ch_merasim.Location = new System.Drawing.Point(0, 155);
+            this.ch_merasim.Name = "ch_merasim";
+            this.ch_merasim.Size = new System.Drawing.Size(147, 23);
+            this.ch_merasim.TabIndex = 11;
+            this.ch_merasim.Text = "Planlı Merasim Bilgileri";
             // 
             // lbl_bolum
             // 
@@ -257,7 +366,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(11, 315);
+            this.label1.Location = new System.Drawing.Point(6, 364);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(201, 38);
             this.label1.TabIndex = 20;
@@ -268,19 +377,184 @@ namespace InsanKaynaklariBilgiSistem
             this.btn_formu_temizle.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.clear_32x321;
             this.btn_formu_temizle.Location = new System.Drawing.Point(14, 405);
             this.btn_formu_temizle.Name = "btn_formu_temizle";
-            this.btn_formu_temizle.Size = new System.Drawing.Size(143, 49);
+            this.btn_formu_temizle.Size = new System.Drawing.Size(130, 49);
             this.btn_formu_temizle.TabIndex = 21;
             this.btn_formu_temizle.Text = "FORMU TEMİZLE";
             this.btn_formu_temizle.Click += new System.EventHandler(this.btn_formu_temizle_Click);
             // 
-            // btn_calisan
+            // ch_saglik
             // 
-            this.btn_calisan.Location = new System.Drawing.Point(82, -6);
-            this.btn_calisan.Name = "btn_calisan";
-            this.btn_calisan.Size = new System.Drawing.Size(75, 23);
-            this.btn_calisan.TabIndex = 14;
-            this.btn_calisan.Text = "çalışanlar";
-            this.btn_calisan.CheckedChanged += new System.EventHandler(this.btn_calisan_CheckedChanged);
+            this.ch_saglik.AutoSize = true;
+            this.ch_saglik.Location = new System.Drawing.Point(7, 9);
+            this.ch_saglik.Name = "ch_saglik";
+            this.ch_saglik.Size = new System.Drawing.Size(90, 17);
+            this.ch_saglik.TabIndex = 22;
+            this.ch_saglik.Text = "Sağlık Bilgileri";
+            this.ch_saglik.UseVisualStyleBackColor = true;
+            // 
+            // ch_aile
+            // 
+            this.ch_aile.AutoSize = true;
+            this.ch_aile.Location = new System.Drawing.Point(7, 34);
+            this.ch_aile.Name = "ch_aile";
+            this.ch_aile.Size = new System.Drawing.Size(78, 17);
+            this.ch_aile.TabIndex = 22;
+            this.ch_aile.Text = "Aile Bilgileri";
+            this.ch_aile.UseVisualStyleBackColor = true;
+            // 
+            // ch_iletisim
+            // 
+            this.ch_iletisim.AutoSize = true;
+            this.ch_iletisim.Location = new System.Drawing.Point(7, 74);
+            this.ch_iletisim.Name = "ch_iletisim";
+            this.ch_iletisim.Size = new System.Drawing.Size(92, 17);
+            this.ch_iletisim.TabIndex = 22;
+            this.ch_iletisim.Text = "İletişim Bilgileri";
+            this.ch_iletisim.UseVisualStyleBackColor = true;
+            // 
+            // ch_egitim
+            // 
+            this.ch_egitim.AutoSize = true;
+            this.ch_egitim.Location = new System.Drawing.Point(7, 100);
+            this.ch_egitim.Name = "ch_egitim";
+            this.ch_egitim.Size = new System.Drawing.Size(89, 17);
+            this.ch_egitim.TabIndex = 22;
+            this.ch_egitim.Text = "Eğitim Bilgileri";
+            this.ch_egitim.UseVisualStyleBackColor = true;
+            // 
+            // ch_hobi
+            // 
+            this.ch_hobi.AutoSize = true;
+            this.ch_hobi.Location = new System.Drawing.Point(7, 137);
+            this.ch_hobi.Name = "ch_hobi";
+            this.ch_hobi.Size = new System.Drawing.Size(48, 17);
+            this.ch_hobi.TabIndex = 22;
+            this.ch_hobi.Text = "Hobi";
+            this.ch_hobi.UseVisualStyleBackColor = true;
+            // 
+            // ch_ozgecmis
+            // 
+            this.ch_ozgecmis.AutoSize = true;
+            this.ch_ozgecmis.Location = new System.Drawing.Point(7, 160);
+            this.ch_ozgecmis.Name = "ch_ozgecmis";
+            this.ch_ozgecmis.Size = new System.Drawing.Size(72, 17);
+            this.ch_ozgecmis.TabIndex = 22;
+            this.ch_ozgecmis.Text = "Özgeçmiş";
+            this.ch_ozgecmis.UseVisualStyleBackColor = true;
+            // 
+            // ch_maddi
+            // 
+            this.ch_maddi.AutoSize = true;
+            this.ch_maddi.Location = new System.Drawing.Point(7, 189);
+            this.ch_maddi.Name = "ch_maddi";
+            this.ch_maddi.Size = new System.Drawing.Size(90, 17);
+            this.ch_maddi.TabIndex = 22;
+            this.ch_maddi.Text = "Maddi Bilgileri";
+            this.ch_maddi.UseVisualStyleBackColor = true;
+            // 
+            // ch_tum
+            // 
+            this.ch_tum.AutoSize = true;
+            this.ch_tum.Location = new System.Drawing.Point(7, 229);
+            this.ch_tum.Name = "ch_tum";
+            this.ch_tum.Size = new System.Drawing.Size(80, 17);
+            this.ch_tum.TabIndex = 22;
+            this.ch_tum.Text = "Tüm Bilgiler";
+            this.ch_tum.UseVisualStyleBackColor = true;
+            // 
+            // ch_kisi
+            // 
+            this.ch_kisi.AutoSize = true;
+            this.ch_kisi.Location = new System.Drawing.Point(7, 259);
+            this.ch_kisi.Name = "ch_kisi";
+            this.ch_kisi.Size = new System.Drawing.Size(74, 17);
+            this.ch_kisi.TabIndex = 22;
+            this.ch_kisi.Text = "Kişi Listesi";
+            this.ch_kisi.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.ch_kisi);
+            this.panel1.Controls.Add(this.ch_calisanlar);
+            this.panel1.Controls.Add(this.ch_tum);
+            this.panel1.Controls.Add(this.ch_aile);
+            this.panel1.Controls.Add(this.ch_maddi);
+            this.panel1.Controls.Add(this.ch_saglik);
+            this.panel1.Controls.Add(this.ch_ozgecmis);
+            this.panel1.Controls.Add(this.ch_iletisim);
+            this.panel1.Controls.Add(this.ch_egitim);
+            this.panel1.Controls.Add(this.ch_hobi);
+            this.panel1.Location = new System.Drawing.Point(345, 126);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(104, 312);
+            this.panel1.TabIndex = 23;
+            // 
+            // ch_calisanlar
+            // 
+            this.ch_calisanlar.AutoSize = true;
+            this.ch_calisanlar.Location = new System.Drawing.Point(7, 277);
+            this.ch_calisanlar.Name = "ch_calisanlar";
+            this.ch_calisanlar.Size = new System.Drawing.Size(71, 17);
+            this.ch_calisanlar.TabIndex = 22;
+            this.ch_calisanlar.Text = "Çalışanlar";
+            this.ch_calisanlar.UseVisualStyleBackColor = true;
+            // 
+            // panelControl3
+            // 
+            this.panelControl3.Controls.Add(this.checkButton1);
+            this.panelControl3.Controls.Add(this.checkButton2);
+            this.panelControl3.Controls.Add(this.checkButton3);
+            this.panelControl3.Controls.Add(this.checkButton4);
+            this.panelControl3.Location = new System.Drawing.Point(14, 36);
+            this.panelControl3.Name = "panelControl3";
+            this.panelControl3.Size = new System.Drawing.Size(118, 263);
+            this.panelControl3.TabIndex = 16;
+            // 
+            // checkButton1
+            // 
+            this.checkButton1.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.assignto_32x32;
+            this.checkButton1.Location = new System.Drawing.Point(0, 206);
+            this.checkButton1.Name = "checkButton1";
+            this.checkButton1.Size = new System.Drawing.Size(118, 57);
+            this.checkButton1.TabIndex = 0;
+            this.checkButton1.Text = "İşten\r\nAyrılanlar";
+            // 
+            // checkButton2
+            // 
+            this.checkButton2.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.team_32x322;
+            this.checkButton2.Location = new System.Drawing.Point(0, 140);
+            this.checkButton2.Name = "checkButton2";
+            this.checkButton2.Size = new System.Drawing.Size(118, 56);
+            this.checkButton2.TabIndex = 0;
+            this.checkButton2.Text = "Personel\r\nListesi";
+            // 
+            // checkButton3
+            // 
+            this.checkButton3.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.newemployee_32x32;
+            this.checkButton3.Location = new System.Drawing.Point(0, 68);
+            this.checkButton3.Name = "checkButton3";
+            this.checkButton3.Size = new System.Drawing.Size(118, 53);
+            this.checkButton3.TabIndex = 0;
+            this.checkButton3.Text = "AR & GE\r\nMerkezi";
+            // 
+            // checkButton4
+            // 
+            this.checkButton4.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.usergroup_32x325;
+            this.checkButton4.Location = new System.Drawing.Point(0, 0);
+            this.checkButton4.Name = "checkButton4";
+            this.checkButton4.Size = new System.Drawing.Size(118, 62);
+            this.checkButton4.TabIndex = 0;
+            this.checkButton4.Text = "Tüm\r\nPersonel Listesi";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(135, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(72, 13);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "ÖZELLİKLER";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // raporlama
             // 
@@ -289,15 +563,16 @@ namespace InsanKaynaklariBilgiSistem
             this.ClientSize = new System.Drawing.Size(1370, 450);
             this.Controls.Add(this.btn_formu_temizle);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.lbl_ozellikler);
             this.Controls.Add(this.lbl_bolum);
-            this.Controls.Add(this.btn_calisan);
             this.Controls.Add(this.btn_listele);
             this.Controls.Add(this.btn_aktar);
-            this.Controls.Add(this.btn_saglik);
             this.Controls.Add(this.gridControl1);
+            this.Controls.Add(this.panelControl3);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.panelControl2);
+            this.Controls.Add(this.panel1);
             this.Name = "raporlama";
             this.Text = "RAPORLA";
             this.Load += new System.EventHandler(this.raporlama_Load);
@@ -305,8 +580,15 @@ namespace InsanKaynaklariBilgiSistem
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
+            this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
+            this.panelControl4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
+            this.panelControl3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -324,7 +606,6 @@ namespace InsanKaynaklariBilgiSistem
         private DevExpress.XtraEditors.CheckButton btn_aile;
         private DevExpress.XtraEditors.CheckButton btn_egitim;
         private DevExpress.XtraEditors.SimpleButton btn_aktar;
-        private DevExpress.XtraEditors.CheckButton btn_tumu;
         private DevExpress.XtraEditors.SimpleButton btn_listele;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.PanelControl panelControl2;
@@ -337,6 +618,31 @@ namespace InsanKaynaklariBilgiSistem
         private System.Windows.Forms.Label label1;
         private DevExpress.XtraEditors.SimpleButton btn_formu_temizle;
         private DevExpress.XtraEditors.CheckButton kisi_listesi;
-        private DevExpress.XtraEditors.CheckButton btn_calisan;
+        private System.Windows.Forms.CheckBox ch_saglik;
+        private System.Windows.Forms.CheckBox ch_aile;
+        private System.Windows.Forms.CheckBox ch_iletisim;
+        private System.Windows.Forms.CheckBox ch_egitim;
+        private System.Windows.Forms.CheckBox ch_hobi;
+        private System.Windows.Forms.CheckBox ch_ozgecmis;
+        private System.Windows.Forms.CheckBox ch_maddi;
+        private System.Windows.Forms.CheckBox ch_tum;
+        private System.Windows.Forms.CheckBox ch_kisi;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.CheckBox ch_calisanlar;
+        private DevExpress.XtraEditors.CheckButton btn_sertifika;
+        private System.Windows.Forms.Label label3;
+        private DevExpress.XtraEditors.PanelControl panelControl4;
+        private DevExpress.XtraEditors.CheckButton checkButton6;
+        private DevExpress.XtraEditors.CheckButton checkButton7;
+        private DevExpress.XtraEditors.CheckButton checkButton8;
+        private DevExpress.XtraEditors.CheckButton checkButton9;
+        private DevExpress.XtraEditors.CheckButton checkButton10;
+        private DevExpress.XtraEditors.CheckButton ch_merasim;
+        private DevExpress.XtraEditors.PanelControl panelControl3;
+        private DevExpress.XtraEditors.CheckButton checkButton1;
+        private DevExpress.XtraEditors.CheckButton checkButton2;
+        private DevExpress.XtraEditors.CheckButton checkButton3;
+        private DevExpress.XtraEditors.CheckButton checkButton4;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -179,6 +179,9 @@ namespace InsanKaynaklariBilgiSistem
                     label3.Text = kayitokuma.GetValue(2).ToString();//ilgili tck ait değerin veritabanındaki tck getirilecek. veri tabanı 0,1,2,.. diye gider.
                     label5.Text = kayitokuma.GetValue(3).ToString();//ad
 
+                   
+
+
                     break;
                 }
             }
@@ -242,14 +245,21 @@ namespace InsanKaynaklariBilgiSistem
 
                     label3.Text = kayitokuma.GetValue(2).ToString();//ilgili tck ait değerin veritabanındaki tck getirilecek. veri tabanı 0,1,2,.. diye gider.
                     label5.Text = kayitokuma.GetValue(3).ToString();
-                   
+
+
+                    btn_sil.Enabled = true;
+                    btn_guncelle.Enabled = true;
+                    simpleButton6.Enabled = true;
+
                     break;
                 }
                 //eğer kayıt okuma durumu gerçekleşmemiş ise kayıt bulunamadı ise
                 if (kayit_arama_durumu == false)
                 {
                     MessageBox.Show("Kayıt bulunamadı", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
+                    btn_sil.Enabled = false;
+                    btn_guncelle.Enabled = false;
+                    simpleButton6.Enabled = false;
                 }
             
             }
@@ -451,6 +461,12 @@ namespace InsanKaynaklariBilgiSistem
             date_mezun.Text = gridView1.GetFocusedRowCellValue("mezuniyet_tarihi").ToString();
             txt_derece.Text = gridView1.GetFocusedRowCellValue("derece").ToString();
             txt_id.Text = gridView1.GetFocusedRowCellValue("id").ToString();
+
+
+            btn_sil.Enabled = true;
+            btn_guncelle.Enabled = true;
+            simpleButton6.Enabled = true;
+
 
         }
 

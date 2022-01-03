@@ -518,7 +518,9 @@ namespace InsanKaynaklariBilgiSistem
                         textBox2.Text = kayitokuma.GetValue(2).ToString();  //ad  ilgili tck ait değerin veritabanındaki tck getirilecek. veri tabanı 0,1,2,.. diye gider.
                         textBox3.Text = kayitokuma.GetValue(3).ToString(); //soyad
 
-
+                    simpleButton1.Enabled = true;
+                    simpleButton2.Enabled = true;
+                    simpleButton3.Enabled = true;
 
 
                         break;
@@ -540,12 +542,17 @@ namespace InsanKaynaklariBilgiSistem
                             textBox4.Text = kayitokuma_2.GetValue(5).ToString(); //kullanici adi
 
                             textBox6.Text = kayitokuma_2.GetValue(6).ToString();
-                        }
+
+                        simpleButton1.Enabled = true;
+                        simpleButton2.Enabled = true;
+                        simpleButton3.Enabled = true;
+                    }
                         if (hesap_arama_durumu == false)
                         {
                             MessageBox.Show("Kullanıcı mevcut fakat hesap kayıtı bulunamadı", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         }
                         
+
                     }
                    
 
@@ -553,8 +560,10 @@ namespace InsanKaynaklariBilgiSistem
                 else if (kayit_arama_durumu == false)
                {
                     MessageBox.Show("Arama kayıtı bulunamadı", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
-               }
+                    simpleButton1.Enabled = false; 
+                    simpleButton2.Enabled = false;
+                    simpleButton3.Enabled = false;
+                }
                 
 
             }
@@ -562,6 +571,10 @@ namespace InsanKaynaklariBilgiSistem
             {
                 //girilen tc no 11karakter değilse
                 MessageBox.Show("Lütfen 11 haneli tc giriniz", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                simpleButton1.Enabled = false;
+                simpleButton2.Enabled = false;
+                simpleButton3.Enabled = false; 
                 ekrani_temizle();
             }
            

@@ -223,6 +223,9 @@ namespace InsanKaynaklariBilgiSistem
                             {
                                 txt_pdks.Text = kayitokumaiki.GetValue(19).ToString();
                             }
+                            btn_kaydet.Enabled = true;
+                            btn_sil.Enabled = true;
+                            btn_guncelle.Enabled = true;
 
                         }
                     }
@@ -231,16 +234,25 @@ namespace InsanKaynaklariBilgiSistem
                     label5.Text = kayitokuma.GetValue(3).ToString();
                     label6.Text = kayitokuma.GetValue(12).ToString();
 
+                    btn_kaydet.Enabled = true;
+                    btn_sil.Enabled = true;
+                    btn_guncelle.Enabled = true;
                     break;
                 }
                 //eğer kayıt okuma durumu gerçekleşmemiş ise kayıt bulunamadı ise
                 if (kayit_arama_durumu == false)
                 {
                     MessageBox.Show("Arama kaydı bulunamadı", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
+                    btn_kaydet.Enabled = false;
+                    btn_sil.Enabled = false;
+                    btn_guncelle.Enabled = false;
                 }
                 else
                 {
+                    btn_kaydet.Enabled = true;
+                    btn_sil.Enabled = true;
+                    btn_guncelle.Enabled = true;
+
                     SqlCommand selectsorgu2 = new SqlCommand("Listele_Saglik_Bilgisi", baglantim.baglanti());
                     selectsorgu2.CommandType = CommandType.StoredProcedure;
 
@@ -264,6 +276,12 @@ namespace InsanKaynaklariBilgiSistem
                         txt_saglik.Text = kayitokuma2.GetValue(4).ToString();
                         mtxt_boy.Text = kayitokuma2.GetValue(5).ToString();
                         mtxt_kilo.Text = kayitokuma2.GetValue(6).ToString();
+
+
+                        btn_kaydet.Enabled = true;
+                        btn_sil.Enabled = true;
+                        btn_guncelle.Enabled = true;
+
 
                         string switch_engel = kayitokuma2.GetValue(7).ToString();
                         if (switch_engel == "Engel durumu mevcuttur.")

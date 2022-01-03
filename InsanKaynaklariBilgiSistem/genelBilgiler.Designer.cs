@@ -32,8 +32,6 @@ namespace InsanKaynaklariBilgiSistem
             this.components = new System.ComponentModel.Container();
             this.label14 = new System.Windows.Forms.Label();
             this.toggleSwitch1 = new DevExpress.XtraEditors.ToggleSwitch();
-            this.comboBox_gorev_yeri = new System.Windows.Forms.ComboBox();
-            this.comboBox_gorevi = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -81,6 +79,8 @@ namespace InsanKaynaklariBilgiSistem
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txt_gorev = new System.Windows.Forms.TextBox();
+            this.txt_gorev_yeri = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.toggleSwitch1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -110,22 +110,6 @@ namespace InsanKaynaklariBilgiSistem
             this.toggleSwitch1.Size = new System.Drawing.Size(155, 18);
             this.toggleSwitch1.TabIndex = 122;
             this.toggleSwitch1.Toggled += new System.EventHandler(this.toggleSwitch1_Toggled);
-            // 
-            // comboBox_gorev_yeri
-            // 
-            this.comboBox_gorev_yeri.FormattingEnabled = true;
-            this.comboBox_gorev_yeri.Location = new System.Drawing.Point(121, 84);
-            this.comboBox_gorev_yeri.Name = "comboBox_gorev_yeri";
-            this.comboBox_gorev_yeri.Size = new System.Drawing.Size(121, 21);
-            this.comboBox_gorev_yeri.TabIndex = 121;
-            // 
-            // comboBox_gorevi
-            // 
-            this.comboBox_gorevi.FormattingEnabled = true;
-            this.comboBox_gorevi.Location = new System.Drawing.Point(121, 54);
-            this.comboBox_gorevi.Name = "comboBox_gorevi";
-            this.comboBox_gorevi.Size = new System.Drawing.Size(121, 21);
-            this.comboBox_gorevi.TabIndex = 120;
             // 
             // label9
             // 
@@ -367,15 +351,15 @@ namespace InsanKaynaklariBilgiSistem
             // panelControl1
             // 
             this.panelControl1.AutoSize = true;
+            this.panelControl1.Controls.Add(this.txt_gorev_yeri);
+            this.panelControl1.Controls.Add(this.txt_gorev);
             this.panelControl1.Controls.Add(this.comboBox_meslek_kodu);
             this.panelControl1.Controls.Add(this.label15);
             this.panelControl1.Controls.Add(this.label14);
             this.panelControl1.Controls.Add(this.cikis_tarihi);
             this.panelControl1.Controls.Add(this.toggleSwitch1);
             this.panelControl1.Controls.Add(this.label7);
-            this.panelControl1.Controls.Add(this.comboBox_gorev_yeri);
             this.panelControl1.Controls.Add(this.giris_tarihi);
-            this.panelControl1.Controls.Add(this.comboBox_gorevi);
             this.panelControl1.Controls.Add(this.label8);
             this.panelControl1.Controls.Add(this.label9);
             this.panelControl1.Controls.Add(this.label6);
@@ -535,6 +519,20 @@ namespace InsanKaynaklariBilgiSistem
             this.textBox3.TabIndex = 127;
             this.textBox3.Visible = false;
             // 
+            // txt_gorev
+            // 
+            this.txt_gorev.Location = new System.Drawing.Point(121, 62);
+            this.txt_gorev.Name = "txt_gorev";
+            this.txt_gorev.Size = new System.Drawing.Size(121, 21);
+            this.txt_gorev.TabIndex = 126;
+            // 
+            // txt_gorev_yeri
+            // 
+            this.txt_gorev_yeri.Location = new System.Drawing.Point(121, 89);
+            this.txt_gorev_yeri.Name = "txt_gorev_yeri";
+            this.txt_gorev_yeri.Size = new System.Drawing.Size(121, 21);
+            this.txt_gorev_yeri.TabIndex = 126;
+            // 
             // genelBilgiler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -584,8 +582,6 @@ namespace InsanKaynaklariBilgiSistem
 
         private System.Windows.Forms.Label label14;
         private DevExpress.XtraEditors.ToggleSwitch toggleSwitch1;
-        private System.Windows.Forms.ComboBox comboBox_gorev_yeri;
-        private System.Windows.Forms.ComboBox comboBox_gorevi;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
@@ -633,5 +629,7 @@ namespace InsanKaynaklariBilgiSistem
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox txt_pdks;
         private System.Windows.Forms.Label lbl_pdks;
+        private System.Windows.Forms.TextBox txt_gorev_yeri;
+        private System.Windows.Forms.TextBox txt_gorev;
     }
 }

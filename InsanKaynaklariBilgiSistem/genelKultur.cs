@@ -339,13 +339,19 @@ namespace InsanKaynaklariBilgiSistem
                     label3.Text = kayitokuma.GetValue(2).ToString();//ilgili tck ait değerin veritabanındaki tck getirilecek. veri tabanı 0,1,2,.. diye gider.
                     label5.Text = kayitokuma.GetValue(3).ToString();
 
+                    btn_guncelle.Enabled = true;
+                    btn_sil.Enabled = true;
+                    simpleButton6.Enabled = true;
+
                     break;
                 }
                 //eğer kayıt okuma durumu gerçekleşmemiş ise kayıt bulunamadı ise
                 if (kayit_arama_durumu == false)
                 {
                     MessageBox.Show("Arama kayıtı bulunamadı", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
+                    btn_guncelle.Enabled = false;
+                    btn_sil.Enabled = false;
+                    simpleButton6.Enabled = false;
                 }
                 else
                 {
@@ -354,6 +360,10 @@ namespace InsanKaynaklariBilgiSistem
                     listele_sertifika();
                     listele_sertifika_agir_is();
                     listele_yabanci_dil();
+
+                    btn_guncelle.Enabled = true;
+                    btn_sil.Enabled = true;
+                    simpleButton6.Enabled = true;
                 }
             }
             else
@@ -361,6 +371,10 @@ namespace InsanKaynaklariBilgiSistem
                 //girilen tc no 11karakter değilse
                 MessageBox.Show("Lütfen 11 haneli tc giriniz", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 ekrani_temizle();
+
+                btn_guncelle.Enabled = false;
+                btn_sil.Enabled = false;
+                simpleButton6.Enabled = false;
             }
 
 
@@ -1159,6 +1173,10 @@ namespace InsanKaynaklariBilgiSistem
                     chb_hobi.SetItemChecked(count, false);
                 }
             }
+
+            btn_guncelle.Enabled = true;
+            btn_sil.Enabled = true;
+            simpleButton6.Enabled = true;
         }
 
         private void gridControl2_DoubleClick(object sender, EventArgs e)
@@ -1167,6 +1185,10 @@ namespace InsanKaynaklariBilgiSistem
             mtxt_tc_no.Text = gridView2.GetFocusedRowCellValue("kisi_tc").ToString();
             cb_dil.Text = gridView2.GetFocusedRowCellValue("yabanci_dil").ToString();
             cb_dil_duzey.Text = gridView2.GetFocusedRowCellValue("duzeyi").ToString();
+
+            btn_guncelle.Enabled = true;
+            btn_sil.Enabled = true;
+            simpleButton6.Enabled = true;
         }
 
         private void gridControl3_DoubleClick(object sender, EventArgs e)
@@ -1175,6 +1197,11 @@ namespace InsanKaynaklariBilgiSistem
             txt_bilgisayar_id.Text = gridView3.GetFocusedRowCellValue("id").ToString();
             txt_pc.Text = gridView3.GetFocusedRowCellValue("program_ad").ToString();
             cb_pc_duzey.Text = gridView3.GetFocusedRowCellValue("duzey").ToString();
+
+            btn_guncelle.Enabled = true;
+            btn_sil.Enabled = true;
+            simpleButton6.Enabled = true;
+
         }
 
         private void gridControl4_DoubleClick(object sender, EventArgs e)
@@ -1185,6 +1212,10 @@ namespace InsanKaynaklariBilgiSistem
             txt_sertf_kurum.Text = gridView4.GetFocusedRowCellValue("aldigi_kurum").ToString();
             txt_sertf_konu.Text = gridView4.GetFocusedRowCellValue("konu").ToString();
             date_sertf_tarih.Text = gridView4.GetFocusedRowCellValue("tarih").ToString();
+
+            btn_guncelle.Enabled = true;
+            btn_sil.Enabled = true;
+            simpleButton6.Enabled = true;
         }
 
         private void gridControl5_DoubleClick(object sender, EventArgs e)
@@ -1193,6 +1224,10 @@ namespace InsanKaynaklariBilgiSistem
             txt_agirsertifika_id.Text = gridView5.GetFocusedRowCellValue("id").ToString();
             txt_agir.Text = gridView5.GetFocusedRowCellValue("agir_is_sertifika_adi").ToString();
             date_sertf_agir.Text = gridView5.GetFocusedRowCellValue("alinis_tarihi").ToString();
+
+            btn_guncelle.Enabled = true;
+            btn_sil.Enabled = true;
+            simpleButton6.Enabled = true;
         }
 
 

@@ -78,11 +78,14 @@ namespace InsanKaynaklariBilgiSistem
                     label3.Text = kayitokuma.GetValue(2).ToString();//ilgili tck ait değerin veritabanındaki tck getirilecek. veri tabanı 0,1,2,.. diye gider.
                       label5.Text = kayitokuma.GetValue(3).ToString();
 
-                    
-                      break;
+                    btn_kaydet.Enabled = true;
+                    btn_sil.Enabled = true;
+                    btn_guncelle.Enabled = true;
+
+                    break;
                   }
                 
-                while (kayitokuma2.Read()) {
+                 while (kayitokuma2.Read()) {
                     mtxt_tel_no.Text = kayitokuma2.GetValue(2).ToString();
                     mtxt_cep_no.Text = kayitokuma2.GetValue(3).ToString();
                     txt_email.Text = kayitokuma2.GetValue(4).ToString();
@@ -98,6 +101,10 @@ namespace InsanKaynaklariBilgiSistem
                     txt_kapi.Text = kayitokuma2.GetValue(13).ToString();
                     txt_adres.Text = kayitokuma2.GetValue(14).ToString();
 
+
+                    btn_kaydet.Enabled = true;
+                    btn_sil.Enabled = true;
+                    btn_guncelle.Enabled = true;
                     break;
 
                 }
@@ -108,6 +115,9 @@ namespace InsanKaynaklariBilgiSistem
                   {
                       MessageBox.Show("Arama kayıtı bulunamadı.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
+                    btn_kaydet.Enabled = false;
+                    btn_sil.Enabled = false;
+                    btn_guncelle.Enabled = false;
                   }
                  
 
@@ -116,7 +126,12 @@ namespace InsanKaynaklariBilgiSistem
               {
                   //girilen tc no 11karakter değilse
                   MessageBox.Show("Lütfen 11 haneli tc giriniz", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
-              }
+
+                btn_kaydet.Enabled = false;
+                btn_sil.Enabled = false;
+                btn_guncelle.Enabled = false;
+
+            }
 
           }
          

@@ -106,33 +106,9 @@ namespace InsanKaynaklariBilgiSistem
             medeni_hal.Items.Add("Evli");
             medeni_hal.Items.Add("Boşanmış");
 
-            //görevi
-            comboBox_gorevi.Items.Add("KAYNAK PERSONELİ");
-            comboBox_gorevi.Items.Add("MONTAJ TEKNİSYENİ");
-            comboBox_gorevi.Items.Add("ELEKTRİK TEKNİSYENİ");
-            comboBox_gorevi.Items.Add("LOJİSTİK TEKNİSYENİ");
-            comboBox_gorevi.Items.Add("ŞOFÖR");
-            comboBox_gorevi.Items.Add("TAŞLAMA TEZGAH İŞÇİSİ");
-            comboBox_gorevi.Items.Add("PDM SORUMLUSU");
-            comboBox_gorevi.Items.Add("AŞÇI");
-            comboBox_gorevi.Items.Add("MATEMETİKÇİ");
-            comboBox_gorevi.Items.Add("ARGE MÜDÜRÜ");
-            comboBox_gorevi.Items.Add("KAYNAK PERSONELİ");
 
-            //görevyerleri
-            comboBox_gorev_yeri.Items.Add("ARGE");
-            comboBox_gorev_yeri.Items.Add("ÜRETİM");
-            comboBox_gorev_yeri.Items.Add("MUHASEBE");
-            comboBox_gorev_yeri.Items.Add("SATIŞ");
-            comboBox_gorev_yeri.Items.Add("PAZARLAMA");
-            comboBox_gorev_yeri.Items.Add("PROJE");
-            comboBox_gorev_yeri.Items.Add("PLANLAMA");
-            comboBox_gorev_yeri.Items.Add("MALİYET");
-            comboBox_gorev_yeri.Items.Add("SATIŞ SONRASI HİZMETLER");
-            comboBox_gorev_yeri.Items.Add("İDARİ");
-            comboBox_gorev_yeri.Items.Add("İNSAN KAYNAKLARI");
-            comboBox_gorev_yeri.Items.Add("SİSTEM");
-            comboBox_gorev_yeri.Items.Add("GENEL");
+            txt_gorev.CharacterCasing = CharacterCasing.Upper;
+            txt_gorev_yeri.CharacterCasing = CharacterCasing.Upper;
 
 
             //meslek kodu
@@ -179,8 +155,8 @@ namespace InsanKaynaklariBilgiSistem
             maskedTextBox_dogum_yeri.Clear();
             
             medeni_hal.Text = string.Empty;
-            comboBox_gorevi.Text = string.Empty;
-            comboBox_gorev_yeri.Text = string.Empty;
+            txt_gorev.Text = string.Empty;
+            txt_gorev_yeri.Text = string.Empty;
             comboBox_meslek_kodu.Text = string.Empty;
             txt_pdks.Text = string.Empty;
 
@@ -314,13 +290,13 @@ namespace InsanKaynaklariBilgiSistem
                     label15.ForeColor = Color.Black;
 
                 //görevi
-                if (comboBox_gorevi.Text == "")
+                if (txt_gorev.Text == "")
                     label6.ForeColor = Color.Red;
                 else
                     label6.ForeColor = Color.Black;
 
                 //görev yeri
-                if (comboBox_gorev_yeri.Text == "")
+                if (txt_gorev_yeri.Text == "")
                     label9.ForeColor = Color.Red;
                 else
                     label9.ForeColor = Color.Black;
@@ -347,7 +323,7 @@ namespace InsanKaynaklariBilgiSistem
 
                 if (tc_no.Text.Length == 11 && uyruk.Text != "" && medeni_hal.Text != "" && maskedTextBox_ad.Text != "" && maskedTextBox_soyad.Text != ""
                     && maskedTextBox_dogum_yeri.Text != "" && maskedTextBox_anneadi.Text != "" && maskedTextBox_baba_adi.Text != "" && maskedTextBox_o_soyadi.Text != "" && comboBox_meslek_kodu.Text != "" &&
-                    comboBox_gorevi.Text != "" && comboBox_gorev_yeri.Text != "" && resim.Image != null)
+                    txt_gorev.Text != "" && txt_gorev_yeri.Text != "" && resim.Image != null)
                 {
 
 
@@ -376,8 +352,8 @@ namespace InsanKaynaklariBilgiSistem
                     cmdResimKaydet.Parameters.Add("@ana_Adi_Soyadi", SqlDbType.NVarChar, 50).Value = maskedTextBox_anneadi.Text;
                     cmdResimKaydet.Parameters.Add("@baba_Adi_Soyadi", SqlDbType.NVarChar, 50).Value = maskedTextBox_baba_adi.Text;
                     cmdResimKaydet.Parameters.Add("@meslekID", SqlDbType.NVarChar, 50).Value = comboBox_meslek_kodu.Text;
-                    cmdResimKaydet.Parameters.Add("@gorevi", SqlDbType.NVarChar, 50).Value = comboBox_gorevi.Text;
-                    cmdResimKaydet.Parameters.Add("@gorev_Yeri", SqlDbType.NVarChar, 50).Value = comboBox_gorev_yeri.Text;
+                    cmdResimKaydet.Parameters.Add("@gorevi", SqlDbType.NVarChar, 50).Value = txt_gorev.Text;
+                    cmdResimKaydet.Parameters.Add("@gorev_Yeri", SqlDbType.NVarChar, 50).Value = txt_gorev_yeri.Text;
 
                     cmdResimKaydet.Parameters.Add("@giris_Tarihi", SqlDbType.DateTime).Value = giris_tarihi.Value;
                     cmdResimKaydet.Parameters.Add("@Aktif", SqlDbType.NVarChar, 50).Value = calismaDurumu;
@@ -482,8 +458,8 @@ namespace InsanKaynaklariBilgiSistem
                     maskedTextBox_baba_adi.Text = kayitokuma.GetValue(11).ToString();//baba adı
                     maskedTextBox_o_soyadi.Text = kayitokuma.GetValue(9).ToString();//önceki soy adı
                     comboBox_meslek_kodu.Text = kayitokuma.GetValue(12).ToString();//meslek kodu
-                    comboBox_gorevi.Text = kayitokuma.GetValue(13).ToString();//görevi
-                    comboBox_gorev_yeri.Text = kayitokuma.GetValue(14).ToString();//görev yeri
+                    txt_gorev.Text = kayitokuma.GetValue(13).ToString();//görevi
+                    txt_gorev_yeri.Text = kayitokuma.GetValue(14).ToString();//görev yeri
                     giris_tarihi.Value = kayitokuma.GetDateTime(15);//giriş tarihi
                     //iş durumu
                     if (kayitokuma.GetValue(16).ToString() == "Çalışıyor.")
@@ -593,13 +569,13 @@ namespace InsanKaynaklariBilgiSistem
                     label15.ForeColor = Color.Black;
 
                 //görevi
-                if (comboBox_gorevi.Text == "")
+                if (txt_gorev.Text == "")
                     label6.ForeColor = Color.Red;
                 else
                     label6.ForeColor = Color.Black;
 
                 //görev yeri
-                if (comboBox_gorev_yeri.Text == "")
+                if (txt_gorev_yeri.Text == "")
                     label9.ForeColor = Color.Red;
                 else
                     label9.ForeColor = Color.Black;
@@ -628,7 +604,7 @@ namespace InsanKaynaklariBilgiSistem
             
             if (tc_no.Text.Length == 11 && uyruk.Text != "" && medeni_hal.Text != "" && maskedTextBox_ad.Text != "" && maskedTextBox_soyad.Text != ""
                     && maskedTextBox_dogum_yeri.Text != "" && maskedTextBox_anneadi.Text != "" && maskedTextBox_baba_adi.Text != "" && maskedTextBox_o_soyadi.Text != "" && comboBox_meslek_kodu.Text != "" &&
-                    comboBox_gorevi.Text != "" && comboBox_gorev_yeri.Text != "" && resim.Image != null)
+                    txt_gorev.Text != "" && txt_gorev_yeri.Text != "" && resim.Image != null)
                 {
 
 
@@ -659,8 +635,8 @@ namespace InsanKaynaklariBilgiSistem
                     guncellekomutu.Parameters.Add("@ana_Adi_Soyadi", SqlDbType.NVarChar, 50).Value = maskedTextBox_anneadi.Text;
                     guncellekomutu.Parameters.Add("@baba_Adi_Soyadi", SqlDbType.NVarChar, 50).Value = maskedTextBox_baba_adi.Text;
                     guncellekomutu.Parameters.Add("@meslekID", SqlDbType.NVarChar, 50).Value = comboBox_meslek_kodu.Text;
-                    guncellekomutu.Parameters.Add("@gorevi", SqlDbType.NVarChar, 50).Value = comboBox_gorevi.Text;
-                    guncellekomutu.Parameters.Add("@gorev_Yeri", SqlDbType.NVarChar, 50).Value = comboBox_gorev_yeri.Text;
+                    guncellekomutu.Parameters.Add("@gorevi", SqlDbType.NVarChar, 50).Value = txt_gorev.Text;
+                    guncellekomutu.Parameters.Add("@gorev_Yeri", SqlDbType.NVarChar, 50).Value = txt_gorev_yeri.Text;
 
                     guncellekomutu.Parameters.Add("@giris_Tarihi", SqlDbType.DateTime).Value = giris_tarihi.Value;
                     guncellekomutu.Parameters.Add("@Aktif", SqlDbType.NVarChar, 50).Value = calismaDurumu;
@@ -707,8 +683,8 @@ namespace InsanKaynaklariBilgiSistem
                     guncellekomutu.Parameters.Add("@ana_Adi_Soyadi", SqlDbType.NVarChar, 50).Value = maskedTextBox_anneadi.Text;
                     guncellekomutu.Parameters.Add("@baba_Adi_Soyadi", SqlDbType.NVarChar, 50).Value = maskedTextBox_baba_adi.Text;
                     guncellekomutu.Parameters.Add("@meslekID", SqlDbType.NVarChar, 50).Value = comboBox_meslek_kodu.Text;
-                    guncellekomutu.Parameters.Add("@gorevi", SqlDbType.NVarChar, 50).Value = comboBox_gorevi.Text;
-                    guncellekomutu.Parameters.Add("@gorev_Yeri", SqlDbType.NVarChar, 50).Value = comboBox_gorev_yeri.Text;
+                    guncellekomutu.Parameters.Add("@gorevi", SqlDbType.NVarChar, 50).Value = txt_gorev.Text;
+                    guncellekomutu.Parameters.Add("@gorev_Yeri", SqlDbType.NVarChar, 50).Value = txt_gorev_yeri.Text;
 
                     guncellekomutu.Parameters.Add("@giris_Tarihi", SqlDbType.DateTime).Value = giris_tarihi.Value;
                     guncellekomutu.Parameters.Add("@Aktif", SqlDbType.NVarChar, 50).Value = calismaDurumu;

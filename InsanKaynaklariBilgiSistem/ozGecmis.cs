@@ -182,12 +182,20 @@ namespace InsanKaynaklariBilgiSistem
                     label3.Text = kayitokuma.GetValue(2).ToString();//ilgili tck ait değerin veritabanındaki tck getirilecek. veri tabanı 0,1,2,.. diye gider.
                     label5.Text = kayitokuma.GetValue(3).ToString();
 
+                    btn_guncelle.Enabled = true;
+                    btn_sil.Enabled = true;
+                    simpleButton6.Enabled = true;
+
                     break;
                 }
                 //eğer kayıt okuma durumu gerçekleşmemiş ise kayıt bulunamadı ise
                 if (kayit_arama_durumu == false)
                 {
                     MessageBox.Show("Arama kayıtı bulunamadı", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    btn_guncelle.Enabled = false;
+                    btn_sil.Enabled = false;
+                    simpleButton6.Enabled = false;
+
                     ekrani_temizle();
                 }
                 label1.ForeColor = Color.Black;
@@ -331,6 +339,10 @@ namespace InsanKaynaklariBilgiSistem
             date_cikis.Text = gridView1.GetFocusedRowCellValue("cikis_tarihi").ToString();
             cb_sebep.Text = gridView1.GetFocusedRowCellValue("sebep").ToString();
             txt_id.Text = gridView1.GetFocusedRowCellValue("id").ToString();
+
+            btn_guncelle.Enabled = true;
+            btn_sil.Enabled = true;
+            simpleButton6.Enabled = true;
         }
 
         private void btn_guncelle_Click(object sender, EventArgs e)

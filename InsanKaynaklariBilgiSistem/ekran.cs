@@ -299,22 +299,7 @@ namespace InsanKaynaklariBilgiSistem
             }
         }
 
-        DashBoard frm14;
-        private void barButtonItem39_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            if (frm14 == null || frm14.IsDisposed)
-            {
-                frm14 = new DashBoard();
-
-                frm14.MdiParent = this;
-                frm14.Show();
-            }
-            else
-            {
-                xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm14];
-
-            }
-        }
+        
 
         private void Form4_Load(object sender, EventArgs e)
         {

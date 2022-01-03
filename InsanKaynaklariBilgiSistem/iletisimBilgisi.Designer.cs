@@ -262,9 +262,9 @@ namespace InsanKaynaklariBilgiSistem
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(87, 123);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.Size = new System.Drawing.Size(16, 13);
             this.label5.TabIndex = 126;
-            this.label5.Text = "label5";
+            this.label5.Text = "...";
             // 
             // lbl_soyad
             // 
@@ -357,9 +357,9 @@ namespace InsanKaynaklariBilgiSistem
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(87, 91);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.Size = new System.Drawing.Size(16, 13);
             this.label3.TabIndex = 124;
-            this.label3.Text = "label3";
+            this.label3.Text = "...";
             // 
             // dxErrorProvider1
             // 

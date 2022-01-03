@@ -23,9 +23,13 @@ namespace InsanKaynaklariBilgiSistem
             InitializeComponent();
         }
         sqlBaglantisi baglantim = new sqlBaglantisi();
-
         public void formu_temizle()
         {
+            checkButton4.Checked = false;
+            checkButton3.Checked = false;
+            checkButton2.Checked = false;
+            checkButton1.Checked = false;
+
             btn_tum_personeller.Checked = false;
             btn_arge.Checked = false;
             btn_personel.Checked = false;
@@ -38,7 +42,9 @@ namespace InsanKaynaklariBilgiSistem
             btn_hobi.Checked = false;
             btn_maddi.Checked = false;
             btn_ozgecmis.Checked = false;
-            btn_tumu.Checked = false;
+            btn_sertifika.Checked = false;
+            ch_merasim.Checked = false;
+            kisi_listesi.Checked = false;
 
             gridView1.Columns.Clear();
             //DataGridView.items.Clear();
@@ -58,7 +64,6 @@ namespace InsanKaynaklariBilgiSistem
             gridView1.OptionsBehavior.Editable = false;
             gridView1.OptionsView.ShowAutoFilterRow = true;
         }
-
         public void calisan_personeller()
         {
             SqlCommand sorgu = new SqlCommand("select * from Kisi ", baglantim.baglanti());
@@ -73,10 +78,6 @@ namespace InsanKaynaklariBilgiSistem
             gridView1.OptionsBehavior.Editable = false;
             gridView1.OptionsView.ShowAutoFilterRow = true;
         }
-
-
-
-
         public void listele_Tum_Personeller()
         {
             SqlCommand sorgu = new SqlCommand("Listele_Tum_Personeller", baglantim.baglanti());
@@ -95,7 +96,6 @@ namespace InsanKaynaklariBilgiSistem
 
   
         }
-
         public void arge_Personelleri()
         {
             SqlCommand sorgu = new SqlCommand("Listele_Arge_Personelleri", baglantim.baglanti());
@@ -141,7 +141,6 @@ namespace InsanKaynaklariBilgiSistem
             gridView1.OptionsBehavior.Editable = false;
             gridView1.OptionsView.ShowAutoFilterRow = true;
         }
-
         public void saglik_gizle()
         {
             gridView1.Columns["PERSONELİN KAN GRUBU"].Visible = false;
@@ -157,7 +156,6 @@ namespace InsanKaynaklariBilgiSistem
             gridView1.Columns["PERSONELİN ALKOL MİKTARI"].Visible = false;
             
         }
-
         public void aile_gizle()
         {
             gridView1.Columns["YAKINLIK DERECESİ"].Visible = false;
@@ -203,7 +201,6 @@ namespace InsanKaynaklariBilgiSistem
             
 
         }
-
         public void iletisim_bilgisi_gizle()
         {
             gridView1.Columns["PERSONELİN EV TELEFONU"].Visible = false;
@@ -227,12 +224,10 @@ namespace InsanKaynaklariBilgiSistem
             gridView1.Columns["PERSONELİN MEZUNİYET DERECESİ"].Visible = false;
           
         }
-
         public void hobi_gizle()
         {
             gridView1.Columns["PERSONELİN HOBİLERİ"].Visible = false;
         }
-
         public void ozgecmis_gizle()
         {
             
@@ -246,7 +241,6 @@ namespace InsanKaynaklariBilgiSistem
             gridView1.Columns["ÖNCEKİ İŞYERİNDEN ÇIKIŞ SEBEBİ"].Visible = false;
             
         }
-
         public void maddi_gizle()
         {
             gridView1.Columns["PERSONELİN MAAŞI"].Visible = false;
@@ -263,7 +257,26 @@ namespace InsanKaynaklariBilgiSistem
             gridView1.Columns["BORÇ MİKTARI"].Visible = false;
             gridView1.Columns["İCRA/BORÇ HESAP NO"].Visible = false;
         }
-       
+        public void sertifika_gizle()
+        {
+            gridView1.Columns["PERSONELİN BİLGİSAYAR PROGRAMI"].Visible = false;
+            gridView1.Columns["PERSONELİN BİLGİSAYAR PROGRAMI DÜZEYİ"].Visible = false;
+            gridView1.Columns["PERSONELİN YABANCI DİL BİLGİSİ"].Visible = false;
+            gridView1.Columns["PERSONELİN YABANCI DİL BİLGİSİ SEVİYESİ"].Visible = false;
+            gridView1.Columns["PERSONEL AĞIR İŞ SERTİFİKA"].Visible = false;
+            gridView1.Columns["PERSONEL AĞIR İŞ SERTİFİKA TARİHİ"].Visible = false;
+            gridView1.Columns["PERSONEL SERTİFİKA"].Visible = false;
+            gridView1.Columns["PERSONEL SERTİFİKA ALIŞ KURUMU"].Visible = false;
+            gridView1.Columns["PERSONEL SERTİFİKA KONUSU"].Visible = false;
+            gridView1.Columns["PERSONEL SERTİFİKA TARİHİ"].Visible = false;
+            
+        }
+        public void merasim_gizle()
+        {
+            gridView1.Columns["PERSONEL MERASİMİ"].Visible = false;
+            gridView1.Columns["PERSONEL MERASİM TARİHİ"].Visible = false;
+        }
+
         private void btn_aktar_Click(object sender, EventArgs e)
         {
             using (SaveFileDialog saveDialog = new SaveFileDialog())
@@ -322,43 +335,78 @@ namespace InsanKaynaklariBilgiSistem
 
       
 
+       private void raporlama_Load(object sender, EventArgs e)
+        {
+            // for (int i = 0; i < gridView1.Columns.Count; i++) 
+            //gridView2.Columns[i].BestFit();
+            // gridView1.Columns[1].Width=80;
+            // gridView1.Columns[2].GetBestWidth();
+           // gridView1.Columns[1].BestFit();
+            //gridView1.Columns[2].BestFit();
+            //gridView1.Columns[3].BestFit();
+
+        }
+
+        private void btn_formu_temizle_Click(object sender, EventArgs e)
+        {
+            formu_temizle();
+        }
+
+        private void kisi_listesi_CheckedChanged(object sender, EventArgs e)
+        {
+            tum_personeller();
+        }
+
+        private void btn_calisan_CheckedChanged(object sender, EventArgs e)
+        {
+            calisan_personeller();
+        }
+
         private void btn_listele_Click(object sender, EventArgs e)
         {
-            if(btn_tum_personeller.Checked==true)
+            if (checkButton4.Checked == true)
             {
                 listele_Tum_Personeller();
-                if(btn_saglik.Checked!=true)
-                { 
-                    saglik_gizle(); 
+                if (btn_saglik.Checked != true)
+                {
+                    saglik_gizle();
                 }
                 if (btn_aile.Checked != true)
                 {
                     aile_gizle();
                 }
-                if(btn_iletisim.Checked!=true)
+                if (btn_iletisim.Checked != true)
                 {
                     iletisim_bilgisi_gizle();
                 }
-                if(btn_egitim.Checked!=true)
+                if (btn_egitim.Checked != true)
                 {
                     egitim_gizle();
                 }
-                if(btn_hobi.Checked!=true)
+                if (btn_hobi.Checked != true)
                 {
                     hobi_gizle();
                 }
-                if(btn_ozgecmis.Checked!=true)
+                if (btn_ozgecmis.Checked != true)
                 {
                     ozgecmis_gizle();
                 }
-                if(btn_maddi.Checked!=true)
+                if (btn_maddi.Checked != true)
                 {
                     maddi_gizle();
                 }
-                
+                if (btn_sertifika.Checked != true)
+                { 
+                    sertifika_gizle(); 
+                }
+                if (ch_merasim.Checked != true)
+                {
+                    merasim_gizle();
+                }
+
 
             }
-            if(btn_arge.Checked==true)
+            if (checkButton3.Checked == true)
             {
                 arge_Personelleri();
                 if (btn_saglik.Checked != true)
@@ -389,10 +437,14 @@ namespace InsanKaynaklariBilgiSistem
                 {
                     maddi_gizle();
                 }
+                if (btn_sertifika.Checked != true)
+                { sertifika_gizle(); }
+                if (ch_merasim.Checked != true)
+                { merasim_gizle(); }
             }
-            if (btn_personel.Checked == true)
+            if (checkButton2.Checked == true)
             {
-               personel_Listesi();
+                personel_Listesi();
                 if (btn_saglik.Checked != true)
                 {
                     saglik_gizle();
@@ -421,8 +473,13 @@ namespace InsanKaynaklariBilgiSistem
                 {
                     maddi_gizle();
                 }
+                if (btn_sertifika.Checked != true)
+                { sertifika_gizle(); }
+                if (ch_merasim.Checked != true)
+                { merasim_gizle(); }
+
             }
-            if (btn_cikanlar.Checked == true)
+            if (checkButton1.Checked == true)
             {
                 ayrılanların_Listesi();
                 if (btn_saglik.Checked != true)
@@ -453,36 +510,17 @@ namespace InsanKaynaklariBilgiSistem
                 {
                     maddi_gizle();
                 }
+                if(btn_sertifika.Checked!=true)
+                { 
+                    sertifika_gizle(); 
+                }
+                if (ch_merasim.Checked != true)
+                { 
+                    merasim_gizle();
+                }
 
-                
+
             }
-        }
-
-       private void raporlama_Load(object sender, EventArgs e)
-        {
-            // for (int i = 0; i < gridView1.Columns.Count; i++) 
-            //gridView2.Columns[i].BestFit();
-            // gridView1.Columns[1].Width=80;
-            // gridView1.Columns[2].GetBestWidth();
-           // gridView1.Columns[1].BestFit();
-            //gridView1.Columns[2].BestFit();
-            //gridView1.Columns[3].BestFit();
-
-        }
-
-        private void btn_formu_temizle_Click(object sender, EventArgs e)
-        {
-            formu_temizle();
-        }
-
-        private void kisi_listesi_CheckedChanged(object sender, EventArgs e)
-        {
-            tum_personeller();
-        }
-
-        private void btn_calisan_CheckedChanged(object sender, EventArgs e)
-        {
-            calisan_personeller();
         }
     }
 }
