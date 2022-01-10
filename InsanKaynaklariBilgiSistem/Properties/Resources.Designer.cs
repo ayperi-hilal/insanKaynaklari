@@ -393,9 +393,29 @@ namespace InsanKaynaklariBilgiSistem.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
+        internal static System.Drawing.Bitmap bodepartment_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("bodepartment_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
         internal static System.Drawing.Bitmap bodepartment_32x32 {
             get {
                 object obj = ResourceManager.GetObject("bodepartment_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap bodepartment_32x321 {
+            get {
+                object obj = ResourceManager.GetObject("bodepartment_32x321", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -666,6 +686,16 @@ namespace InsanKaynaklariBilgiSistem.Properties {
         internal static System.Drawing.Bitmap drilldownonseries_chart_32x32 {
             get {
                 object obj = ResourceManager.GetObject("drilldownonseries_chart_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap editrangepermission_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("editrangepermission_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
