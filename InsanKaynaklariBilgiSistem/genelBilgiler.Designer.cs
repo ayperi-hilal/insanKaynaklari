@@ -61,6 +61,8 @@ namespace InsanKaynaklariBilgiSistem
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.txt_gorev_yeri = new System.Windows.Forms.TextBox();
+            this.txt_gorev = new System.Windows.Forms.TextBox();
             this.comboBox_meslek_kodu = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
@@ -79,8 +81,6 @@ namespace InsanKaynaklariBilgiSistem
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.txt_gorev = new System.Windows.Forms.TextBox();
-            this.txt_gorev_yeri = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.toggleSwitch1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -297,7 +297,7 @@ namespace InsanKaynaklariBilgiSistem
             this.radioButton_bayan.Name = "radioButton_bayan";
             this.radioButton_bayan.Size = new System.Drawing.Size(55, 17);
             this.radioButton_bayan.TabIndex = 86;
-            this.radioButton_bayan.Text = "bayan";
+            this.radioButton_bayan.Text = "Bayan";
             this.radioButton_bayan.UseVisualStyleBackColor = true;
             // 
             // radioButton_bay
@@ -309,7 +309,7 @@ namespace InsanKaynaklariBilgiSistem
             this.radioButton_bay.Size = new System.Drawing.Size(43, 17);
             this.radioButton_bay.TabIndex = 85;
             this.radioButton_bay.TabStop = true;
-            this.radioButton_bay.Text = "bay";
+            this.radioButton_bay.Text = "Bay";
             this.radioButton_bay.UseVisualStyleBackColor = true;
             // 
             // label13
@@ -367,6 +367,20 @@ namespace InsanKaynaklariBilgiSistem
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(331, 244);
             this.panelControl1.TabIndex = 124;
+            // 
+            // txt_gorev_yeri
+            // 
+            this.txt_gorev_yeri.Location = new System.Drawing.Point(121, 89);
+            this.txt_gorev_yeri.Name = "txt_gorev_yeri";
+            this.txt_gorev_yeri.Size = new System.Drawing.Size(121, 21);
+            this.txt_gorev_yeri.TabIndex = 126;
+            // 
+            // txt_gorev
+            // 
+            this.txt_gorev.Location = new System.Drawing.Point(121, 62);
+            this.txt_gorev.Name = "txt_gorev";
+            this.txt_gorev.Size = new System.Drawing.Size(121, 21);
+            this.txt_gorev.TabIndex = 126;
             // 
             // comboBox_meslek_kodu
             // 
@@ -518,20 +532,6 @@ namespace InsanKaynaklariBilgiSistem
             this.textBox3.Size = new System.Drawing.Size(10, 20);
             this.textBox3.TabIndex = 127;
             this.textBox3.Visible = false;
-            // 
-            // txt_gorev
-            // 
-            this.txt_gorev.Location = new System.Drawing.Point(121, 62);
-            this.txt_gorev.Name = "txt_gorev";
-            this.txt_gorev.Size = new System.Drawing.Size(121, 21);
-            this.txt_gorev.TabIndex = 126;
-            // 
-            // txt_gorev_yeri
-            // 
-            this.txt_gorev_yeri.Location = new System.Drawing.Point(121, 89);
-            this.txt_gorev_yeri.Name = "txt_gorev_yeri";
-            this.txt_gorev_yeri.Size = new System.Drawing.Size(121, 21);
-            this.txt_gorev_yeri.TabIndex = 126;
             // 
             // genelBilgiler
             // 

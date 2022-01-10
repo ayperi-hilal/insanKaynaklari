@@ -111,6 +111,48 @@ namespace InsanKaynaklariBilgiSistem
             gridView1.OptionsBehavior.Editable = false;
             gridView1.OptionsView.ShowAutoFilterRow = true;
         }
+
+
+
+
+        public void personel()
+        {
+           SqlCommand sorguu = new SqlCommand("select *from Kisi ", baglantim.baglanti());
+           SqlDataAdapter abb = new SqlDataAdapter(sorguu);
+
+            DataTable abbb = new DataTable();
+            abb.Fill(abbb);
+            gridControl1.DataSource = abbb;
+
+            gridView1.Columns["id"].Visible = false;
+            gridView1.Columns["resim"].Visible = false;
+
+
+            gridView1.Columns["TC"].Caption = "TC NO";
+            gridView1.Columns["ad"].Caption = "PERSONEL ADI";
+            gridView1.Columns["soyad"].Caption = "PERSONEL SOYADI";
+            gridView1.Columns["uyruk"].Caption = "UYRUK";
+            gridView1.Columns["cinsiyet"].Caption = "CİNSİYET";
+            gridView1.Columns["medeni_hal"].Caption = "MEDENİ HAL";
+            gridView1.Columns["dogum_Tarihi"].Caption = "DOĞUM TARİHİ";
+            gridView1.Columns["dogum_Yeri"].Caption = "DOĞUM YERİ";
+            gridView1.Columns["onceki_soyadi"].Caption = "ÖNCEKİ SOYADI";
+            gridView1.Columns["ana_Adi_Soyadi"].Caption = "ANNE ADI";
+            gridView1.Columns["baba_Adi_Soyadi"].Caption = "BABA ADI";
+            gridView1.Columns["meslekID"].Caption = "MESLEK KODU";
+            gridView1.Columns["gorevi"].Caption = "GÖREVİ";
+            gridView1.Columns["gorev_Yeri"].Caption = "GÖREV YERİ";
+            gridView1.Columns["giris_Tarihi"].Caption = "GİRİŞ TARİHİ";
+            gridView1.Columns["Aktif"].Caption = "DURUMU";
+            gridView1.Columns["cikis_Tarihi"].Caption = "ÇIKIŞ TARİHİ";
+            gridView1.Columns["pdks"].Caption = "PDKS";
+
+
+
+            gridView1.BestFitColumns();
+        }
+
+
         public void personel_Listesi()
         {
             SqlCommand sorgu = new SqlCommand("Listele_Personeller", baglantim.baglanti());
@@ -276,6 +318,8 @@ namespace InsanKaynaklariBilgiSistem
             gridView1.Columns["PERSONEL MERASİMİ"].Visible = false;
             gridView1.Columns["PERSONEL MERASİM TARİHİ"].Visible = false;
         }
+
+       
 
         private void btn_aktar_Click(object sender, EventArgs e)
         {
@@ -521,6 +565,11 @@ namespace InsanKaynaklariBilgiSistem
 
 
             }
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            personel();
         }
     }
 }

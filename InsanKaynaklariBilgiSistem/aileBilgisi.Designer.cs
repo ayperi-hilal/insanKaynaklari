@@ -270,6 +270,7 @@ namespace InsanKaynaklariBilgiSistem
             this.panelControl1.Controls.Add(this.lbl_olum_nedeni);
             this.panelControl1.Controls.Add(this.date_olum_tarihi);
             this.panelControl1.Controls.Add(this.toggleSwitch_sag_olu);
+            this.panelControl1.Controls.Add(this.simpleButton7);
             this.panelControl1.Controls.Add(this.lbl_olum_tarihi);
             this.panelControl1.Controls.Add(this.lbl_yasam_hali);
             this.panelControl1.Controls.Add(this.cb_merasim);
@@ -313,7 +314,7 @@ namespace InsanKaynaklariBilgiSistem
             this.panelControl1.Controls.Add(this.panel2);
             this.panelControl1.Location = new System.Drawing.Point(20, 108);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(866, 640);
+            this.panelControl1.Size = new System.Drawing.Size(808, 640);
             this.panelControl1.TabIndex = 223;
             // 
             // txt_okul_adi
@@ -525,7 +526,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             // date_merasim
             // 
-            this.date_merasim.Location = new System.Drawing.Point(590, 392);
+            this.date_merasim.Location = new System.Drawing.Point(590, 386);
             this.date_merasim.Name = "date_merasim";
             this.date_merasim.Size = new System.Drawing.Size(200, 21);
             this.date_merasim.TabIndex = 236;
@@ -960,9 +961,9 @@ namespace InsanKaynaklariBilgiSistem
             this.panelControl2.Controls.Add(this.txt_bakim_yakin);
             this.panelControl2.Controls.Add(this.labelControl2);
             this.panelControl2.Controls.Add(this.lbl_bakım_yakin);
-            this.panelControl2.Location = new System.Drawing.Point(905, 123);
+            this.panelControl2.Location = new System.Drawing.Point(827, 122);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(460, 560);
+            this.panelControl2.Size = new System.Drawing.Size(456, 560);
             this.panelControl2.TabIndex = 225;
             // 
             // panel3
@@ -1220,7 +1221,7 @@ namespace InsanKaynaklariBilgiSistem
             this.gridControl3.Location = new System.Drawing.Point(0, 0);
             this.gridControl3.MainView = this.gridView3;
             this.gridControl3.Name = "gridControl3";
-            this.gridControl3.Size = new System.Drawing.Size(931, 77);
+            this.gridControl3.Size = new System.Drawing.Size(870, 77);
             this.gridControl3.TabIndex = 0;
             this.gridControl3.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView3});
@@ -1257,7 +1258,7 @@ namespace InsanKaynaklariBilgiSistem
             // simpleButton7
             // 
             this.simpleButton7.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.insert_16x16;
-            this.simpleButton7.Location = new System.Drawing.Point(823, 108);
+            this.simpleButton7.Location = new System.Drawing.Point(726, 15);
             this.simpleButton7.Name = "simpleButton7";
             this.simpleButton7.Size = new System.Drawing.Size(75, 27);
             this.simpleButton7.TabIndex = 226;
@@ -1267,7 +1268,7 @@ namespace InsanKaynaklariBilgiSistem
             // simpleButton4
             // 
             this.simpleButton4.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.resetmodeldifferences_32x32;
-            this.simpleButton4.Location = new System.Drawing.Point(1209, 709);
+            this.simpleButton4.Location = new System.Drawing.Point(1134, 706);
             this.simpleButton4.Name = "simpleButton4";
             this.simpleButton4.Size = new System.Drawing.Size(139, 39);
             this.simpleButton4.TabIndex = 234;
@@ -1278,7 +1279,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.btn_sil.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btn_sil.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.cancel_32x32;
-            this.btn_sil.Location = new System.Drawing.Point(1112, 708);
+            this.btn_sil.Location = new System.Drawing.Point(1037, 706);
             this.btn_sil.Name = "btn_sil";
             this.btn_sil.Size = new System.Drawing.Size(91, 40);
             this.btn_sil.TabIndex = 233;
@@ -1288,7 +1289,7 @@ namespace InsanKaynaklariBilgiSistem
             // btn_guncelle
             // 
             this.btn_guncelle.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.refreshallpivottable_32x32;
-            this.btn_guncelle.Location = new System.Drawing.Point(1017, 709);
+            this.btn_guncelle.Location = new System.Drawing.Point(940, 706);
             this.btn_guncelle.Name = "btn_guncelle";
             this.btn_guncelle.Size = new System.Drawing.Size(91, 39);
             this.btn_guncelle.TabIndex = 232;
@@ -1340,7 +1341,7 @@ namespace InsanKaynaklariBilgiSistem
             this.xtraTabControl1.Location = new System.Drawing.Point(411, 3);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.xtraTabPage2;
-            this.xtraTabControl1.Size = new System.Drawing.Size(933, 102);
+            this.xtraTabControl1.Size = new System.Drawing.Size(872, 102);
             this.xtraTabControl1.TabIndex = 238;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage2,
@@ -1350,7 +1351,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.xtraTabPage2.Controls.Add(this.gridControl3);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(931, 77);
+            this.xtraTabPage2.Size = new System.Drawing.Size(870, 77);
             this.xtraTabPage2.Text = "Yakını Bilgileri";
             // 
             // xtraTabPage4
@@ -1385,7 +1386,7 @@ namespace InsanKaynaklariBilgiSistem
             // simpleButton1
             // 
             this.simpleButton1.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.apply_32x32;
-            this.simpleButton1.Location = new System.Drawing.Point(920, 708);
+            this.simpleButton1.Location = new System.Drawing.Point(833, 708);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(91, 40);
             this.simpleButton1.TabIndex = 227;
@@ -1397,7 +1398,7 @@ namespace InsanKaynaklariBilgiSistem
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.ClientSize = new System.Drawing.Size(1284, 749);
             this.Controls.Add(this.txt_pdks);
             this.Controls.Add(this.lbl_pdks);
             this.Controls.Add(this.xtraTabControl1);
@@ -1408,7 +1409,6 @@ namespace InsanKaynaklariBilgiSistem
             this.Controls.Add(this.btn_sil);
             this.Controls.Add(this.btn_guncelle);
             this.Controls.Add(this.simpleButton1);
-            this.Controls.Add(this.simpleButton7);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.label22);
             this.Controls.Add(this.lbl_medeni_hal);

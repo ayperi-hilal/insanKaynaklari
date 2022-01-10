@@ -59,12 +59,6 @@ namespace InsanKaynaklariBilgiSistem
         kullaniciHesap frm1;
         private void barButtonItem29_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            /*
-           kullaniciHesap frm1 = new kullaniciHesap();
-
-            frm1.MdiParent = this;
-            frm1.Show();*/
-            
             if(frm1==null||frm1.IsDisposed)
             {
                 frm1 = new kullaniciHesap();
@@ -74,6 +68,23 @@ namespace InsanKaynaklariBilgiSistem
             else
             {
              xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm1];
+            }
+
+
+
+            if (label2.Text == "ADMİN ADMİN")
+            {
+                barButtonItem29.Enabled = true;
+                frm1.Visible = true;
+                frm1.Enabled = true;
+            }
+            else
+            {
+                barButtonItem29.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+               barButtonItem29.Enabled = false;
+                frm1.Visible = false;
+                frm1.Enabled = false;
+                MessageBox.Show("Bu kısım ile ilgili yetkiniz bulunmamaktadır");
             }
 
         }
@@ -299,8 +310,22 @@ namespace InsanKaynaklariBilgiSistem
             }
         }
 
-        
+        kkd frm14;
+        private void barButtonItem40_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (frm14==null||frm14.IsDisposed)
+            {
+                frm14 = new kkd();
+                frm14.MdiParent = this;
+                frm14.Show();
+            }
+            else
+            {
+                xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm14];
+            }
+        }
 
+        //   kullaniciHesap frm14 = new kullaniciHesap();
         private void Form4_Load(object sender, EventArgs e)
         {
             resim_goruntule();
@@ -316,7 +341,6 @@ namespace InsanKaynaklariBilgiSistem
 
             //tarih ve saat bildgisi
             label4.Text = DateTime.Now.ToString();
-
         }
 
        

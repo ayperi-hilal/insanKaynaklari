@@ -308,7 +308,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             // txt_id
             // 
-            this.txt_id.Location = new System.Drawing.Point(16, 124);
+            this.txt_id.Location = new System.Drawing.Point(530, 33);
             this.txt_id.Name = "txt_id";
             this.txt_id.Size = new System.Drawing.Size(27, 20);
             this.txt_id.TabIndex = 153;
@@ -370,7 +370,6 @@ namespace InsanKaynaklariBilgiSistem
             this.Controls.Add(this.txt_isad);
             this.Controls.Add(this.txt_pdks);
             this.Controls.Add(this.lbl_pdks);
-            this.Controls.Add(this.txt_id);
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.date_giris);
             this.Controls.Add(this.label13);
@@ -396,6 +395,7 @@ namespace InsanKaynaklariBilgiSistem
             this.Controls.Add(this.simpleButton5);
             this.Controls.Add(this.mtxt_tc_no);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.txt_id);
             this.Name = "ozGecmis";
             this.Text = "Öz Geçmiş";
             this.Load += new System.EventHandler(this.ozGecmis_Load);

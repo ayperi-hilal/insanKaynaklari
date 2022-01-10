@@ -71,18 +71,18 @@ namespace InsanKaynaklariBilgiSistem
             this.label22.AutoSize = true;
             this.label22.Location = new System.Drawing.Point(412, 189);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(41, 13);
+            this.label22.Size = new System.Drawing.Size(16, 13);
             this.label22.TabIndex = 78;
-            this.label22.Text = "label22";
+            this.label22.Text = "...";
             // 
             // label20
             // 
             this.label20.AutoSize = true;
             this.label20.Location = new System.Drawing.Point(342, 189);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(64, 13);
+            this.label20.Size = new System.Drawing.Size(66, 13);
             this.label20.TabIndex = 77;
-            this.label20.Text = "parola kriteri";
+            this.label20.Text = "Parola Kriteri";
             // 
             // label19
             // 

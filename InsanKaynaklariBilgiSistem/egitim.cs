@@ -51,6 +51,8 @@ namespace InsanKaynaklariBilgiSistem
         }
         private void egitim_Load(object sender, EventArgs e)
         {
+            for (int i = 0; i < gridView1.Columns.Count; i++) gridView1.Columns[i].BestFit();
+
             panel1.Visible = false;
 
             mtxt_tc_no.Mask = "00000000000";//kullnıcı 11 haneli tc numarası girebilecek.
@@ -687,7 +689,7 @@ namespace InsanKaynaklariBilgiSistem
             else
             {
                 date_mezun.Enabled = false;
-                mezuniyet_durumu = "okuyor";
+                mezuniyet_durumu = "Okuyor";
                 panel1.Visible = false;
             }
         }

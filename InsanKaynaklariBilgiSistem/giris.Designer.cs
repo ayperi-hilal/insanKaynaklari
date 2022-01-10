@@ -94,7 +94,7 @@ namespace InsanKaynaklariBilgiSistem
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(210, 21);
             this.textBox1.TabIndex = 3;
-            this.textBox1.Text = "HİLAL";
+            this.textBox1.Text = "Admin";
             // 
             // label4
             // 
@@ -112,9 +112,9 @@ namespace InsanKaynaklariBilgiSistem
             this.label5.ForeColor = System.Drawing.Color.Red;
             this.label5.Location = new System.Drawing.Point(292, 213);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.Size = new System.Drawing.Size(19, 13);
             this.label5.TabIndex = 2;
-            this.label5.Text = "label5";
+            this.label5.Text = "...";
             // 
             // fluentDesignFormContainer1
             // 

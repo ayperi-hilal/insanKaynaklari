@@ -230,8 +230,15 @@ namespace InsanKaynaklariBilgiSistem
                 //eğer iş yerinin adına herhangi bir veri girilirse diğerlerine de yazılmak zorunda olsun.
                 if (txt_isad.Text != "" && txt_isad.Text.Length > 2)
                 {
-                   
-                    if (txt_gorev.Text == "")
+                mtxt_istel.Enabled = true;
+                txt_gorev.Enabled = true;
+                mtxt_maas.Enabled = true;
+                txt_yon.Enabled = true;
+                date_cikis.Enabled = true;
+                date_giris.Enabled = true;
+                cb_sebep.Enabled = true;
+
+                if (txt_gorev.Text == "")
                         label8.ForeColor = Color.Red;
                     else
                         label8.ForeColor = Color.Black;
@@ -250,6 +257,11 @@ namespace InsanKaynaklariBilgiSistem
                         label12.ForeColor = Color.Red;
                     else
                         label12.ForeColor = Color.Black;
+
+
+
+
+
 
 
                 }
@@ -362,6 +374,13 @@ namespace InsanKaynaklariBilgiSistem
             //eğer iş yerinin adına herhangi bir veri girilirse diğerlerine de yazılmak zorunda olsun.
             if (txt_isad.Text != "" && txt_isad.Text.Length > 2)
             {
+                mtxt_istel.Enabled = true;
+                txt_gorev.Enabled = true;
+                mtxt_maas.Enabled = true;
+                txt_yon.Enabled = true;
+                date_cikis.Enabled = true;
+                date_giris.Enabled = true;
+                cb_sebep.Enabled = true;
 
                 if (txt_gorev.Text == "")
                     label8.ForeColor = Color.Red;

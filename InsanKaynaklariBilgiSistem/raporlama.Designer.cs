@@ -77,6 +77,7 @@ namespace InsanKaynaklariBilgiSistem
             this.checkButton3 = new DevExpress.XtraEditors.CheckButton();
             this.checkButton4 = new DevExpress.XtraEditors.CheckButton();
             this.label2 = new System.Windows.Forms.Label();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -95,7 +96,7 @@ namespace InsanKaynaklariBilgiSistem
             this.gridControl1.Location = new System.Drawing.Point(345, -1);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1025, 455);
+            this.gridControl1.Size = new System.Drawing.Size(830, 493);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -166,7 +167,7 @@ namespace InsanKaynaklariBilgiSistem
             // btn_aktar
             // 
             this.btn_aktar.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.exporttoxlsx_32x32;
-            this.btn_aktar.Location = new System.Drawing.Point(141, 410);
+            this.btn_aktar.Location = new System.Drawing.Point(141, 452);
             this.btn_aktar.Name = "btn_aktar";
             this.btn_aktar.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
             this.btn_aktar.Size = new System.Drawing.Size(97, 40);
@@ -177,7 +178,7 @@ namespace InsanKaynaklariBilgiSistem
             // btn_listele
             // 
             this.btn_listele.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.chartsshowlegend_32x32;
-            this.btn_listele.Location = new System.Drawing.Point(235, 401);
+            this.btn_listele.Location = new System.Drawing.Point(235, 443);
             this.btn_listele.Name = "btn_listele";
             this.btn_listele.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
             this.btn_listele.Size = new System.Drawing.Size(109, 53);
@@ -314,7 +315,7 @@ namespace InsanKaynaklariBilgiSistem
             this.panelControl2.Controls.Add(this.btn_hobi);
             this.panelControl2.Location = new System.Drawing.Point(141, 36);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(147, 305);
+            this.panelControl2.Size = new System.Drawing.Size(147, 278);
             this.panelControl2.TabIndex = 17;
             // 
             // btn_sertifika
@@ -366,7 +367,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(6, 364);
+            this.label1.Location = new System.Drawing.Point(6, 406);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(201, 38);
             this.label1.TabIndex = 20;
@@ -375,7 +376,7 @@ namespace InsanKaynaklariBilgiSistem
             // btn_formu_temizle
             // 
             this.btn_formu_temizle.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.clear_32x321;
-            this.btn_formu_temizle.Location = new System.Drawing.Point(14, 405);
+            this.btn_formu_temizle.Location = new System.Drawing.Point(14, 447);
             this.btn_formu_temizle.Name = "btn_formu_temizle";
             this.btn_formu_temizle.Size = new System.Drawing.Size(130, 49);
             this.btn_formu_temizle.TabIndex = 21;
@@ -556,11 +557,22 @@ namespace InsanKaynaklariBilgiSistem
             this.label2.Text = "ÖZELLİKLER";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // simpleButton1
+            // 
+            this.simpleButton1.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.editrangepermission_32x32;
+            this.simpleButton1.Location = new System.Drawing.Point(56, 320);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(182, 57);
+            this.simpleButton1.TabIndex = 24;
+            this.simpleButton1.Text = "Yalnız Personel Listesi";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
             // raporlama
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1370, 450);
+            this.ClientSize = new System.Drawing.Size(1370, 494);
+            this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.btn_formu_temizle);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
@@ -644,5 +656,6 @@ namespace InsanKaynaklariBilgiSistem
         private DevExpress.XtraEditors.CheckButton checkButton3;
         private DevExpress.XtraEditors.CheckButton checkButton4;
         private System.Windows.Forms.Label label2;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
     }
 }

@@ -78,6 +78,12 @@ namespace InsanKaynaklariBilgiSistem
                             this.Hide();//kullanıcı başarılı bir şekilde giriş yapabildiği için bu form gizlenip form 2 ye geçiş yapılacaktır.
                             ekran frm4 = new ekran();
                             frm4.Show();
+                            kullaniciHesap frm8 = new kullaniciHesap();
+                            if (textBox1.Text=="Admin")
+                            {
+                                //   kullaniciHesap frm8=new kullaniciHesap()
+                                frm8.Enabled = false;
+                            }
                             break;
                         }
                     }

@@ -242,11 +242,17 @@ namespace InsanKaynaklariBilgiSistem
         private void radioButton_icra_var_CheckedChanged(object sender, EventArgs e)
         {
             date_borc_tarihi.Visible = true;
+            txt_icra_konusu.Enabled = true;
+            txt_icra_miktari.Enabled = true;
+            mtxt_icra_iban.Enabled = true;
         }
 
         private void radioButton_icra_yok_CheckedChanged(object sender, EventArgs e)
         {
             date_borc_tarihi.Visible = false;
+            txt_icra_konusu.Enabled = false;
+            txt_icra_miktari.Enabled = false;
+            mtxt_icra_iban.Enabled = false;
         }
 
 
@@ -264,6 +270,46 @@ namespace InsanKaynaklariBilgiSistem
         private void radioButton_kirada_var_CheckedChanged(object sender, EventArgs e)
         {
             txt_kira_geliri_toplami.Enabled = true;
+        }
+
+        private void radioButton_kira_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_kira_miktari.Enabled = true;
+        }
+
+        private void radioButton_evSahibi_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_kira_miktari.Enabled = false;
+        }
+
+        private void cb_destek_turu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txt_destek_miktari.Enabled = true;
+        }
+
+        private void radioButton_diger_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_isinma_aciklamasi.Enabled = true;
+        }
+
+        private void radioButton_araci_yok_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_arac_kullanim_amaci.Enabled = false;
+        }
+
+        private void radioButton_araci_var_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_arac_kullanim_amaci.Enabled = true;
+        }
+
+        private void radioButton_arazi_yok_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_arazi_kullanim_amaci.Enabled = false;
+        }
+
+        private void radioButton_arazi_var_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_arazi_kullanim_amaci.Enabled = true;
         }
 
 

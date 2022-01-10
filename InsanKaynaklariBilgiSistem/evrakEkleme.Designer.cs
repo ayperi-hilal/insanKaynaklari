@@ -227,9 +227,9 @@ namespace InsanKaynaklariBilgiSistem
             this.lbl_kisi.AutoSize = true;
             this.lbl_kisi.Location = new System.Drawing.Point(29, 9);
             this.lbl_kisi.Name = "lbl_kisi";
-            this.lbl_kisi.Size = new System.Drawing.Size(35, 13);
+            this.lbl_kisi.Size = new System.Drawing.Size(16, 13);
             this.lbl_kisi.TabIndex = 17;
-            this.lbl_kisi.Text = "label1";
+            this.lbl_kisi.Text = "...";
             // 
             // xtraSaveFileDialog1
             // 

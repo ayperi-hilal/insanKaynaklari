@@ -167,6 +167,12 @@
     <Compile Include="izinIslemleri.Designer.cs">
       <DependentUpon>izinIslemleri.cs</DependentUpon>
     </Compile>
+    <Compile Include="kkd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kkd.Designer.cs">
+      <DependentUpon>kkd.cs</DependentUpon>
+    </Compile>
     <Compile Include="kullaniciHesap.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -237,6 +243,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="izinIslemleri.resx">
       <DependentUpon>izinIslemleri.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kkd.resx">
+      <DependentUpon>kkd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="kullaniciHesap.resx">
       <DependentUpon>kullaniciHesap.cs</DependentUpon>
@@ -682,6 +691,15 @@
       <ProductName>.NET Framework 3.5 SP1 </ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\editrangepermission_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bodepartment_32x321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bodepartment_16x16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

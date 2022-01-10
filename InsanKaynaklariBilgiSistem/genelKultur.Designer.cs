@@ -211,9 +211,9 @@ namespace InsanKaynaklariBilgiSistem
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(97, 97);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.Size = new System.Drawing.Size(16, 13);
             this.label5.TabIndex = 300;
-            this.label5.Text = "label5";
+            this.label5.Text = "...";
             // 
             // lbl_soyad
             // 
@@ -229,9 +229,9 @@ namespace InsanKaynaklariBilgiSistem
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(97, 70);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.Size = new System.Drawing.Size(16, 13);
             this.label3.TabIndex = 298;
-            this.label3.Text = "label3";
+            this.label3.Text = "...";
             // 
             // lbl_ad
             // 
@@ -500,9 +500,9 @@ namespace InsanKaynaklariBilgiSistem
             this.lbl_hobiler.AutoSize = true;
             this.lbl_hobiler.Location = new System.Drawing.Point(10, 267);
             this.lbl_hobiler.Name = "lbl_hobiler";
-            this.lbl_hobiler.Size = new System.Drawing.Size(41, 13);
+            this.lbl_hobiler.Size = new System.Drawing.Size(16, 13);
             this.lbl_hobiler.TabIndex = 354;
-            this.lbl_hobiler.Text = "label18";
+            this.lbl_hobiler.Text = "...";
             // 
             // btn_evrak
             // 
@@ -518,7 +518,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.xtraTabPage5.Controls.Add(this.gridControl5);
             this.xtraTabPage5.Name = "xtraTabPage5";
-            this.xtraTabPage5.Size = new System.Drawing.Size(440, 309);
+            this.xtraTabPage5.Size = new System.Drawing.Size(694, 309);
             this.xtraTabPage5.Text = "AĞIR İŞ SERTİFİKASI";
             // 
             // gridControl5
@@ -542,7 +542,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.xtraTabPage4.Controls.Add(this.gridControl4);
             this.xtraTabPage4.Name = "xtraTabPage4";
-            this.xtraTabPage4.Size = new System.Drawing.Size(440, 309);
+            this.xtraTabPage4.Size = new System.Drawing.Size(694, 309);
             this.xtraTabPage4.Text = "SERTİFİKA";
             // 
             // gridControl4
@@ -566,7 +566,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.xtraTabPage3.Controls.Add(this.gridControl3);
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(440, 309);
+            this.xtraTabPage3.Size = new System.Drawing.Size(694, 309);
             this.xtraTabPage3.Text = "BİLGİSAYAR PROGRAMI";
             // 
             // gridControl3
@@ -590,7 +590,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.xtraTabPage1.Controls.Add(this.gridControl2);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(440, 309);
+            this.xtraTabPage1.Size = new System.Drawing.Size(694, 309);
             this.xtraTabPage1.Text = "YABANCI DİL";
             // 
             // gridControl2

@@ -84,7 +84,7 @@ namespace InsanKaynaklariBilgiSistem
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(10, 259);
+            this.label14.Location = new System.Drawing.Point(25, 253);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(34, 13);
             this.label14.TabIndex = 168;
@@ -101,7 +101,7 @@ namespace InsanKaynaklariBilgiSistem
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(10, 194);
+            this.label13.Location = new System.Drawing.Point(25, 194);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(101, 13);
             this.label13.TabIndex = 165;
@@ -124,7 +124,7 @@ namespace InsanKaynaklariBilgiSistem
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(9, 355);
+            this.label12.Location = new System.Drawing.Point(25, 355);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(56, 13);
             this.label12.TabIndex = 159;
@@ -161,7 +161,7 @@ namespace InsanKaynaklariBilgiSistem
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(9, 323);
+            this.label9.Location = new System.Drawing.Point(25, 323);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(75, 13);
             this.label9.TabIndex = 155;
@@ -170,7 +170,7 @@ namespace InsanKaynaklariBilgiSistem
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(11, 291);
+            this.label8.Location = new System.Drawing.Point(25, 290);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(40, 13);
             this.label8.TabIndex = 154;
@@ -179,7 +179,7 @@ namespace InsanKaynaklariBilgiSistem
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(9, 225);
+            this.label7.Location = new System.Drawing.Point(25, 224);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(45, 13);
             this.label7.TabIndex = 153;
@@ -188,7 +188,7 @@ namespace InsanKaynaklariBilgiSistem
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(10, 163);
+            this.label6.Location = new System.Drawing.Point(25, 159);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(73, 13);
             this.label6.TabIndex = 152;
@@ -197,7 +197,7 @@ namespace InsanKaynaklariBilgiSistem
             // simpleButton6
             // 
             this.simpleButton6.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.insert_16x16;
-            this.simpleButton6.Location = new System.Drawing.Point(267, 159);
+            this.simpleButton6.Location = new System.Drawing.Point(276, 159);
             this.simpleButton6.Name = "simpleButton6";
             this.simpleButton6.Size = new System.Drawing.Size(75, 27);
             this.simpleButton6.TabIndex = 151;
@@ -206,10 +206,10 @@ namespace InsanKaynaklariBilgiSistem
             // 
             // gridControl1
             // 
-            this.gridControl1.Location = new System.Drawing.Point(353, 2);
+            this.gridControl1.Location = new System.Drawing.Point(357, 2);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(711, 378);
+            this.gridControl1.Size = new System.Drawing.Size(711, 369);
             this.gridControl1.TabIndex = 150;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -223,7 +223,7 @@ namespace InsanKaynaklariBilgiSistem
             // simpleButton4
             // 
             this.simpleButton4.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.resetmodeldifferences_32x32;
-            this.simpleButton4.Location = new System.Drawing.Point(656, 397);
+            this.simpleButton4.Location = new System.Drawing.Point(719, 397);
             this.simpleButton4.Name = "simpleButton4";
             this.simpleButton4.Size = new System.Drawing.Size(139, 39);
             this.simpleButton4.TabIndex = 149;
@@ -234,7 +234,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.btn_sil.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btn_sil.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.cancel_32x32;
-            this.btn_sil.Location = new System.Drawing.Point(559, 398);
+            this.btn_sil.Location = new System.Drawing.Point(622, 398);
             this.btn_sil.Name = "btn_sil";
             this.btn_sil.Size = new System.Drawing.Size(91, 40);
             this.btn_sil.TabIndex = 148;
@@ -244,7 +244,7 @@ namespace InsanKaynaklariBilgiSistem
             // btn_guncelle
             // 
             this.btn_guncelle.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.refreshallpivottable_32x32;
-            this.btn_guncelle.Location = new System.Drawing.Point(462, 401);
+            this.btn_guncelle.Location = new System.Drawing.Point(525, 401);
             this.btn_guncelle.Name = "btn_guncelle";
             this.btn_guncelle.Size = new System.Drawing.Size(91, 39);
             this.btn_guncelle.TabIndex = 147;
@@ -254,16 +254,16 @@ namespace InsanKaynaklariBilgiSistem
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(95, 110);
+            this.label5.Location = new System.Drawing.Point(116, 110);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.Size = new System.Drawing.Size(16, 13);
             this.label5.TabIndex = 141;
-            this.label5.Text = "label5";
+            this.label5.Text = "...";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 110);
+            this.label4.Location = new System.Drawing.Point(25, 110);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(47, 13);
             this.label4.TabIndex = 140;
@@ -272,17 +272,17 @@ namespace InsanKaynaklariBilgiSistem
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(95, 86);
+            this.label3.Location = new System.Drawing.Point(116, 86);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.Size = new System.Drawing.Size(16, 13);
             this.label3.TabIndex = 139;
-            this.label3.Text = "label3";
+            this.label3.Text = "...";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.SystemColors.Control;
-            this.label2.Location = new System.Drawing.Point(15, 86);
+            this.label2.Location = new System.Drawing.Point(25, 86);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(22, 13);
             this.label2.TabIndex = 138;
@@ -300,7 +300,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             // mtxt_tc_no
             // 
-            this.mtxt_tc_no.Location = new System.Drawing.Point(87, 24);
+            this.mtxt_tc_no.Location = new System.Drawing.Point(119, 26);
             this.mtxt_tc_no.Name = "mtxt_tc_no";
             this.mtxt_tc_no.Size = new System.Drawing.Size(100, 20);
             this.mtxt_tc_no.TabIndex = 136;
@@ -309,7 +309,7 @@ namespace InsanKaynaklariBilgiSistem
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 27);
+            this.label1.Location = new System.Drawing.Point(25, 27);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(40, 13);
             this.label1.TabIndex = 135;
@@ -350,7 +350,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             // txt_id
             // 
-            this.txt_id.Location = new System.Drawing.Point(312, 110);
+            this.txt_id.Location = new System.Drawing.Point(317, 20);
             this.txt_id.Name = "txt_id";
             this.txt_id.Size = new System.Drawing.Size(30, 20);
             this.txt_id.TabIndex = 174;
@@ -362,7 +362,7 @@ namespace InsanKaynaklariBilgiSistem
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.txt_derece);
             this.panel1.Controls.Add(this.label11);
-            this.panel1.Location = new System.Drawing.Point(1, 371);
+            this.panel1.Location = new System.Drawing.Point(28, 374);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(346, 75);
             this.panel1.TabIndex = 175;
@@ -370,7 +370,7 @@ namespace InsanKaynaklariBilgiSistem
             // lbl_pdks
             // 
             this.lbl_pdks.AutoSize = true;
-            this.lbl_pdks.Location = new System.Drawing.Point(15, 56);
+            this.lbl_pdks.Location = new System.Drawing.Point(25, 56);
             this.lbl_pdks.Name = "lbl_pdks";
             this.lbl_pdks.Size = new System.Drawing.Size(36, 13);
             this.lbl_pdks.TabIndex = 281;
@@ -378,7 +378,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             // txt_pdks
             // 
-            this.txt_pdks.Location = new System.Drawing.Point(87, 53);
+            this.txt_pdks.Location = new System.Drawing.Point(119, 56);
             this.txt_pdks.Name = "txt_pdks";
             this.txt_pdks.Size = new System.Drawing.Size(64, 20);
             this.txt_pdks.TabIndex = 282;
@@ -388,7 +388,7 @@ namespace InsanKaynaklariBilgiSistem
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1068, 450);
+            this.ClientSize = new System.Drawing.Size(1071, 450);
             this.Controls.Add(this.txt_pdks);
             this.Controls.Add(this.lbl_pdks);
             this.Controls.Add(this.panel1);

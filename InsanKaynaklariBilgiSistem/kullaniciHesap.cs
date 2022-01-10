@@ -55,6 +55,8 @@ namespace InsanKaynaklariBilgiSistem
 
         private void kullaniciHesap_Load(object sender, EventArgs e)
         {
+            
+            
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.Height = 100;
             pictureBox1.Width = 100;
@@ -417,7 +419,7 @@ namespace InsanKaynaklariBilgiSistem
                     try
                     {
                       
-                        SqlCommand eklekomutu = new SqlCommand("insert into hesap_olustur values('" + textBox1.Text + "','" + textBox2.Text + "','" + textBox3.Text + "','" + yetki + "','" + textBox4.Text + "','" + textBox5.Text + "','" + "" + "')", baglantim.baglanti());
+                        SqlCommand eklekomutu = new SqlCommand("insert into hesap_olustur values('" + textBox1.Text + "','" + textBox2.Text + "','" + textBox3.Text + "','" + yetki + "','" + textBox4.Text + "','" + textBox5.Text + "','" + "" +"','"+""+ "')", baglantim.baglanti());
 
                         eklekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
                         

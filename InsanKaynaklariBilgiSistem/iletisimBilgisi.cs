@@ -43,8 +43,8 @@ namespace InsanKaynaklariBilgiSistem
                 SqlDataReader kayitokuma = selectsorgu.ExecuteReader();
 
 
-                SqlCommand selectsorgu2 = new SqlCommand("select *from Kisi_iletisim_Bilgileri where tc_bilgisi='" + mtxt_tc_no.Text + "'", baglantim.baglanti());
-                SqlDataReader kayitokuma2 = selectsorgu2.ExecuteReader();
+                //SqlCommand selectsorgu2 = new SqlCommand("select *from Kisi_iletisim_Bilgileri where tc_bilgisi='" + mtxt_tc_no.Text + "'", baglantim.baglanti());
+                //SqlDataReader kayitokuma2 = selectsorgu2.ExecuteReader();
 
 
                 //kayıtokumanın içerisne attığımız değişkenin while döngüsü ile tüm veri tabanında arayalım.
@@ -84,9 +84,12 @@ namespace InsanKaynaklariBilgiSistem
 
                     break;
                   }
-                
-                 while (kayitokuma2.Read()) {
-                    mtxt_tel_no.Text = kayitokuma2.GetValue(2).ToString();
+
+                SqlCommand selectsorgu2 = new SqlCommand("select *from Kisi_iletisim_Bilgileri where tc_bilgisi='" + mtxt_tc_no.Text + "'", baglantim.baglanti());
+                SqlDataReader kayitokuma2 = selectsorgu2.ExecuteReader();
+
+                while (kayitokuma2.Read()) {
+                     mtxt_tel_no.Text = kayitokuma2.GetValue(2).ToString();
                     mtxt_cep_no.Text = kayitokuma2.GetValue(3).ToString();
                     txt_email.Text = kayitokuma2.GetValue(4).ToString();
                     txt_yakini.Text = kayitokuma2.GetValue(5).ToString();
@@ -101,7 +104,7 @@ namespace InsanKaynaklariBilgiSistem
                     txt_kapi.Text = kayitokuma2.GetValue(13).ToString();
                     txt_adres.Text = kayitokuma2.GetValue(14).ToString();
 
-
+                    
                     btn_kaydet.Enabled = true;
                     btn_sil.Enabled = true;
                     btn_guncelle.Enabled = true;

@@ -44,7 +44,7 @@ namespace InsanKaynaklariBilgiSistem
             "Doğum Günlerini Göster",
             "Merasim Tarihlerini Göster",
             "Yaklaşan Borç Tarihlerini Göster"});
-            this.comboBox1.Location = new System.Drawing.Point(557, 23);
+            this.comboBox1.Location = new System.Drawing.Point(913, 23);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(204, 21);
             this.comboBox1.TabIndex = 0;
@@ -53,7 +53,7 @@ namespace InsanKaynaklariBilgiSistem
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(335, 26);
+            this.label1.Location = new System.Drawing.Point(677, 31);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(216, 13);
             this.label1.TabIndex = 1;
@@ -61,10 +61,10 @@ namespace InsanKaynaklariBilgiSistem
             // 
             // gridControl1
             // 
-            this.gridControl1.Location = new System.Drawing.Point(2, 74);
+            this.gridControl1.Location = new System.Drawing.Point(-1, 50);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(797, 383);
+            this.gridControl1.Size = new System.Drawing.Size(1118, 402);
             this.gridControl1.TabIndex = 2;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -73,13 +73,13 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.OptionsView.ColumnAutoWidth = false;
             // 
             // bildirimler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1126, 450);
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox1);
