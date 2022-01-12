@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,8 @@ namespace InsanKaynaklariBilgiSistem
             mtxt_tc_no.Mask = "00000000000";//kullnıcı 11 haneli tc numarası girebilecek.
             lbl_cocuk.Text = "0";
         }
+
+      
 
         public void resim_goruntule()
         {
@@ -615,6 +618,63 @@ namespace InsanKaynaklariBilgiSistem
                 MessageBox.Show("Lütfen 11 haneli TC NO giriniz", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 ekrani_temizle();
             }
+        }
+
+        private void btn_onizleme_Click(object sender, EventArgs e)
+        {
+            printPreviewDialog1.ShowDialog();
+        }
+
+        private void btn_cikti_Click(object sender, EventArgs e)
+        {
+            DialogResult pdr = printDialog1.ShowDialog();
+
+            if(pdr==DialogResult.OK)
+
+            {
+                printDocument1.Print();
+            }
+           
+        }
+
+        PrintDocument YaziciCiktisi = new PrintDocument();
+
+
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            //Yazı fontumu ve çizgi çizmek için fırçamı ve kalem nesnemi oluşturdum
+            Font myFont = new Font("Calibri", 28);
+            SolidBrush sbrush = new SolidBrush(Color.Black);
+            Pen myPen = new Pen(Color.Black);
+
+
+            //Bu kısımda sipariş formu yazısını ve çizgileri yazdırıyorum
+            e.Graphics.DrawLine(myPen, 120, 120, 750, 120);
+            e.Graphics.DrawLine(myPen, 120, 180, 750, 180);
+            e.Graphics.DrawString("PERSONEL BİLGİ FORMU", myFont, sbrush, 200, 120);
+
+            e.Graphics.DrawLine(myPen, 120, 320, 750, 320);
+
+            myFont = new Font("Calibri", 12, FontStyle.Bold);
+
+
+            e.Graphics.DrawLine(myPen, 120, 348, 750, 348);
+
+            int y = 360;
+
+            StringFormat myStringFormat = new StringFormat();
+            myStringFormat.Alignment = StringAlignment.Far;
+
+            decimal gTotal = 0;
+
+
+
+
+
+
+
+
         }
     }
 }

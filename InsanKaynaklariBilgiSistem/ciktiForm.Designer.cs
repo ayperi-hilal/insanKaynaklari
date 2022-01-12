@@ -178,6 +178,8 @@ namespace InsanKaynaklariBilgiSistem
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            this.btn_onizleme = new System.Windows.Forms.Button();
+            this.btnn_cikttii = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
@@ -221,6 +223,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             // xtraTabPage1
             // 
+            this.xtraTabPage1.Controls.Add(this.btn_onizleme);
             this.xtraTabPage1.Controls.Add(this.gridControl6);
             this.xtraTabPage1.Controls.Add(this.gridControl4);
             this.xtraTabPage1.Controls.Add(this.gridControl3);
@@ -1561,6 +1564,7 @@ namespace InsanKaynaklariBilgiSistem
             this.btn_cikti.Size = new System.Drawing.Size(104, 48);
             this.btn_cikti.TabIndex = 388;
             this.btn_cikti.Text = "YAZDIR";
+            this.btn_cikti.Click += new System.EventHandler(this.btn_cikti_Click);
             // 
             // gridControl8
             // 
@@ -1677,20 +1681,47 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.dxErrorProvider1.ContainerControl = this;
             // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
+            // 
             // printDialog1
             // 
             this.printDialog1.UseEXDialog = true;
+            // 
+            // pageSetupDialog1
+            // 
+            this.pageSetupDialog1.Document = this.printDocument1;
             // 
             // printPreviewDialog1
             // 
             this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
             this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
             this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Document = this.printDocument1;
             this.printPreviewDialog1.Enabled = true;
             this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
             this.printPreviewDialog1.Name = "printPreviewDialog1";
             this.printPreviewDialog1.Text = "Baskı önizleme";
             this.printPreviewDialog1.Visible = false;
+            // 
+            // btn_onizleme
+            // 
+            this.btn_onizleme.Location = new System.Drawing.Point(555, 17);
+            this.btn_onizleme.Name = "btn_onizleme";
+            this.btn_onizleme.Size = new System.Drawing.Size(75, 23);
+            this.btn_onizleme.TabIndex = 407;
+            this.btn_onizleme.Text = "ÖN İZLEME";
+            this.btn_onizleme.UseVisualStyleBackColor = true;
+            this.btn_onizleme.Click += new System.EventHandler(this.btn_onizleme_Click);
+            // 
+            // btnn_cikttii
+            // 
+            this.btnn_cikttii.Location = new System.Drawing.Point(241, 1);
+            this.btnn_cikttii.Name = "btnn_cikttii";
+            this.btnn_cikttii.Size = new System.Drawing.Size(75, 23);
+            this.btnn_cikttii.TabIndex = 2;
+            this.btnn_cikttii.Text = "deneme çıktı";
             // 
             // ciktiForm
             // 
@@ -1884,9 +1915,11 @@ namespace InsanKaynaklariBilgiSistem
         private DevExpress.XtraGrid.Views.Grid.GridView gridView5;
         private System.Windows.Forms.Label label54;
         private System.Windows.Forms.Label label50;
-        private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.PrintDialog printDialog1;
         private System.Windows.Forms.PageSetupDialog pageSetupDialog1;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
+        private System.Windows.Forms.Button btn_onizleme;
+        private DevExpress.XtraEditors.SimpleButton btnn_cikttii;
+        private System.Drawing.Printing.PrintDocument printDocument1;
     }
 }

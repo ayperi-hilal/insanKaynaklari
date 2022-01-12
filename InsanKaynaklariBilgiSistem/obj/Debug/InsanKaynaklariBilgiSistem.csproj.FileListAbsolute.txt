@@ -456,3 +456,6 @@ C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSi
 C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\obj\Debug\InsanKaynaklariBilgiSistem.kkd.resources
 C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\obj\Debug\InsanKaynaklariBilgiSistem.cikti.resources
 C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\obj\Debug\InsanKaynaklariBilgiSistem.ciktiForm.resources
+C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\bin\Debug\DevExpress.Mvvm.v19.2.dll
+C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\bin\Debug\DevExpress.Mvvm.v19.2.xml
+C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\obj\Debug\InsanKaynaklariBilgiSistem.firmaImkanları.resources
