@@ -123,6 +123,16 @@ namespace InsanKaynaklariBilgiSistem.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
+        internal static System.Drawing.Bitmap add_16x164 {
+            get {
+                object obj = ResourceManager.GetObject("add_16x164", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
         internal static System.Drawing.Bitmap add_32x32 {
             get {
                 object obj = ResourceManager.GetObject("add_32x32", resourceCulture);
@@ -633,6 +643,26 @@ namespace InsanKaynaklariBilgiSistem.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
+        internal static System.Drawing.Bitmap contact_16x161 {
+            get {
+                object obj = ResourceManager.GetObject("contact_16x161", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap contact_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("contact_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
         internal static System.Drawing.Bitmap currency_16x16 {
             get {
                 object obj = ResourceManager.GetObject("currency_16x16", resourceCulture);
@@ -666,6 +696,26 @@ namespace InsanKaynaklariBilgiSistem.Properties {
         internal static System.Drawing.Bitmap customer_32x32 {
             get {
                 object obj = ResourceManager.GetObject("customer_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap defaultprinternetwork_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("defaultprinternetwork_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap differentfirstpage_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("differentfirstpage_16x16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -736,6 +786,16 @@ namespace InsanKaynaklariBilgiSistem.Properties {
         internal static System.Drawing.Bitmap find_32x32 {
             get {
                 object obj = ResourceManager.GetObject("find_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap find_32x321 {
+            get {
+                object obj = ResourceManager.GetObject("find_32x321", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1086,6 +1146,16 @@ namespace InsanKaynaklariBilgiSistem.Properties {
         internal static System.Drawing.Bitmap report_32x322 {
             get {
                 object obj = ResourceManager.GetObject("report_32x322", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap resetmodeldifferences_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("resetmodeldifferences_16x16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -325,6 +325,22 @@ namespace InsanKaynaklariBilgiSistem
             }
         }
 
+        cikti frm15;
+        private void barButtonItem41_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (frm15 == null || frm15.IsDisposed)
+            {
+                frm15 = new cikti();
+                frm15.MdiParent = this;
+                frm15.Show();
+            }
+            else
+            {
+                xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm14];
+            }
+        }
+
+
         //   kullaniciHesap frm14 = new kullaniciHesap();
         private void Form4_Load(object sender, EventArgs e)
         {

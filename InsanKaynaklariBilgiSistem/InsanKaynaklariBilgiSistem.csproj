@@ -57,6 +57,7 @@
     <Reference Include="DevExpress.DataAccess.v19.2.UI, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Dialogs.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Map.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Mvvm.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Office.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.PivotGrid.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Printing.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -124,6 +125,18 @@
     <Compile Include="bildirimler.Designer.cs">
       <DependentUpon>bildirimler.cs</DependentUpon>
     </Compile>
+    <Compile Include="cikti.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="cikti.Designer.cs">
+      <DependentUpon>cikti.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ciktiForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ciktiForm.Designer.cs">
+      <DependentUpon>ciktiForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="dbclass.cs" />
     <Compile Include="durumGrafiği.cs">
       <SubType>Form</SubType>
@@ -142,6 +155,12 @@
     </Compile>
     <Compile Include="evrakEkleme.Designer.cs">
       <DependentUpon>evrakEkleme.cs</DependentUpon>
+    </Compile>
+    <Compile Include="firmaImkanları.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="firmaImkanları.Designer.cs">
+      <DependentUpon>firmaImkanları.cs</DependentUpon>
     </Compile>
     <Compile Include="genelBilgiler.cs">
       <SubType>Form</SubType>
@@ -223,6 +242,12 @@
     <EmbeddedResource Include="bildirimler.resx">
       <DependentUpon>bildirimler.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="cikti.resx">
+      <DependentUpon>cikti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ciktiForm.resx">
+      <DependentUpon>ciktiForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="durumGrafiği.resx">
       <DependentUpon>durumGrafiği.cs</DependentUpon>
     </EmbeddedResource>
@@ -231,6 +256,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="evrakEkleme.resx">
       <DependentUpon>evrakEkleme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="firmaImkanları.resx">
+      <DependentUpon>firmaImkanları.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="genelBilgiler.resx">
       <DependentUpon>genelBilgiler.cs</DependentUpon>
@@ -700,6 +728,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\bodepartment_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\defaultprinternetwork_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\find_32x321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\resetmodeldifferences_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\contact_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\contact_16x161.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\differentfirstpage_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_16x164.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

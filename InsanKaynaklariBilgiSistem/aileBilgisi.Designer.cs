@@ -50,6 +50,7 @@ namespace InsanKaynaklariBilgiSistem
             this.lbl_olum_nedeni = new System.Windows.Forms.Label();
             this.date_olum_tarihi = new System.Windows.Forms.DateTimePicker();
             this.toggleSwitch_sag_olu = new DevExpress.XtraEditors.ToggleSwitch();
+            this.simpleButton7 = new DevExpress.XtraEditors.SimpleButton();
             this.lbl_olum_tarihi = new System.Windows.Forms.Label();
             this.lbl_yasam_hali = new System.Windows.Forms.Label();
             this.cb_merasim = new System.Windows.Forms.ComboBox();
@@ -139,7 +140,6 @@ namespace InsanKaynaklariBilgiSistem
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.simpleButton7 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
             this.btn_sil = new DevExpress.XtraEditors.SimpleButton();
             this.btn_guncelle = new DevExpress.XtraEditors.SimpleButton();
@@ -156,6 +156,8 @@ namespace InsanKaynaklariBilgiSistem
             this.lbl_pdks = new System.Windows.Forms.Label();
             this.txt_pdks = new System.Windows.Forms.TextBox();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.lbl_cocuk = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit_yakin_bilgisi.Properties)).BeginInit();
@@ -404,6 +406,16 @@ namespace InsanKaynaklariBilgiSistem
             this.toggleSwitch_sag_olu.Size = new System.Drawing.Size(95, 18);
             this.toggleSwitch_sag_olu.TabIndex = 269;
             this.toggleSwitch_sag_olu.Toggled += new System.EventHandler(this.toggleSwitch_sag_olu_Toggled);
+            // 
+            // simpleButton7
+            // 
+            this.simpleButton7.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.insert_16x16;
+            this.simpleButton7.Location = new System.Drawing.Point(726, 15);
+            this.simpleButton7.Name = "simpleButton7";
+            this.simpleButton7.Size = new System.Drawing.Size(75, 27);
+            this.simpleButton7.TabIndex = 226;
+            this.simpleButton7.Text = "FORMA\r\nEKLE";
+            this.simpleButton7.Click += new System.EventHandler(this.simpleButton7_Click);
             // 
             // lbl_olum_tarihi
             // 
@@ -1241,7 +1253,7 @@ namespace InsanKaynaklariBilgiSistem
             this.gridControl2.Location = new System.Drawing.Point(0, 0);
             this.gridControl2.MainView = this.gridView2;
             this.gridControl2.Name = "gridControl2";
-            this.gridControl2.Size = new System.Drawing.Size(931, 77);
+            this.gridControl2.Size = new System.Drawing.Size(870, 77);
             this.gridControl2.TabIndex = 0;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -1254,16 +1266,6 @@ namespace InsanKaynaklariBilgiSistem
             this.gridView2.OptionsBehavior.Editable = false;
             this.gridView2.OptionsView.ColumnAutoWidth = false;
             this.gridView2.OptionsView.ShowGroupPanel = false;
-            // 
-            // simpleButton7
-            // 
-            this.simpleButton7.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.insert_16x16;
-            this.simpleButton7.Location = new System.Drawing.Point(726, 15);
-            this.simpleButton7.Name = "simpleButton7";
-            this.simpleButton7.Size = new System.Drawing.Size(75, 27);
-            this.simpleButton7.TabIndex = 226;
-            this.simpleButton7.Text = "FORMA\r\nEKLE";
-            this.simpleButton7.Click += new System.EventHandler(this.simpleButton7_Click);
             // 
             // simpleButton4
             // 
@@ -1358,7 +1360,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.xtraTabPage4.Controls.Add(this.gridControl2);
             this.xtraTabPage4.Name = "xtraTabPage4";
-            this.xtraTabPage4.Size = new System.Drawing.Size(931, 77);
+            this.xtraTabPage4.Size = new System.Drawing.Size(870, 77);
             this.xtraTabPage4.Text = "Bakımı ile İlgilendiği";
             // 
             // xtraTabPage3
@@ -1393,12 +1395,32 @@ namespace InsanKaynaklariBilgiSistem
             this.simpleButton1.Text = "KAYDET";
             this.simpleButton1.Visible = false;
             // 
+            // lbl_cocuk
+            // 
+            this.lbl_cocuk.AutoSize = true;
+            this.lbl_cocuk.Location = new System.Drawing.Point(370, 91);
+            this.lbl_cocuk.Name = "lbl_cocuk";
+            this.lbl_cocuk.Size = new System.Drawing.Size(13, 13);
+            this.lbl_cocuk.TabIndex = 385;
+            this.lbl_cocuk.Text = "0";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(274, 91);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(81, 13);
+            this.label47.TabIndex = 384;
+            this.label47.Text = "ÇOCUK SAYISI";
+            // 
             // aileBilgisi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1284, 749);
+            this.Controls.Add(this.lbl_cocuk);
+            this.Controls.Add(this.label47);
             this.Controls.Add(this.txt_pdks);
             this.Controls.Add(this.lbl_pdks);
             this.Controls.Add(this.xtraTabControl1);
@@ -1588,5 +1610,7 @@ namespace InsanKaynaklariBilgiSistem
         private System.Windows.Forms.TextBox txt_pdks;
         private System.Windows.Forms.Label lbl_pdks;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private System.Windows.Forms.Label lbl_cocuk;
+        private System.Windows.Forms.Label label47;
     }
 }

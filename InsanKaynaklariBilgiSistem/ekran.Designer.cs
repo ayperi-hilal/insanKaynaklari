@@ -30,8 +30,8 @@ namespace InsanKaynaklariBilgiSistem
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.Utils.Animation.PushTransition pushTransition2 = new DevExpress.Utils.Animation.PushTransition();
-            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation2 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
+            DevExpress.Utils.Animation.PushTransition pushTransition1 = new DevExpress.Utils.Animation.PushTransition();
+            DevExpress.XtraBars.Ribbon.ReduceOperation reduceOperation1 = new DevExpress.XtraBars.Ribbon.ReduceOperation();
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage9 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -55,6 +55,7 @@ namespace InsanKaynaklariBilgiSistem
             this.barButtonItem34 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem40 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem21 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem41 = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.barButtonItem29 = new DevExpress.XtraBars.BarButtonItem();
@@ -159,7 +160,7 @@ namespace InsanKaynaklariBilgiSistem
             // workspaceManager1
             // 
             this.workspaceManager1.TargetControl = this;
-            this.workspaceManager1.TransitionType = pushTransition2;
+            this.workspaceManager1.TransitionType = pushTransition1;
             // 
             // ribbonPage6
             // 
@@ -198,6 +199,7 @@ namespace InsanKaynaklariBilgiSistem
             this.ribbonPageGroup3.ItemLinks.Add(this.barButtonItem35);
             this.ribbonPageGroup3.ItemLinks.Add(this.barButtonItem34);
             this.ribbonPageGroup3.ItemLinks.Add(this.barButtonItem40);
+            this.ribbonPageGroup3.ItemLinks.Add(this.barButtonItem41);
             this.ribbonPageGroup3.ItemLinks.Add(this.barButtonItem21);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             // 
@@ -285,7 +287,6 @@ namespace InsanKaynaklariBilgiSistem
             this.barButtonItem40.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.bodepartment_16x16;
             this.barButtonItem40.ImageOptions.LargeImage = global::InsanKaynaklariBilgiSistem.Properties.Resources.bodepartment_32x321;
             this.barButtonItem40.Name = "barButtonItem40";
-            this.barButtonItem40.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonItem40.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem40_ItemClick);
             // 
             // barButtonItem21
@@ -297,6 +298,15 @@ namespace InsanKaynaklariBilgiSistem
             this.barButtonItem21.Name = "barButtonItem21";
             this.barButtonItem21.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonItem21.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem21_ItemClick);
+            // 
+            // barButtonItem41
+            // 
+            this.barButtonItem41.Caption = "ÇIKTI";
+            this.barButtonItem41.Id = 56;
+            this.barButtonItem41.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.contact_16x161;
+            this.barButtonItem41.ImageOptions.LargeImage = global::InsanKaynaklariBilgiSistem.Properties.Resources.contact_32x32;
+            this.barButtonItem41.Name = "barButtonItem41";
+            this.barButtonItem41.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem41_ItemClick);
             // 
             // ribbonPage2
             // 
@@ -327,12 +337,12 @@ namespace InsanKaynaklariBilgiSistem
             this.ribbonPageGroup1});
             this.ribbonPage1.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.home_32x323;
             this.ribbonPage1.Name = "ribbonPage1";
-            reduceOperation2.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
-            reduceOperation2.GroupName = null;
-            reduceOperation2.ItemLinkIndex = 0;
-            reduceOperation2.ItemLinksCount = 0;
-            reduceOperation2.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.LargeButtons;
-            this.ribbonPage1.ReduceOperations.Add(reduceOperation2);
+            reduceOperation1.Behavior = DevExpress.XtraBars.Ribbon.ReduceOperationBehavior.Single;
+            reduceOperation1.GroupName = null;
+            reduceOperation1.ItemLinkIndex = 0;
+            reduceOperation1.ItemLinksCount = 0;
+            reduceOperation1.Operation = DevExpress.XtraBars.Ribbon.ReduceOperationType.LargeButtons;
+            this.ribbonPage1.ReduceOperations.Add(reduceOperation1);
             this.ribbonPage1.Text = "HOME";
             // 
             // ribbonPageGroup1
@@ -720,9 +730,10 @@ namespace InsanKaynaklariBilgiSistem
             this.b_btn_rapor,
             this.barButtonItem38,
             this.barButtonItem39,
-            this.barButtonItem40});
+            this.barButtonItem40,
+            this.barButtonItem41});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 56;
+            this.ribbonControl1.MaxItemId = 57;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -921,5 +932,6 @@ namespace InsanKaynaklariBilgiSistem
         private DevExpress.XtraBars.BarButtonItem barButtonItem38;
         private DevExpress.XtraBars.BarButtonItem barButtonItem39;
         private DevExpress.XtraBars.BarButtonItem barButtonItem40;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem41;
     }
 }

@@ -526,7 +526,7 @@ namespace InsanKaynaklariBilgiSistem
 
 
                         break;
-                    }
+                  }
                     if (kayit_arama_durumu == true)
                     {
                         resim_goruntule();

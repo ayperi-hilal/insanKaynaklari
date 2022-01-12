@@ -895,6 +895,7 @@ namespace InsanKaynaklariBilgiSistem
             this.cb_polar.Size = new System.Drawing.Size(81, 21);
             this.cb_polar.TabIndex = 436;
             this.cb_polar.SelectedIndexChanged += new System.EventHandler(this.cb_polar_SelectedIndexChanged);
+            this.cb_polar.TextChanged += new System.EventHandler(this.cb_polar_TextChanged);
             // 
             // cb_tulum
             // 
@@ -904,6 +905,7 @@ namespace InsanKaynaklariBilgiSistem
             this.cb_tulum.Size = new System.Drawing.Size(81, 21);
             this.cb_tulum.TabIndex = 436;
             this.cb_tulum.SelectedIndexChanged += new System.EventHandler(this.cb_tulum_SelectedIndexChanged);
+            this.cb_tulum.TextChanged += new System.EventHandler(this.cb_tulum_TextChanged);
             // 
             // cb_pantolon
             // 
@@ -913,6 +915,7 @@ namespace InsanKaynaklariBilgiSistem
             this.cb_pantolon.Size = new System.Drawing.Size(81, 21);
             this.cb_pantolon.TabIndex = 436;
             this.cb_pantolon.SelectedIndexChanged += new System.EventHandler(this.cb_pantolon_SelectedIndexChanged);
+            this.cb_pantolon.TextChanged += new System.EventHandler(this.cb_pantolon_TextChanged);
             // 
             // cb_tshirt
             // 
@@ -922,6 +925,7 @@ namespace InsanKaynaklariBilgiSistem
             this.cb_tshirt.Size = new System.Drawing.Size(81, 21);
             this.cb_tshirt.TabIndex = 436;
             this.cb_tshirt.SelectedIndexChanged += new System.EventHandler(this.cb_tshirt_SelectedIndexChanged);
+            this.cb_tshirt.TextChanged += new System.EventHandler(this.cb_tshirt_TextChanged);
             // 
             // cb_ayakkabi
             // 
@@ -931,6 +935,7 @@ namespace InsanKaynaklariBilgiSistem
             this.cb_ayakkabi.Size = new System.Drawing.Size(81, 21);
             this.cb_ayakkabi.TabIndex = 436;
             this.cb_ayakkabi.SelectedIndexChanged += new System.EventHandler(this.cb_ayakkabi_SelectedIndexChanged);
+            this.cb_ayakkabi.TextChanged += new System.EventHandler(this.cb_ayakkabi_TextChanged);
             // 
             // cb_is_eldiveni
             // 
@@ -940,6 +945,7 @@ namespace InsanKaynaklariBilgiSistem
             this.cb_is_eldiveni.Size = new System.Drawing.Size(81, 21);
             this.cb_is_eldiveni.TabIndex = 436;
             this.cb_is_eldiveni.SelectedIndexChanged += new System.EventHandler(this.cb_is_eldiveni_SelectedIndexChanged);
+            this.cb_is_eldiveni.TextChanged += new System.EventHandler(this.cb_is_eldiveni_TextChanged);
             // 
             // cb_gozluk
             // 
@@ -949,6 +955,7 @@ namespace InsanKaynaklariBilgiSistem
             this.cb_gozluk.Size = new System.Drawing.Size(81, 21);
             this.cb_gozluk.TabIndex = 436;
             this.cb_gozluk.SelectedIndexChanged += new System.EventHandler(this.cb_gozluk_SelectedIndexChanged);
+            this.cb_gozluk.TextChanged += new System.EventHandler(this.cb_gozluk_TextChanged);
             // 
             // cb_kulaklık
             // 
@@ -958,6 +965,7 @@ namespace InsanKaynaklariBilgiSistem
             this.cb_kulaklık.Size = new System.Drawing.Size(81, 21);
             this.cb_kulaklık.TabIndex = 436;
             this.cb_kulaklık.SelectedIndexChanged += new System.EventHandler(this.cb_kulaklık_SelectedIndexChanged);
+            this.cb_kulaklık.TextChanged += new System.EventHandler(this.cb_kulaklık_TextChanged);
             // 
             // cb_maske
             // 
@@ -967,6 +975,7 @@ namespace InsanKaynaklariBilgiSistem
             this.cb_maske.Size = new System.Drawing.Size(81, 21);
             this.cb_maske.TabIndex = 436;
             this.cb_maske.SelectedIndexChanged += new System.EventHandler(this.cb_maske_SelectedIndexChanged);
+            this.cb_maske.TextChanged += new System.EventHandler(this.cb_maske_TextChanged);
             // 
             // cb_kaynak_gozluk
             // 
@@ -976,6 +985,7 @@ namespace InsanKaynaklariBilgiSistem
             this.cb_kaynak_gozluk.Size = new System.Drawing.Size(81, 21);
             this.cb_kaynak_gozluk.TabIndex = 436;
             this.cb_kaynak_gozluk.SelectedIndexChanged += new System.EventHandler(this.cb_kaynak_gozluk_SelectedIndexChanged);
+            this.cb_kaynak_gozluk.TextChanged += new System.EventHandler(this.cb_kaynak_gozluk_TextChanged);
             // 
             // cb_baret
             // 
@@ -985,6 +995,7 @@ namespace InsanKaynaklariBilgiSistem
             this.cb_baret.Size = new System.Drawing.Size(81, 21);
             this.cb_baret.TabIndex = 436;
             this.cb_baret.SelectedIndexChanged += new System.EventHandler(this.cb_baret_SelectedIndexChanged);
+            this.cb_baret.TextChanged += new System.EventHandler(this.cb_baret_TextChanged);
             // 
             // cb_kaynak_eldiven
             // 
@@ -994,6 +1005,7 @@ namespace InsanKaynaklariBilgiSistem
             this.cb_kaynak_eldiven.Size = new System.Drawing.Size(81, 21);
             this.cb_kaynak_eldiven.TabIndex = 436;
             this.cb_kaynak_eldiven.SelectedIndexChanged += new System.EventHandler(this.cb_kaynak_eldiven_SelectedIndexChanged);
+            this.cb_kaynak_eldiven.TextChanged += new System.EventHandler(this.cb_kaynak_eldiven_TextChanged);
             // 
             // label2
             // 

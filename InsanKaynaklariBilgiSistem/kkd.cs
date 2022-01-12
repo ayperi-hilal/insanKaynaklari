@@ -263,6 +263,11 @@ namespace InsanKaynaklariBilgiSistem
             cb_kaynak_eldiven.Items.Add("Yenileme");
             cb_kaynak_eldiven.SelectedItem = "Kullanımda";
 
+
+            btn_sil.Enabled = false;
+            btn_guncelle.Enabled = false;
+            btn_forma_ekle.Enabled = false;
+
         }
         private void ekrani_temizle()
         {
@@ -357,6 +362,8 @@ namespace InsanKaynaklariBilgiSistem
             date_kaynak_gozluk_aksiyon.Visible = false;
             date_baret_aksiyon.Visible = false;
             date_kaynak_eldiveni_aksiyon.Visible = false;
+
+            lbl_aksiyon_tarihi.Visible = false;
         }
 
         public void listele()
@@ -774,31 +781,36 @@ namespace InsanKaynaklariBilgiSistem
 
             //şimdi de skaiyon tarihini çekelim
             if (gridView1.GetFocusedRowCellValue("kkd_turu").ToString() == "İŞ YELEĞİ")
-                date_is_yelek_aksiyon.Text = gridView1.GetFocusedRowCellValue("aksiyon_tarihi").ToString();
-            else if (gridView1.GetFocusedRowCellValue("kkd_turu").ToString() == "POLAR")
-                date_polar_aksiyon.Text = gridView1.GetFocusedRowCellValue("aksiyon_tarihi").ToString();
-            else if (gridView1.GetFocusedRowCellValue("kkd_turu").ToString() == "TULUM")
-                date_tulum_aksiyon.Text = gridView1.GetFocusedRowCellValue("aksiyon_tarihi").ToString();
-            else if (gridView1.GetFocusedRowCellValue("kkd_turu").ToString() == "PANTOLON")
-                date_pantolon_aksiyon.Text = gridView1.GetFocusedRowCellValue("aksiyon_tarihi").ToString();
-            else if (gridView1.GetFocusedRowCellValue("kkd_turu").ToString() == "T-SHIRT")
-                date_tshirt_aksiyon.Text = gridView1.GetFocusedRowCellValue("aksiyon_tarihi").ToString();
-            else if (gridView1.GetFocusedRowCellValue("kkd_turu").ToString() == "ÇELİK AYAKKABI")
-                date_ayakkabi_aksiyon.Text = gridView1.GetFocusedRowCellValue("aksiyon_tarihi").ToString();
-            else if (gridView1.GetFocusedRowCellValue("kkd_turu").ToString() == "İŞ ELDİVENİ")
-                date_is_eldiveni_aksiyon.Text = gridView1.GetFocusedRowCellValue("aksiyon_tarihi").ToString();
-            else if (gridView1.GetFocusedRowCellValue("kkd_turu").ToString() == "GÖZLÜK")
-                date_gozluk_aksiyon.Text = gridView1.GetFocusedRowCellValue("aksiyon_tarihi").ToString();
-            else if (gridView1.GetFocusedRowCellValue("kkd_turu").ToString() == "KULAKLIK")
-                date_kulaklik_aksiyon.Text = gridView1.GetFocusedRowCellValue("aksiyon_tarihi").ToString();
-            else if (gridView1.GetFocusedRowCellValue("kkd_turu").ToString() == "MASKE")
-                date_maske_aksiyon.Text = gridView1.GetFocusedRowCellValue("aksiyon_tarihi").ToString();
-            else if (gridView1.GetFocusedRowCellValue("kkd_turu").ToString() == "KAYNAKÇI GÖZLÜĞÜ")
-                date_kaynak_gozluk_aksiyon.Text = gridView1.GetFocusedRowCellValue("aksiyon_tarihi").ToString();
-            else if (gridView1.GetFocusedRowCellValue("kkd_turu").ToString() == "BARET")
-                date_baret_aksiyon.Text = gridView1.GetFocusedRowCellValue("aksiyon_tarihi").ToString();
-            else if (gridView1.GetFocusedRowCellValue("kkd_turu").ToString() == "KAYNAKÇI ELDİVENİ")
-                date_kaynak_eldiveni_aksiyon.Text = gridView1.GetFocusedRowCellValue("aksiyon_tarihi").ToString();
+                if (cb_is_yelek.Text != "" && cb_is_yelek.Text != "Kullanımda")
+                {
+                    lbl_aksiyon_tarihi.Visible = true;
+                    date_is_yelegi.Visible = true;
+                    date_is_yelek_aksiyon.Text = gridView1.GetFocusedRowCellValue("aksiyon_tarihi").ToString();
+                }
+                else if (gridView1.GetFocusedRowCellValue("kkd_turu").ToString() == "POLAR")
+                    date_polar_aksiyon.Text = gridView1.GetFocusedRowCellValue("aksiyon_tarihi").ToString();
+                else if (gridView1.GetFocusedRowCellValue("kkd_turu").ToString() == "TULUM")
+                    date_tulum_aksiyon.Text = gridView1.GetFocusedRowCellValue("aksiyon_tarihi").ToString();
+                else if (gridView1.GetFocusedRowCellValue("kkd_turu").ToString() == "PANTOLON")
+                    date_pantolon_aksiyon.Text = gridView1.GetFocusedRowCellValue("aksiyon_tarihi").ToString();
+                else if (gridView1.GetFocusedRowCellValue("kkd_turu").ToString() == "T-SHIRT")
+                    date_tshirt_aksiyon.Text = gridView1.GetFocusedRowCellValue("aksiyon_tarihi").ToString();
+                else if (gridView1.GetFocusedRowCellValue("kkd_turu").ToString() == "ÇELİK AYAKKABI")
+                    date_ayakkabi_aksiyon.Text = gridView1.GetFocusedRowCellValue("aksiyon_tarihi").ToString();
+                else if (gridView1.GetFocusedRowCellValue("kkd_turu").ToString() == "İŞ ELDİVENİ")
+                    date_is_eldiveni_aksiyon.Text = gridView1.GetFocusedRowCellValue("aksiyon_tarihi").ToString();
+                else if (gridView1.GetFocusedRowCellValue("kkd_turu").ToString() == "GÖZLÜK")
+                    date_gozluk_aksiyon.Text = gridView1.GetFocusedRowCellValue("aksiyon_tarihi").ToString();
+                else if (gridView1.GetFocusedRowCellValue("kkd_turu").ToString() == "KULAKLIK")
+                    date_kulaklik_aksiyon.Text = gridView1.GetFocusedRowCellValue("aksiyon_tarihi").ToString();
+                else if (gridView1.GetFocusedRowCellValue("kkd_turu").ToString() == "MASKE")
+                    date_maske_aksiyon.Text = gridView1.GetFocusedRowCellValue("aksiyon_tarihi").ToString();
+                else if (gridView1.GetFocusedRowCellValue("kkd_turu").ToString() == "KAYNAKÇI GÖZLÜĞÜ")
+                    date_kaynak_gozluk_aksiyon.Text = gridView1.GetFocusedRowCellValue("aksiyon_tarihi").ToString();
+                else if (gridView1.GetFocusedRowCellValue("kkd_turu").ToString() == "BARET")
+                    date_baret_aksiyon.Text = gridView1.GetFocusedRowCellValue("aksiyon_tarihi").ToString();
+                else if (gridView1.GetFocusedRowCellValue("kkd_turu").ToString() == "KAYNAKÇI ELDİVENİ")
+                    date_kaynak_eldiveni_aksiyon.Text = gridView1.GetFocusedRowCellValue("aksiyon_tarihi").ToString();
 
             btn_guncelle.Enabled = true;
             btn_sil.Enabled = true;
@@ -850,7 +862,7 @@ namespace InsanKaynaklariBilgiSistem
            
 
             //eğer aksiyon türüseçilir ise tarih zoruluolarak girilsin
-            if (cb_is_yelek.Text != "")
+            if (cb_is_yelek.Text != "Kullanımda" && cb_is_yelek.Text != "")
                 {
                     date_is_yelek_aksiyon.Enabled = true;
                     date_is_yelek_aksiyon.Visible = true;
@@ -861,7 +873,7 @@ namespace InsanKaynaklariBilgiSistem
                     date_is_yelek_aksiyon.Visible = false;
                 }
 
-            if (cb_polar.Text != "" )
+            if (cb_polar.Text != "Kullanımda" && cb_polar.Text != "")
             {
                 date_polar_aksiyon.Enabled = true;
                 date_polar_aksiyon.Visible = true;
@@ -872,7 +884,7 @@ namespace InsanKaynaklariBilgiSistem
                 date_polar_aksiyon.Visible = false;
             }
 
-            if (cb_tulum.Text != "" )
+            if (cb_tulum.Text != "Kullanımda" && cb_tulum.Text != "")
             {
                 date_tulum_aksiyon.Enabled = true;
                 date_tulum_aksiyon.Visible = true;
@@ -882,7 +894,7 @@ namespace InsanKaynaklariBilgiSistem
                 date_tulum_aksiyon.Enabled = false;
                 date_tulum_aksiyon.Visible = false;
             }
-            if (cb_pantolon.Text != "")
+            if (cb_pantolon.Text != "Kullanımda" && cb_pantolon.Text != "")
             {
                 date_pantolon_aksiyon.Enabled = true;
                 date_pantolon_aksiyon.Visible = true;
@@ -892,7 +904,7 @@ namespace InsanKaynaklariBilgiSistem
                 date_pantolon_aksiyon.Enabled = false;
                 date_pantolon_aksiyon.Visible = false;
             }
-            if (cb_tshirt.Text != "")
+            if (cb_tshirt.Text != "Kullanımda" && cb_tshirt.Text != "")
             {
                 date_tshirt_aksiyon.Enabled = true;
                 date_tshirt_aksiyon.Visible = true;
@@ -903,7 +915,7 @@ namespace InsanKaynaklariBilgiSistem
                 date_tshirt_aksiyon.Visible = false;
             }
 
-            if (cb_ayakkabi.Text != "")
+            if (cb_ayakkabi.Text != "Kullanımda" && cb_ayakkabi.Text != "")
             {
                 date_ayakkabi_aksiyon.Enabled = true;
                 date_ayakkabi_aksiyon.Visible = true;
@@ -913,7 +925,7 @@ namespace InsanKaynaklariBilgiSistem
                 date_ayakkabi_aksiyon.Enabled = false;
                 date_ayakkabi_aksiyon.Visible = false;
             }
-            if (cb_is_eldiveni.Text != "")
+            if (cb_is_eldiveni.Text != "Kullanımda" && cb_is_eldiveni.Text != "")
             {
                 date_is_eldiveni_aksiyon.Enabled = true;
                 date_is_eldiveni_aksiyon.Visible = true;
@@ -924,7 +936,7 @@ namespace InsanKaynaklariBilgiSistem
                 date_is_eldiveni_aksiyon.Visible = false;
             }
 
-            if (cb_gozluk.Text != "")
+            if (cb_gozluk.Text != "Kullanımda" && cb_gozluk.Text != "")
             {
                 date_gozluk_aksiyon.Enabled = true;
                 date_gozluk_aksiyon.Visible = true;
@@ -935,7 +947,7 @@ namespace InsanKaynaklariBilgiSistem
                 date_gozluk_aksiyon.Visible = false;
             }
 
-            if (cb_kulaklık.Text != "")
+            if (cb_kulaklık.Text != "Kullanımda" && cb_kulaklık.Text != "")
             {
                 date_kulaklik_aksiyon.Enabled = true;
                 date_kulaklik_aksiyon.Visible = true;
@@ -945,7 +957,7 @@ namespace InsanKaynaklariBilgiSistem
                 date_kulaklik_aksiyon.Enabled = false;
                 date_kulaklik_aksiyon.Visible = false;
             }
-            if (cb_maske.Text != "")
+            if (cb_maske.Text != "Kullanımda" && cb_maske.Text != "")
             {
                 date_maske_aksiyon.Enabled = true;
                 date_maske_aksiyon.Visible = true;
@@ -955,7 +967,7 @@ namespace InsanKaynaklariBilgiSistem
                 date_maske_aksiyon.Enabled = false;
                 date_maske_aksiyon.Visible = false;
             }
-            if (cb_kaynak_gozluk.Text != "")
+            if (cb_kaynak_gozluk.Text != "Kullanımda" && cb_kaynak_gozluk.Text != "")
             {
                 date_kaynak_gozluk_aksiyon.Enabled = true;
                 date_kaynak_gozluk_aksiyon.Visible = true;
@@ -966,7 +978,7 @@ namespace InsanKaynaklariBilgiSistem
                 date_kaynak_gozluk_aksiyon.Visible = false;
             }
 
-            if ( cb_baret.Text != "")
+            if ( cb_baret.Text != "Kullanımda" && cb_baret.Text != "")
             {
                 date_baret_aksiyon.Enabled = true;
                 date_baret_aksiyon.Visible = true;
@@ -978,7 +990,7 @@ namespace InsanKaynaklariBilgiSistem
 
             }
 
-            if (cb_kaynak_eldiven.Text != "")
+            if (cb_kaynak_eldiven.Text != "Kullanımda" && cb_kaynak_eldiven.Text != "")
             {
                 date_kaynak_eldiveni_aksiyon.Enabled = true;
                 date_kaynak_eldiveni_aksiyon.Visible = true;
@@ -991,8 +1003,11 @@ namespace InsanKaynaklariBilgiSistem
                    
             if(mtxt_tc_no.Text.Length==11)
             {
+                bool ekle = false;
                 if (txt_is_yelegi.Text != "" && cb_is_yelek.Text!="")
                 {
+                    ekle = true;
+                    btn_forma_ekle.Enabled = true;
                     try
                     {
                         SqlCommand eklekomutu = new SqlCommand("Kaydet_kkd", baglantim.baglanti());
@@ -1010,7 +1025,7 @@ namespace InsanKaynaklariBilgiSistem
                         eklekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
 
                         listele();
-                        MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+                      //  MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
                         // ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
@@ -1025,6 +1040,8 @@ namespace InsanKaynaklariBilgiSistem
                 }
                 if (txt_polar.Text != ""&&cb_polar.Text!="")
                 {
+                    ekle = true;
+                    btn_forma_ekle.Enabled = true;
                     try
                     {
                         SqlCommand eklekomutu = new SqlCommand("Kaydet_kkd", baglantim.baglanti());
@@ -1042,7 +1059,7 @@ namespace InsanKaynaklariBilgiSistem
                         eklekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
 
                         listele();
-                        MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+                      //  MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
                         // ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
@@ -1057,6 +1074,8 @@ namespace InsanKaynaklariBilgiSistem
                 }
                 if (txt_tulum.Text != ""&&cb_tulum.Text!="")
                 {
+                    ekle = true;
+                    btn_forma_ekle.Enabled = true;
                     try
                     {
                         SqlCommand eklekomutu = new SqlCommand("Kaydet_kkd", baglantim.baglanti());
@@ -1074,7 +1093,7 @@ namespace InsanKaynaklariBilgiSistem
                         eklekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
 
                         listele();
-                        MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+                       // MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
                         // ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
@@ -1089,6 +1108,8 @@ namespace InsanKaynaklariBilgiSistem
                 }
                 if (txt_pantolun.Text != ""&&cb_pantolon.Text!="")
                 {
+                    ekle = true;
+                    btn_forma_ekle.Enabled = true;
                     try
                     {
                         SqlCommand eklekomutu = new SqlCommand("Kaydet_kkd", baglantim.baglanti());
@@ -1106,7 +1127,7 @@ namespace InsanKaynaklariBilgiSistem
                         eklekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
 
                         listele();
-                        MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+                       // MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
                         // ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
@@ -1121,6 +1142,8 @@ namespace InsanKaynaklariBilgiSistem
                 }
                 if (txt_thirt.Text != ""&&cb_tshirt.Text!="")
                 {
+                    ekle = true;
+                    btn_forma_ekle.Enabled = true;
                     try
                     {
                         SqlCommand eklekomutu = new SqlCommand("Kaydet_kkd", baglantim.baglanti());
@@ -1138,7 +1161,7 @@ namespace InsanKaynaklariBilgiSistem
                         eklekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
 
                         listele();
-                        MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+                      //  MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
                         // ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
@@ -1153,6 +1176,8 @@ namespace InsanKaynaklariBilgiSistem
                 }
                 if (txt_celik_ayakkabi.Text != ""&&cb_ayakkabi.Text!="")
                 {
+                    ekle = true;
+                    btn_forma_ekle.Enabled = true;
                     try
                     {
                         SqlCommand eklekomutu = new SqlCommand("Kaydet_kkd", baglantim.baglanti());
@@ -1170,7 +1195,7 @@ namespace InsanKaynaklariBilgiSistem
                         eklekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
 
                         listele();
-                        MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+                       // MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
                         // ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
@@ -1185,6 +1210,8 @@ namespace InsanKaynaklariBilgiSistem
                 }
                 if (txt_is_eldiveni.Text != ""&&cb_is_eldiveni.Text!="")
                 {
+                    ekle = true;
+                    btn_forma_ekle.Enabled = true;
                     try
                     {
                         SqlCommand eklekomutu = new SqlCommand("Kaydet_kkd", baglantim.baglanti());
@@ -1202,7 +1229,7 @@ namespace InsanKaynaklariBilgiSistem
                         eklekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
 
                         listele();
-                        MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+                       // MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
                         // ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
@@ -1217,6 +1244,8 @@ namespace InsanKaynaklariBilgiSistem
                 }
                 if (txt_gozluk.Text != ""&&cb_gozluk.Text!="")
                 {
+                    ekle = true;
+                    btn_forma_ekle.Enabled = true;
                     try
                     {
                         SqlCommand eklekomutu = new SqlCommand("Kaydet_kkd", baglantim.baglanti());
@@ -1234,7 +1263,7 @@ namespace InsanKaynaklariBilgiSistem
                         eklekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
 
                         listele();
-                        MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+                      //  MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
                         // ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
@@ -1249,6 +1278,8 @@ namespace InsanKaynaklariBilgiSistem
                 }
                 if (txt_kulaklik.Text != ""&&cb_kulaklık.Text!="")
                 {
+                    ekle = true;
+                    btn_forma_ekle.Enabled = true;
                     try
                     {
                         SqlCommand eklekomutu = new SqlCommand("Kaydet_kkd", baglantim.baglanti());
@@ -1266,7 +1297,7 @@ namespace InsanKaynaklariBilgiSistem
                         eklekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
 
                         listele();
-                        MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+                      //  MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
                         // ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
@@ -1281,6 +1312,8 @@ namespace InsanKaynaklariBilgiSistem
                 }
                 if (txt_maske.Text != ""&&cb_maske.Text!="")
                 {
+                    ekle = true;
+                    btn_forma_ekle.Enabled = true;
                     try
                     {
                         SqlCommand eklekomutu = new SqlCommand("Kaydet_kkd", baglantim.baglanti());
@@ -1298,7 +1331,7 @@ namespace InsanKaynaklariBilgiSistem
                         eklekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
 
                         listele();
-                        MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+                       // MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
                         // ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
@@ -1313,6 +1346,8 @@ namespace InsanKaynaklariBilgiSistem
                 }
                 if (txt_kaynak_gozluk.Text != ""&&cb_kaynak_gozluk.Text!="")
                 {
+                    ekle = true;
+                    btn_forma_ekle.Enabled = true;
                     try
                     {
                         SqlCommand eklekomutu = new SqlCommand("Kaydet_kkd", baglantim.baglanti());
@@ -1330,7 +1365,7 @@ namespace InsanKaynaklariBilgiSistem
                         eklekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
 
                         listele();
-                        MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+                        //MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
                         // ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
@@ -1345,6 +1380,8 @@ namespace InsanKaynaklariBilgiSistem
                 }
                 if (txt_baret.Text != ""&&cb_baret.Text!="")
                 {
+                    ekle = true;
+                    btn_forma_ekle.Enabled = true;
                     try
                     {
                         SqlCommand eklekomutu = new SqlCommand("Kaydet_kkd", baglantim.baglanti());
@@ -1362,7 +1399,7 @@ namespace InsanKaynaklariBilgiSistem
                         eklekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
 
                         listele();
-                        MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+                       // MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
                         // ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
@@ -1377,6 +1414,8 @@ namespace InsanKaynaklariBilgiSistem
                 }
                 if (txt_kaynak_eldiveni.Text != ""&&cb_kaynak_eldiven.Text!="")
                 {
+                    ekle = true;
+                    btn_forma_ekle.Enabled = true;
                     try
                     {
                         SqlCommand eklekomutu = new SqlCommand("Kaydet_kkd", baglantim.baglanti());
@@ -1394,7 +1433,7 @@ namespace InsanKaynaklariBilgiSistem
                         eklekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
 
                         listele();
-                        MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+                      //  MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
                         // ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
@@ -1407,8 +1446,13 @@ namespace InsanKaynaklariBilgiSistem
 
                     }
                 }
-              
-               
+              if(ekle == true)
+              {
+
+                    MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+
+                }
+
             }
             else
             {
@@ -1424,6 +1468,7 @@ namespace InsanKaynaklariBilgiSistem
         //kayıtları güncelle
         private void btn_guncelle_Click(object sender, EventArgs e)
         {
+            bool guncelle = false;
             // baglantim.baglanti().Open();
             SqlCommand selectsorgu = new SqlCommand("select * from kkd where TC='" + mtxt_tc_no.Text + "'", baglantim.baglanti());
 
@@ -1437,147 +1482,147 @@ namespace InsanKaynaklariBilgiSistem
                 lbl_tc_no.ForeColor = Color.Black;
 
            //eğer aksiyon türüseçilir ise tarih zoruluolarak girilsin
-            if (cb_is_yelek.Text != "")
+            if (cb_is_yelek.Text != "Kullanımda"&& cb_is_yelek.Text != "")
             {
                 date_is_yelek_aksiyon.Enabled = true;
                 date_is_yelek_aksiyon.Visible = true;
             }
             else
             {
-                date_is_yelek_aksiyon.Enabled = false;
+              //  date_is_yelek_aksiyon.Enabled = false;
                 date_is_yelek_aksiyon.Visible = false;
             }
 
-            if (cb_polar.Text != "")
+            if (cb_polar.Text != "Kullanımda" && cb_polar.Text != "")
             {
                 date_polar_aksiyon.Enabled = true;
                 date_polar_aksiyon.Visible = true;
             }
             else
             {
-                date_polar_aksiyon.Enabled = false;
+             //   date_polar_aksiyon.Enabled = false;
                 date_polar_aksiyon.Visible = false;
             }
 
-            if (cb_tulum.Text != "")
+            if (cb_tulum.Text != "Kullanımda" && cb_tulum.Text != "")
             {
                 date_tulum_aksiyon.Enabled = true;
                 date_tulum_aksiyon.Visible = true;
             }
             else
             {
-                date_tulum_aksiyon.Enabled = false;
+             //   date_tulum_aksiyon.Enabled = false;
                 date_tulum_aksiyon.Visible = false;
             }
 
-            if (cb_pantolon.Text != "")
+            if (cb_pantolon.Text !=  "Kullanımda" && cb_pantolon.Text != "")
             {
                 date_pantolon_aksiyon.Enabled = true;
                 date_pantolon_aksiyon.Visible = true;
             }
             else
             {
-                date_pantolon_aksiyon.Enabled = false;
+            //    date_pantolon_aksiyon.Enabled = false;
                 date_pantolon_aksiyon.Visible = false;
             }
 
-            if (cb_tshirt.Text != "")
+            if (cb_tshirt.Text != "Kullanımda" && cb_tshirt.Text != "")
             {
                 date_tshirt_aksiyon.Enabled = true;
                 date_tshirt_aksiyon.Visible = true;
             }
             else
             {
-                date_tshirt_aksiyon.Enabled = false;
+             //   date_tshirt_aksiyon.Enabled = false;
                 date_tshirt_aksiyon.Visible = false;
             }
 
-            if (cb_ayakkabi.Text != "")
+            if (cb_ayakkabi.Text != "Kullanımda" && cb_ayakkabi.Text != "")
             {
                 date_ayakkabi_aksiyon.Enabled = true;
                 date_ayakkabi_aksiyon.Visible = true;
             }
             else
             {
-                date_ayakkabi_aksiyon.Enabled = false;
+             //   date_ayakkabi_aksiyon.Enabled = false;
                 date_ayakkabi_aksiyon.Visible = false;
             }
 
-            if (cb_is_eldiveni.Text != "")
+            if (cb_is_eldiveni.Text != "Kullanımda" && cb_is_eldiveni.Text != "")
             {
                 date_is_eldiveni_aksiyon.Enabled = true;
                 date_is_eldiveni_aksiyon.Visible = true;
             }
             else
             {
-                date_is_eldiveni_aksiyon.Enabled = false;
+             //   date_is_eldiveni_aksiyon.Enabled = false;
                 date_is_eldiveni_aksiyon.Visible = false;
             }
 
-            if (cb_gozluk.Text != "")
+            if (cb_gozluk.Text != "Kullanımda" && cb_gozluk.Text != "")
             {
                 date_gozluk_aksiyon.Enabled = true;
                 date_gozluk_aksiyon.Visible = true;
             }
             else
             {
-                date_gozluk_aksiyon.Enabled = false;
+               // date_gozluk_aksiyon.Enabled = false;
                 date_gozluk_aksiyon.Visible = false;
             }
 
-            if (cb_kulaklık.Text != "")
+            if (cb_kulaklık.Text != "Kullanımda" && cb_kulaklık.Text != "")
             {
                 date_kulaklik_aksiyon.Enabled = true;
                 date_kulaklik_aksiyon.Visible = true;
             }
             else
             {
-                date_kulaklik_aksiyon.Enabled = false;
+              //  date_kulaklik_aksiyon.Enabled = false;
                 date_kulaklik_aksiyon.Visible = false;
             }
 
-            if (cb_maske.Text != "")
+            if (cb_maske.Text != "Kullanımda" && cb_maske.Text != "")
             {
                 date_maske_aksiyon.Enabled = true;
                 date_maske_aksiyon.Visible = true;
             }
             else
             {
-                date_maske_aksiyon.Enabled = false;
+               // date_maske_aksiyon.Enabled = false;
                 date_maske_aksiyon.Visible = false;
             }
 
-            if (cb_kaynak_gozluk.Text != "")
+            if (cb_kaynak_gozluk.Text != "Kullanımda" && cb_kaynak_gozluk.Text != "")
             {
                 date_kaynak_gozluk_aksiyon.Enabled = true;
                 date_kaynak_gozluk_aksiyon.Visible = true;
             }
             else
             {
-                date_kaynak_gozluk_aksiyon.Enabled = false;
+             //   date_kaynak_gozluk_aksiyon.Enabled = false;
                 date_kaynak_gozluk_aksiyon.Visible = false;
             }
 
-            if (cb_baret.Text != "")
+            if (cb_baret.Text != "Kullanımda" && cb_baret.Text != "")
             {
                 date_baret_aksiyon.Enabled = true;
                 date_baret_aksiyon.Visible = true;
             }
             else
             {
-                date_baret_aksiyon.Enabled = false;
+              //  date_baret_aksiyon.Enabled = false;
                 date_baret_aksiyon.Visible = false;
 
             }
 
-            if (cb_kaynak_eldiven.Text != "")
+            if (cb_kaynak_eldiven.Text != "Kullanımda" && cb_kaynak_eldiven.Text != "")
             {
-                date_kaynak_eldiveni_aksiyon.Enabled = true;
+               date_kaynak_eldiveni_aksiyon.Enabled = true;
                 date_kaynak_eldiveni_aksiyon.Visible = true;
             }
             else
             {
-                date_kaynak_eldiveni_aksiyon.Enabled = false;
+              //  date_kaynak_eldiveni_aksiyon.Enabled = false;
                 date_kaynak_eldiveni_aksiyon.Visible = false;
             }
 
@@ -1585,6 +1630,8 @@ namespace InsanKaynaklariBilgiSistem
             {
                 if (txt_is_yelegi.Text != ""&&cb_is_yelek.Text!="")
                 {
+                    guncelle = true;
+                    btn_guncelle.Enabled = true;
                     try
                     {
                         SqlCommand guncellekomutu = new SqlCommand("Guncelle_kkd", baglantim.baglanti());
@@ -1602,7 +1649,7 @@ namespace InsanKaynaklariBilgiSistem
                         guncellekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
 
                         listele();
-                        MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde güncellenmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+                      //  MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde güncellenmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
                         // ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
@@ -1617,6 +1664,8 @@ namespace InsanKaynaklariBilgiSistem
                 }
                 if (txt_polar.Text != ""&&cb_polar.Text!="")
                 {
+                    guncelle = true;
+                    btn_guncelle.Enabled = true;
                     try
                     {
                         SqlCommand guncellekomutu = new SqlCommand("Guncelle_kkd", baglantim.baglanti());
@@ -1634,7 +1683,7 @@ namespace InsanKaynaklariBilgiSistem
                         guncellekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
 
                         listele();
-                        MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde güncellenmiştir..", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+                       // MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde güncellenmiştir..", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
                         // ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
@@ -1649,6 +1698,8 @@ namespace InsanKaynaklariBilgiSistem
                 }
                 if (txt_tulum.Text != ""&&cb_tulum.Text!="")
                 {
+                    guncelle = true;
+                    btn_guncelle.Enabled = true;
                     try
                     {
                         SqlCommand guncellekomutu = new SqlCommand("Guncelle_kkd", baglantim.baglanti());
@@ -1666,7 +1717,7 @@ namespace InsanKaynaklariBilgiSistem
                         guncellekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
 
                         listele();
-                        MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde güncellenmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+                       // MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde güncellenmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
                         // ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
@@ -1681,6 +1732,8 @@ namespace InsanKaynaklariBilgiSistem
                 }
                 if (txt_pantolun.Text != ""&&cb_pantolon.Text!="")
                 {
+                    guncelle = true;
+                    btn_guncelle.Enabled = true;
                     try
                     {
                         SqlCommand guncellekomutu = new SqlCommand("Guncelle_kkd", baglantim.baglanti());
@@ -1698,7 +1751,7 @@ namespace InsanKaynaklariBilgiSistem
                         guncellekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
 
                         listele();
-                        MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde güncellenmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+                       // MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde güncellenmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
                         // ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
@@ -1713,6 +1766,8 @@ namespace InsanKaynaklariBilgiSistem
                 }
                 if (txt_thirt.Text != ""&&cb_tshirt.Text!="")
                 {
+                    guncelle = true;
+                    btn_guncelle.Enabled = true;
                     try
                     {
                         SqlCommand guncellekomutu = new SqlCommand("Guncelle_kkd", baglantim.baglanti());
@@ -1730,7 +1785,7 @@ namespace InsanKaynaklariBilgiSistem
                         guncellekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
 
                         listele();
-                        MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde güncellenmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+                       // MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde güncellenmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
                         // ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
@@ -1745,6 +1800,8 @@ namespace InsanKaynaklariBilgiSistem
                 }
                 if (txt_celik_ayakkabi.Text != ""&&cb_ayakkabi.Text!="")
                 {
+                    guncelle = true;
+                    btn_guncelle.Enabled = true;
                     try
                     {
                         SqlCommand guncellekomutu = new SqlCommand("Guncelle_kkd", baglantim.baglanti());
@@ -1762,7 +1819,7 @@ namespace InsanKaynaklariBilgiSistem
                         guncellekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
 
                         listele();
-                        MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde güncellenmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+                        //MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde güncellenmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
                         // ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
@@ -1776,9 +1833,44 @@ namespace InsanKaynaklariBilgiSistem
                     }
                 }
                 if (txt_is_eldiveni.Text != ""&& cb_is_eldiveni.Text!="")
+                {
+                    guncelle = true;
+                    btn_guncelle.Enabled = true;
+                    try
+                    {
+                        SqlCommand guncellekomutu = new SqlCommand("Guncelle_kkd", baglantim.baglanti());
+                        guncellekomutu.CommandType = CommandType.StoredProcedure;
+
+                        guncellekomutu.Parameters.AddWithValue("@TC", mtxt_tc_no.Text);
+                        guncellekomutu.Parameters.AddWithValue("@kkd_turu", "İŞ ELDİVENİ");
+                        guncellekomutu.Parameters.AddWithValue("@beden", txt_is_eldiveni.Text);
+                        guncellekomutu.Parameters.AddWithValue("@kkd_teslim_tarihi", date_is_eldiveni.Value);
+                        guncellekomutu.Parameters.AddWithValue("@aksiyon_tutu", cb_is_eldiveni.Text);
+                        guncellekomutu.Parameters.AddWithValue("@aksiyon_tarihi", date_is_eldiveni_aksiyon.Value);
+                        guncellekomutu.Parameters.AddWithValue("@id", txt_id_is_eldiveni.Text);
+
+
+                        guncellekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
+
+                        listele();
+                      //  MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde güncellenmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+
+                        // ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
+
+                    }
+                    catch (Exception hatamjs)
+                    {
+                        //kayıt esnasında herhangi bir hata ile karşılaşıldığında
+                        MessageBox.Show(hatamjs.Message);
+
+
+                    }
+                }
                 if (txt_gozluk.Text != ""&&cb_gozluk.Text!="")
                 {
-                    try
+                    guncelle = true;
+                    btn_guncelle.Enabled = true;
+                        try
                     {
                         SqlCommand guncellekomutu = new SqlCommand("Guncelle_kkd", baglantim.baglanti());
                         guncellekomutu.CommandType = CommandType.StoredProcedure;
@@ -1795,7 +1887,7 @@ namespace InsanKaynaklariBilgiSistem
                         guncellekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
 
                         listele();
-                        MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde güncellenmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+                       // MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde güncellenmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
                         // ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
@@ -1810,6 +1902,8 @@ namespace InsanKaynaklariBilgiSistem
                 }
                 if (txt_kulaklik.Text != ""&&cb_kulaklık.Text!="")
                 {
+                    guncelle = true;
+                    btn_guncelle.Enabled = true;
                     try
                     {
                         SqlCommand guncellekomutu = new SqlCommand("Guncelle_kkd", baglantim.baglanti());
@@ -1827,7 +1921,7 @@ namespace InsanKaynaklariBilgiSistem
                         guncellekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
 
                         listele();
-                        MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde güncellenmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+                       // MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde güncellenmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
                         // ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
@@ -1842,6 +1936,8 @@ namespace InsanKaynaklariBilgiSistem
                 }
                 if (txt_maske.Text != ""&&cb_maske.Text!="")
                 {
+                    guncelle = true;
+                    btn_guncelle.Enabled = true;
                     try
                     {
                         SqlCommand guncellekomutu = new SqlCommand("Guncelle_kkd", baglantim.baglanti());
@@ -1859,7 +1955,7 @@ namespace InsanKaynaklariBilgiSistem
                         guncellekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
 
                         listele();
-                        MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde güncellenmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+                       // MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde güncellenmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
                         // ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
@@ -1874,6 +1970,8 @@ namespace InsanKaynaklariBilgiSistem
                 }
                 if (txt_kaynak_gozluk.Text != ""&&cb_kaynak_gozluk.Text!="")
                 {
+                    guncelle = true;
+                    btn_guncelle.Enabled = true;
                     try
                     {
                         SqlCommand guncellekomutu = new SqlCommand("Guncelle_kkd", baglantim.baglanti());
@@ -1891,7 +1989,7 @@ namespace InsanKaynaklariBilgiSistem
                         guncellekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
 
                         listele();
-                        MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+                       /// MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
                         // ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
@@ -1906,6 +2004,8 @@ namespace InsanKaynaklariBilgiSistem
                 }
                 if (txt_baret.Text != ""&&cb_baret.Text!="")
                 {
+                    guncelle = true;
+                    btn_guncelle.Enabled = true;
                     try
                     {
                         SqlCommand guncellekomutu = new SqlCommand("Guncelle_kkd", baglantim.baglanti());
@@ -1923,7 +2023,7 @@ namespace InsanKaynaklariBilgiSistem
                         guncellekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
 
                         listele();
-                        MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+                      //  MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
                         // ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
@@ -1938,6 +2038,8 @@ namespace InsanKaynaklariBilgiSistem
                 }
                 if (txt_kaynak_eldiveni.Text != ""&& cb_kaynak_eldiven.Text!="")
                 {
+                    guncelle = true;
+                    btn_guncelle.Enabled = true;
                     try
                     {
                         SqlCommand guncellekomutu = new SqlCommand("Guncelle_kkd", baglantim.baglanti());
@@ -1955,7 +2057,7 @@ namespace InsanKaynaklariBilgiSistem
                         guncellekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
 
                         listele();
-                        MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+                       /// MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
                         // ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
@@ -1967,6 +2069,12 @@ namespace InsanKaynaklariBilgiSistem
 
 
                     }
+                }
+
+                if(guncelle==true)
+                {
+                    MessageBox.Show("Kişinin kkd bilgileri başarılı bir şekilde güncellenmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+
                 }
 
 
@@ -1984,14 +2092,16 @@ namespace InsanKaynaklariBilgiSistem
             if (mtxt_tc_no.Text.Length == 11)
 
             {
+                bool sil = false;
                 if (txt_is_yelegi.Text != ""&&txt_id_yelek.Text!="")
                 {
                     bool kayit_arama_durumu = false;
-
+                   
                     SqlCommand secmeSorgusu = new SqlCommand("Select *from kkd where TC='" + mtxt_tc_no.Text + "'", baglantim.baglanti());//ilgili tck verisine ait veriler seçiliyor.henüz silme yok. varmı yok mu ona bakıyoruz.
                     SqlDataReader kayitokuma = secmeSorgusu.ExecuteReader();//veri okuyucu tanımlanıyor. sorgu sonucalrı secmesorgusuna eşitledik.
                     while (kayitokuma.Read())
                     {
+                    
 
 
                         //kayıt okuma gerçekleşti ise
@@ -1999,9 +2109,9 @@ namespace InsanKaynaklariBilgiSistem
                         SqlCommand silsorgusu = new SqlCommand("delete from kkd where TC='" + mtxt_tc_no.Text + "'and id='" + txt_id_yelek.Text + "'", baglantim.baglanti());
                         //şimdi sorgunun sonucunun gerçekleştirilmesi sağlanacak 
                         silsorgusu.ExecuteNonQuery();
-                        MessageBox.Show("Kullanıcının eğitim kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        //     MessageBox.Show("Kullanıcının eğitim kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
-
+                        sil = true;
                         //ekrani_temizle();
                         listele();
                         break;
@@ -2014,24 +2124,25 @@ namespace InsanKaynaklariBilgiSistem
 
                     }
                 }
-                else if (txt_polar.Text != ""&&txt_id_polar.Text != "")
+                if (txt_polar.Text != ""&&txt_id_polar.Text != "")
                 {
+                  
                     bool kayit_arama_durumu = false;
 
                     SqlCommand secmeSorgusu = new SqlCommand("Select *from kkd where TC='" + mtxt_tc_no.Text + "'", baglantim.baglanti());//ilgili tck verisine ait veriler seçiliyor.henüz silme yok. varmı yok mu ona bakıyoruz.
                     SqlDataReader kayitokuma = secmeSorgusu.ExecuteReader();//veri okuyucu tanımlanıyor. sorgu sonucalrı secmesorgusuna eşitledik.
                     while (kayitokuma.Read())
                     {
-
+                      
 
                         //kayıt okuma gerçekleşti ise
                         kayit_arama_durumu = true;
                         SqlCommand silsorgusu = new SqlCommand("delete from kkd where TC='" + mtxt_tc_no.Text + "'and id='" + txt_id_polar.Text + "'", baglantim.baglanti());
                         //şimdi sorgunun sonucunun gerçekleştirilmesi sağlanacak 
                         silsorgusu.ExecuteNonQuery();
-                        MessageBox.Show("Kullanıcının eğitim kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        // MessageBox.Show("Kullanıcının eğitim kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
-
+                        sil = true;
                         //ekrani_temizle();
                         listele();
                         break;
@@ -2044,7 +2155,7 @@ namespace InsanKaynaklariBilgiSistem
 
                     }
                 }
-                else if (txt_tulum.Text != ""&&txt_id_tulum.Text!="")
+                if (txt_tulum.Text != ""&&txt_id_tulum.Text!="")
                 {
                     bool kayit_arama_durumu = false;
 
@@ -2052,16 +2163,16 @@ namespace InsanKaynaklariBilgiSistem
                     SqlDataReader kayitokuma = secmeSorgusu.ExecuteReader();//veri okuyucu tanımlanıyor. sorgu sonucalrı secmesorgusuna eşitledik.
                     while (kayitokuma.Read())
                     {
-
+                      
 
                         //kayıt okuma gerçekleşti ise
                         kayit_arama_durumu = true;
                         SqlCommand silsorgusu = new SqlCommand("delete from kkd where TC='" + mtxt_tc_no.Text + "'and id='" + txt_id_tulum.Text + "'", baglantim.baglanti());
                         //şimdi sorgunun sonucunun gerçekleştirilmesi sağlanacak 
                         silsorgusu.ExecuteNonQuery();
-                        MessageBox.Show("Kullanıcının eğitim kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                       // MessageBox.Show("Kullanıcının eğitim kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
-
+                        sil = true;
                         //ekrani_temizle();
                         listele();
                         break;
@@ -2074,7 +2185,7 @@ namespace InsanKaynaklariBilgiSistem
 
                     }
                 }
-                else if (txt_pantolun.Text != ""&&txt_id_pantolon.Text!="")
+                if (txt_pantolun.Text != ""&&txt_id_pantolon.Text!="")
                 {
                     bool kayit_arama_durumu = false;
 
@@ -2082,6 +2193,7 @@ namespace InsanKaynaklariBilgiSistem
                     SqlDataReader kayitokuma = secmeSorgusu.ExecuteReader();//veri okuyucu tanımlanıyor. sorgu sonucalrı secmesorgusuna eşitledik.
                     while (kayitokuma.Read())
                     {
+                        
 
 
                         //kayıt okuma gerçekleşti ise
@@ -2089,9 +2201,9 @@ namespace InsanKaynaklariBilgiSistem
                         SqlCommand silsorgusu = new SqlCommand("delete from kkd where TC='" + mtxt_tc_no.Text + "'and id='" + txt_id_pantolon.Text + "'", baglantim.baglanti());
                         //şimdi sorgunun sonucunun gerçekleştirilmesi sağlanacak 
                         silsorgusu.ExecuteNonQuery();
-                        MessageBox.Show("Kullanıcının eğitim kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        //MessageBox.Show("Kullanıcının eğitim kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
-
+                        sil = true;
                         //ekrani_temizle();
                         listele();
                         break;
@@ -2104,14 +2216,16 @@ namespace InsanKaynaklariBilgiSistem
 
                     }
                 }
-                else if (txt_thirt.Text != ""&&txt_id_tshirt.Text!="")
+                if (txt_thirt.Text != ""&&txt_id_tshirt.Text!="")
                 {
+                
                     bool kayit_arama_durumu = false;
 
                     SqlCommand secmeSorgusu = new SqlCommand("Select *from kkd where TC='" + mtxt_tc_no.Text + "'", baglantim.baglanti());//ilgili tck verisine ait veriler seçiliyor.henüz silme yok. varmı yok mu ona bakıyoruz.
                     SqlDataReader kayitokuma = secmeSorgusu.ExecuteReader();//veri okuyucu tanımlanıyor. sorgu sonucalrı secmesorgusuna eşitledik.
                     while (kayitokuma.Read())
                     {
+                     
 
 
                         //kayıt okuma gerçekleşti ise
@@ -2119,8 +2233,8 @@ namespace InsanKaynaklariBilgiSistem
                         SqlCommand silsorgusu = new SqlCommand("delete from kkd where TC='" + mtxt_tc_no.Text + "'and id='" + txt_id_tshirt.Text + "'", baglantim.baglanti());
                         //şimdi sorgunun sonucunun gerçekleştirilmesi sağlanacak 
                         silsorgusu.ExecuteNonQuery();
-                        MessageBox.Show("Kullanıcının eğitim kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
+                        //MessageBox.Show("Kullanıcının eğitim kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        sil = true;
 
                         //ekrani_temizle();
                         listele();
@@ -2134,7 +2248,7 @@ namespace InsanKaynaklariBilgiSistem
 
                     }
                 }
-                else if (txt_celik_ayakkabi.Text != ""&&txt_id_ayakkabi.Text!="")
+                if (txt_celik_ayakkabi.Text != ""&&txt_id_ayakkabi.Text!="")
                 {
                     bool kayit_arama_durumu = false;
 
@@ -2142,6 +2256,7 @@ namespace InsanKaynaklariBilgiSistem
                     SqlDataReader kayitokuma = secmeSorgusu.ExecuteReader();//veri okuyucu tanımlanıyor. sorgu sonucalrı secmesorgusuna eşitledik.
                     while (kayitokuma.Read())
                     {
+                        
 
 
                         //kayıt okuma gerçekleşti ise
@@ -2149,9 +2264,9 @@ namespace InsanKaynaklariBilgiSistem
                         SqlCommand silsorgusu = new SqlCommand("delete from kkd where TC='" + mtxt_tc_no.Text + "'and id='" + txt_id_ayakkabi.Text + "'", baglantim.baglanti());
                         //şimdi sorgunun sonucunun gerçekleştirilmesi sağlanacak 
                         silsorgusu.ExecuteNonQuery();
-                        MessageBox.Show("Kullanıcının eğitim kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        //MessageBox.Show("Kullanıcının eğitim kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
-
+                        sil = true;
                         //ekrani_temizle();
                         listele();
                         break;
@@ -2164,7 +2279,7 @@ namespace InsanKaynaklariBilgiSistem
 
                     }
                 }
-                else if (txt_is_eldiveni.Text != ""&&txt_id_is_eldiveni.Text!="")
+                if (txt_is_eldiveni.Text != ""&&txt_id_is_eldiveni.Text!="")
                 {
                     bool kayit_arama_durumu = false;
 
@@ -2172,16 +2287,16 @@ namespace InsanKaynaklariBilgiSistem
                     SqlDataReader kayitokuma = secmeSorgusu.ExecuteReader();//veri okuyucu tanımlanıyor. sorgu sonucalrı secmesorgusuna eşitledik.
                     while (kayitokuma.Read())
                     {
-
+                       
 
                         //kayıt okuma gerçekleşti ise
                         kayit_arama_durumu = true;
                         SqlCommand silsorgusu = new SqlCommand("delete from kkd where TC='" + mtxt_tc_no.Text + "'and id='" + txt_id_is_eldiveni.Text + "'", baglantim.baglanti());
                         //şimdi sorgunun sonucunun gerçekleştirilmesi sağlanacak 
                         silsorgusu.ExecuteNonQuery();
-                        MessageBox.Show("Kullanıcının eğitim kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        // MessageBox.Show("Kullanıcının eğitim kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
-
+                        sil = true;
                         //ekrani_temizle();
                         listele();
                         break;
@@ -2194,7 +2309,7 @@ namespace InsanKaynaklariBilgiSistem
 
                     }
                 }
-                else if (txt_gozluk.Text != ""&&txt_id_gozluk.Text!="")
+                if (txt_gozluk.Text != ""&&txt_id_gozluk.Text!="")
                 {
                     bool kayit_arama_durumu = false;
 
@@ -2202,15 +2317,15 @@ namespace InsanKaynaklariBilgiSistem
                     SqlDataReader kayitokuma = secmeSorgusu.ExecuteReader();//veri okuyucu tanımlanıyor. sorgu sonucalrı secmesorgusuna eşitledik.
                     while (kayitokuma.Read())
                     {
-
+                     
 
                         //kayıt okuma gerçekleşti ise
                         kayit_arama_durumu = true;
                         SqlCommand silsorgusu = new SqlCommand("delete from kkd where TC='" + mtxt_tc_no.Text + "'and id='" + txt_id_gozluk.Text + "'", baglantim.baglanti());
                         //şimdi sorgunun sonucunun gerçekleştirilmesi sağlanacak 
                         silsorgusu.ExecuteNonQuery();
-                        MessageBox.Show("Kullanıcının eğitim kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
+                        //MessageBox.Show("Kullanıcının eğitim kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        sil = true;
 
                         //ekrani_temizle();
                         listele();
@@ -2224,7 +2339,7 @@ namespace InsanKaynaklariBilgiSistem
 
                     }
                 }
-                else if (txt_kulaklik.Text != ""&&txt_id_kulaklik.Text!="")
+                if (txt_kulaklik.Text != ""&&txt_id_kulaklik.Text!="")
                 {
                     bool kayit_arama_durumu = false;
 
@@ -2233,14 +2348,14 @@ namespace InsanKaynaklariBilgiSistem
                     while (kayitokuma.Read())
                     {
 
-
+                       
                         //kayıt okuma gerçekleşti ise
                         kayit_arama_durumu = true;
                         SqlCommand silsorgusu = new SqlCommand("delete from kkd where TC='" + mtxt_tc_no.Text + "'and id='" + txt_id_kulaklik.Text + "'", baglantim.baglanti());
                         //şimdi sorgunun sonucunun gerçekleştirilmesi sağlanacak 
                         silsorgusu.ExecuteNonQuery();
-                        MessageBox.Show("Kullanıcının eğitim kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
+                        // MessageBox.Show("Kullanıcının eğitim kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        sil = true;
 
                         //ekrani_temizle();
                         listele();
@@ -2254,7 +2369,7 @@ namespace InsanKaynaklariBilgiSistem
 
                     }
                 }
-                else if (txt_maske.Text != ""&&txt_id_maske.Text!="")
+                if (txt_maske.Text != ""&&txt_id_maske.Text!="")
                 {
                     bool kayit_arama_durumu = false;
 
@@ -2262,15 +2377,15 @@ namespace InsanKaynaklariBilgiSistem
                     SqlDataReader kayitokuma = secmeSorgusu.ExecuteReader();//veri okuyucu tanımlanıyor. sorgu sonucalrı secmesorgusuna eşitledik.
                     while (kayitokuma.Read())
                     {
-
+                        
 
                         //kayıt okuma gerçekleşti ise
                         kayit_arama_durumu = true;
                         SqlCommand silsorgusu = new SqlCommand("delete from kkd where TC='" + mtxt_tc_no.Text + "'and id='" + txt_id_maske.Text + "'", baglantim.baglanti());
                         //şimdi sorgunun sonucunun gerçekleştirilmesi sağlanacak 
                         silsorgusu.ExecuteNonQuery();
-                        MessageBox.Show("Kullanıcının eğitim kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
+                        //MessageBox.Show("Kullanıcının eğitim kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        sil = true;
 
                         //ekrani_temizle();
                         listele();
@@ -2284,7 +2399,7 @@ namespace InsanKaynaklariBilgiSistem
 
                     }
                 }
-                else if (txt_kaynak_gozluk.Text != ""&&txt_id_kaynak_gozluk.Text!="")
+                if (txt_kaynak_gozluk.Text != ""&&txt_id_kaynak_gozluk.Text!="")
                 {
                     bool kayit_arama_durumu = false;
 
@@ -2292,15 +2407,15 @@ namespace InsanKaynaklariBilgiSistem
                     SqlDataReader kayitokuma = secmeSorgusu.ExecuteReader();//veri okuyucu tanımlanıyor. sorgu sonucalrı secmesorgusuna eşitledik.
                     while (kayitokuma.Read())
                     {
-
+                 
 
                         //kayıt okuma gerçekleşti ise
                         kayit_arama_durumu = true;
                         SqlCommand silsorgusu = new SqlCommand("delete from kkd where TC='" + mtxt_tc_no.Text + "'and id='" + txt_id_kaynak_gozluk.Text + "'", baglantim.baglanti());
                         //şimdi sorgunun sonucunun gerçekleştirilmesi sağlanacak 
                         silsorgusu.ExecuteNonQuery();
-                        MessageBox.Show("Kullanıcının eğitim kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
+                        // MessageBox.Show("Kullanıcının eğitim kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        sil = true;
 
                         //ekrani_temizle();
                         listele();
@@ -2314,7 +2429,7 @@ namespace InsanKaynaklariBilgiSistem
 
                     }
                 }
-                else if (txt_baret.Text != ""&&txt_id_baret.Text!="")
+                if (txt_baret.Text != ""&&txt_id_baret.Text!="")
                 {
                     bool kayit_arama_durumu = false;
 
@@ -2322,16 +2437,16 @@ namespace InsanKaynaklariBilgiSistem
                     SqlDataReader kayitokuma = secmeSorgusu.ExecuteReader();//veri okuyucu tanımlanıyor. sorgu sonucalrı secmesorgusuna eşitledik.
                     while (kayitokuma.Read())
                     {
-
+                       
 
                         //kayıt okuma gerçekleşti ise
                         kayit_arama_durumu = true;
                         SqlCommand silsorgusu = new SqlCommand("delete from kkd where TC='" + mtxt_tc_no.Text + "'and id='" + txt_id_baret.Text + "'", baglantim.baglanti());
                         //şimdi sorgunun sonucunun gerçekleştirilmesi sağlanacak 
                         silsorgusu.ExecuteNonQuery();
-                        MessageBox.Show("Kullanıcının eğitim kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        // MessageBox.Show("Kullanıcının eğitim kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
-
+                        sil = true;
                         //ekrani_temizle();
                         listele();
                         break;
@@ -2344,7 +2459,7 @@ namespace InsanKaynaklariBilgiSistem
 
                     }
                 }
-                else if (txt_kaynak_eldiveni.Text != ""&&txt_id_kaynak_eldiven.Text!="")
+                if (txt_kaynak_eldiveni.Text != ""&&txt_id_kaynak_eldiven.Text!="")
                 {
                     bool kayit_arama_durumu = false;
 
@@ -2352,15 +2467,15 @@ namespace InsanKaynaklariBilgiSistem
                     SqlDataReader kayitokuma = secmeSorgusu.ExecuteReader();//veri okuyucu tanımlanıyor. sorgu sonucalrı secmesorgusuna eşitledik.
                     while (kayitokuma.Read())
                     {
-
+                      
 
                         //kayıt okuma gerçekleşti ise
                         kayit_arama_durumu = true;
                         SqlCommand silsorgusu = new SqlCommand("delete from kkd where TC='" + mtxt_tc_no.Text + "'and id='" + txt_id_kaynak_eldiven.Text + "'", baglantim.baglanti());
                         //şimdi sorgunun sonucunun gerçekleştirilmesi sağlanacak 
                         silsorgusu.ExecuteNonQuery();
-                        MessageBox.Show("Kullanıcının eğitim kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
+                        //MessageBox.Show("Kullanıcının eğitim kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        sil = true;
 
                         //ekrani_temizle();
                         listele();
@@ -2375,6 +2490,10 @@ namespace InsanKaynaklariBilgiSistem
                     }
                 }
 
+                if(sil == true)
+                {  
+                    MessageBox.Show("Kullanıcının ilgili  kkd bilgisi başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
                 ekrani_temizle();
 
 
@@ -2396,146 +2515,156 @@ namespace InsanKaynaklariBilgiSistem
                 date_is_yelek_aksiyon.Visible = false;
             else
             {
+                date_is_yelek_aksiyon.Enabled = true;
                 date_is_yelek_aksiyon.Visible = true;
                 lbl_aksiyon_tarihi.Visible = true;
             }
         }
 
-        
-        /*
-private void cb_polar_SelectedIndexChanged(object sender, EventArgs e)
-{
-   if (cb_polar.Text == "Kullanımda")
-       date_polar_aksiyon.Visible = false;
-   else
-   {
-       date_polar_aksiyon.Visible = true;
-       lbl_aksiyon_tarihi.Visible = true;
-   }
+        private void cb_polar_TextChanged(object sender, EventArgs e)
+        {
+            if (cb_polar.Text == "Kullanımda")
+                date_polar_aksiyon.Visible = false;
+            else
+            {
+                date_polar_aksiyon.Enabled = true;
+                date_polar_aksiyon.Visible = true;
+                lbl_aksiyon_tarihi.Visible = true;
+            }
+        }
 
-}
+        private void cb_tulum_TextChanged(object sender, EventArgs e)
+        {
+            if (cb_tulum.Text == "Kullanımda")
+                date_tulum_aksiyon.Visible = false;
+            else
+            {
+                date_tulum_aksiyon.Enabled = true;
+                date_tulum_aksiyon.Visible = true;
+                lbl_aksiyon_tarihi.Visible = true;
+            }
+        }
 
-private void cb_tulum_SelectedIndexChanged(object sender, EventArgs e)
-{
-   if (cb_tulum.Text == "Kullanımda")
-       date_tulum_aksiyon.Visible = false;
-   else
-   {
-       date_tulum_aksiyon.Visible = true;
-       lbl_aksiyon_tarihi.Visible = true;
-   }
-}
+        private void cb_pantolon_TextChanged(object sender, EventArgs e)
+        {
+            if (cb_pantolon.Text == "Kullanımda")
+                date_pantolon_aksiyon.Visible = false;
+            else
+            {
+                date_pantolon_aksiyon.Enabled = true;
+                date_pantolon_aksiyon.Visible = true;
+                lbl_aksiyon_tarihi.Visible = true;
+            }
+        }
 
-private void cb_pantolon_SelectedIndexChanged(object sender, EventArgs e)
-{
-   if (cb_pantolon.Text == "Kullanımda")
-       date_pantolon_aksiyon.Visible = false;
-   else
-   {
-       date_pantolon_aksiyon.Visible = true;
-       lbl_aksiyon_tarihi.Visible = true;
-   }
-}
+        private void cb_tshirt_TextChanged(object sender, EventArgs e)
+        {
+            if (cb_tshirt.Text == "Kullanımda")
+                date_tshirt_aksiyon.Visible = false;
+            else
+            {
+                date_tshirt_aksiyon.Enabled = true;
+                date_tshirt_aksiyon.Visible = true;
+                lbl_aksiyon_tarihi.Visible = true;
+            }
+        }
 
-private void cb_tshirt_SelectedIndexChanged(object sender, EventArgs e)
-{
-   if (cb_tshirt.Text == "Kullanımda")
-       date_tshirt_aksiyon.Visible = false;
-   else
-   {
-       date_tshirt_aksiyon.Visible = true;
-       lbl_aksiyon_tarihi.Visible = true;
-   }
-}
+        private void cb_ayakkabi_TextChanged(object sender, EventArgs e)
+        {
+            if (cb_ayakkabi.Text == "Kullanımda")
+                date_ayakkabi_aksiyon.Visible = false;
+            else
+            {
+                date_ayakkabi_aksiyon.Enabled = true;
+                date_ayakkabi_aksiyon.Visible = true;
+                lbl_aksiyon_tarihi.Visible = true;
+            }
+        }
 
-private void cb_ayakkabi_SelectedIndexChanged(object sender, EventArgs e)
-{
-   if (cb_ayakkabi.Text == "Kullanımda")
-       date_ayakkabi_aksiyon.Visible = false;
-   else
-   {
-       date_ayakkabi_aksiyon.Visible = true;
-       lbl_aksiyon_tarihi.Visible = true;
-   }
-}
+        private void cb_is_eldiveni_TextChanged(object sender, EventArgs e)
+        {
+            if (cb_is_eldiveni.Text == "Kullanımda")
+                date_is_eldiveni_aksiyon.Visible = false;
+            else
+            {
+                date_is_eldiveni_aksiyon.Enabled = true;
+                date_is_eldiveni_aksiyon.Visible = true;
+                lbl_aksiyon_tarihi.Visible = true;
+            }
+        }
 
-private void cb_is_eldiveni_SelectedIndexChanged(object sender, EventArgs e)
-{
-   if (cb_is_eldiveni.Text == "Kullanımda")
-       date_is_eldiveni_aksiyon.Visible = false;
-   else
-   {
-       date_is_eldiveni_aksiyon.Visible = true;
-       lbl_aksiyon_tarihi.Visible = true;
-   }
-}
+        private void cb_gozluk_TextChanged(object sender, EventArgs e)
+        {
+            if (cb_gozluk.Text == "Kullanımda")
+                date_gozluk_aksiyon.Visible = false;
+            else
+            {
+                date_gozluk_aksiyon.Enabled = true;
+                date_gozluk_aksiyon.Visible = true;
+                lbl_aksiyon_tarihi.Visible = true;
+            }
+        }
 
-private void cb_gozluk_SelectedIndexChanged(object sender, EventArgs e)
-{
-   if (cb_gozluk.Text == "Kullanımda")
-       date_gozluk_aksiyon.Visible = false;
-   else
-   {
-       date_gozluk_aksiyon.Visible = true;
-       lbl_aksiyon_tarihi.Visible = true;
-   }
-}
+        private void cb_kulaklık_TextChanged(object sender, EventArgs e)
+        {
+            if (cb_kulaklık.Text == "Kullanımda")
+                date_kulaklik_aksiyon.Visible = false;
+            else
+            {
+                date_kulaklik_aksiyon.Enabled = true;
+                date_kulaklik_aksiyon.Visible = true;
+                lbl_aksiyon_tarihi.Visible = true;
+            }
+        }
 
-private void cb_kulaklık_SelectedIndexChanged(object sender, EventArgs e)
-{
-   if (cb_kulaklık.Text == "Kullanımda")
-       date_kulaklik_aksiyon.Visible = false;
-   else
-   {
-       date_kulaklik_aksiyon.Visible = true;
-       lbl_aksiyon_tarihi.Visible = true;
-   }
+        private void cb_maske_TextChanged(object sender, EventArgs e)
+        {
+            if (cb_maske.Text == "Kullanımda")
+                date_maske_aksiyon.Visible = false;
+            else
+            {
+                date_maske_aksiyon.Enabled = true;
+                date_maske_aksiyon.Visible = true;
+                lbl_aksiyon_tarihi.Visible = true;
+            }
+        }
 
-}
+        private void cb_kaynak_gozluk_TextChanged(object sender, EventArgs e)
+        {
+            if (cb_kaynak_gozluk.Text == "Kullanımda")
+                date_kaynak_gozluk_aksiyon.Visible = false;
+            else
+            {
+                date_kaynak_gozluk_aksiyon.Enabled = true;
+                date_kaynak_gozluk_aksiyon.Visible = true;
+                lbl_aksiyon_tarihi.Visible = true;
+            }
+        }
 
-private void cb_maske_SelectedIndexChanged(object sender, EventArgs e)
-{
-   if (cb_maske.Text == "Kullanımda")
-       date_maske_aksiyon.Visible = false;
-   else
-   {
-       date_maske_aksiyon.Visible = true;
-       lbl_aksiyon_tarihi.Visible = true;
-   }
-}
+        private void cb_baret_TextChanged(object sender, EventArgs e)
+        {
+            if (cb_baret.Text == "Kullanımda")
+                date_baret_aksiyon.Visible = false;
+            else
+            {
+                date_baret_aksiyon.Enabled = true;
+                date_baret_aksiyon.Visible = true;
+                lbl_aksiyon_tarihi.Visible = true;
+            }
+        }
 
-private void cb_kaynak_gozluk_SelectedIndexChanged(object sender, EventArgs e)
-{
-   if (cb_kaynak_gozluk.Text == "Kullanımda")
-       date_kaynak_gozluk_aksiyon.Visible = false;
-   else
-   {
-       date_kaynak_gozluk_aksiyon.Visible = true;
-       lbl_aksiyon_tarihi.Visible = true;
-   }
-}
+        private void cb_kaynak_eldiven_TextChanged(object sender, EventArgs e)
+        {
+            if (cb_kaynak_eldiven.Text == "Kullanımda")
+                date_kaynak_eldiveni_aksiyon.Visible = false;
+            else
+            {
+                date_kaynak_eldiveni_aksiyon.Enabled = true;
+                date_kaynak_eldiveni_aksiyon.Visible = true;
+                lbl_aksiyon_tarihi.Visible = true;
+                
+            }
+        }
 
-private void cb_baret_SelectedIndexChanged(object sender, EventArgs e)
-{
-   if (cb_baret.Text == "Kullanımda")
-       date_baret_aksiyon.Visible = false;
-   else
-   {
-       date_baret_aksiyon.Visible = true;
-       lbl_aksiyon_tarihi.Visible = true;
-   }
-}
-
-private void cb_kaynak_eldiven_SelectedIndexChanged(object sender, EventArgs e)
-{
-   if (cb_kaynak_eldiven.Text == "Kullanımda")
-       date_kaynak_eldiveni_aksiyon.Visible = false;
-   else
-   {
-       date_kaynak_eldiveni_aksiyon.Visible = true;
-       lbl_aksiyon_tarihi.Visible = true;
-   }
-}
-*/
     }
 }

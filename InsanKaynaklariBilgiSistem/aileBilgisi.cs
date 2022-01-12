@@ -747,7 +747,28 @@ namespace InsanKaynaklariBilgiSistem
 
 
                 }
-               
+
+
+
+                SqlCommand selectsorgu7 = new SqlCommand("aile_yakin", baglantim.baglanti());
+                selectsorgu7.CommandType = CommandType.StoredProcedure;
+
+                selectsorgu7.Parameters.AddWithValue("@Kisi_tc", mtxt_tc_no.Text);
+                selectsorgu7.Parameters.AddWithValue("@pdks", txt_pdks.Text);
+
+                SqlDataReader kayitokuma7 = selectsorgu7.ExecuteReader();
+
+                while (kayitokuma7.Read())
+                {
+                    lbl_cocuk.Text = kayitokuma7.GetValue(0).ToString();
+
+                    break;
+                }
+
+
+
+
+
                 //eğer kayıt okuma durumu gerçekleşmemiş ise kayıt bulunamadı ise
                 if (kayit_arama_durumu == false)
                 {
