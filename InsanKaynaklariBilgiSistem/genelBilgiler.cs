@@ -12,6 +12,9 @@ using System.Data.SqlClient;
 using System.Text.RegularExpressions;//görevi güvenli paralo oluşturma için bu kütüphaneden yararlanılacak
 //giriş çıkış işlemlerine ilişkşin kütüphanenin tanımlanması
 using System.IO;//klasör oluşturma var olan klsörü sorguama için kullanılacak
+using AForge.Video;
+using AForge.Video.DirectShow;
+
 
 namespace InsanKaynaklariBilgiSistem
 {
@@ -21,7 +24,7 @@ namespace InsanKaynaklariBilgiSistem
         {
             InitializeComponent();
         }
-        
+
         string resimAdresi;
 
         string cinsiyet = "";
@@ -42,6 +45,9 @@ namespace InsanKaynaklariBilgiSistem
                 resimAdresi = openFileDialog2.FileName.ToString();
             }
         }
+
+        private FilterInfoCollection webcam;
+        private VideoCaptureDevice cam;
 
         public void resim_goruntule()
         {
@@ -78,6 +84,46 @@ namespace InsanKaynaklariBilgiSistem
             }
         }
 
+        public void listele_Kisi()
+        {
+            SqlCommand sorgu_Kisi = new SqlCommand("select * from Kisi", baglantim.baglanti());
+            // sorgu_Kisi.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter dak = new SqlDataAdapter(sorgu_Kisi);
+            DataTable dtk = new DataTable();
+            dak.Fill(dtk);
+            gridControl1.DataSource = dtk;
+            gridView1.Columns["id"].Visible = false;
+
+            gridView1.Columns["TC"].Caption = "TC NO";
+            gridView1.Columns["ad"].Caption = "ADI";
+            gridView1.Columns["soyad"].Caption = "SOYADI";
+            gridView1.Columns["uyruk"].Caption = "UYRUK";
+            gridView1.Columns["cinsiyet"].Caption = "CİNSİYET";
+            gridView1.Columns["medeni_hal"].Caption = "MEDENİ HAL";
+            gridView1.Columns["dogum_Tarihi"].Caption = "DOĞUM TARİHİ";
+            gridView1.Columns["dogum_Yeri"].Caption = "DOĞUM YERİ";
+            gridView1.Columns["onceki_soyadi"].Caption = "ÖNCEKİ SOYADI";
+            gridView1.Columns["ana_Adi_Soyadi"].Caption = "ANNE ADI";
+
+            gridView1.Columns["baba_Adi_Soyadi"].Caption = "BABA ADI";
+            gridView1.Columns["meslekID"].Caption = "MESLEK KODU";
+            gridView1.Columns["gorevi"].Caption = "GÖREVİ";
+            gridView1.Columns["gorev_Yeri"].Caption = "GÖREV YERİ";
+            gridView1.Columns["giris_Tarihi"].Caption = "İŞE GİRİŞ TARİHİ";
+            gridView1.Columns["Aktif"].Caption = "DURUMU";
+            gridView1.Columns["resim"].Visible = false;
+            gridView1.Columns["cikis_Tarihi"].Caption = "İŞTEN ÇIKIŞ TARİHİ";
+            gridView1.Columns["pdks"].Caption = "PDKS";
+
+
+
+            gridView1.OptionsBehavior.Editable = false;
+            gridView1.OptionsView.ShowAutoFilterRow = true;
+
+
+        }
+
         private void genelBilgiler_Load(object sender, EventArgs e)
         {
             openFileDialog2.Title = "Personele ait resmi seçiniz";
@@ -93,13 +139,17 @@ namespace InsanKaynaklariBilgiSistem
 
 
             tc_no.Mask = "00000000000";//kullnıcı 11 haneli tc numarası girebilecek.
-            maskedTextBox_ad.Mask = ">LL????????????????????";//ad kısma en az iki karakter olmalı. BURADAKİ ? arttırıalbilir.
-            maskedTextBox_soyad.Mask = ">LL????????????????????";//soyad kısma en az iki karakter olmalı. BURADAKİ ? arttırıalbilir.
-            uyruk.Mask = ">LL????????????????????";//uyruk kısma en az iki karakter olmalı. BURADAKİ ? arttırıalbilir.
-            maskedTextBox_anneadi.Mask = ">LL????????????????????";//ad kısma en az iki karakter olmalı. BURADAKİ ? arttırıalbilir.
-            maskedTextBox_baba_adi.Mask = ">LL????????????????????";//ad kısma en az iki karakter olmalı. BURADAKİ ? arttırıalbilir.
-            maskedTextBox_o_soyadi.Mask = ">LL????????????????????";//soyad kısma en az iki karakter olmalı. BURADAKİ ? arttırıalbilir.
-            maskedTextBox_dogum_yeri.Mask = ">LL????????????????????";
+
+
+
+            txt_uyruk.CharacterCasing = CharacterCasing.Upper;
+            txt_ad.CharacterCasing = CharacterCasing.Upper;
+            txt_soyad.CharacterCasing = CharacterCasing.Upper;
+            txt_anneadi.CharacterCasing = CharacterCasing.Upper;
+            txt_baba_adi.CharacterCasing = CharacterCasing.Upper;
+            txt_dogumyeri.CharacterCasing = CharacterCasing.Upper;
+            txt_o_soyadi.CharacterCasing = CharacterCasing.Upper;
+
 
             //medeni hal kısmı
             medeni_hal.Items.Add("Bekar");
@@ -107,8 +157,8 @@ namespace InsanKaynaklariBilgiSistem
             medeni_hal.Items.Add("Boşanmış");
 
 
-            txt_gorev.CharacterCasing = CharacterCasing.Upper;
-            txt_gorev_yeri.CharacterCasing = CharacterCasing.Upper;
+            //cb_gorevi.CharacterCasing = CharacterCasing.Upper;
+            //cb_gorev_yeri.CharacterCasing = CharacterCasing.Upper;
 
 
             //meslek kodu
@@ -116,8 +166,29 @@ namespace InsanKaynaklariBilgiSistem
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
-                comboBox_meslek_kodu.Items.Add( dr[1].ToString()+"-"+dr[2].ToString());
+                comboBox_meslek_kodu.Items.Add(dr[1].ToString() + "-" + dr[2].ToString());
             }
+
+            //görevi sekmesi
+            SqlCommand cmdgorevi = new SqlCommand("select * from gorev", baglantim.baglanti());
+            SqlDataReader drgorevi = cmdgorevi.ExecuteReader();
+            while (drgorevi.Read())
+            {
+                cb_gorevi.Items.Add(drgorevi[1].ToString());
+            }
+
+
+
+            //göreviyeri sekmesi
+            SqlCommand cmdgorevyeri = new SqlCommand("select * from deparman", baglantim.baglanti());
+            SqlDataReader drgorevyeri = cmdgorevyeri.ExecuteReader();
+            while (drgorevyeri.Read())
+            {
+                cb_gorev_yeri.Items.Add(drgorevyeri[1].ToString());
+            }
+
+
+
 
             DateTime zaman = DateTime.Now;
             int yil = int.Parse(zaman.ToString("yyyy"));
@@ -136,7 +207,15 @@ namespace InsanKaynaklariBilgiSistem
             cikis_tarihi.MinDate = new DateTime(1900, 1, 1);
             cikis_tarihi.MaxDate = new DateTime(yil, ay, gun);
 
-            
+            listele_Kisi();
+
+            webcam = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+
+            foreach (FilterInfo videocapturedevice in webcam)
+            {
+                comboBox1.Items.Add(videocapturedevice.Name);
+            }
+            comboBox1.SelectedIndex = 0;
 
         }
 
@@ -144,21 +223,24 @@ namespace InsanKaynaklariBilgiSistem
         private void ekrani_temizle()
         {
             resim.Image = null;
+            pictureBox1.Image = null;
 
             tc_no.Clear();
-            maskedTextBox_ad.Clear();
-            maskedTextBox_soyad.Clear();
-            uyruk.Clear();
-            maskedTextBox_anneadi.Clear();
-            maskedTextBox_baba_adi.Clear();
-            maskedTextBox_o_soyadi.Clear();
-            maskedTextBox_dogum_yeri.Clear();
-            
+
+
             medeni_hal.Text = string.Empty;
-            txt_gorev.Text = string.Empty;
-            txt_gorev_yeri.Text = string.Empty;
+            cb_gorevi.Text = string.Empty;
+            cb_gorev_yeri.Text = string.Empty;
             comboBox_meslek_kodu.Text = string.Empty;
             txt_pdks.Text = string.Empty;
+            txt_uyruk.Text = string.Empty;
+            txt_ad.Text = string.Empty;
+            txt_soyad.Text = string.Empty;
+            txt_dogumyeri.Text = string.Empty;
+            txt_anneadi.Text = string.Empty;
+            txt_baba_adi.Text = string.Empty;
+            txt_o_soyadi.Text = string.Empty;
+
 
             dogum_tarihi.ResetText();
             giris_tarihi.ResetText();
@@ -216,7 +298,7 @@ namespace InsanKaynaklariBilgiSistem
                 break;
 
             }
-            
+
 
             if (kayitkontrol == false)//kayıt  yok ise kayıt yapılma işlemi  gerçekleştirilmelidir. fakat önce verilerin doğru girildiğinden emin olunmalıdır.
             {
@@ -229,7 +311,7 @@ namespace InsanKaynaklariBilgiSistem
                     label1.ForeColor = Color.Black;
 
                 //uyruk bilgisi girilmelidir.
-                if (uyruk.Text == "")
+                if (txt_uyruk.Text == "")
                     label1.ForeColor = Color.Red;
                 else
                     label1.ForeColor = Color.Black;
@@ -248,39 +330,39 @@ namespace InsanKaynaklariBilgiSistem
                     label2.ForeColor = Color.Black;
 
                 //ad girilmeli
-                if (maskedTextBox_ad.Text == "" && maskedTextBox_ad.Text.Length < 2)
+                if (txt_ad.Text == "" && txt_ad.Text.Length < 2)
                     label11.ForeColor = Color.Red;
                 else
                     label11.ForeColor = Color.Black;
 
 
                 //soyad girilmeli
-                if (maskedTextBox_soyad.Text == "" && maskedTextBox_soyad.Text.Length < 2)
+                if (txt_soyad.Text == "" && txt_soyad.Text.Length < 2)
                     label12.ForeColor = Color.Red;
                 else
                     label12.ForeColor = Color.Black;
 
                 //doğu yeri girilmeli
-                if (maskedTextBox_dogum_yeri.Text == "")
+                if (txt_dogumyeri.Text == "")
                     label23.ForeColor = Color.Red;
                 else
                     label23.ForeColor = Color.Black;
 
                 //anne adı 
-                if (maskedTextBox_anneadi.Text == "")
+                if (txt_anneadi.Text == "")
                     label3.ForeColor = Color.Red;
                 else
                     label3.ForeColor = Color.Black;
 
                 // baba adı
-                if (maskedTextBox_baba_adi.Text == "")
+                if (txt_baba_adi.Text == "")
                     label4.ForeColor = Color.Red;
                 else
                     label4.ForeColor = Color.Black;
 
                 //önceki soy adı
-                if (maskedTextBox_o_soyadi.Text != "")
-                    oncekisoyadi = maskedTextBox_o_soyadi.Text;
+                if (txt_o_soyadi.Text != "")
+                    oncekisoyadi = txt_o_soyadi.Text;
                 else
                     oncekisoyadi = "";
                 //meslek kodu
@@ -290,13 +372,13 @@ namespace InsanKaynaklariBilgiSistem
                     label15.ForeColor = Color.Black;
 
                 //görevi
-                if (txt_gorev.Text == "")
+                if (cb_gorevi.Text == "")
                     label6.ForeColor = Color.Red;
                 else
                     label6.ForeColor = Color.Black;
 
                 //görev yeri
-                if (txt_gorev_yeri.Text == "")
+                if (cb_gorev_yeri.Text == "")
                     label9.ForeColor = Color.Red;
                 else
                     label9.ForeColor = Color.Black;
@@ -321,9 +403,9 @@ namespace InsanKaynaklariBilgiSistem
 
                 }
 
-                if (tc_no.Text.Length == 11 && uyruk.Text != "" && medeni_hal.Text != "" && maskedTextBox_ad.Text != "" && maskedTextBox_soyad.Text != ""
-                    && maskedTextBox_dogum_yeri.Text != "" && maskedTextBox_anneadi.Text != "" && maskedTextBox_baba_adi.Text != "" && maskedTextBox_o_soyadi.Text != "" && comboBox_meslek_kodu.Text != "" &&
-                    txt_gorev.Text != "" && txt_gorev_yeri.Text != "" && resim.Image != null)
+                if (tc_no.Text.Length == 11 && txt_uyruk.Text != "" && medeni_hal.Text != "" && txt_ad.Text != "" && txt_soyad.Text != ""
+                    && txt_dogumyeri.Text != "" && txt_anneadi.Text != "" && txt_baba_adi.Text != "" && txt_o_soyadi.Text != "" && comboBox_meslek_kodu.Text != "" &&
+                    cb_gorevi.Text != "" && cb_gorev_yeri.Text != "" && resim.Image != null)
                 {
 
 
@@ -340,20 +422,20 @@ namespace InsanKaynaklariBilgiSistem
 
                     SqlCommand cmdResimKaydet = new SqlCommand("insert into Kisi(TC,ad,soyad,uyruk,cinsiyet,medeni_hal,dogum_Tarihi,dogum_Yeri,onceki_soyadi,ana_Adi_Soyadi,baba_Adi_Soyadi,meslekID,gorevi,gorev_Yeri,giris_Tarihi,Aktif,resim,cikis_Tarihi,pdks) values (@TC,@ad,@soyad,@uyruk,@cinsiyet,@medeni_hal,@dogum_Tarihi,@dogum_Yeri,@onceki_soyadi,@ana_Adi_Soyadi,@baba_Adi_Soyadi,@meslekID,@gorevi,@gorev_Yeri,@giris_Tarihi,@Aktif,@resim,@cikis_Tarihi,@pdks)", baglantim.baglanti());
                     cmdResimKaydet.Parameters.Add("@TC", SqlDbType.NVarChar, 11).Value = tc_no.Text;
-                    cmdResimKaydet.Parameters.Add("@ad", SqlDbType.NVarChar, 50).Value = maskedTextBox_ad.Text;
-                    cmdResimKaydet.Parameters.Add("@soyad", SqlDbType.NVarChar, 50).Value = maskedTextBox_soyad.Text;
-                    cmdResimKaydet.Parameters.Add("@uyruk", SqlDbType.NVarChar, 50).Value = uyruk.Text;
+                    cmdResimKaydet.Parameters.Add("@ad", SqlDbType.NVarChar, 50).Value = txt_ad.Text;
+                    cmdResimKaydet.Parameters.Add("@soyad", SqlDbType.NVarChar, 50).Value = txt_soyad.Text;
+                    cmdResimKaydet.Parameters.Add("@uyruk", SqlDbType.NVarChar, 50).Value = txt_uyruk.Text;
                     cmdResimKaydet.Parameters.Add("@cinsiyet", SqlDbType.NVarChar, 5).Value = cinsiyet;
                     cmdResimKaydet.Parameters.Add("@medeni_hal", SqlDbType.NVarChar, 50).Value = medeni_hal.Text;
 
                     cmdResimKaydet.Parameters.Add("@dogum_Tarihi", SqlDbType.DateTime).Value = dogum_tarihi.Value;
-                    cmdResimKaydet.Parameters.Add("@dogum_Yeri", SqlDbType.NVarChar, 50).Value = maskedTextBox_dogum_yeri.Text;
-                    cmdResimKaydet.Parameters.Add("@onceki_soyadi", SqlDbType.NVarChar, 50).Value = maskedTextBox_o_soyadi.Text;
-                    cmdResimKaydet.Parameters.Add("@ana_Adi_Soyadi", SqlDbType.NVarChar, 50).Value = maskedTextBox_anneadi.Text;
-                    cmdResimKaydet.Parameters.Add("@baba_Adi_Soyadi", SqlDbType.NVarChar, 50).Value = maskedTextBox_baba_adi.Text;
+                    cmdResimKaydet.Parameters.Add("@dogum_Yeri", SqlDbType.NVarChar, 50).Value = txt_dogumyeri.Text;
+                    cmdResimKaydet.Parameters.Add("@onceki_soyadi", SqlDbType.NVarChar, 50).Value = txt_o_soyadi.Text;
+                    cmdResimKaydet.Parameters.Add("@ana_Adi_Soyadi", SqlDbType.NVarChar, 50).Value = txt_anneadi.Text;
+                    cmdResimKaydet.Parameters.Add("@baba_Adi_Soyadi", SqlDbType.NVarChar, 50).Value = txt_baba_adi.Text;
                     cmdResimKaydet.Parameters.Add("@meslekID", SqlDbType.NVarChar, 50).Value = comboBox_meslek_kodu.Text;
-                    cmdResimKaydet.Parameters.Add("@gorevi", SqlDbType.NVarChar, 50).Value = txt_gorev.Text;
-                    cmdResimKaydet.Parameters.Add("@gorev_Yeri", SqlDbType.NVarChar, 50).Value = txt_gorev_yeri.Text;
+                    cmdResimKaydet.Parameters.Add("@gorevi", SqlDbType.NVarChar, 50).Value = cb_gorevi.Text;
+                    cmdResimKaydet.Parameters.Add("@gorev_Yeri", SqlDbType.NVarChar, 50).Value = cb_gorev_yeri.Text;
 
                     cmdResimKaydet.Parameters.Add("@giris_Tarihi", SqlDbType.DateTime).Value = giris_tarihi.Value;
                     cmdResimKaydet.Parameters.Add("@Aktif", SqlDbType.NVarChar, 50).Value = calismaDurumu;
@@ -384,7 +466,7 @@ namespace InsanKaynaklariBilgiSistem
                     {
 
                     }
-                  
+
                 }
                 else//herhangi bir hata ile karşılaşılır ise 
                 {
@@ -392,6 +474,10 @@ namespace InsanKaynaklariBilgiSistem
 
                 }
 
+            }
+            else
+            {
+                MessageBox.Show("Bu TC kimlik numarasına ait bir kullanıcı mevcuttur.");
             }
         }
 
@@ -412,9 +498,7 @@ namespace InsanKaynaklariBilgiSistem
                 SqlDataReader kayitokuma = selectsorgu.ExecuteReader();
                 //kayıtokumanın içerisne attığımız değişkenin while döngüsü ile tüm veri tabanında arayalım.
                 while (kayitokuma.Read())
-                {   //kayıt var ise buradan true dönecek.
-                    kayit_arama_durumu = true;
-
+                {
                     //kayıt var ise buradan true dönecek.
                     kayit_arama_durumu = true;
 
@@ -426,10 +510,10 @@ namespace InsanKaynaklariBilgiSistem
                     {
                         SqlCommand selectsorguiki = new SqlCommand("select *from Kisi where TC='" + tc_no.Text + "'", baglantim.baglanti());
                         SqlDataReader kayitokumaiki = selectsorgu.ExecuteReader();
-                       
+
                         while (kayitokumaiki.Read())
                         {
-                           
+
                             string gelen;
                             gelen = kayitokumaiki.GetValue(19).ToString();
                             if (gelen != txt_pdks.Text)
@@ -441,25 +525,31 @@ namespace InsanKaynaklariBilgiSistem
                     }
 
 
-                    uyruk.Text = kayitokuma.GetValue(4).ToString();//uyruk
+                    txt_uyruk.Text = kayitokuma.GetValue(4).ToString();//uyruk
                     //cinsiyet verisini çekelim.
-                    if (kayitokuma.GetValue(5).ToString() == "BAY")
-                        radioButton_bay.Checked = true;
-                    else
+                    if (kayitokuma.GetValue(5).ToString() == "BAYAN")
                         radioButton_bayan.Checked = true;
+                    else
+                        radioButton_bay.Checked = true;
 
                     medeni_hal.Text = kayitokuma.GetValue(6).ToString();//medeni hal
-                    maskedTextBox_ad.Text = kayitokuma.GetValue(2).ToString();//ad
-                    maskedTextBox_soyad.Text = kayitokuma.GetValue(3).ToString();//soyad
-                    uyruk.Text = kayitokuma.GetValue(4).ToString();//meslek kodu
-                    dogum_tarihi.Value = kayitokuma.GetDateTime(7);//doğum tarihi
-                    maskedTextBox_dogum_yeri.Text = kayitokuma.GetValue(8).ToString();//doğum yeri
-                    maskedTextBox_anneadi.Text = kayitokuma.GetValue(10).ToString();//anne adı
-                    maskedTextBox_baba_adi.Text = kayitokuma.GetValue(11).ToString();//baba adı
-                    maskedTextBox_o_soyadi.Text = kayitokuma.GetValue(9).ToString();//önceki soy adı
+                    txt_ad.Text = kayitokuma.GetValue(2).ToString();//ad
+                    txt_soyad.Text = kayitokuma.GetValue(3).ToString();//soyad
+                    txt_uyruk.Text = kayitokuma.GetValue(4).ToString();//meslek kodu
+
+                    if (kayitokuma.GetDateTime(7) > dogum_tarihi.MaxDate)
+                    { MessageBox.Show("Tarih kaydı alınırken hata oluştu.Doğum tarihini güncelleyiniz.Başarısız olunuz ise yöneticiye başvurunuz"); }
+                    else
+                    {
+                        dogum_tarihi.Value = kayitokuma.GetDateTime(7);//doğum tarihi
+                    }
+                    txt_dogumyeri.Text = kayitokuma.GetValue(8).ToString();//doğum yeri
+                    txt_anneadi.Text = kayitokuma.GetValue(10).ToString();//anne adı
+                    txt_baba_adi.Text = kayitokuma.GetValue(11).ToString();//baba adı
+                    txt_o_soyadi.Text = kayitokuma.GetValue(9).ToString();//önceki soy adı
                     comboBox_meslek_kodu.Text = kayitokuma.GetValue(12).ToString();//meslek kodu
-                    txt_gorev.Text = kayitokuma.GetValue(13).ToString();//görevi
-                    txt_gorev_yeri.Text = kayitokuma.GetValue(14).ToString();//görev yeri
+                    cb_gorevi.Text = kayitokuma.GetValue(13).ToString();//görevi
+                    cb_gorev_yeri.Text = kayitokuma.GetValue(14).ToString();//görev yeri
                     giris_tarihi.Value = kayitokuma.GetDateTime(15);//giriş tarihi
                     //iş durumu
                     if (kayitokuma.GetValue(16).ToString() == "Çalışıyor.")
@@ -469,7 +559,7 @@ namespace InsanKaynaklariBilgiSistem
 
                     if (kayitokuma.GetValue(16).ToString() == "Çalışıyor.")
                     {
-                       // cikis_tarihi.Value = DateTime.MinValue;
+                        // cikis_tarihi.Value = DateTime.MinValue;
                         cikis_tarihi.Enabled = false;
                     }
                     else
@@ -500,116 +590,116 @@ namespace InsanKaynaklariBilgiSistem
         //güncelle butonu
         private void btn_guncelle_Click(object sender, EventArgs e)
         {
-             //kullnıcı bir tc kimlik no girecektir fakat girdiği numara gerçekten tc numarası mı onun kontrolü yapılmalıdr.
+            //kullnıcı bir tc kimlik no girecektir fakat girdiği numara gerçekten tc numarası mı onun kontrolü yapılmalıdr.
 
-                if (tc_no.Text.Length < 11 || tc_no.Text == "")//tc kimlik numarsaı 11 den küçük olmamalıdr. veya boş olmalaıdr. eğer olur ise tc kimlik no yazısı kırmızı olacaktır.
-                    label1.ForeColor = Color.Red;
-                else
-                    label1.ForeColor = Color.Black;
+            if (tc_no.Text.Length < 11 || tc_no.Text == "")//tc kimlik numarsaı 11 den küçük olmamalıdr. veya boş olmalaıdr. eğer olur ise tc kimlik no yazısı kırmızı olacaktır.
+                label1.ForeColor = Color.Red;
+            else
+                label1.ForeColor = Color.Black;
 
-                //uyruk bilgisi girilmelidir.
-                if (uyruk.Text == "")
-                    label1.ForeColor = Color.Red;
-                else
-                    label1.ForeColor = Color.Black;
+            //uyruk bilgisi girilmelidir.
+            if (txt_uyruk.Text == "")
+                label1.ForeColor = Color.Red;
+            else
+                label1.ForeColor = Color.Black;
 
-                //cinsiyet
+            //cinsiyet
 
-                if (radioButton_bay.Checked == true)
-                    cinsiyet = "Bay";
-                else if (radioButton_bayan.Checked == true)
-                    cinsiyet = "Bayan";
+            if (radioButton_bay.Checked == true)
+                cinsiyet = "Bay";
+            else if (radioButton_bayan.Checked == true)
+                cinsiyet = "Bayan";
 
-                //medeni hal seçilmelidir.
-                if (medeni_hal.Text == "")
-                    label2.ForeColor = Color.Red;
-                else
-                    label2.ForeColor = Color.Black;
+            //medeni hal seçilmelidir.
+            if (medeni_hal.Text == "")
+                label2.ForeColor = Color.Red;
+            else
+                label2.ForeColor = Color.Black;
 
-                //ad girilmeli
-                if (maskedTextBox_ad.Text == "" && maskedTextBox_ad.Text.Length < 2)
-                    label11.ForeColor = Color.Red;
-                else
-                    label11.ForeColor = Color.Black;
-
-
-                //soyad girilmeli
-                if (maskedTextBox_soyad.Text == "" && maskedTextBox_soyad.Text.Length < 2)
-                    label12.ForeColor = Color.Red;
-                else
-                    label12.ForeColor = Color.Black;
-
-                //doğu yeri girilmeli
-                if (maskedTextBox_dogum_yeri.Text == "")
-                    label23.ForeColor = Color.Red;
-                else
-                    label23.ForeColor = Color.Black;
-
-                //anne adı 
-                if (maskedTextBox_anneadi.Text == "")
-                    label3.ForeColor = Color.Red;
-                else
-                    label3.ForeColor = Color.Black;
-
-                // baba adı
-                if (maskedTextBox_baba_adi.Text == "")
-                    label4.ForeColor = Color.Red;
-                else
-                    label4.ForeColor = Color.Black;
-
-                //önceki soy adı
-                if (maskedTextBox_o_soyadi.Text != "")
-                    oncekisoyadi = maskedTextBox_o_soyadi.Text;
-                else
-                    oncekisoyadi = "";
-                //meslek kodu
-                if (comboBox_meslek_kodu.Text == "")
-                    label15.ForeColor = Color.Red;
-                else
-                    label15.ForeColor = Color.Black;
-
-                //görevi
-                if (txt_gorev.Text == "")
-                    label6.ForeColor = Color.Red;
-                else
-                    label6.ForeColor = Color.Black;
-
-                //görev yeri
-                if (txt_gorev_yeri.Text == "")
-                    label9.ForeColor = Color.Red;
-                else
-                    label9.ForeColor = Color.Black;
+            //ad girilmeli
+            if (txt_ad.Text == "" && txt_ad.Text.Length < 2)
+                label11.ForeColor = Color.Red;
+            else
+                label11.ForeColor = Color.Black;
 
 
+            //soyad girilmeli
+            if (txt_soyad.Text == "" && txt_soyad.Text.Length < 2)
+                label12.ForeColor = Color.Red;
+            else
+                label12.ForeColor = Color.Black;
 
-                //çalıma durmu  açıklama yazılmalıdır               
-                if (toggleSwitch1.IsOn ==false)
+            //doğu yeri girilmeli
+            if (txt_dogumyeri.Text == "")
+                label23.ForeColor = Color.Red;
+            else
+                label23.ForeColor = Color.Black;
+
+            //anne adı 
+            if (txt_anneadi.Text == "")
+                label3.ForeColor = Color.Red;
+            else
+                label3.ForeColor = Color.Black;
+
+            // baba adı
+            if (txt_baba_adi.Text == "")
+                label4.ForeColor = Color.Red;
+            else
+                label4.ForeColor = Color.Black;
+
+            //önceki soy adı
+            if (txt_o_soyadi.Text != "")
+                oncekisoyadi = txt_o_soyadi.Text;
+            else
+                oncekisoyadi = "";
+            //meslek kodu
+            if (comboBox_meslek_kodu.Text == "")
+                label15.ForeColor = Color.Red;
+            else
+                label15.ForeColor = Color.Black;
+
+            //görevi
+            if (cb_gorevi.Text == "")
+                label6.ForeColor = Color.Red;
+            else
+                label6.ForeColor = Color.Black;
+
+            //görev yeri
+            if (cb_gorev_yeri.Text == "")
+                label9.ForeColor = Color.Red;
+            else
+                label9.ForeColor = Color.Black;
+
+
+
+            //çalıma durmu  açıklama yazılmalıdır               
+            if (toggleSwitch1.IsOn == false)
+            {
+
+                calismaDurumu = "Çalışıyor.";
+                cikis_tarihi.Enabled = false;
+
+
+            }
+
+            else
+            {
+                calismaDurumu = "İşten Ayrıldı.";
+                cikis_tarihi.Enabled = true;
+                cikis_tarihi.Visible = true;
+                cikisTarihi = cikis_tarihi.Value;
+
+            }
+
+
+            if (tc_no.Text.Length == 11 && txt_uyruk.Text != "" && medeni_hal.Text != "" && txt_ad.Text != "" && txt_soyad.Text != ""
+                    && txt_dogumyeri.Text != "" && txt_anneadi.Text != "" && txt_baba_adi.Text != "" && txt_o_soyadi.Text != "" && comboBox_meslek_kodu.Text != "" &&
+                    cb_gorevi.Text != "" && cb_gorev_yeri.Text != "" && resim.Image != null)
+            {
+
+
+                try
                 {
-
-                    calismaDurumu = "Çalışıyor.";
-                    cikis_tarihi.Enabled = false;
-
-
-                }
-
-                else
-                {
-                    calismaDurumu = "İşten Ayrıldı.";
-                    cikis_tarihi.Enabled = true;
-                    cikis_tarihi.Visible = true;
-                    cikisTarihi = cikis_tarihi.Value;
-
-                }
-
-            
-            if (tc_no.Text.Length == 11 && uyruk.Text != "" && medeni_hal.Text != "" && maskedTextBox_ad.Text != "" && maskedTextBox_soyad.Text != ""
-                    && maskedTextBox_dogum_yeri.Text != "" && maskedTextBox_anneadi.Text != "" && maskedTextBox_baba_adi.Text != "" && maskedTextBox_o_soyadi.Text != "" && comboBox_meslek_kodu.Text != "" &&
-                    txt_gorev.Text != "" && txt_gorev_yeri.Text != "" && resim.Image != null)
-                {
-
-
-                    try
-                    {
                     FileStream fsResim = new FileStream(resimAdresi, FileMode.Open, FileAccess.Read);
 
                     BinaryReader brResim = new BinaryReader(fsResim);
@@ -623,20 +713,20 @@ namespace InsanKaynaklariBilgiSistem
 
 
                     guncellekomutu.Parameters.Add("@TC", SqlDbType.NVarChar, 11).Value = tc_no.Text;
-                    guncellekomutu.Parameters.Add("@ad", SqlDbType.NVarChar, 50).Value = maskedTextBox_ad.Text;
-                    guncellekomutu.Parameters.Add("@soyad", SqlDbType.NVarChar, 50).Value = maskedTextBox_soyad.Text;
-                    guncellekomutu.Parameters.Add("@uyruk", SqlDbType.NVarChar, 50).Value = uyruk.Text;
+                    guncellekomutu.Parameters.Add("@ad", SqlDbType.NVarChar, 50).Value = txt_ad.Text;
+                    guncellekomutu.Parameters.Add("@soyad", SqlDbType.NVarChar, 50).Value = txt_soyad.Text;
+                    guncellekomutu.Parameters.Add("@uyruk", SqlDbType.NVarChar, 50).Value = txt_uyruk.Text;
                     guncellekomutu.Parameters.Add("@cinsiyet", SqlDbType.NVarChar, 5).Value = cinsiyet;
                     guncellekomutu.Parameters.Add("@medeni_hal", SqlDbType.NVarChar, 50).Value = medeni_hal.Text;
 
                     guncellekomutu.Parameters.Add("@dogum_Tarihi", SqlDbType.DateTime).Value = dogum_tarihi.Value;
-                    guncellekomutu.Parameters.Add("@dogum_Yeri", SqlDbType.NVarChar, 50).Value = maskedTextBox_dogum_yeri.Text;
-                    guncellekomutu.Parameters.Add("@onceki_soyadi", SqlDbType.NVarChar, 50).Value = maskedTextBox_o_soyadi.Text;
-                    guncellekomutu.Parameters.Add("@ana_Adi_Soyadi", SqlDbType.NVarChar, 50).Value = maskedTextBox_anneadi.Text;
-                    guncellekomutu.Parameters.Add("@baba_Adi_Soyadi", SqlDbType.NVarChar, 50).Value = maskedTextBox_baba_adi.Text;
+                    guncellekomutu.Parameters.Add("@dogum_Yeri", SqlDbType.NVarChar, 50).Value = txt_dogumyeri.Text;
+                    guncellekomutu.Parameters.Add("@onceki_soyadi", SqlDbType.NVarChar, 50).Value = txt_o_soyadi.Text;
+                    guncellekomutu.Parameters.Add("@ana_Adi_Soyadi", SqlDbType.NVarChar, 50).Value = txt_anneadi.Text;
+                    guncellekomutu.Parameters.Add("@baba_Adi_Soyadi", SqlDbType.NVarChar, 50).Value = txt_baba_adi.Text;
                     guncellekomutu.Parameters.Add("@meslekID", SqlDbType.NVarChar, 50).Value = comboBox_meslek_kodu.Text;
-                    guncellekomutu.Parameters.Add("@gorevi", SqlDbType.NVarChar, 50).Value = txt_gorev.Text;
-                    guncellekomutu.Parameters.Add("@gorev_Yeri", SqlDbType.NVarChar, 50).Value = txt_gorev_yeri.Text;
+                    guncellekomutu.Parameters.Add("@gorevi", SqlDbType.NVarChar, 50).Value = cb_gorevi.Text;
+                    guncellekomutu.Parameters.Add("@gorev_Yeri", SqlDbType.NVarChar, 50).Value = cb_gorev_yeri.Text;
 
                     guncellekomutu.Parameters.Add("@giris_Tarihi", SqlDbType.DateTime).Value = giris_tarihi.Value;
                     guncellekomutu.Parameters.Add("@Aktif", SqlDbType.NVarChar, 50).Value = calismaDurumu;
@@ -665,26 +755,26 @@ namespace InsanKaynaklariBilgiSistem
                     ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
                 }
-                    catch 
-                    {
+                catch
+                {
                     SqlCommand guncellekomutu = new SqlCommand("update Kisi set TC=@TC, ad=@ad, soyad=@soyad, uyruk=@uyruk, cinsiyet=@cinsiyet, medeni_hal=@medeni_hal, dogum_Tarihi=@dogum_Tarihi, dogum_Yeri=@dogum_Yeri, onceki_soyadi=@onceki_soyadi, ana_Adi_Soyadi=@ana_Adi_Soyadi, baba_Adi_Soyadi=@baba_Adi_Soyadi, meslekID=@meslekID, gorevi=@gorevi, gorev_Yeri=@gorev_Yeri, giris_Tarihi=@giris_Tarihi, Aktif=@Aktif, cikis_Tarihi= @cikis_Tarihi where TC=@TC", baglantim.baglanti());
 
 
                     guncellekomutu.Parameters.Add("@TC", SqlDbType.NVarChar, 11).Value = tc_no.Text;
-                    guncellekomutu.Parameters.Add("@ad", SqlDbType.NVarChar, 50).Value = maskedTextBox_ad.Text;
-                    guncellekomutu.Parameters.Add("@soyad", SqlDbType.NVarChar, 50).Value = maskedTextBox_soyad.Text;
-                    guncellekomutu.Parameters.Add("@uyruk", SqlDbType.NVarChar, 50).Value = uyruk.Text;
+                    guncellekomutu.Parameters.Add("@ad", SqlDbType.NVarChar, 50).Value = txt_ad.Text;
+                    guncellekomutu.Parameters.Add("@soyad", SqlDbType.NVarChar, 50).Value = txt_soyad.Text;
+                    guncellekomutu.Parameters.Add("@uyruk", SqlDbType.NVarChar, 50).Value = txt_uyruk.Text;
                     guncellekomutu.Parameters.Add("@cinsiyet", SqlDbType.NVarChar, 5).Value = cinsiyet;
                     guncellekomutu.Parameters.Add("@medeni_hal", SqlDbType.NVarChar, 50).Value = medeni_hal.Text;
 
                     guncellekomutu.Parameters.Add("@dogum_Tarihi", SqlDbType.DateTime).Value = dogum_tarihi.Value;
-                    guncellekomutu.Parameters.Add("@dogum_Yeri", SqlDbType.NVarChar, 50).Value = maskedTextBox_dogum_yeri.Text;
-                    guncellekomutu.Parameters.Add("@onceki_soyadi", SqlDbType.NVarChar, 50).Value = maskedTextBox_o_soyadi.Text;
-                    guncellekomutu.Parameters.Add("@ana_Adi_Soyadi", SqlDbType.NVarChar, 50).Value = maskedTextBox_anneadi.Text;
-                    guncellekomutu.Parameters.Add("@baba_Adi_Soyadi", SqlDbType.NVarChar, 50).Value = maskedTextBox_baba_adi.Text;
+                    guncellekomutu.Parameters.Add("@dogum_Yeri", SqlDbType.NVarChar, 50).Value = txt_dogumyeri.Text;
+                    guncellekomutu.Parameters.Add("@onceki_soyadi", SqlDbType.NVarChar, 50).Value = txt_o_soyadi.Text;
+                    guncellekomutu.Parameters.Add("@ana_Adi_Soyadi", SqlDbType.NVarChar, 50).Value = txt_anneadi.Text;
+                    guncellekomutu.Parameters.Add("@baba_Adi_Soyadi", SqlDbType.NVarChar, 50).Value = txt_baba_adi.Text;
                     guncellekomutu.Parameters.Add("@meslekID", SqlDbType.NVarChar, 50).Value = comboBox_meslek_kodu.Text;
-                    guncellekomutu.Parameters.Add("@gorevi", SqlDbType.NVarChar, 50).Value = txt_gorev.Text;
-                    guncellekomutu.Parameters.Add("@gorev_Yeri", SqlDbType.NVarChar, 50).Value = txt_gorev_yeri.Text;
+                    guncellekomutu.Parameters.Add("@gorevi", SqlDbType.NVarChar, 50).Value = cb_gorevi.Text;
+                    guncellekomutu.Parameters.Add("@gorev_Yeri", SqlDbType.NVarChar, 50).Value = cb_gorev_yeri.Text;
 
                     guncellekomutu.Parameters.Add("@giris_Tarihi", SqlDbType.DateTime).Value = giris_tarihi.Value;
                     guncellekomutu.Parameters.Add("@Aktif", SqlDbType.NVarChar, 50).Value = calismaDurumu;
@@ -713,13 +803,13 @@ namespace InsanKaynaklariBilgiSistem
 
 
             }
-                else//herhangi bir hata ile karşılaşılır ise 
-                {
-                    MessageBox.Show("Yazı rengi kırmızı olan alanları yeniden gözden geçirniz", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else//herhangi bir hata ile karşılaşılır ise 
+            {
+                MessageBox.Show("Yazı rengi kırmızı olan alanları yeniden gözden geçirniz", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                }
+            }
 
-            
+
         }
 
         //formu temizle
@@ -773,13 +863,13 @@ namespace InsanKaynaklariBilgiSistem
         }
 
         private void tc_no_KeyPress(object sender, KeyPressEventArgs e)
-        {           
+        {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
 
         private void toggleSwitch1_Toggled(object sender, EventArgs e)
         {
-            if(toggleSwitch1.IsOn==true)
+            if (toggleSwitch1.IsOn == true)
             {
                 cikis_tarihi.Visible = true;
                 cikis_tarihi.Enabled = true;
@@ -788,6 +878,109 @@ namespace InsanKaynaklariBilgiSistem
             {
                 cikis_tarihi.Visible = false;
                 cikis_tarihi.Enabled = false;
+            }
+        }
+
+        private void btn_rapor_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveDialog = new SaveFileDialog())
+            {
+                saveDialog.Filter = "Excel (2003)(.xls)|*.xls|Excel (2010) (.xlsx)|*.xlsx |RichText File (.rtf)|*.rtf |Pdf File (.pdf)|*.pdf |Html File (.html)|*.html";
+                if (saveDialog.ShowDialog() != DialogResult.Cancel)
+                {
+                    string exportFilePath = saveDialog.FileName;
+                    string fileExtenstion = new FileInfo(exportFilePath).Extension;
+
+                    switch (fileExtenstion)
+                    {
+                        case ".xls":
+                            gridControl1.ExportToXls(exportFilePath);
+                            break;
+                        case ".xlsx":
+                            gridControl1.ExportToXlsx(exportFilePath);
+                            break;
+                        case ".rtf":
+                            gridControl1.ExportToRtf(exportFilePath);
+                            break;
+                        case ".pdf":
+                            gridControl1.ExportToPdf(exportFilePath);
+                            break;
+                        case ".html":
+                            gridControl1.ExportToHtml(exportFilePath);
+                            break;
+                        case ".mht":
+                            gridControl1.ExportToMht(exportFilePath);
+                            break;
+                        default:
+                            break;
+                    }
+
+                    if (File.Exists(exportFilePath))
+                    {
+                        try
+                        {
+                            //Try to open the file and let windows decide how to open it.
+                            System.Diagnostics.Process.Start(exportFilePath);
+                        }
+                        catch
+                        {
+                            String msg = "Dosya açılamadı." + Environment.NewLine + Environment.NewLine + "Path: " + exportFilePath;
+                            MessageBox.Show(msg, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        String msg = "Dosya kaydedilemedi." + Environment.NewLine + Environment.NewLine + "Path: " + exportFilePath;
+                        MessageBox.Show(msg, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void cam_NewFrame(object sender, NewFrameEventArgs eventArgs)
+        {
+            Bitmap bit = (Bitmap)eventArgs.Frame.Clone();
+            pictureBox1.Image = bit;
+        }
+
+
+        private void genelBilgiler_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (cam != null)
+            {
+                if (cam.IsRunning)
+                {
+                    cam.Stop();
+                }
+            }
+        }
+
+        private void simpleButton3_Click(object sender, EventArgs e)
+        {//Kamerayı Aç
+            cam = new VideoCaptureDevice(webcam[comboBox1.SelectedIndex].MonikerString);
+            cam.NewFrame += new NewFrameEventHandler(cam_NewFrame);
+            cam.Start();
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {//Resim Çek
+            resim.Image = pictureBox1.Image;
+            Bitmap bmpkucuk = new Bitmap(pictureBox1.Image);
+        }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {//Farklı            Kaydet
+            SaveFileDialog swf = new SaveFileDialog();
+            swf.Filter = "(*.jpg)|*.jpg";
+            DialogResult dialog = swf.ShowDialog();
+            if (dialog == DialogResult.OK)
+            {
+                resim.Image.Save(swf.FileName);
+            }
+
+            if (cam.IsRunning)
+            {
+                cam.Stop();
             }
         }
     }
