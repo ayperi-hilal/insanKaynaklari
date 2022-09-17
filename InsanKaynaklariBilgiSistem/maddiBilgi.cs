@@ -21,6 +21,22 @@ namespace InsanKaynaklariBilgiSistem
         {
             InitializeComponent();
         }
+
+        public void tum_maddi_bilgileri()
+        {
+            SqlCommand sorgu = new SqlCommand("tum_maddi_bilgileri", baglantim.baglanti());
+            sorgu.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter(sorgu);
+
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            gridControl2.DataSource = dt;
+
+
+            gridView2.OptionsBehavior.Editable = false;
+            gridView2.OptionsView.ShowAutoFilterRow = true;
+        }
+
         public void listele()
         {
             SqlCommand sorgu = new SqlCommand("Listele_Maddi_Durum_Bilgisi", baglantim.baglanti());
@@ -47,11 +63,11 @@ namespace InsanKaynaklariBilgiSistem
             gridView1.Columns["arac_kullanim_amaci"].Caption = "ARACIN KULLANIM AMACI";
             gridView1.Columns["sahip_olunan_arazi_var_mi"].Caption = "ARAZİ DURUMU";
             gridView1.Columns["sahip_olunan_arazi_kullanim_amaci"].Caption = "ARAZİ KULLANIM AMACI";
-            gridView1.Columns["icra_durumu"].Caption = "İCRA/BORÇ DURUMU";
-            gridView1.Columns["icra_konusu"].Caption = "İCRA/BORÇ NEDENİ ";
-            gridView1.Columns["icra_kesinti_miktari"].Caption = "İCRA/BORÇ MİKTARI";
-            gridView1.Columns["icra_hesap_no"].Caption = "İCRA/BORÇ HESAP NO";
-            gridView1.Columns["borc_Tarihi"].Caption = "ÖDEME TARİHİ";
+            //gridView1.Columns["icra_durumu"].Caption = "İCRA/BORÇ DURUMU";
+            //gridView1.Columns["icra_konusu"].Caption = "İCRA/BORÇ NEDENİ ";
+            //gridView1.Columns["icra_kesinti_miktari"].Caption = "İCRA/BORÇ MİKTARI";
+            //gridView1.Columns["icra_hesap_no"].Caption = "İCRA/BORÇ HESAP NO";
+            //gridView1.Columns["borc_Tarihi"].Caption = "ÖDEME TARİHİ";
             
 
 
@@ -68,7 +84,7 @@ namespace InsanKaynaklariBilgiSistem
             radioButton_kirada_yok.Checked = true;
             radioButton_araci_yok.Checked = true;
             radioButton_arazi_yok.Checked = true;
-            radioButton_icra_yok.Checked = true;
+            //radioButton_icra_yok.Checked = true;
 
             
 
@@ -76,13 +92,12 @@ namespace InsanKaynaklariBilgiSistem
             mtxt_ıban.Mask = "00000000000000000000000000";//hesap numarası
             txt_kira_miktari.MaxLength = 6;
            
-            mtxt_icra_iban.Mask = "00000000000000000000000000";//hesap numarası
+          //  mtxt_icra_iban.Mask = "00000000000000000000000000";//hesap numarası
 
 
-            cb_destek_turu.Items.Add("Yol");
-            cb_destek_turu.Items.Add("Gıda");
+            tum_maddi_bilgileri();
 
-            date_borc_tarihi.Visible = false;
+          //  date_borc_tarihi.Visible = false;
 
         }
        //?
@@ -191,11 +206,11 @@ namespace InsanKaynaklariBilgiSistem
             txt_arac_kullanim_amaci.Text = gridView1.GetFocusedRowCellValue("arac_kullanim_amaci").ToString();
             arazi_durumu = gridView1.GetFocusedRowCellValue("sahip_olunan_arazi_var_mi").ToString();
             txt_arazi_kullanim_amaci.Text = gridView1.GetFocusedRowCellValue("sahip_olunan_arazi_kullanim_amaci").ToString();
-            icra_durumu = gridView1.GetFocusedRowCellValue("icra_durumu").ToString();
-            txt_icra_konusu.Text = gridView1.GetFocusedRowCellValue("icra_konusu").ToString();
-            txt_icra_miktari.Text = gridView1.GetFocusedRowCellValue("icra_kesinti_miktari").ToString();
-            mtxt_icra_iban.Text = gridView1.GetFocusedRowCellValue("icra_hesap_no").ToString();
-            date_borc_tarihi.Text = gridView1.GetFocusedRowCellValue("borc_Tarihi").ToString();
+            //icra_durumu = gridView1.GetFocusedRowCellValue("icra_durumu").ToString();
+            //txt_icra_konusu.Text = gridView1.GetFocusedRowCellValue("icra_konusu").ToString();
+            //txt_icra_miktari.Text = gridView1.GetFocusedRowCellValue("icra_kesinti_miktari").ToString();
+            //mtxt_icra_iban.Text = gridView1.GetFocusedRowCellValue("icra_hesap_no").ToString();
+            //date_borc_tarihi.Text = gridView1.GetFocusedRowCellValue("borc_Tarihi").ToString();
             txt_id.Text = gridView1.GetFocusedRowCellValue("id").ToString();
 
             btn_guncelle.Enabled = true;
@@ -218,7 +233,7 @@ namespace InsanKaynaklariBilgiSistem
         {
             mtxt_tc_no.Clear();
             mtxt_ıban.Clear();
-            mtxt_icra_iban.Clear();
+            //mtxt_icra_iban.Clear();
 
             label3.Text = string.Empty;
             label5.Text = string.Empty;
@@ -230,30 +245,30 @@ namespace InsanKaynaklariBilgiSistem
             txt_isinma_aciklamasi.Text = string.Empty;
             txt_arac_kullanim_amaci.Text = string.Empty;
             txt_arazi_kullanim_amaci.Text = string.Empty;
-            txt_icra_konusu.Text = string.Empty;
+            //txt_icra_konusu.Text = string.Empty;
             txt_maas.Text = string.Empty;
             txt_destek_miktari.Text = string.Empty;
             txt_kira_miktari.Text = string.Empty;
             txt_kira_geliri_toplami.Text = string.Empty;
-            txt_icra_miktari.Text = string.Empty;
-            date_borc_tarihi.ResetText();
+            //txt_icra_miktari.Text = string.Empty;
+            //date_borc_tarihi.ResetText();
         }
 
-        private void radioButton_icra_var_CheckedChanged(object sender, EventArgs e)
-        {
-            date_borc_tarihi.Visible = true;
-            txt_icra_konusu.Enabled = true;
-            txt_icra_miktari.Enabled = true;
-            mtxt_icra_iban.Enabled = true;
-        }
+        //private void radioButton_icra_var_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    date_borc_tarihi.Visible = true;
+        //    txt_icra_konusu.Enabled = true;
+        //    txt_icra_miktari.Enabled = true;
+        //    mtxt_icra_iban.Enabled = true;
+        //}
 
-        private void radioButton_icra_yok_CheckedChanged(object sender, EventArgs e)
-        {
-            date_borc_tarihi.Visible = false;
-            txt_icra_konusu.Enabled = false;
-            txt_icra_miktari.Enabled = false;
-            mtxt_icra_iban.Enabled = false;
-        }
+        //private void radioButton_icra_yok_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    date_borc_tarihi.Visible = false;
+        //    txt_icra_konusu.Enabled = false;
+        //    txt_icra_miktari.Enabled = false;
+        //    mtxt_icra_iban.Enabled = false;
+        //}
 
 
         //formu temizle
@@ -311,6 +326,64 @@ namespace InsanKaynaklariBilgiSistem
         {
             txt_arazi_kullanim_amaci.Enabled = true;
         }
+
+        private void btn_rapor_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveDialog = new SaveFileDialog())
+            {
+                saveDialog.Filter = "Excel (2003)(.xls)|*.xls|Excel (2010) (.xlsx)|*.xlsx |RichText File (.rtf)|*.rtf |Pdf File (.pdf)|*.pdf |Html File (.html)|*.html";
+                if (saveDialog.ShowDialog() != DialogResult.Cancel)
+                {
+                    string exportFilePath = saveDialog.FileName;
+                    string fileExtenstion = new FileInfo(exportFilePath).Extension;
+
+                    switch (fileExtenstion)
+                    {
+                        case ".xls":
+                            gridControl2.ExportToXls(exportFilePath);
+                            break;
+                        case ".xlsx":
+                            gridControl2.ExportToXlsx(exportFilePath);
+                            break;
+                        case ".rtf":
+                            gridControl2.ExportToRtf(exportFilePath);
+                            break;
+                        case ".pdf":
+                            gridControl2.ExportToPdf(exportFilePath);
+                            break;
+                        case ".html":
+                            gridControl2.ExportToHtml(exportFilePath);
+                            break;
+                        case ".mht":
+                            gridControl2.ExportToMht(exportFilePath);
+                            break;
+                        default:
+                            break;
+                    }
+
+                    if (File.Exists(exportFilePath))
+                    {
+                        try
+                        {
+                            //Try to open the file and let windows decide how to open it.
+                            System.Diagnostics.Process.Start(exportFilePath);
+                        }
+                        catch
+                        {
+                            String msg = "Dosya açılamadı." + Environment.NewLine + Environment.NewLine + "Path: " + exportFilePath;
+                            MessageBox.Show(msg, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        String msg = "Dosya kaydedilemedi." + Environment.NewLine + Environment.NewLine + "Path: " + exportFilePath;
+                        MessageBox.Show(msg, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+      
+
 
 
         //ARA BUTONU
@@ -425,10 +498,7 @@ namespace InsanKaynaklariBilgiSistem
 
             }
             if (kayitkontrol == false)
-            {
-
-
-                //ilgili tc no ya ait vb de kayıt vamı diye kontrol edelim.
+            { //ilgili tc no ya ait vb de kayıt vamı diye kontrol edelim.
 
                 //önce girilen alanlar için uygun koşullar koyalım.
 
@@ -572,40 +642,40 @@ namespace InsanKaynaklariBilgiSistem
                 }
 
 
-                //icra durumu söz konusu ise
-                if (radioButton_icra_var.Checked == true)
-                {
-                    txt_icra_konusu.Enabled = true;
-                    txt_icra_miktari.Enabled = true;
-                    mtxt_icra_iban.Enabled = true;
-                    date_borc_tarihi.Enabled = true;
-                    icra_durumu = "İcrası var.";
+                ////icra durumu söz konusu ise
+                //if (radioButton_icra_var.Checked == true)
+                //{
+                //    txt_icra_konusu.Enabled = true;
+                //    txt_icra_miktari.Enabled = true;
+                //    mtxt_icra_iban.Enabled = true;
+                //    date_borc_tarihi.Enabled = true;
+                //    icra_durumu = "İcrası var.";
 
-                    if (txt_icra_konusu.Text == "")
-                        lbl_icra_konusu.ForeColor = Color.Red;
-                    else
-                        lbl_icra_konusu.ForeColor = Color.Black;
-                    if (txt_icra_miktari.Text == "")
-                        lbl_icra_kesinti_miktari.ForeColor = Color.Red;
-                    else
-                        lbl_icra_kesinti_miktari.ForeColor = Color.Black;
-                    if (mtxt_icra_iban.Text == "")
-                        lbl_icra_iban.ForeColor = Color.Red;
-                    else
-                        lbl_icra_iban.ForeColor = Color.Black;
+                //    if (txt_icra_konusu.Text == "")
+                //        lbl_icra_konusu.ForeColor = Color.Red;
+                //    else
+                //        lbl_icra_konusu.ForeColor = Color.Black;
+                //    if (txt_icra_miktari.Text == "")
+                //        lbl_icra_kesinti_miktari.ForeColor = Color.Red;
+                //    else
+                //        lbl_icra_kesinti_miktari.ForeColor = Color.Black;
+                //    if (mtxt_icra_iban.Text == "")
+                //        lbl_icra_iban.ForeColor = Color.Red;
+                //    else
+                //        lbl_icra_iban.ForeColor = Color.Black;
 
-                }
-                else
-                {
-                    icra_durumu = "İcrası yok.";
-                    lbl_icra_konusu.ForeColor = Color.Black;
-                    lbl_icra_kesinti_miktari.ForeColor = Color.Black;
-                    lbl_icra_iban.ForeColor = Color.Black;
-                    txt_icra_konusu.Enabled = false;
-                    txt_icra_miktari.Enabled = false;
-                    mtxt_icra_iban.Enabled = false;
-                    date_borc_tarihi.Enabled = false;
-                }
+                //}
+                //else
+                //{
+                //    icra_durumu = "İcrası yok.";
+                //    lbl_icra_konusu.ForeColor = Color.Black;
+                //    lbl_icra_kesinti_miktari.ForeColor = Color.Black;
+                //    lbl_icra_iban.ForeColor = Color.Black;
+                //    txt_icra_konusu.Enabled = false;
+                //    txt_icra_miktari.Enabled = false;
+                //    mtxt_icra_iban.Enabled = false;
+                //    date_borc_tarihi.Enabled = false;
+                //}
 
                 //kayıt işlemine başlayalım.
                 if (mtxt_tc_no.Text.Length == 11)
@@ -631,11 +701,11 @@ namespace InsanKaynaklariBilgiSistem
                         eklekomutu.Parameters.AddWithValue("@arac_kullanim_amaci", txt_arac_kullanim_amaci.Text);
                         eklekomutu.Parameters.AddWithValue("@sahip_olunan_arazi_var_mi", arazi_durumu);
                         eklekomutu.Parameters.AddWithValue("@sahip_olunan_arazi_kullanim_amaci", txt_arazi_kullanim_amaci.Text);
-                        eklekomutu.Parameters.AddWithValue("@icra_durumu", icra_durumu);
-                        eklekomutu.Parameters.AddWithValue("@icra_konusu", txt_icra_konusu.Text);
-                        eklekomutu.Parameters.AddWithValue("@icra_kesinti_miktari", txt_icra_miktari.Text);
-                        eklekomutu.Parameters.AddWithValue("@icra_hesap_no", mtxt_icra_iban.Text);
-                        eklekomutu.Parameters.AddWithValue("@borc_Tarihi", date_borc_tarihi.Value);
+                        //eklekomutu.Parameters.AddWithValue("@icra_durumu", icra_durumu);
+                        //eklekomutu.Parameters.AddWithValue("@icra_konusu", txt_icra_konusu.Text);
+                        //eklekomutu.Parameters.AddWithValue("@icra_kesinti_miktari", txt_icra_miktari.Text);
+                        //eklekomutu.Parameters.AddWithValue("@icra_hesap_no", mtxt_icra_iban.Text);
+                        //eklekomutu.Parameters.AddWithValue("@borc_Tarihi", date_borc_tarihi.Value);
 
 
                         eklekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
@@ -821,40 +891,40 @@ namespace InsanKaynaklariBilgiSistem
             }
 
 
-            //icra durumu söz konusu ise
-            if (radioButton_icra_var.Checked == true)
-            {
-                icra_durumu = "İcrası var.";
-                txt_icra_konusu.Enabled = true;
-                txt_icra_miktari.Enabled = true;
-                mtxt_icra_iban.Enabled = true;
-                date_borc_tarihi.Enabled = true;
+            ////icra durumu söz konusu ise
+            //if (radioButton_icra_var.Checked == true)
+            //{
+            //    icra_durumu = "İcrası var.";
+            //    txt_icra_konusu.Enabled = true;
+            //    txt_icra_miktari.Enabled = true;
+            //    mtxt_icra_iban.Enabled = true;
+            //    date_borc_tarihi.Enabled = true;
 
-                if (txt_icra_konusu.Text == "")
-                    lbl_icra_konusu.ForeColor = Color.Red;
-                else
-                    lbl_icra_konusu.ForeColor = Color.Black;
-                if (txt_icra_miktari.Text == "")
-                    lbl_icra_kesinti_miktari.ForeColor = Color.Red;
-                else
-                    lbl_icra_kesinti_miktari.ForeColor = Color.Black;
-                if (mtxt_icra_iban.Text == "")
-                    lbl_icra_iban.ForeColor = Color.Red;
-                else
-                    lbl_icra_iban.ForeColor = Color.Black;
-            }
-            else
-            {
-                icra_durumu = "İcrası yok.";
-                lbl_icra_konusu.ForeColor = Color.Black;
-                lbl_icra_kesinti_miktari.ForeColor = Color.Black;
-                lbl_icra_iban.ForeColor = Color.Black;
-                txt_icra_konusu.Enabled = false;
-                txt_icra_miktari.Enabled = false;
-                mtxt_icra_iban.Enabled = false;
-                date_borc_tarihi.Enabled = false;
+            //    if (txt_icra_konusu.Text == "")
+            //        lbl_icra_konusu.ForeColor = Color.Red;
+            //    else
+            //        lbl_icra_konusu.ForeColor = Color.Black;
+            //    if (txt_icra_miktari.Text == "")
+            //        lbl_icra_kesinti_miktari.ForeColor = Color.Red;
+            //    else
+            //        lbl_icra_kesinti_miktari.ForeColor = Color.Black;
+            //    if (mtxt_icra_iban.Text == "")
+            //        lbl_icra_iban.ForeColor = Color.Red;
+            //    else
+            //        lbl_icra_iban.ForeColor = Color.Black;
+            //}
+            //else
+            //{
+            //    icra_durumu = "İcrası yok.";
+            //    lbl_icra_konusu.ForeColor = Color.Black;
+            //    lbl_icra_kesinti_miktari.ForeColor = Color.Black;
+            //    lbl_icra_iban.ForeColor = Color.Black;
+            //    txt_icra_konusu.Enabled = false;
+            //    txt_icra_miktari.Enabled = false;
+            //    mtxt_icra_iban.Enabled = false;
+            //    date_borc_tarihi.Enabled = false;
 
-            }
+            //}
 
             //kayıt işlemine başlayalım.
             if (mtxt_tc_no.Text.Length == 11)
@@ -881,11 +951,11 @@ namespace InsanKaynaklariBilgiSistem
                         guncellekomutu.Parameters.AddWithValue("@arac_kullanim_amaci", txt_arac_kullanim_amaci.Text);
                         guncellekomutu.Parameters.AddWithValue("@sahip_olunan_arazi_var_mi", arazi_durumu);
                         guncellekomutu.Parameters.AddWithValue("@sahip_olunan_arazi_kullanim_amaci", txt_arazi_kullanim_amaci.Text);
-                        guncellekomutu.Parameters.AddWithValue("@icra_durumu", icra_durumu);
-                        guncellekomutu.Parameters.AddWithValue("@icra_konusu", txt_icra_konusu.Text);
-                        guncellekomutu.Parameters.AddWithValue("@icra_kesinti_miktari", txt_icra_miktari.Text);
-                        guncellekomutu.Parameters.AddWithValue("@icra_hesap_no", mtxt_icra_iban.Text);
-                        guncellekomutu.Parameters.AddWithValue("borc_Tarihi", date_borc_tarihi.Value);
+                        //guncellekomutu.Parameters.AddWithValue("@icra_durumu", icra_durumu);
+                        //guncellekomutu.Parameters.AddWithValue("@icra_konusu", txt_icra_konusu.Text);
+                        //guncellekomutu.Parameters.AddWithValue("@icra_kesinti_miktari", txt_icra_miktari.Text);
+                        //guncellekomutu.Parameters.AddWithValue("@icra_hesap_no", mtxt_icra_iban.Text);
+                        //guncellekomutu.Parameters.AddWithValue("borc_Tarihi", date_borc_tarihi.Value);
                         guncellekomutu.Parameters.AddWithValue("@id", txt_id.Text);
 
                         guncellekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir

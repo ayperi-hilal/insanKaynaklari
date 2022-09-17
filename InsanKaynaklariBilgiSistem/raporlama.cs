@@ -571,5 +571,7 @@ namespace InsanKaynaklariBilgiSistem
         {
             personel();
         }
+
+        
     }
 }

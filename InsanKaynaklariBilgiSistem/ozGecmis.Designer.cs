@@ -64,9 +64,14 @@ namespace InsanKaynaklariBilgiSistem
             this.mtxt_istel = new System.Windows.Forms.MaskedTextBox();
             this.txt_gorev = new System.Windows.Forms.TextBox();
             this.txt_yon = new System.Windows.Forms.TextBox();
+            this.btn_rapor = new DevExpress.XtraEditors.SimpleButton();
+            this.gridControl2 = new DevExpress.XtraGrid.GridControl();
+            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl1
@@ -96,6 +101,9 @@ namespace InsanKaynaklariBilgiSistem
             // 
             // gridControl1
             // 
+            this.gridControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gridControl1.Location = new System.Drawing.Point(498, 2);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
@@ -209,8 +217,9 @@ namespace InsanKaynaklariBilgiSistem
             // 
             // simpleButton4
             // 
+            this.simpleButton4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.simpleButton4.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.resetmodeldifferences_32x32;
-            this.simpleButton4.Location = new System.Drawing.Point(660, 409);
+            this.simpleButton4.Location = new System.Drawing.Point(811, 404);
             this.simpleButton4.Name = "simpleButton4";
             this.simpleButton4.Size = new System.Drawing.Size(139, 39);
             this.simpleButton4.TabIndex = 133;
@@ -219,9 +228,10 @@ namespace InsanKaynaklariBilgiSistem
             // 
             // btn_sil
             // 
+            this.btn_sil.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_sil.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btn_sil.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.cancel_32x32;
-            this.btn_sil.Location = new System.Drawing.Point(563, 409);
+            this.btn_sil.Location = new System.Drawing.Point(714, 404);
             this.btn_sil.Name = "btn_sil";
             this.btn_sil.Size = new System.Drawing.Size(91, 40);
             this.btn_sil.TabIndex = 132;
@@ -230,8 +240,9 @@ namespace InsanKaynaklariBilgiSistem
             // 
             // btn_guncelle
             // 
+            this.btn_guncelle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_guncelle.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.refreshallpivottable_32x32;
-            this.btn_guncelle.Location = new System.Drawing.Point(466, 409);
+            this.btn_guncelle.Location = new System.Drawing.Point(617, 404);
             this.btn_guncelle.Name = "btn_guncelle";
             this.btn_guncelle.Size = new System.Drawing.Size(91, 39);
             this.btn_guncelle.TabIndex = 131;
@@ -358,12 +369,41 @@ namespace InsanKaynaklariBilgiSistem
             this.txt_yon.Size = new System.Drawing.Size(100, 20);
             this.txt_yon.TabIndex = 290;
             // 
+            // btn_rapor
+            // 
+            this.btn_rapor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_rapor.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.report_32x323;
+            this.btn_rapor.Location = new System.Drawing.Point(956, 404);
+            this.btn_rapor.Name = "btn_rapor";
+            this.btn_rapor.Size = new System.Drawing.Size(110, 40);
+            this.btn_rapor.TabIndex = 321;
+            this.btn_rapor.Text = "TÜM\r\nKAYITLAR";
+            this.btn_rapor.Click += new System.EventHandler(this.btn_rapor_Click);
+            // 
+            // gridControl2
+            // 
+            this.gridControl2.Location = new System.Drawing.Point(1123, 370);
+            this.gridControl2.MainView = this.gridView2;
+            this.gridControl2.Name = "gridControl2";
+            this.gridControl2.Size = new System.Drawing.Size(74, 61);
+            this.gridControl2.TabIndex = 322;
+            this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView2});
+            this.gridControl2.Visible = false;
+            // 
+            // gridView2
+            // 
+            this.gridView2.GridControl = this.gridControl2;
+            this.gridView2.Name = "gridView2";
+            // 
             // ozGecmis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1230, 450);
+            this.Controls.Add(this.gridControl2);
+            this.Controls.Add(this.btn_rapor);
             this.Controls.Add(this.txt_yon);
             this.Controls.Add(this.txt_gorev);
             this.Controls.Add(this.mtxt_istel);
@@ -397,11 +437,13 @@ namespace InsanKaynaklariBilgiSistem
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txt_id);
             this.Name = "ozGecmis";
-            this.Text = "Öz Geçmiş";
+            this.Text = "ÖZGEÇMİŞ";
             this.Load += new System.EventHandler(this.ozGecmis_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -443,5 +485,8 @@ namespace InsanKaynaklariBilgiSistem
         private System.Windows.Forms.MaskedTextBox mtxt_istel;
         private System.Windows.Forms.TextBox txt_gorev;
         private System.Windows.Forms.TextBox txt_yon;
+        private DevExpress.XtraEditors.SimpleButton btn_rapor;
+        private DevExpress.XtraGrid.GridControl gridControl2;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
     }
 }

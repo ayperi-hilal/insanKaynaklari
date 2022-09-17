@@ -25,8 +25,21 @@ namespace InsanKaynaklariBilgiSistem
         sqlBaglantisi baglantim = new sqlBaglantisi();
 
         string saglik_durumu, engel_durumu, ameliyat_durumu, sigara_durumu, alkol_durumu;
-        
-        
+
+        public void tum_saglik_bilgileri()
+        {
+            SqlCommand sorgu = new SqlCommand("tum_saglik_bilgileri", baglantim.baglanti());
+            sorgu.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter(sorgu);
+
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            gridControl1.DataSource = dt;
+
+
+            gridView1.OptionsBehavior.Editable = false;
+            gridView1.OptionsView.ShowAutoFilterRow = true;
+        }
 
         private void saglik_Load(object sender, EventArgs e)
         {
@@ -52,7 +65,7 @@ namespace InsanKaynaklariBilgiSistem
             cm_kangrubu.Items.Add("AB(-)");
             cm_kangrubu.Items.Add("Bilinmiyor");
 
-
+            tum_saglik_bilgileri();
 
         }
 
@@ -385,6 +398,63 @@ namespace InsanKaynaklariBilgiSistem
             else
             {
                 MessageBox.Show("Lütfen 11 haneli TC kimlik numarasını eksiksiz bir şekilde giriniz.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btn_rapor_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveDialog = new SaveFileDialog())
+            {
+                saveDialog.Filter = "Excel (2003)(.xls)|*.xls|Excel (2010) (.xlsx)|*.xlsx |RichText File (.rtf)|*.rtf |Pdf File (.pdf)|*.pdf |Html File (.html)|*.html";
+                if (saveDialog.ShowDialog() != DialogResult.Cancel)
+                {
+                    string exportFilePath = saveDialog.FileName;
+                    string fileExtenstion = new FileInfo(exportFilePath).Extension;
+
+                    switch (fileExtenstion)
+                    {
+                        case ".xls":
+                            gridControl1.ExportToXls(exportFilePath);
+                            break;
+                        case ".xlsx":
+                            gridControl1.ExportToXlsx(exportFilePath);
+                            break;
+                        case ".rtf":
+                            gridControl1.ExportToRtf(exportFilePath);
+                            break;
+                        case ".pdf":
+                            gridControl1.ExportToPdf(exportFilePath);
+                            break;
+                        case ".html":
+                            gridControl1.ExportToHtml(exportFilePath);
+                            break;
+                        case ".mht":
+                            gridControl1.ExportToMht(exportFilePath);
+                            break;
+                        default:
+                            break;
+                    }
+
+                    if (File.Exists(exportFilePath))
+                    {
+                        try
+                        {
+                            //Try to open the file and let windows decide how to open it.
+                            System.Diagnostics.Process.Start(exportFilePath);
+                        }
+                        catch
+                        {
+                            String msg = "Dosya açılamadı." + Environment.NewLine + Environment.NewLine + "Path: " + exportFilePath;
+                            MessageBox.Show(msg, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        String msg = "Dosya kaydedilemedi." + Environment.NewLine + Environment.NewLine + "Path: " + exportFilePath;
+                        MessageBox.Show(msg, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                
+                }
             }
         }
 

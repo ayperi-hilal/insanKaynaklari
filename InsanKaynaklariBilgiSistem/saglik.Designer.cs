@@ -73,12 +73,17 @@ namespace InsanKaynaklariBilgiSistem
             this.btn_evrakYukleme = new DevExpress.XtraEditors.SimpleButton();
             this.txt_pdks = new System.Windows.Forms.TextBox();
             this.lbl_pdks = new System.Windows.Forms.Label();
+            this.btn_rapor = new DevExpress.XtraEditors.SimpleButton();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.alkol_switch.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sigara_switch.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ameliyat_switch.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.engel_switch.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.saglik_switch.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // cm_alkol
@@ -210,9 +215,9 @@ namespace InsanKaynaklariBilgiSistem
             // btn_formu_temizle
             // 
             this.btn_formu_temizle.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.resetmodeldifferences_32x32;
-            this.btn_formu_temizle.Location = new System.Drawing.Point(660, 486);
+            this.btn_formu_temizle.Location = new System.Drawing.Point(618, 481);
             this.btn_formu_temizle.Name = "btn_formu_temizle";
-            this.btn_formu_temizle.Size = new System.Drawing.Size(139, 39);
+            this.btn_formu_temizle.Size = new System.Drawing.Size(128, 39);
             this.btn_formu_temizle.TabIndex = 156;
             this.btn_formu_temizle.Text = "FORMU TEMİZLE";
             this.btn_formu_temizle.Click += new System.EventHandler(this.btn_formu_temizle_Click);
@@ -221,9 +226,9 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.btn_sil.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btn_sil.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.cancel_32x32;
-            this.btn_sil.Location = new System.Drawing.Point(563, 485);
+            this.btn_sil.Location = new System.Drawing.Point(542, 481);
             this.btn_sil.Name = "btn_sil";
-            this.btn_sil.Size = new System.Drawing.Size(91, 40);
+            this.btn_sil.Size = new System.Drawing.Size(70, 40);
             this.btn_sil.TabIndex = 155;
             this.btn_sil.Text = "SİL";
             this.btn_sil.Click += new System.EventHandler(this.btn_sil_Click);
@@ -231,7 +236,7 @@ namespace InsanKaynaklariBilgiSistem
             // btn_guncelle
             // 
             this.btn_guncelle.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.refreshallpivottable_32x32;
-            this.btn_guncelle.Location = new System.Drawing.Point(466, 485);
+            this.btn_guncelle.Location = new System.Drawing.Point(445, 481);
             this.btn_guncelle.Name = "btn_guncelle";
             this.btn_guncelle.Size = new System.Drawing.Size(91, 39);
             this.btn_guncelle.TabIndex = 154;
@@ -241,9 +246,9 @@ namespace InsanKaynaklariBilgiSistem
             // btn_kaydet
             // 
             this.btn_kaydet.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.apply_32x32;
-            this.btn_kaydet.Location = new System.Drawing.Point(369, 485);
+            this.btn_kaydet.Location = new System.Drawing.Point(358, 480);
             this.btn_kaydet.Name = "btn_kaydet";
-            this.btn_kaydet.Size = new System.Drawing.Size(91, 40);
+            this.btn_kaydet.Size = new System.Drawing.Size(81, 40);
             this.btn_kaydet.TabIndex = 149;
             this.btn_kaydet.Text = "KAYDET";
             this.btn_kaydet.Click += new System.EventHandler(this.btn_kaydet_Click);
@@ -459,12 +464,40 @@ namespace InsanKaynaklariBilgiSistem
             this.lbl_pdks.TabIndex = 357;
             this.lbl_pdks.Text = "PDKS";
             // 
+            // btn_rapor
+            // 
+            this.btn_rapor.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.report_32x323;
+            this.btn_rapor.Location = new System.Drawing.Point(752, 481);
+            this.btn_rapor.Name = "btn_rapor";
+            this.btn_rapor.Size = new System.Drawing.Size(90, 40);
+            this.btn_rapor.TabIndex = 359;
+            this.btn_rapor.Text = "TÜM\r\nKAYITLAR";
+            this.btn_rapor.Click += new System.EventHandler(this.btn_rapor_Click);
+            // 
+            // gridControl1
+            // 
+            this.gridControl1.Location = new System.Drawing.Point(551, 339);
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(132, 77);
+            this.gridControl1.TabIndex = 360;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            this.gridControl1.Visible = false;
+            // 
+            // gridView1
+            // 
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
+            // 
             // saglik
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(800, 526);
+            this.ClientSize = new System.Drawing.Size(848, 526);
+            this.Controls.Add(this.gridControl1);
+            this.Controls.Add(this.btn_rapor);
             this.Controls.Add(this.txt_pdks);
             this.Controls.Add(this.lbl_pdks);
             this.Controls.Add(this.btn_evrakYukleme);
@@ -508,7 +541,7 @@ namespace InsanKaynaklariBilgiSistem
             this.Controls.Add(this.mtxt_tc_no);
             this.Controls.Add(this.lbl_tc_no);
             this.Name = "saglik";
-            this.Text = "Sağlık Bilgileri";
+            this.Text = "SAĞLIK BİLGİLERİ";
             this.Load += new System.EventHandler(this.saglik_Load);
             ((System.ComponentModel.ISupportInitialize)(this.alkol_switch.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sigara_switch.Properties)).EndInit();
@@ -516,6 +549,8 @@ namespace InsanKaynaklariBilgiSistem
             ((System.ComponentModel.ISupportInitialize)(this.engel_switch.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.saglik_switch.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -566,5 +601,8 @@ namespace InsanKaynaklariBilgiSistem
         private DevExpress.XtraEditors.SimpleButton btn_evrakYukleme;
         private System.Windows.Forms.TextBox txt_pdks;
         private System.Windows.Forms.Label lbl_pdks;
+        private DevExpress.XtraEditors.SimpleButton btn_rapor;
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
     }
 }

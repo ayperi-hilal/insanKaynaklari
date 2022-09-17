@@ -52,15 +52,16 @@ namespace InsanKaynaklariBilgiSistem
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.dxErrorProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
+            this.label1 = new System.Windows.Forms.Label();
+            this.txt_pdks = new System.Windows.Forms.TextBox();
+            this.lbl_pdks = new System.Windows.Forms.Label();
+            this.btn_rapor = new DevExpress.XtraEditors.SimpleButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.simpleButton5 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.txt_pdks = new System.Windows.Forms.TextBox();
-            this.lbl_pdks = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -112,7 +113,7 @@ namespace InsanKaynaklariBilgiSistem
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(208, 119);
+            this.radioButton2.Location = new System.Drawing.Point(121, 122);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(80, 17);
             this.radioButton2.TabIndex = 68;
@@ -123,7 +124,7 @@ namespace InsanKaynaklariBilgiSistem
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(96, 119);
+            this.radioButton1.Location = new System.Drawing.Point(243, 119);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(75, 17);
             this.radioButton1.TabIndex = 67;
@@ -133,7 +134,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(96, 211);
+            this.textBox6.Location = new System.Drawing.Point(121, 212);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(197, 20);
             this.textBox6.TabIndex = 66;
@@ -141,7 +142,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(96, 184);
+            this.textBox5.Location = new System.Drawing.Point(121, 184);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(197, 20);
             this.textBox5.TabIndex = 65;
@@ -149,7 +150,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(96, 146);
+            this.textBox4.Location = new System.Drawing.Point(121, 153);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(197, 20);
             this.textBox4.TabIndex = 64;
@@ -159,7 +160,7 @@ namespace InsanKaynaklariBilgiSistem
             // textBox3
             // 
             this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(96, 94);
+            this.textBox3.Location = new System.Drawing.Point(121, 93);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(197, 20);
             this.textBox3.TabIndex = 63;
@@ -167,14 +168,14 @@ namespace InsanKaynaklariBilgiSistem
             // textBox2
             // 
             this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(96, 68);
+            this.textBox2.Location = new System.Drawing.Point(121, 67);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(197, 20);
             this.textBox2.TabIndex = 62;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(96, 20);
+            this.textBox1.Location = new System.Drawing.Point(121, 19);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(197, 20);
             this.textBox1.TabIndex = 61;
@@ -240,12 +241,54 @@ namespace InsanKaynaklariBilgiSistem
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(12, 296);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(612, 191);
+            this.dataGridView2.Size = new System.Drawing.Size(559, 191);
             this.dataGridView2.TabIndex = 79;
             // 
             // dxErrorProvider1
             // 
             this.dxErrorProvider1.ContainerControl = this;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(15, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.TabIndex = 119;
+            this.label1.Text = "TC NO";
+            // 
+            // txt_pdks
+            // 
+            this.txt_pdks.Location = new System.Drawing.Point(121, 41);
+            this.txt_pdks.Name = "txt_pdks";
+            this.txt_pdks.Size = new System.Drawing.Size(64, 20);
+            this.txt_pdks.TabIndex = 286;
+            // 
+            // lbl_pdks
+            // 
+            this.lbl_pdks.AutoSize = true;
+            this.lbl_pdks.Location = new System.Drawing.Point(15, 47);
+            this.lbl_pdks.Name = "lbl_pdks";
+            this.lbl_pdks.Size = new System.Drawing.Size(36, 13);
+            this.lbl_pdks.TabIndex = 285;
+            this.lbl_pdks.Text = "PDKS";
+            // 
+            // btn_rapor
+            // 
+            this.btn_rapor.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.report_32x323;
+            this.btn_rapor.Location = new System.Drawing.Point(446, 251);
+            this.btn_rapor.Name = "btn_rapor";
+            this.btn_rapor.Size = new System.Drawing.Size(110, 40);
+            this.btn_rapor.TabIndex = 322;
+            this.btn_rapor.Text = "TÜM\r\nKAYITLAR";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(341, 47);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(139, 119);
+            this.pictureBox1.TabIndex = 120;
+            this.pictureBox1.TabStop = false;
             // 
             // simpleButton5
             // 
@@ -298,45 +341,13 @@ namespace InsanKaynaklariBilgiSistem
             this.simpleButton1.Text = "KAYDET";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 13);
-            this.label1.TabIndex = 119;
-            this.label1.Text = "TC NO";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(341, 47);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(139, 119);
-            this.pictureBox1.TabIndex = 120;
-            this.pictureBox1.TabStop = false;
-            // 
-            // txt_pdks
-            // 
-            this.txt_pdks.Location = new System.Drawing.Point(96, 42);
-            this.txt_pdks.Name = "txt_pdks";
-            this.txt_pdks.Size = new System.Drawing.Size(64, 20);
-            this.txt_pdks.TabIndex = 286;
-            // 
-            // lbl_pdks
-            // 
-            this.lbl_pdks.AutoSize = true;
-            this.lbl_pdks.Location = new System.Drawing.Point(15, 47);
-            this.lbl_pdks.Name = "lbl_pdks";
-            this.lbl_pdks.Size = new System.Drawing.Size(36, 13);
-            this.lbl_pdks.TabIndex = 285;
-            this.lbl_pdks.Text = "PDKS";
-            // 
             // kullaniciHesap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(800, 491);
+            this.Controls.Add(this.btn_rapor);
             this.Controls.Add(this.txt_pdks);
             this.Controls.Add(this.lbl_pdks);
             this.Controls.Add(this.pictureBox1);
@@ -367,7 +378,7 @@ namespace InsanKaynaklariBilgiSistem
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Name = "kullaniciHesap";
-            this.Text = "Kullanıcı Hesabı Oluşturma";
+            this.Text = "HESAP OLUŞTUR";
             this.Load += new System.EventHandler(this.kullaniciHesap_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider1)).EndInit();
@@ -410,5 +421,6 @@ namespace InsanKaynaklariBilgiSistem
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox txt_pdks;
         private System.Windows.Forms.Label lbl_pdks;
+        private DevExpress.XtraEditors.SimpleButton btn_rapor;
     }
 }

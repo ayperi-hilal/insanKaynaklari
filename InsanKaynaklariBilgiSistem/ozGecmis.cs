@@ -23,7 +23,20 @@ namespace InsanKaynaklariBilgiSistem
         }
         //veri tabanı doaya yoluve provider nesnesinin belirlenmesi
         sqlBaglantisi baglantim = new sqlBaglantisi();
+        public void tum_ozgecmis_isyeri()
+        {
+            SqlCommand sorgu = new SqlCommand("tum_ozgecmis_isyeri", baglantim.baglanti());
+            sorgu.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter(sorgu);
 
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            gridControl2.DataSource = dt;
+
+
+            gridView2.OptionsBehavior.Editable = false;
+            gridView2.OptionsView.ShowAutoFilterRow = true;
+        }
         public void listele()
         {
             SqlCommand sorgu = new SqlCommand("Listele_Ozgecmis_isyeri", baglantim.baglanti());
@@ -46,7 +59,7 @@ namespace InsanKaynaklariBilgiSistem
             gridView1.Columns["giris_tarihi"].Caption = "GİRİŞ TARİHİ";
             gridView1.Columns["cikis_tarihi"].Caption = "ÇIKIŞ TARİHİ";
             gridView1.Columns["sebep"].Caption = "İŞTEN AYRILMA SEBEBİ";
-           
+
 
 
 
@@ -55,16 +68,16 @@ namespace InsanKaynaklariBilgiSistem
         {
             mtxt_tc_no.Mask = "00000000000";//kullnıcı 11 haneli tc numarası girebilecek.
 
-            txt_isad.CharacterCasing=CharacterCasing.Upper;
+            txt_isad.CharacterCasing = CharacterCasing.Upper;
             txt_gorev.CharacterCasing = CharacterCasing.Upper;
             txt_yon.CharacterCasing = CharacterCasing.Upper;
 
             mtxt_istel.Mask = "0000000000";//cep no
-            
-            mtxt_maas.Mask = "00009";//toplam gelir
-           
 
-           
+            mtxt_maas.Mask = "00009";//toplam gelir
+
+
+
 
             DateTime zaman = DateTime.Now;
             int yil = int.Parse(zaman.ToString("yyyy"));
@@ -86,16 +99,19 @@ namespace InsanKaynaklariBilgiSistem
             cb_sebep.Items.Add("Evlilik");
             cb_sebep.Items.Add("Taşınma");
             cb_sebep.Items.Add("Firma Lokasyonu");
+            cb_sebep.Items.Add("Diğer");
+
+            tum_ozgecmis_isyeri();
         }
         private void ekrani_temizle()
         {
 
             mtxt_tc_no.Clear();
-          
+
             mtxt_istel.Clear();
-          
+
             mtxt_maas.Clear();
-          
+
 
             txt_pdks.Text = string.Empty;
             txt_isad.Text = string.Empty;
@@ -136,7 +152,7 @@ namespace InsanKaynaklariBilgiSistem
         //ARA BUTONU
         private void simpleButton5_Click(object sender, EventArgs e)
         {
-            
+
             //tck yazılarak veri tablosundaki veri araştırılır
             bool kayit_arama_durumu = false;//kayıdın olup olmadığını değerlendirecektir.
             if (mtxt_tc_no.Text.Length == 11 || txt_pdks.Text != "")
@@ -148,8 +164,8 @@ namespace InsanKaynaklariBilgiSistem
 
                 selectsorgu.Parameters.AddWithValue("@TC", mtxt_tc_no.Text);
                 selectsorgu.Parameters.AddWithValue("@pdks", txt_pdks.Text);
-                
-                
+
+
                 SqlDataReader kayitokuma = selectsorgu.ExecuteReader();
                 //kayıtokumanın içerisne attığımız değişkenin while döngüsü ile tüm veri tabanında arayalım.
                 while (kayitokuma.Read())
@@ -165,10 +181,10 @@ namespace InsanKaynaklariBilgiSistem
                     {
                         SqlCommand selectsorguiki = new SqlCommand("select *from Kisi where TC='" + mtxt_tc_no.Text + "'", baglantim.baglanti());
                         SqlDataReader kayitokumaiki = selectsorgu.ExecuteReader();
-                        
+
                         while (kayitokumaiki.Read())
                         {
-                            
+
                             string gelen;
                             gelen = kayitokumaiki.GetValue(19).ToString();
                             if (gelen != txt_pdks.Text)
@@ -213,23 +229,23 @@ namespace InsanKaynaklariBilgiSistem
         //forma ekle için veri tabanına ekliyoruz
         private void simpleButton6_Click(object sender, EventArgs e)
         {
-            
-           
-           // baglantim.baglanti().Open();
+
+
+            // baglantim.baglanti().Open();
             SqlCommand selectsorgu = new SqlCommand("select * from Kisi_ozgecmis_isyeri where kisi_tc='" + mtxt_tc_no.Text + "'", baglantim.baglanti());
 
             SqlDataReader kayitokuma = selectsorgu.ExecuteReader();//okuduğu sorguları tutuyoruz.
-      
-                //kullnıcı bir tc kimlik no girecektir fakat girdiği numara gerçekten tc numarası mı onun kontrolü yapılmalıdr.
 
-                if (mtxt_tc_no.Text.Length < 11 || mtxt_tc_no.Text == "")//tc kimlik numarsaı 11 den küçük olmamalıdr. veya boş olmalaıdr. eğer olur ise tc kimlik no yazısı kırmızı olacaktır.
-                    label1.ForeColor = Color.Red;
-                else
-                    label1.ForeColor = Color.Black;
+            //kullnıcı bir tc kimlik no girecektir fakat girdiği numara gerçekten tc numarası mı onun kontrolü yapılmalıdr.
 
-                //eğer iş yerinin adına herhangi bir veri girilirse diğerlerine de yazılmak zorunda olsun.
-                if (txt_isad.Text != "" && txt_isad.Text.Length > 2)
-                {
+            if (mtxt_tc_no.Text.Length < 11 || mtxt_tc_no.Text == "")//tc kimlik numarsaı 11 den küçük olmamalıdr. veya boş olmalaıdr. eğer olur ise tc kimlik no yazısı kırmızı olacaktır.
+                label1.ForeColor = Color.Red;
+            else
+                label1.ForeColor = Color.Black;
+
+            //eğer iş yerinin adına herhangi bir veri girilirse diğerlerine de yazılmak zorunda olsun.
+            if (txt_isad.Text != "" && txt_isad.Text.Length > 2)
+            {
                 mtxt_istel.Enabled = true;
                 txt_gorev.Enabled = true;
                 mtxt_maas.Enabled = true;
@@ -239,52 +255,50 @@ namespace InsanKaynaklariBilgiSistem
                 cb_sebep.Enabled = true;
 
                 if (txt_gorev.Text == "")
-                        label8.ForeColor = Color.Red;
-                    else
-                        label8.ForeColor = Color.Black;
-
-                    if (mtxt_maas.Text == "")
-                        label9.ForeColor = Color.Red;
-                    else
-                        label9.ForeColor = Color.Black;
-
-                    if (txt_yon.Text == "")
-                        label10.ForeColor = Color.Red;
-                    else
-                        label10.ForeColor = Color.Black;
-
-                    if (cb_sebep.Text == string.Empty)
-                        label12.ForeColor = Color.Red;
-                    else
-                        label12.ForeColor = Color.Black;
-
-
-
-
-
-
-
-                }
+                    label8.ForeColor = Color.Red;
                 else
-                {
-                    mtxt_istel.Enabled = false;
-                    txt_gorev.Enabled = false;
-                    mtxt_maas.Enabled = false;
-                    txt_yon.Enabled = false;
-                    date_cikis.Enabled = false;
-                    date_giris.Enabled = false;
-                    cb_sebep.Enabled = false;
-                }
+                    label8.ForeColor = Color.Black;
+
+                if (mtxt_maas.Text == "")
+                    label9.ForeColor = Color.Red;
+                else
+                    label9.ForeColor = Color.Black;
+
+                if (txt_yon.Text == "")
+                    label10.ForeColor = Color.Red;
+                else
+                    label10.ForeColor = Color.Black;
+
+                if (cb_sebep.Text == string.Empty)
+                    label12.ForeColor = Color.Red;
+                else
+                    label12.ForeColor = Color.Black;
 
 
-                if (mtxt_tc_no.Text.Length == 11 && txt_isad.Text.Length > 2)
+
+
+
+
+
+            }
+            else
+            {
+                mtxt_istel.Enabled = false;
+                txt_gorev.Enabled = false;
+                mtxt_maas.Enabled = false;
+                txt_yon.Enabled = false;
+                date_cikis.Enabled = false;
+                date_giris.Enabled = false;
+                cb_sebep.Enabled = false;
+            }
+
+
+            if (mtxt_tc_no.Text.Length == 11 && txt_isad.Text.Length > 2)
+            {
+                if (txt_gorev.Text != string.Empty && txt_yon.Text != string.Empty && cb_sebep.Text != string.Empty)
                 {
-                    if ( txt_gorev.Text != string.Empty && txt_yon.Text != string.Empty && cb_sebep.Text != string.Empty)
+                    try
                     {
-                        try
-                        {
-                        //önce veri tabanına bağlanalım.
-
                         SqlCommand eklekomutu = new SqlCommand("Kaydet_Kisi_Ozgecmis", baglantim.baglanti());
                         eklekomutu.CommandType = CommandType.StoredProcedure;
 
@@ -298,42 +312,37 @@ namespace InsanKaynaklariBilgiSistem
                         eklekomutu.Parameters.AddWithValue("@cikis_tarihi", date_cikis.Value);
                         eklekomutu.Parameters.AddWithValue("@sebep", cb_sebep.Text);
 
-
-
-
                         eklekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
-                                                       
-                                                         //böylece kayıt ekleme işlemi gerçekleştirlmiş oldu,
-                        listele();
-                            MessageBox.Show("Kişinin özgeçmişine bilgiler başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
-                            ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
+                        MessageBox.Show("Kişinin özgeçmişine bilgiler başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
-                        }
-                        catch (Exception hatamjs)
-                        {
-                            //kayıt esnasında herhangi bir hata ile karşılaşıldığında
-                            MessageBox.Show(hatamjs.Message);
-                         
+                        ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
-                        }
                     }
-                    else
+                    catch (Exception hatamjs)
                     {
-                        MessageBox.Show("Yazı rengi kırmızı olan alanları yeniden gözden geçirniz", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //kayıt esnasında herhangi bir hata ile karşılaşıldığında
+                        MessageBox.Show(hatamjs.Message);
+
 
                     }
                 }
-                else//herhangi bir hata ile karşılaşılır ise 
+                else
                 {
                     MessageBox.Show("Yazı rengi kırmızı olan alanları yeniden gözden geçirniz", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
+            }
+            else//herhangi bir hata ile karşılaşılır ise 
+            {
+                MessageBox.Show("Yazı rengi kırmızı olan alanları yeniden gözden geçirniz", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
             listele();
         }
 
 
-        
+
         private void simpleButton4_Click(object sender, EventArgs e)
         {
             ekrani_temizle();
@@ -341,7 +350,7 @@ namespace InsanKaynaklariBilgiSistem
 
         private void gridControl1_DoubleClick(object sender, EventArgs e)
         {
-           
+
             txt_isad.Text = gridView1.GetFocusedRowCellValue("isyeri_adi").ToString();
             mtxt_istel.Text = gridView1.GetFocusedRowCellValue("tel").ToString();
             txt_gorev.Text = gridView1.GetFocusedRowCellValue("gorev").ToString();
@@ -359,7 +368,7 @@ namespace InsanKaynaklariBilgiSistem
 
         private void btn_guncelle_Click(object sender, EventArgs e)
         {
-           
+
             SqlCommand selectsorgu = new SqlCommand("select * from Kisi_ozgecmis_isyeri where kisi_tc='" + mtxt_tc_no.Text + "'", baglantim.baglanti());
 
             SqlDataReader kayitokuma = selectsorgu.ExecuteReader();//okuduğu sorguları tutuyoruz.
@@ -440,8 +449,8 @@ namespace InsanKaynaklariBilgiSistem
                         guncellekomutu.Parameters.AddWithValue("@id", txt_id.Text);
 
                         guncellekomutu.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
-                                                     
-                                                     //böylece kayıt ekleme işlemi gerçekleştirlmiş oldu,
+
+                        //böylece kayıt ekleme işlemi gerçekleştirlmiş oldu,
                         listele();
                         MessageBox.Show("Kişinin özgeçmişine bilgiler başarılı bir şekilde güncellenmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
@@ -452,7 +461,7 @@ namespace InsanKaynaklariBilgiSistem
                     {
                         //kayıt esnasında herhangi bir hata ile karşılaşıldığında
                         MessageBox.Show(hatamjs.Message);
-                      
+
 
                     }
                 }
@@ -476,7 +485,7 @@ namespace InsanKaynaklariBilgiSistem
 
             {
                 bool kayit_arama_durumu = false;
-              
+
                 SqlCommand secmeSorgusu = new SqlCommand("Select *from Kisi_ozgecmis_isyeri where kisi_tc='" + mtxt_tc_no.Text + "'", baglantim.baglanti());//ilgili tck verisine ait veriler seçiliyor.henüz silme yok. varmı yok mu ona bakıyoruz.
                 SqlDataReader kayitokuma = secmeSorgusu.ExecuteReader();//veri okuyucu tanımlanıyor. sorgu sonucalrı secmesorgusuna eşitledik.
                 while (kayitokuma.Read())
@@ -484,11 +493,11 @@ namespace InsanKaynaklariBilgiSistem
 
                     //kayıt okuma gerçekleşti ise
                     kayit_arama_durumu = true;
-                    SqlCommand silsorgusu = new SqlCommand("delete from Kisi_ozgecmis_isyeri where kisi_tc='" + mtxt_tc_no.Text +"'and id='"+txt_id.Text+ "'", baglantim.baglanti());
+                    SqlCommand silsorgusu = new SqlCommand("delete from Kisi_ozgecmis_isyeri where kisi_tc='" + mtxt_tc_no.Text + "'and id='" + txt_id.Text + "'", baglantim.baglanti());
                     //şimdi sorgunun sonucunun gerçekleştirilmesi sağlanacak 
                     silsorgusu.ExecuteNonQuery();
                     MessageBox.Show("Kullanıcı kaydı başarılı bir şekilde silinmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                   
+
 
                     ekrani_temizle();
                     listele();
@@ -500,7 +509,7 @@ namespace InsanKaynaklariBilgiSistem
                     MessageBox.Show("Böyle bir kayıt bulunamamıştır", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     ekrani_temizle();
                 }
-               
+
                 ekrani_temizle();
 
 
@@ -524,6 +533,62 @@ namespace InsanKaynaklariBilgiSistem
                 date_giris.Enabled = true;
                 date_cikis.Enabled = true;
                 cb_sebep.Enabled = true;
+            }
+        }
+
+        private void btn_rapor_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveDialog = new SaveFileDialog())
+            {
+                saveDialog.Filter = "Excel (2003)(.xls)|*.xls|Excel (2010) (.xlsx)|*.xlsx |RichText File (.rtf)|*.rtf |Pdf File (.pdf)|*.pdf |Html File (.html)|*.html";
+                if (saveDialog.ShowDialog() != DialogResult.Cancel)
+                {
+                    string exportFilePath = saveDialog.FileName;
+                    string fileExtenstion = new FileInfo(exportFilePath).Extension;
+
+                    switch (fileExtenstion)
+                    {
+                        case ".xls":
+                            gridControl2.ExportToXls(exportFilePath);
+                            break;
+                        case ".xlsx":
+                            gridControl2.ExportToXlsx(exportFilePath);
+                            break;
+                        case ".rtf":
+                            gridControl2.ExportToRtf(exportFilePath);
+                            break;
+                        case ".pdf":
+                            gridControl2.ExportToPdf(exportFilePath);
+                            break;
+                        case ".html":
+                            gridControl2.ExportToHtml(exportFilePath);
+                            break;
+                        case ".mht":
+                            gridControl2.ExportToMht(exportFilePath);
+                            break;
+                        default:
+                            break;
+                    }
+
+                    if (File.Exists(exportFilePath))
+                    {
+                        try
+                        {
+                            //Try to open the file and let windows decide how to open it.
+                            System.Diagnostics.Process.Start(exportFilePath);
+                        }
+                        catch
+                        {
+                            String msg = "The file could not be opened." + Environment.NewLine + Environment.NewLine + "Path: " + exportFilePath;
+                            MessageBox.Show(msg, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        String msg = "The file could not be saved." + Environment.NewLine + Environment.NewLine + "Path: " + exportFilePath;
+                        MessageBox.Show(msg, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
     }
