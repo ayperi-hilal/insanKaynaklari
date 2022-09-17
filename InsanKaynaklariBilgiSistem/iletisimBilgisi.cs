@@ -23,6 +23,26 @@ namespace InsanKaynaklariBilgiSistem
         }
         sqlBaglantisi baglantim = new sqlBaglantisi();
 
+        public void listele_tumu()
+        {
+            SqlCommand sorgu = new SqlCommand("tum_iletisim_bilgileri", baglantim.baglanti());
+            sorgu.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter(sorgu);
+
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            gridControl1.DataSource = dt;
+
+
+            gridView1.OptionsBehavior.Editable = false;
+            gridView1.OptionsView.ShowAutoFilterRow = true;
+        }
+
+
+
+
+
+
         //ara butonu
         private void btn_ara_Click(object sender, EventArgs e)
         {
@@ -99,8 +119,8 @@ namespace InsanKaynaklariBilgiSistem
                     cb_ilçe.Text = kayitokuma2.GetValue(8).ToString();
                     txt_mahalle.Text = kayitokuma2.GetValue(9).ToString();
                     txt_sokak.Text = kayitokuma2.GetValue(10).ToString();
-                    mtxt_apartman.Text = kayitokuma2.GetValue(11).ToString();
-                    mtxt_blok.Text = kayitokuma2.GetValue(12).ToString();
+                    txt_apartman.Text = kayitokuma2.GetValue(11).ToString();
+                    txt_blok.Text = kayitokuma2.GetValue(12).ToString();
                     txt_kapi.Text = kayitokuma2.GetValue(13).ToString();
                     txt_adres.Text = kayitokuma2.GetValue(14).ToString();
 
@@ -146,8 +166,8 @@ namespace InsanKaynaklariBilgiSistem
             mtxt_cep_no.Mask = "0000000000";//cep no
             txt_email.CharacterCasing = CharacterCasing.Lower;//email
             mtxt_yakini_no.Mask = "0000000000";//yakının numarsı
-            mtxt_apartman.Mask = ">LL?????????????????????????????";//apartman adı
-            mtxt_blok.Mask = ">LL????????????????????";//blok adı
+         
+           
 
             cb_il.Text = string.Empty;
             cb_ilçe.Text = string.Empty;
@@ -157,6 +177,9 @@ namespace InsanKaynaklariBilgiSistem
             txt_sokak.CharacterCasing = CharacterCasing.Upper;
             txt_kapi.CharacterCasing = CharacterCasing.Upper;
             txt_yakini.CharacterCasing = CharacterCasing.Upper;
+            txt_apartman.CharacterCasing = CharacterCasing.Upper;
+            txt_blok.CharacterCasing = CharacterCasing.Upper;
+
             txt_adres.Enabled = false;
             /* *    *   *** *   *   *** *   *   **      **  *   *   *       *   **  */
             SqlCommand cmd = new SqlCommand("Select * from iller ORDER BY sehiradi ASC", baglantim.baglanti());
@@ -174,6 +197,7 @@ namespace InsanKaynaklariBilgiSistem
 
             cb_il.DataSource = dt;
             //* *    *   *** *   *   *** *   *   **      **  *   *   *       *   **  */
+            listele_tumu();
         }
 
         private void ekrani_temizle()
@@ -182,8 +206,8 @@ namespace InsanKaynaklariBilgiSistem
             mtxt_tel_no.Clear();
             mtxt_cep_no.Clear();
             mtxt_yakini_no.Clear();
-            mtxt_apartman.Clear();
-            mtxt_blok.Clear();
+    
+   
 
 
             label3.Text = string.Empty;
@@ -194,6 +218,8 @@ namespace InsanKaynaklariBilgiSistem
             cb_ilçe.Text = string.Empty;
             txt_mahalle.Text = string.Empty;
             txt_sokak.Text = string.Empty;
+            txt_apartman.Text = string.Empty;
+            txt_blok.Text = string.Empty;
 
             txt_adres.Text = string.Empty;
             txt_email.Text = string.Empty;
@@ -225,6 +251,7 @@ namespace InsanKaynaklariBilgiSistem
                  dxErrorProvider1.SetError(mtxt_tc_no, "TC KİMLİK NO 11 KARAKTER OLMALIDIR.");
              else
                  dxErrorProvider1.ClearErrors();
+           
 
          }
 
@@ -291,10 +318,10 @@ namespace InsanKaynaklariBilgiSistem
                 else
                     lbl_mahalle.ForeColor = Color.Black;
 
-                if (txt_sokak.Text == "")//sokak seçilmelidir.
-                    lbl_sokak.ForeColor = Color.Red;
-                else
-                    lbl_sokak.ForeColor = Color.Black;
+                //if (txt_sokak.Text == "")//sokak seçilmelidir.
+                //    lbl_sokak.ForeColor = Color.Red;
+                //else
+                //    lbl_sokak.ForeColor = Color.Black;
 
                 if (txt_kapi.Text == "")
                     lbl_kapi_no.ForeColor = Color.Red;
@@ -306,7 +333,7 @@ namespace InsanKaynaklariBilgiSistem
 
                 if (mtxt_tc_no.Text.Length == 11 && mtxt_cep_no.Text != "" && txt_yakini.Text != "" &&
                     mtxt_yakini_no.Text != "" && mtxt_yakini_no.Text.Length == 10 && cb_il.Text != "" && cb_ilçe.Text != ""
-                    && txt_mahalle.Text != "" && txt_sokak.Text != "" && txt_kapi.Text != "")
+                    && txt_mahalle.Text != ""  && txt_kapi.Text != "")
                 {
                     try
                     {
@@ -323,8 +350,8 @@ namespace InsanKaynaklariBilgiSistem
                         eklekomutu.Parameters.AddWithValue("@ilce", cb_ilçe.Text);
                         eklekomutu.Parameters.AddWithValue("@mahalle", txt_mahalle.Text);
                         eklekomutu.Parameters.AddWithValue("@sokak", txt_sokak.Text);
-                        eklekomutu.Parameters.AddWithValue("@apartman_adi", mtxt_apartman.Text);
-                        eklekomutu.Parameters.AddWithValue("@blok", mtxt_blok.Text);
+                        eklekomutu.Parameters.AddWithValue("@apartman_adi", txt_apartman.Text);
+                        eklekomutu.Parameters.AddWithValue("@blok", txt_blok.Text);
                         eklekomutu.Parameters.AddWithValue("@kapi_no", txt_kapi.Text);
                         eklekomutu.Parameters.AddWithValue("@adres", txt_adres.Text);
 
@@ -402,10 +429,10 @@ namespace InsanKaynaklariBilgiSistem
             else
                 lbl_mahalle.ForeColor = Color.Black;
 
-            if (txt_sokak.Text == "")//sokak seçilmelidir.
-                lbl_sokak.ForeColor = Color.Red;
-            else
-                lbl_sokak.ForeColor = Color.Black;
+            //if (txt_sokak.Text == "")//sokak seçilmelidir.
+            //    lbl_sokak.ForeColor = Color.Red;
+            //else
+            //    lbl_sokak.ForeColor = Color.Black;
 
             if (txt_kapi.Text == "")
                 lbl_kapi_no.ForeColor = Color.Red;
@@ -417,7 +444,7 @@ namespace InsanKaynaklariBilgiSistem
 
             if (mtxt_tc_no.Text.Length == 11 && mtxt_cep_no.Text != "" && txt_yakini.Text != "" &&
                 mtxt_yakini_no.Text != "" && mtxt_yakini_no.Text.Length == 10 && cb_il.Text != "" && cb_ilçe.Text != ""
-                && txt_mahalle.Text != "" && txt_sokak.Text != "" && txt_kapi.Text != "")
+                && txt_mahalle.Text != "" && txt_kapi.Text != "")
             {
                 try
                 {
@@ -434,8 +461,8 @@ namespace InsanKaynaklariBilgiSistem
                     guncellekomutu.Parameters.AddWithValue("@ilce", cb_ilçe.Text);
                     guncellekomutu.Parameters.AddWithValue("@mahalle", txt_mahalle.Text);
                     guncellekomutu.Parameters.AddWithValue("@sokak", txt_sokak.Text);
-                    guncellekomutu.Parameters.AddWithValue("@apartman_adi", mtxt_apartman.Text);
-                    guncellekomutu.Parameters.AddWithValue("@blok", mtxt_blok.Text);
+                    guncellekomutu.Parameters.AddWithValue("@apartman_adi", txt_apartman.Text);
+                    guncellekomutu.Parameters.AddWithValue("@blok", txt_blok.Text);
                     guncellekomutu.Parameters.AddWithValue("@kapi_no", txt_kapi.Text);
                     guncellekomutu.Parameters.AddWithValue("@adres", txt_adres.Text);
 
@@ -500,7 +527,7 @@ namespace InsanKaynaklariBilgiSistem
             }
             else
             {
-                MessageBox.Show("tc kimlik no 11 haneli girilmelidir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("TC kimlik no 11 haneli girilmelidir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         //formu temizle
@@ -531,46 +558,105 @@ namespace InsanKaynaklariBilgiSistem
             cb_ilçe.DisplayMember = "ilceadi";
 
             cb_ilçe.DataSource = dt;
-            txt_adres.Text = cb_il.Text + " " + cb_ilçe.Text + " " + txt_mahalle.Text + " " + txt_sokak.Text + " "
-                + mtxt_apartman.Text + " " + mtxt_blok.Text + " " + txt_kapi.Text;
+         /*   txt_adres.Text = cb_il.Text + ", " + cb_ilçe.Text + ", " + txt_mahalle.Text + ", " + txt_sokak.Text + ", "
+                + txt_apartman.Text + ", " + txt_blok.Text + ", " + txt_kapi.Text;*/
             //cb_il 'e çift tıklayınca bu özellik geliyor
         }
 
         private void cb_ilçe_SelectedIndexChanged(object sender, EventArgs e)
         {
             txt_adres.Text = cb_il.Text + " " + cb_ilçe.Text + " " + txt_mahalle.Text + " " + txt_sokak.Text + " "
-                + mtxt_apartman.Text + " " + mtxt_blok.Text + " " + txt_kapi.Text;
+                + txt_apartman.Text + " " + txt_blok.Text + " " + txt_kapi.Text;
         }
 
         private void txt_mahalle_TextChanged(object sender, EventArgs e)
         {
             txt_adres.Text = cb_il.Text + " " + cb_ilçe.Text + " " + txt_mahalle.Text + " " + txt_sokak.Text + " "
-                + mtxt_apartman.Text + " " + mtxt_blok.Text + " " + txt_kapi.Text;
+                + txt_apartman.Text + " " + txt_blok.Text + " " + txt_kapi.Text;
         }
 
         private void txt_sokak_TextChanged(object sender, EventArgs e)
         {
             txt_adres.Text = cb_il.Text + " " + cb_ilçe.Text + " " + txt_mahalle.Text + " " + txt_sokak.Text + " "
-                + mtxt_apartman.Text + " " + mtxt_blok.Text + " " + txt_kapi.Text;
+                + txt_apartman.Text + " " + txt_blok.Text + " " + txt_kapi.Text;
         }
 
-        private void mtxt_apartman_TextChanged(object sender, EventArgs e)
+        private void txt_apartman_TextChanged(object sender, EventArgs e)
         {
             txt_adres.Text = cb_il.Text + " " + cb_ilçe.Text + " " + txt_mahalle.Text + " " + txt_sokak.Text + " "
-                + mtxt_apartman.Text + " " + mtxt_blok.Text + " " + txt_kapi.Text;
+               + txt_apartman.Text + " " + txt_blok.Text + " " + txt_kapi.Text;
         }
 
-        private void mtxt_blok_TextChanged(object sender, EventArgs e)
+        private void txt_blok_TextChanged(object sender, EventArgs e)
         {
             txt_adres.Text = cb_il.Text + " " + cb_ilçe.Text + " " + txt_mahalle.Text + " " + txt_sokak.Text + " "
-                + mtxt_apartman.Text + " " + mtxt_blok.Text + " " + txt_kapi.Text;
+                   + txt_apartman.Text + " " + txt_blok.Text + " " + txt_kapi.Text;
+
         }
 
         private void txt_kapi_TextChanged(object sender, EventArgs e)
         {
             txt_adres.Text = cb_il.Text + " " + cb_ilçe.Text + " " + txt_mahalle.Text + " " + txt_sokak.Text + " "
-                + mtxt_apartman.Text + " " + mtxt_blok.Text + " " + txt_kapi.Text;
+                + txt_apartman.Text + " " + txt_blok.Text + " " + txt_kapi.Text;
         }
+
+        private void btn_rapor_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveDialog = new SaveFileDialog())
+            {
+                saveDialog.Filter = "Excel (2003)(.xls)|*.xls|Excel (2010) (.xlsx)|*.xlsx |RichText File (.rtf)|*.rtf |Pdf File (.pdf)|*.pdf |Html File (.html)|*.html";
+                if (saveDialog.ShowDialog() != DialogResult.Cancel)
+                {
+                    string exportFilePath = saveDialog.FileName;
+                    string fileExtenstion = new FileInfo(exportFilePath).Extension;
+
+                    switch (fileExtenstion)
+                    {
+                        case ".xls":
+                            gridControl1.ExportToXls(exportFilePath);
+                            break;
+                        case ".xlsx":
+                            gridControl1.ExportToXlsx(exportFilePath);
+                            break;
+                        case ".rtf":
+                            gridControl1.ExportToRtf(exportFilePath);
+                            break;
+                        case ".pdf":
+                            gridControl1.ExportToPdf(exportFilePath);
+                            break;
+                        case ".html":
+                            gridControl1.ExportToHtml(exportFilePath);
+                            break;
+                        case ".mht":
+                            gridControl1.ExportToMht(exportFilePath);
+                            break;
+                        default:
+                            break;
+                    }
+
+                    if (File.Exists(exportFilePath))
+                    {
+                        try
+                        {
+                            //Try to open the file and let windows decide how to open it.
+                            System.Diagnostics.Process.Start(exportFilePath);
+                        }
+                        catch
+                        {
+                            String msg = "Dosya açılamadı." + Environment.NewLine + Environment.NewLine + "Path: " + exportFilePath;
+                            MessageBox.Show(msg, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        String msg = "Dosya kaydedilemedi." + Environment.NewLine + Environment.NewLine + "Path: " + exportFilePath;
+                        MessageBox.Show(msg, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            }
+
+        
     }
         
 }

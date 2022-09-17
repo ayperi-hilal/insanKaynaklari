@@ -56,34 +56,37 @@ namespace InsanKaynaklariBilgiSistem
             }
         }
 
-        kullaniciHesap frm1;
+        kullaniciHesap frmx;
         private void barButtonItem29_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if(frm1==null||frm1.IsDisposed)
-            {
-                frm1 = new kullaniciHesap();
-                frm1.MdiParent = this;
-                frm1.Show();
-            }
-            else
-            {
-             xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm1];
-            }
-
-
-
             if (label2.Text == "ADMİN ADMİN")
             {
                 barButtonItem29.Enabled = true;
-                frm1.Visible = true;
-                frm1.Enabled = true;
+                frmx.Visible = true;
+                frmx.Enabled = true;
+                if (frmx == null || frmx.IsDisposed)
+                {
+                    frmx = new kullaniciHesap();
+                    frmx.MdiParent = this;
+                    frmx.Show();
+                }
+                else
+                {
+                    xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frmx];
+                }
             }
+            //if (label2.Text == "ADMİN ADMİN")
+            //{
+            //    barButtonItem29.Enabled = true;
+            //    frm1.Visible = true;
+            //    frm1.Enabled = true;
+            //}
             else
             {
                 barButtonItem29.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
                barButtonItem29.Enabled = false;
-                frm1.Visible = false;
-                frm1.Enabled = false;
+                frmx.Visible = false;
+                frmx.Enabled = false;
                 MessageBox.Show("Bu kısım ile ilgili yetkiniz bulunmamaktadır");
             }
 
@@ -254,13 +257,13 @@ namespace InsanKaynaklariBilgiSistem
 
         }
 
-            maddiBilgi frm11;
+            maddiDurum frm11;
 
         private void barButtonItem34_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (frm11 == null || frm11.IsDisposed)
             { 
-                 frm11 = new maddiBilgi();
+                 frm11 = new maddiDurum();
 
                 frm11.MdiParent = this;
                 frm11.Show();
@@ -310,12 +313,12 @@ namespace InsanKaynaklariBilgiSistem
             }
         }
 
-        kkd frm14;
+        kkdBilgisi frm14;
         private void barButtonItem40_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (frm14==null||frm14.IsDisposed)
             {
-                frm14 = new kkd();
+                frm14 = new kkdBilgisi();
                 frm14.MdiParent = this;
                 frm14.Show();
             }
@@ -325,31 +328,150 @@ namespace InsanKaynaklariBilgiSistem
             }
         }
 
-        cikti frm15;
+        
+        ciktiForm frm15;
         private void barButtonItem41_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (frm15 == null || frm15.IsDisposed)
             {
-                frm15 = new cikti();
+                frm15 = new ciktiForm();
                 frm15.MdiParent = this;
                 frm15.Show();
             }
             else
             {
-                xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm14];
+                xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm15];
             }
         }
 
+        borcDurumu frm16;
+        private void barButtonItem42_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (frm16 == null || frm16.IsDisposed)
+            {
+                frm16 = new borcDurumu();
+                frm16.MdiParent = this;
+                frm16.Show();
+            }
+            else
+            {
+                xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm16];
+            }
+        }
+
+        performans frm17;
+        private void barButtonItem43_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (frm17 == null || frm17.IsDisposed)
+            {
+                frm17 = new performans();
+                frm17.MdiParent = this;
+                frm17.Show();
+            }
+            else
+            {
+                xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm17];
+            }
+        }
+
+        havuzolustur frm18;
+        private void barButtonItem44_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (frm18 == null || frm18.IsDisposed)
+            {
+                frm18 = new havuzolustur();
+                frm18.MdiParent = this;
+                frm18.Show();
+            }
+            else
+            {
+                xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm18];
+            }
+        }
+        havuzKayit frm19;
+        private void barButtonItem45_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (frm19 == null || frm19.IsDisposed)
+            {
+                frm19 = new havuzKayit();
+                frm19.MdiParent = this;
+                frm19.Show();
+            }
+            else
+            {
+                xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm19];
+            }
+        }
+
+        departmanOlustur frm20;
+        private void barButtonItem47_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (frm20 == null || frm20.IsDisposed)
+            {
+                frm20 = new departmanOlustur();
+                frm20.MdiParent = this;
+                frm20.Show();
+            }
+            else
+            {
+                xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm20];
+            }
+        }
+
+        gorevOlustur frm21;
+        private void barButtonItem48_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (frm21 == null || frm21.IsDisposed)
+            {
+                frm21 = new gorevOlustur();
+                frm21.MdiParent = this;
+                frm21.Show();
+            }
+            else
+            {
+                xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm21];
+            }
+        }
+
+        meslekKodu frm22;
+        private void barButtonItem49_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (frm22 == null || frm22.IsDisposed)
+            {
+                frm22 = new meslekKodu();
+                frm22.MdiParent = this;
+                frm22.Show();
+            }
+            else
+            {
+                xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm22];
+            }
+        }
+        firmaImkanları frm23;
+        private void barButtonItem50_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (frm23 == null || frm23.IsDisposed)
+            {
+                frm23 = new firmaImkanları();
+                frm23.MdiParent = this;
+                frm23.Show();
+            }
+            else
+            {
+                xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm23];
+            }
+        }
 
         //   kullaniciHesap frm14 = new kullaniciHesap();
         private void Form4_Load(object sender, EventArgs e)
         {
+            
             resim_goruntule();
 
             pictureBox1.Height = 90;
             pictureBox1.Width = 90;
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-           
+
             //kullanıcı sekmesi ile ilgili ayarlaır yapalım.
 
             label2.ForeColor = Color.DarkRed;
@@ -357,9 +479,254 @@ namespace InsanKaynaklariBilgiSistem
 
             //tarih ve saat bildgisi
             label4.Text = DateTime.Now.ToString();
+
+            frmx = new kullaniciHesap();
+            if (label2.Text != "ADMİN ADMİN")
+            {
+                barButtonItem29.Enabled = false;
+                frmx.Visible = false;
+                frmx.Enabled = false;
+                ribbonPage2.Visible = false;
+            }
+            else
+            {
+                barButtonItem29.Enabled = false;
+                // frm1.Visible = false;
+                //frm1.Enabled = false;
+                ribbonPage2.Visible = false;
+            }
+            //alertControl1.Show(this, "ekran ", "Aşağıdaki kod örneği, Windows Forms ile kullanım için tasarlanmıştır ve PaintEventArgs e olay işleyicisinin bir parametresi olan gerektirir Paint . Kod aşağıdaki eylemi gerçekleştirir:Bir iç işaretçi türü değişkeni oluşturur hdc ve bunu, formun grafik nesnesinin cihaz bağlamı için tanıtıcı olarak ayarlar.Kullanarak yeni bir grafik nesnesi oluşturur hdc.Yeni grafik nesnesiyle(ekranda) bir dikdörtgen çizer.Kullanarak yeni grafik nesnesini serbest bırakır hdc.");
+
+            //alertControl1.Show(this, "Bildirim_Dogum_Günü_Bugün", "vvvv");
+
+            SqlCommand cmd = new SqlCommand("Bildirim_Dogum_Günü_Bugün", baglantim.baglanti());
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataReader data_Reader = cmd.ExecuteReader();
+            while (data_Reader.Read())
+            {
+                alertControl1.Show(this, "\n", data_Reader[0].ToString() + " \nDogum Günü Bugün\n" + data_Reader[1].ToString());
+            }
+
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            SqlCommand cmd_1 = new SqlCommand("Bildirim_Dogum_Günü_Yaklasan", baglantim.baglanti());
+            cmd_1.CommandType = CommandType.StoredProcedure;
+
+            SqlDataReader data_Reader_1 = cmd_1.ExecuteReader();
+            while (data_Reader_1.Read())
+            {
+                alertControl1.Show(this, "Yaklaşan Doğum Günleri\n", data_Reader_1[1].ToString() + " \n Bu hafta içinde \n" + data_Reader_1[2].ToString());
+            }
+
+            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+           
+
+            SqlCommand cmd_2 = new SqlCommand("Bildirim_Kisi_Planli_Merasim_Bugün", baglantim.baglanti());
+            cmd_2.CommandType = CommandType.StoredProcedure;
+
+            SqlDataReader data_Reader_2 = cmd_2.ExecuteReader();
+            while (data_Reader_2.Read())
+            {
+                alertControl1.Show(this, "MERASİMLERDE BUGÜN", data_Reader_2[1].ToString() + " " + data_Reader_2[2].ToString());
+            }
+
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            SqlCommand cmd_3 = new SqlCommand("Bildirim_Kisi_Planli_Merasim_Yaklasan", baglantim.baglanti());
+            cmd_3.CommandType = CommandType.StoredProcedure;
+
+            SqlDataReader data_Reader_3 = cmd_3.ExecuteReader();
+            while (data_Reader_3.Read())
+            {
+                alertControl1.Show(this, "YAKLAŞAN MERASİMLER", data_Reader_3[1].ToString() + " " + data_Reader_3[2].ToString());
+            }
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            SqlCommand cmd_4 = new SqlCommand("Borc_Odeme_Bugün", baglantim.baglanti());
+            cmd_4.CommandType = CommandType.StoredProcedure;
+
+            SqlDataReader data_Reader_4 = cmd_4.ExecuteReader();
+            while (data_Reader_4.Read())
+            {
+                alertControl1.Show(this, "BORÇ ÖDEMESİNDE BUGÜN", data_Reader_4[1].ToString() + " " + data_Reader_4[2].ToString());
+            }
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            SqlCommand cmd_5 = new SqlCommand("Borc_Odeme_Buhafta", baglantim.baglanti());
+            cmd_5.CommandType = CommandType.StoredProcedure;
+
+            SqlDataReader data_Reader_5 = cmd_5.ExecuteReader();
+            while (data_Reader_5.Read())
+            {
+                alertControl1.Show(this, "BU HAFTA BORÇ ÖDEMESİ", data_Reader_5[1].ToString() + " " + data_Reader_5[2].ToString());
+            }
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+            SqlCommand cmd_6 = new SqlCommand("Borc_Odeme_Buay", baglantim.baglanti());
+            cmd_6.CommandType = CommandType.StoredProcedure;
+
+            SqlDataReader data_Reader_6 = cmd_6.ExecuteReader();
+            while (data_Reader_6.Read())
+            {
+                alertControl1.Show(this, "BU AY BORÇ ÖDEMESİ", data_Reader_6[1].ToString() + " " + data_Reader_6[2].ToString());
+            }
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+            SqlCommand cmd_7 = new SqlCommand("Borcu_Geciken", baglantim.baglanti());
+            cmd_7.CommandType = CommandType.StoredProcedure;
+
+            SqlDataReader data_Reader_7 = cmd_7.ExecuteReader();
+            while (data_Reader_7.Read())
+            {
+                alertControl1.Show(this, "BORCU GECİKEN", data_Reader_7[1].ToString() + " " + data_Reader_7[2].ToString());
+            }
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+            SqlCommand cmd_8 = new SqlCommand("Bildirim_agir_Sertifika_Bitisi_Bugün", baglantim.baglanti());
+            cmd_8.CommandType = CommandType.StoredProcedure;
+
+            SqlDataReader data_Reader_8 = cmd_8.ExecuteReader();
+            while (data_Reader_8.Read())
+            {
+                alertControl1.Show(this, "AĞIR İŞ SERTİFİKASININ SÜRESİ DOLDU", data_Reader_8[1].ToString() + " " + data_Reader_8[2].ToString());
+            }
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+            SqlCommand cmd_9 = new SqlCommand("Bildirim_agir_Sertifika_Bitisi_Buhafta", baglantim.baglanti());
+            cmd_9.CommandType = CommandType.StoredProcedure;
+
+            SqlDataReader data_Reader_9 = cmd_9.ExecuteReader();
+            while (data_Reader_9.Read())
+            {
+                alertControl1.Show(this, "AĞIR İŞ SERTİFİKASININ SÜRESİ BU HAFTA DOLACAK", data_Reader_9[1].ToString() + " " + data_Reader_9[2].ToString());
+            }
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+            SqlCommand cmd_10 = new SqlCommand("Bildirim_agir_Sertifika_Bitisi_Buay", baglantim.baglanti());
+            cmd_10.CommandType = CommandType.StoredProcedure;
+
+            SqlDataReader data_Reader_10 = cmd_10.ExecuteReader();
+            while (data_Reader_10.Read())
+            {
+                alertControl1.Show(this, "AĞIR İŞ SERTİFİKASININ SÜRESİ BU AY DOLACAK", data_Reader_10[1].ToString() + " " + data_Reader_10[2].ToString());
+            }
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+            SqlCommand cmd_11 = new SqlCommand("Bildirim_agir_Sertifika_Bitisi_Gecti", baglantim.baglanti());
+            cmd_11.CommandType = CommandType.StoredProcedure;
+
+            SqlDataReader data_Reader_11 = cmd_11.ExecuteReader();
+            while (data_Reader_11.Read())
+            {
+                alertControl1.Show(this, "AĞIR İŞ SERTİFİKASININ SÜRESİ DOLDU.", data_Reader_11[1].ToString() + " " + data_Reader_11[2].ToString());
+            }
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            SqlCommand cmd_12 = new SqlCommand("Bildirim_Sertifika_Bitisi_Bugün", baglantim.baglanti());
+            cmd_12.CommandType = CommandType.StoredProcedure;
+
+            SqlDataReader data_Reader_12 = cmd_12.ExecuteReader();
+            while (data_Reader_12.Read())
+            {
+                alertControl1.Show(this, "SERTİFİKANIN SÜRESİ DOLDU", data_Reader_12[1].ToString() + " " + data_Reader_12[2].ToString());
+            }
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            SqlCommand cmd_13 = new SqlCommand("Bildirim_Sertifika_Bitisi_Buhafta", baglantim.baglanti());
+            cmd_13.CommandType = CommandType.StoredProcedure;
+
+            SqlDataReader data_Reader_13 = cmd_13.ExecuteReader();
+            while (data_Reader_13.Read())
+            {
+                alertControl1.Show(this, "SERTİFİKASININ SÜRESİ BU HAFTA DOLACAK", data_Reader_13[1].ToString() + " " + data_Reader_13[2].ToString());
+            }
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            SqlCommand cmd_14 = new SqlCommand("Bildirim_Sertifika_Bitisi_Buay", baglantim.baglanti());
+            cmd_14.CommandType = CommandType.StoredProcedure;
+
+            SqlDataReader data_Reader_14 = cmd_14.ExecuteReader();
+            while (data_Reader_14.Read())
+            {
+                alertControl1.Show(this, "SERTİFİKASININ SÜRESİ BU AY DOLACAK", data_Reader_14[1].ToString() + " " + data_Reader_14[2].ToString());
+            }
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+           
+            SqlCommand cmd_15 = new SqlCommand("Bildirim_Sertifika_Bitisi_Gecti", baglantim.baglanti());
+            cmd_15.CommandType = CommandType.StoredProcedure;
+
+            SqlDataReader data_Reader_15 = cmd_15.ExecuteReader();
+            while (data_Reader_15.Read())
+            {
+                alertControl1.Show(this, "SERTİFİKASININ SÜRESİ DOLDU.", data_Reader_15[1].ToString() + " " + data_Reader_15[2].ToString());
+            }
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            SqlCommand cmd_16 = new SqlCommand("Aile_Merasim_Bugün", baglantim.baglanti());
+            cmd_16.CommandType = CommandType.StoredProcedure;
+
+            SqlDataReader data_Reader_16 = cmd_16.ExecuteReader();
+            while (data_Reader_16.Read())
+            {
+                alertControl1.Show(this, "MERASİMİ BUGÜN.", data_Reader_16[1].ToString() + " " + data_Reader_16[2].ToString());
+            }
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            SqlCommand cmd_17 = new SqlCommand("Aile_Merasim_Buhafta", baglantim.baglanti());
+            cmd_17.CommandType = CommandType.StoredProcedure;
+
+            SqlDataReader data_Reader_17 = cmd_17.ExecuteReader();
+            while (data_Reader_17.Read())
+            {
+                alertControl1.Show(this, "MERASİMİ BU HAFTA.", data_Reader_17[1].ToString() + " " + data_Reader_17[2].ToString());
+            }
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+            //DateTime bugunTarihi = DateTime.Now;
+            //DateTime sinavTarihi = new DateTime(2021, 3, 2);
+
+            ////"6.02.1990 17:23:43" 
+
+            //TimeSpan ts = sinavTarihi - bugunTarihi;
+            //MessageBox.Show(
+            //"Sınav Tarihi : " + b.ToShortDateString()
+            //+ "\n" +
+            //  "Kalan Gün : " + ts.Days.ToString());
+
+            //MessageBox.Show("(baslangicTarihi - bitisTarihi).TotalDays",(sinavTarihi - bugunTarihi).TotalDays.ToString());
+
+
+            //planlanan merasimler
         }
 
-       
+
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
@@ -376,6 +743,11 @@ namespace InsanKaynaklariBilgiSistem
                 MessageBox.Show("Program Kapatılamadı.");
             }
             
+        }
+
+        private void alertControl1_BeforeFormShow(object sender, DevExpress.XtraBars.Alerter.AlertFormEventArgs e)
+        {
+            e.AlertForm.OpacityLevel = 1;
         }
 
         

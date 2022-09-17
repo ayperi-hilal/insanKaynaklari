@@ -48,6 +48,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.2.2.5\lib\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video, Version=2.2.5.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Video.2.2.5\lib\AForge.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.DirectShow, Version=2.2.5.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Video.DirectShow.2.2.5\lib\AForge.Video.DirectShow.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.Charts.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.CodeParser.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Dashboard.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -55,10 +64,12 @@
     <Reference Include="DevExpress.Data.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.DataAccess.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.DataAccess.v19.2.UI, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Diagram.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Dialogs.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Map.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Mvvm.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Office.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Pdf.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.PivotGrid.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Printing.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.RichEdit.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -73,6 +84,7 @@
     <Reference Include="DevExpress.XtraCharts.v19.2.Extensions, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraCharts.v19.2.UI, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraCharts.v19.2.Wizard, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraDiagram.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraDialogs.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraGauges.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -93,6 +105,9 @@
     <Reference Include="DevExpress.XtraTreeList.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeMap.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraVerticalGrid.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="itextsharp">
+      <HintPath>..\..\repos\PDF1\PDF1\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -110,6 +125,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="aileBilgisi.cs">
@@ -118,12 +134,24 @@
     <Compile Include="aileBilgisi.Designer.cs">
       <DependentUpon>aileBilgisi.cs</DependentUpon>
     </Compile>
+    <Compile Include="aileBilgisiGoster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="aileBilgisiGoster.Designer.cs">
+      <DependentUpon>aileBilgisiGoster.cs</DependentUpon>
+    </Compile>
     <Compile Include="aktifKullanici.cs" />
     <Compile Include="bildirimler.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="bildirimler.Designer.cs">
       <DependentUpon>bildirimler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="borcDurumu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="borcDurumu.Designer.cs">
+      <DependentUpon>borcDurumu.cs</DependentUpon>
     </Compile>
     <Compile Include="cikti.cs">
       <SubType>Form</SubType>
@@ -137,7 +165,14 @@
     <Compile Include="ciktiForm.Designer.cs">
       <DependentUpon>ciktiForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="cs_AlertControl.cs" />
     <Compile Include="dbclass.cs" />
+    <Compile Include="departmanOlustur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="departmanOlustur.Designer.cs">
+      <DependentUpon>departmanOlustur.cs</DependentUpon>
+    </Compile>
     <Compile Include="durumGrafiği.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +197,31 @@
     <Compile Include="firmaImkanları.Designer.cs">
       <DependentUpon>firmaImkanları.cs</DependentUpon>
     </Compile>
+    <Compile Include="gorevOlustur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="gorevOlustur.Designer.cs">
+      <DependentUpon>gorevOlustur.cs</DependentUpon>
+    </Compile>
+    <Compile Include="havuz.cs" />
+    <Compile Include="kkdBilgisi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kkdBilgisi.Designer.cs">
+      <DependentUpon>kkdBilgisi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="meslekKodu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="meslekKodu.Designer.cs">
+      <DependentUpon>meslekKodu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="performansDurum.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="performansDurum.Designer.cs">
+      <DependentUpon>performansDurum.cs</DependentUpon>
+    </Compile>
     <Compile Include="genelBilgiler.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,6 +233,18 @@
     </Compile>
     <Compile Include="genelKultur.Designer.cs">
       <DependentUpon>genelKultur.cs</DependentUpon>
+    </Compile>
+    <Compile Include="havuzKayit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="havuzKayit.Designer.cs">
+      <DependentUpon>havuzKayit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="havuzolustur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="havuzolustur.Designer.cs">
+      <DependentUpon>havuzolustur.cs</DependentUpon>
     </Compile>
     <Compile Include="iletisimBilgisi.cs">
       <SubType>Form</SubType>
@@ -216,11 +288,29 @@
     <Compile Include="ekran.Designer.cs">
       <DependentUpon>ekran.cs</DependentUpon>
     </Compile>
+    <Compile Include="maddiDurum.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="maddiDurum.Designer.cs">
+      <DependentUpon>maddiDurum.cs</DependentUpon>
+    </Compile>
     <Compile Include="ozGecmis.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ozGecmis.Designer.cs">
       <DependentUpon>ozGecmis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="perfomansDurumu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="perfomansDurumu.Designer.cs">
+      <DependentUpon>perfomansDurumu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="performans.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="performans.Designer.cs">
+      <DependentUpon>performans.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -239,14 +329,23 @@
     <EmbeddedResource Include="aileBilgisi.resx">
       <DependentUpon>aileBilgisi.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="aileBilgisiGoster.resx">
+      <DependentUpon>aileBilgisiGoster.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="bildirimler.resx">
       <DependentUpon>bildirimler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="borcDurumu.resx">
+      <DependentUpon>borcDurumu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="cikti.resx">
       <DependentUpon>cikti.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ciktiForm.resx">
       <DependentUpon>ciktiForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="departmanOlustur.resx">
+      <DependentUpon>departmanOlustur.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="durumGrafiği.resx">
       <DependentUpon>durumGrafiği.cs</DependentUpon>
@@ -260,11 +359,29 @@
     <EmbeddedResource Include="firmaImkanları.resx">
       <DependentUpon>firmaImkanları.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="gorevOlustur.resx">
+      <DependentUpon>gorevOlustur.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kkdBilgisi.resx">
+      <DependentUpon>kkdBilgisi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="meslekKodu.resx">
+      <DependentUpon>meslekKodu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="performansDurum.resx">
+      <DependentUpon>performansDurum.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="genelBilgiler.resx">
       <DependentUpon>genelBilgiler.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="genelKultur.resx">
       <DependentUpon>genelKultur.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="havuzKayit.resx">
+      <DependentUpon>havuzKayit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="havuzolustur.resx">
+      <DependentUpon>havuzolustur.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="iletisimBilgisi.resx">
       <DependentUpon>iletisimBilgisi.cs</DependentUpon>
@@ -287,8 +404,17 @@
     <EmbeddedResource Include="ekran.resx">
       <DependentUpon>ekran.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="maddiDurum.resx">
+      <DependentUpon>maddiDurum.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ozGecmis.resx">
       <DependentUpon>ozGecmis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="perfomansDurumu.resx">
+      <DependentUpon>perfomansDurumu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="performans.resx">
+      <DependentUpon>performans.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -307,6 +433,8 @@
     <EmbeddedResource Include="saglik.resx">
       <DependentUpon>saglik.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\perfomansDurumu.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -749,6 +877,285 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\add_16x164.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report_32x323.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\video_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\apply_32x322.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clearformatting_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\video_32x321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\viewmergeddata_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\apply_32x323.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\apply_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh2_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reset2_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_16x161.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\redo_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bosale_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\linenumbering_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\linenumbering_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bosale_32x321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bosale_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chartsshowlegend_32x321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chartsshowlegend_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addfile_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addfile_16x161.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addfile_16x162.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addfile_16x163.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addfile_16x164.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addfile_16x165.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addfile_16x166.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addfile_16x167.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addfile_16x168.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addfile_16x169.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addfile_16x1610.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addfile_16x1611.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\convert_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\convert_16x161.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\convert_16x162.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\convert_16x163.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\convert_16x164.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\convert_16x165.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\convert_16x166.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\convert_16x167.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\convert_16x168.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\convert_16x169.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\convert_16x1610.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\convert_16x1611.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kpi_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kpi_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bouser_32x323.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\usergroup_32x326.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_32x327.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_16x165.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\windows_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\windows_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\doublenext_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clear_16x161.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clear_32x322.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addfile_16x1612.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_16x162.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exporttoxlsx_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\updatefield_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lookup&amp;reference_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\apply_16x161.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refreshallpivottable_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_16x163.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\resetmodeldifferences_16x161.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search_16x161.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exporttoxlsx_16x161.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\boreport_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exporttopdf_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addfile_32x321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\convert_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_32x321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clear_16x162.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\savetheme_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\documentmap_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pielabelsdatalabels_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pielabelsdatalabels_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notes_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notes_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\find_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\video_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\video_16x161.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\apply_16x162.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\yok.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconsetredtoblack4_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\emptytablerowseparator_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\additem_16x161.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\combobox_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addnewdatasource_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addnewdatasource_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconsetsymbolscircled3_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconsetsymbolscircled3_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\updatefield_16x161.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

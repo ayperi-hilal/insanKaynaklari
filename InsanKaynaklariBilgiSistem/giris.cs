@@ -47,6 +47,7 @@ namespace InsanKaynaklariBilgiSistem
                 //veri tabanından veri okumammız gerekmektedir.
                 SqlDataReader kayitokuma = eklemesorgusu.ExecuteReader();//getirilen tüm kayıtlar kayit okumaya aktarıldı.
 
+
                 while(kayitokuma.Read())
                 {
                    // if (radioButton1.Checked==true)
@@ -72,18 +73,25 @@ namespace InsanKaynaklariBilgiSistem
                             soyadi = kayitokuma.GetValue(3).ToString();
                             yetki = kayitokuma.GetValue(4).ToString();
                             
-
+                            
 
 
                             this.Hide();//kullanıcı başarılı bir şekilde giriş yapabildiği için bu form gizlenip form 2 ye geçiş yapılacaktır.
+
                             ekran frm4 = new ekran();
                             frm4.Show();
+                            
                             kullaniciHesap frm8 = new kullaniciHesap();
-                            if (textBox1.Text=="Admin")
+                            if (tcno!= "00000000000")
                             {
                                 //   kullaniciHesap frm8=new kullaniciHesap()
+
                                 frm8.Enabled = false;
+                              
+
+
                             }
+                           
                             break;
                         }
                     }
@@ -107,9 +115,17 @@ namespace InsanKaynaklariBilgiSistem
                         }
                     }*/
                 }
+
+
+
                 if (durum == false)
-                    hak--;
-               
+                {
+                    MessageBox.Show("Kullanıcı Adı veya Parola Bilgisi yanlıştır.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    textBox1.Text = "";
+                    textBox2.Text = "";
+                     hak--;
+                }
+              
             }
             
 
@@ -120,6 +136,18 @@ namespace InsanKaynaklariBilgiSistem
                 MessageBox.Show("Giriş hakkınız kalmadı", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         
+            if(checkBox1.Checked)
+            {
+                Properties.Settings.Default["UserName"] = textBox1.Text;
+                Properties.Settings.Default["Password"] = textBox2.Text;
+            }
+            else
+            {
+                Properties.Settings.Default[""] = textBox1.Text;
+                Properties.Settings.Default[""] = textBox2.Text;
+            }
+            Properties.Settings.Default.Save();
+
         }
 
 
@@ -127,7 +155,13 @@ namespace InsanKaynaklariBilgiSistem
 
         //yerel yani yalnızca bu formda geçerli olacak değişkenleri tanımlayalım.
         //durum kullanıcının varlığını kontol ederken her kullanıcı için 3 hak veriyor.
-        int hak = 3; 
+        int hak = 3;
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         //kullanıcı sorgulama için  bool durum kullanılıyacak.
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -139,6 +173,15 @@ namespace InsanKaynaklariBilgiSistem
            /// radioButton1.Checked = true;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedToolWindow;//(x) harici diğer üst tuşları pasif etmek için kullanılır.
+
+            textBox1.Text = Properties.Settings.Default["UserName"].ToString();
+            textBox2.Text = Properties.Settings.Default["Password"].ToString();
+
+            if (textBox1.Text.Count() > 1)
+                checkBox1.Checked = true;
+
+
+
         }
 
 
@@ -150,6 +193,7 @@ namespace InsanKaynaklariBilgiSistem
                 Properties.Settings.Default.Password = textBox2.Text;
                 Properties.Settings.Default.Remember = true;
                 Properties.Settings.Default.Save();
+                MessageBox.Show("Şifre ve Kullanıcı Adı beni hatırla olarak kaydedilmiştir.");
             }
             else
             {

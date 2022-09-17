@@ -109,6 +109,14 @@ namespace InsanKaynaklariBilgiSistem
             this.lbl_yakin_okul_duzey = new System.Windows.Forms.Label();
             this.lbl_yakin_bolum = new System.Windows.Forms.Label();
             this.lbl_yakin_sinif = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.gridControl4 = new DevExpress.XtraGrid.GridControl();
+            this.gridView4 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.gridControl5 = new DevExpress.XtraGrid.GridControl();
+            this.gridView5 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.simpleButton5 = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -136,10 +144,6 @@ namespace InsanKaynaklariBilgiSistem
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.lbl_bakım_yakin = new System.Windows.Forms.Label();
             this.lbl_bakim_hobi = new System.Windows.Forms.Label();
-            this.gridControl3 = new DevExpress.XtraGrid.GridControl();
-            this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridControl2 = new DevExpress.XtraGrid.GridControl();
-            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
             this.btn_sil = new DevExpress.XtraEditors.SimpleButton();
             this.btn_guncelle = new DevExpress.XtraEditors.SimpleButton();
@@ -149,15 +153,14 @@ namespace InsanKaynaklariBilgiSistem
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.txt_bakim_id = new System.Windows.Forms.TextBox();
             this.txt_yakin_id = new System.Windows.Forms.TextBox();
-            this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
-            this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
-            this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
             this.lbl_pdks = new System.Windows.Forms.Label();
             this.txt_pdks = new System.Windows.Forms.TextBox();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.lbl_cocuk = new System.Windows.Forms.Label();
             this.label47 = new System.Windows.Forms.Label();
+            this.btn_rapor = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit_yakin_bilgisi.Properties)).BeginInit();
@@ -169,22 +172,22 @@ namespace InsanKaynaklariBilgiSistem
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.toggleSwitch_okul_durum.Properties)).BeginInit();
+            this.panel4.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView4)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.toggleSwitch_bakim_engel.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toggleSwitch_bakim_saglik.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
-            this.xtraTabControl1.SuspendLayout();
-            this.xtraTabPage2.SuspendLayout();
-            this.xtraTabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // label22
@@ -314,6 +317,7 @@ namespace InsanKaynaklariBilgiSistem
             this.panelControl1.Controls.Add(this.lbl_yakin_dogum_tarihi);
             this.panelControl1.Controls.Add(this.lbl_yakin_dogum_yeri);
             this.panelControl1.Controls.Add(this.panel2);
+            this.panelControl1.Controls.Add(this.panel4);
             this.panelControl1.Location = new System.Drawing.Point(20, 108);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(808, 640);
@@ -617,8 +621,8 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.toggleSwitch_yakin_calisma.Location = new System.Drawing.Point(139, 520);
             this.toggleSwitch_yakin_calisma.Name = "toggleSwitch_yakin_calisma";
-            this.toggleSwitch_yakin_calisma.Properties.OffText = "ÇALIŞMIYOR";
-            this.toggleSwitch_yakin_calisma.Properties.OnText = "ÇALIŞIYOR";
+            this.toggleSwitch_yakin_calisma.Properties.OffText = "ÇALIŞIYOR";
+            this.toggleSwitch_yakin_calisma.Properties.OnText = "ÇALIŞMIYOR";
             this.toggleSwitch_yakin_calisma.Size = new System.Drawing.Size(156, 18);
             this.toggleSwitch_yakin_calisma.TabIndex = 227;
             this.toggleSwitch_yakin_calisma.Toggled += new System.EventHandler(this.toggleSwitch_yakin_calisma_Toggled);
@@ -653,8 +657,8 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.toggleSwitch_yakin_engel.Location = new System.Drawing.Point(124, 411);
             this.toggleSwitch_yakin_engel.Name = "toggleSwitch_yakin_engel";
-            this.toggleSwitch_yakin_engel.Properties.OffText = "Off";
-            this.toggleSwitch_yakin_engel.Properties.OnText = "On";
+            this.toggleSwitch_yakin_engel.Properties.OffText = "VAR";
+            this.toggleSwitch_yakin_engel.Properties.OnText = "YOK";
             this.toggleSwitch_yakin_engel.Size = new System.Drawing.Size(95, 18);
             this.toggleSwitch_yakin_engel.TabIndex = 223;
             this.toggleSwitch_yakin_engel.Toggled += new System.EventHandler(this.toggleSwitch_yakin_engel_Toggled);
@@ -758,8 +762,8 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.toggleSwitch_saglik_yakin.Location = new System.Drawing.Point(164, 277);
             this.toggleSwitch_saglik_yakin.Name = "toggleSwitch_saglik_yakin";
-            this.toggleSwitch_saglik_yakin.Properties.OffText = "Off";
-            this.toggleSwitch_saglik_yakin.Properties.OnText = "On";
+            this.toggleSwitch_saglik_yakin.Properties.OffText = "VAR";
+            this.toggleSwitch_saglik_yakin.Properties.OnText = "YOK";
             this.toggleSwitch_saglik_yakin.Size = new System.Drawing.Size(95, 18);
             this.toggleSwitch_saglik_yakin.TabIndex = 210;
             this.toggleSwitch_saglik_yakin.Toggled += new System.EventHandler(this.toggleSwitch_saglik_yakin_Toggled);
@@ -957,6 +961,79 @@ namespace InsanKaynaklariBilgiSistem
             this.lbl_yakin_sinif.TabIndex = 264;
             this.lbl_yakin_sinif.Text = "SINIFI";
             // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.tabControl1);
+            this.panel4.Location = new System.Drawing.Point(310, 514);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(200, 100);
+            this.panel4.TabIndex = 284;
+            this.panel4.Visible = false;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(10, 9);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(200, 100);
+            this.tabControl1.TabIndex = 0;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.gridControl4);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(192, 74);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // gridControl4
+            // 
+            this.gridControl4.Location = new System.Drawing.Point(0, 0);
+            this.gridControl4.MainView = this.gridView4;
+            this.gridControl4.Name = "gridControl4";
+            this.gridControl4.Size = new System.Drawing.Size(183, 66);
+            this.gridControl4.TabIndex = 0;
+            this.gridControl4.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView4});
+            // 
+            // gridView4
+            // 
+            this.gridView4.GridControl = this.gridControl4;
+            this.gridView4.Name = "gridView4";
+            this.gridView4.OptionsView.ShowGroupPanel = false;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.gridControl5);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(192, 74);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // gridControl5
+            // 
+            this.gridControl5.Location = new System.Drawing.Point(0, 1);
+            this.gridControl5.MainView = this.gridView5;
+            this.gridControl5.Name = "gridControl5";
+            this.gridControl5.Size = new System.Drawing.Size(186, 73);
+            this.gridControl5.TabIndex = 0;
+            this.gridControl5.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView5});
+            // 
+            // gridView5
+            // 
+            this.gridView5.GridControl = this.gridControl5;
+            this.gridView5.Name = "gridView5";
+            this.gridView5.OptionsView.ShowGroupPanel = false;
+            // 
             // simpleButton5
             // 
             this.simpleButton5.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.search_16x16;
@@ -973,7 +1050,7 @@ namespace InsanKaynaklariBilgiSistem
             this.panelControl2.Controls.Add(this.txt_bakim_yakin);
             this.panelControl2.Controls.Add(this.labelControl2);
             this.panelControl2.Controls.Add(this.lbl_bakım_yakin);
-            this.panelControl2.Location = new System.Drawing.Point(827, 122);
+            this.panelControl2.Location = new System.Drawing.Point(828, 108);
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(456, 560);
             this.panelControl2.TabIndex = 225;
@@ -1117,9 +1194,9 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.toggleSwitch_bakim_engel.Location = new System.Drawing.Point(127, 234);
             this.toggleSwitch_bakim_engel.Name = "toggleSwitch_bakim_engel";
-            this.toggleSwitch_bakim_engel.Properties.OffText = "Off";
-            this.toggleSwitch_bakim_engel.Properties.OnText = "On";
-            this.toggleSwitch_bakim_engel.Size = new System.Drawing.Size(219, 18);
+            this.toggleSwitch_bakim_engel.Properties.OffText = "VAR";
+            this.toggleSwitch_bakim_engel.Properties.OnText = "YOK";
+            this.toggleSwitch_bakim_engel.Size = new System.Drawing.Size(115, 18);
             this.toggleSwitch_bakim_engel.TabIndex = 229;
             this.toggleSwitch_bakim_engel.Toggled += new System.EventHandler(this.toggleSwitch_bakim_engel_Toggled);
             // 
@@ -1170,8 +1247,8 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.toggleSwitch_bakim_saglik.Location = new System.Drawing.Point(127, 139);
             this.toggleSwitch_bakim_saglik.Name = "toggleSwitch_bakim_saglik";
-            this.toggleSwitch_bakim_saglik.Properties.OffText = "Off";
-            this.toggleSwitch_bakim_saglik.Properties.OnText = "On";
+            this.toggleSwitch_bakim_saglik.Properties.OffText = "VAR";
+            this.toggleSwitch_bakim_saglik.Properties.OnText = "YOK";
             this.toggleSwitch_bakim_saglik.Size = new System.Drawing.Size(95, 18);
             this.toggleSwitch_bakim_saglik.TabIndex = 225;
             this.toggleSwitch_bakim_saglik.Toggled += new System.EventHandler(this.toggleSwitch_bakim_saglik_Toggled);
@@ -1227,52 +1304,12 @@ namespace InsanKaynaklariBilgiSistem
             this.lbl_bakim_hobi.TabIndex = 277;
             this.lbl_bakim_hobi.Text = "...";
             // 
-            // gridControl3
-            // 
-            this.gridControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl3.Location = new System.Drawing.Point(0, 0);
-            this.gridControl3.MainView = this.gridView3;
-            this.gridControl3.Name = "gridControl3";
-            this.gridControl3.Size = new System.Drawing.Size(870, 77);
-            this.gridControl3.TabIndex = 0;
-            this.gridControl3.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView3});
-            // 
-            // gridView3
-            // 
-            this.gridView3.GridControl = this.gridControl3;
-            this.gridView3.Name = "gridView3";
-            this.gridView3.OptionsBehavior.Editable = false;
-            this.gridView3.OptionsView.ColumnAutoWidth = false;
-            this.gridView3.OptionsView.ShowGroupPanel = false;
-            this.gridView3.DoubleClick += new System.EventHandler(this.gridView3_DoubleClick);
-            // 
-            // gridControl2
-            // 
-            this.gridControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl2.Location = new System.Drawing.Point(0, 0);
-            this.gridControl2.MainView = this.gridView2;
-            this.gridControl2.Name = "gridControl2";
-            this.gridControl2.Size = new System.Drawing.Size(870, 77);
-            this.gridControl2.TabIndex = 0;
-            this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView2});
-            this.gridControl2.DoubleClick += new System.EventHandler(this.gridControl2_DoubleClick);
-            // 
-            // gridView2
-            // 
-            this.gridView2.GridControl = this.gridControl2;
-            this.gridView2.Name = "gridView2";
-            this.gridView2.OptionsBehavior.Editable = false;
-            this.gridView2.OptionsView.ColumnAutoWidth = false;
-            this.gridView2.OptionsView.ShowGroupPanel = false;
-            // 
             // simpleButton4
             // 
             this.simpleButton4.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.resetmodeldifferences_32x32;
-            this.simpleButton4.Location = new System.Drawing.Point(1134, 706);
+            this.simpleButton4.Location = new System.Drawing.Point(1070, 708);
             this.simpleButton4.Name = "simpleButton4";
-            this.simpleButton4.Size = new System.Drawing.Size(139, 39);
+            this.simpleButton4.Size = new System.Drawing.Size(121, 39);
             this.simpleButton4.TabIndex = 234;
             this.simpleButton4.Text = "FORMU TEMİZLE";
             this.simpleButton4.Click += new System.EventHandler(this.simpleButton4_Click);
@@ -1281,9 +1318,9 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.btn_sil.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btn_sil.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.cancel_32x32;
-            this.btn_sil.Location = new System.Drawing.Point(1037, 706);
+            this.btn_sil.Location = new System.Drawing.Point(1012, 708);
             this.btn_sil.Name = "btn_sil";
-            this.btn_sil.Size = new System.Drawing.Size(91, 40);
+            this.btn_sil.Size = new System.Drawing.Size(57, 40);
             this.btn_sil.TabIndex = 233;
             this.btn_sil.Text = "SİL";
             this.btn_sil.Click += new System.EventHandler(this.btn_sil_Click);
@@ -1291,7 +1328,7 @@ namespace InsanKaynaklariBilgiSistem
             // btn_guncelle
             // 
             this.btn_guncelle.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.refreshallpivottable_32x32;
-            this.btn_guncelle.Location = new System.Drawing.Point(940, 706);
+            this.btn_guncelle.Location = new System.Drawing.Point(915, 709);
             this.btn_guncelle.Name = "btn_guncelle";
             this.btn_guncelle.Size = new System.Drawing.Size(91, 39);
             this.btn_guncelle.TabIndex = 232;
@@ -1338,31 +1375,6 @@ namespace InsanKaynaklariBilgiSistem
             this.txt_yakin_id.TabIndex = 237;
             this.txt_yakin_id.Visible = false;
             // 
-            // xtraTabControl1
-            // 
-            this.xtraTabControl1.Location = new System.Drawing.Point(411, 3);
-            this.xtraTabControl1.Name = "xtraTabControl1";
-            this.xtraTabControl1.SelectedTabPage = this.xtraTabPage2;
-            this.xtraTabControl1.Size = new System.Drawing.Size(872, 102);
-            this.xtraTabControl1.TabIndex = 238;
-            this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.xtraTabPage2,
-            this.xtraTabPage4});
-            // 
-            // xtraTabPage2
-            // 
-            this.xtraTabPage2.Controls.Add(this.gridControl3);
-            this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(870, 77);
-            this.xtraTabPage2.Text = "Yakını Bilgileri";
-            // 
-            // xtraTabPage4
-            // 
-            this.xtraTabPage4.Controls.Add(this.gridControl2);
-            this.xtraTabPage4.Name = "xtraTabPage4";
-            this.xtraTabPage4.Size = new System.Drawing.Size(870, 77);
-            this.xtraTabPage4.Text = "Bakımı ile İlgilendiği";
-            // 
             // xtraTabPage3
             // 
             this.xtraTabPage3.Name = "xtraTabPage3";
@@ -1388,9 +1400,9 @@ namespace InsanKaynaklariBilgiSistem
             // simpleButton1
             // 
             this.simpleButton1.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.apply_32x32;
-            this.simpleButton1.Location = new System.Drawing.Point(833, 708);
+            this.simpleButton1.Location = new System.Drawing.Point(827, 708);
             this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(91, 40);
+            this.simpleButton1.Size = new System.Drawing.Size(86, 40);
             this.simpleButton1.TabIndex = 227;
             this.simpleButton1.Text = "KAYDET";
             this.simpleButton1.Visible = false;
@@ -1413,17 +1425,39 @@ namespace InsanKaynaklariBilgiSistem
             this.label47.TabIndex = 384;
             this.label47.Text = "ÇOCUK SAYISI";
             // 
+            // btn_rapor
+            // 
+            this.btn_rapor.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.report_32x323;
+            this.btn_rapor.Location = new System.Drawing.Point(1192, 707);
+            this.btn_rapor.Name = "btn_rapor";
+            this.btn_rapor.Size = new System.Drawing.Size(92, 40);
+            this.btn_rapor.TabIndex = 362;
+            this.btn_rapor.Text = "TÜM\r\nKAYITLAR";
+            this.btn_rapor.Visible = false;
+            this.btn_rapor.Click += new System.EventHandler(this.btn_rapor_Click);
+            // 
+            // simpleButton2
+            // 
+            this.simpleButton2.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.viewmergeddata_32x32;
+            this.simpleButton2.Location = new System.Drawing.Point(569, 12);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(154, 70);
+            this.simpleButton2.TabIndex = 386;
+            this.simpleButton2.Text = "FORMU GÖRÜNTÜLE";
+            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
+            // 
             // aileBilgisi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1284, 749);
+            this.Controls.Add(this.simpleButton2);
+            this.Controls.Add(this.btn_rapor);
             this.Controls.Add(this.lbl_cocuk);
             this.Controls.Add(this.label47);
             this.Controls.Add(this.txt_pdks);
             this.Controls.Add(this.lbl_pdks);
-            this.Controls.Add(this.xtraTabControl1);
             this.Controls.Add(this.lbl_bakim_hobi);
             this.Controls.Add(this.txt_yakin_id);
             this.Controls.Add(this.txt_bakim_id);
@@ -1443,7 +1477,7 @@ namespace InsanKaynaklariBilgiSistem
             this.Controls.Add(this.lbl_tc_no);
             this.Controls.Add(this.panelControl1);
             this.Name = "aileBilgisi";
-            this.Text = "Aile Bilgisi";
+            this.Text = "AİLE BİLGİSİ";
             this.Load += new System.EventHandler(this.aileBilgisi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
@@ -1459,6 +1493,14 @@ namespace InsanKaynaklariBilgiSistem
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.toggleSwitch_okul_durum.Properties)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView4)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             this.panelControl2.PerformLayout();
@@ -1466,151 +1508,145 @@ namespace InsanKaynaklariBilgiSistem
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.toggleSwitch_bakim_engel.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toggleSwitch_bakim_saglik.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
-            this.xtraTabControl1.ResumeLayout(false);
-            this.xtraTabPage2.ResumeLayout(false);
-            this.xtraTabPage4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label lbl_medeni_hal;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label lbl_soyad;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lbl_ad;
-        private DevExpress.XtraEditors.SimpleButton simpleButton5;
-        private System.Windows.Forms.MaskedTextBox mtxt_tc_no;
-        private System.Windows.Forms.Label lbl_tc_no;
-        private DevExpress.XtraEditors.PanelControl panelControl1;
-        private System.Windows.Forms.Label lbl_meslek_yakin;
-        private System.Windows.Forms.Label lbl_yakin_hobi_secim;
-        private System.Windows.Forms.DateTimePicker date_dogum_tarihi;
-        private System.Windows.Forms.DateTimePicker date_merasim;
-        private System.Windows.Forms.ComboBox cb_merasim;
-        private System.Windows.Forms.Label lbl_yakin_merasim_tarihi;
-        private System.Windows.Forms.Label lbl_yakin_merasim_turu;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.TextBox txt_calistiği_yer;
-        private System.Windows.Forms.Label lbl_yakin_okul_adi;
-        private System.Windows.Forms.Label lbl_yakin_calistigi_yer;
-        private System.Windows.Forms.Label lbl_geliri_yakin;
-        private System.Windows.Forms.Label lbl_yakin_medeni_hal;
-        private System.Windows.Forms.ComboBox cb_duzey;
-        private DevExpress.XtraEditors.ToggleSwitch toggleSwitch_yakin_calisma;
-        private System.Windows.Forms.Label lbl_calisma_durumu_yakin;
-        private System.Windows.Forms.Label lbl_yakin_bolum;
-        private System.Windows.Forms.TextBox txt_yakin_engel_aciklama;
-        private System.Windows.Forms.Label lbl_engel_yakin_aciklama;
-        private System.Windows.Forms.Label lbl_yakin_okul_duzey;
-        private DevExpress.XtraEditors.ToggleSwitch toggleSwitch_yakin_engel;
-        private System.Windows.Forms.Label lbl_engel_durum_yakin;
-        private System.Windows.Forms.Label lbl_yakin_sehir;
-        private System.Windows.Forms.MaskedTextBox mtxt_tel_no_yakin;
-        private System.Windows.Forms.DateTimePicker date_mezuniyet;
-        private System.Windows.Forms.ComboBox cb_kangrubu;
-        private System.Windows.Forms.Label lbl_yakin_okul_giris_tarihi;
-        private System.Windows.Forms.DateTimePicker date_giris_tarihi;
-        private System.Windows.Forms.Label lbl_yakin_cinsiyet;
-        private System.Windows.Forms.Label lbl_yakin_mezuniyet_tarihi;
-        private System.Windows.Forms.ComboBox cb_yakin;
-        private System.Windows.Forms.TextBox txt_saglik_aciklama_yakin;
-        private System.Windows.Forms.Label lbl_yakin_okul_derece;
-        private System.Windows.Forms.Label lbl_yakin_ad_soyad;
-        private System.Windows.Forms.Label lbl_yakin_tel_no;
-        private System.Windows.Forms.Label lbl_yakin_saglik_aciklama;
-        private System.Windows.Forms.Label lbl_yakinlik;
-        private DevExpress.XtraEditors.ToggleSwitch toggleSwitch_okul_durum;
-        private System.Windows.Forms.Label lbl_yakin_kan_grubu;
-        private System.Windows.Forms.Label lbl_yakin_dogum_tarihi;
-        private System.Windows.Forms.Label lbl_yakin_okul_durum;
-        private System.Windows.Forms.Label lbl_yakin_dogum_yeri;
-        private DevExpress.XtraEditors.PanelControl panelControl2;
-        private System.Windows.Forms.Label lbl_bakim_gelir;
-        private System.Windows.Forms.Label lbl_bakim_hobi_list;
-        private System.Windows.Forms.TextBox txt_bakim_engel_aciklama;
-        private System.Windows.Forms.Label lbl_bakim_engel_aciklama;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.ToggleSwitch toggleSwitch_bakim_engel;
-        private System.Windows.Forms.Label lbl_bakim_angel_durumu;
-        private System.Windows.Forms.TextBox txt_bakim_saglik_aciklama;
-        private System.Windows.Forms.Label lbl_bakim_saglik_aciklama;
-        private DevExpress.XtraEditors.ToggleSwitch toggleSwitch_bakim_saglik;
-        private System.Windows.Forms.Label lbl_bakim_saglik_durum;
-        private System.Windows.Forms.MaskedTextBox mtxt_bakim_tel_no;
-        private System.Windows.Forms.DateTimePicker date_bakim_dogum;
-        private System.Windows.Forms.Label lbl_bakim_dogum_tarihi;
-        private System.Windows.Forms.Label lbl_bakim_dogum_yeri;
-        private System.Windows.Forms.Label lbl_bakim_adsoyad;
-        private System.Windows.Forms.Label lbl_bakim_tel_no;
-        private System.Windows.Forms.Label lbl_bakım_yakin;
-        private DevExpress.XtraEditors.SimpleButton simpleButton7;
-        private DevExpress.XtraEditors.SimpleButton simpleButton4;
-        private DevExpress.XtraEditors.SimpleButton btn_sil;
-        private DevExpress.XtraEditors.SimpleButton btn_guncelle;
-        private System.Windows.Forms.RadioButton radioButton_bayan;
-        private System.Windows.Forms.RadioButton radioButton_bay;
-        private System.Windows.Forms.ComboBox cb_medinhal;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
-        private System.Windows.Forms.CheckedListBox checkedListBox2;
-        private DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider dxErrorProvider1;
-        private System.Windows.Forms.ComboBox cb_sinif;
-        private System.Windows.Forms.Label lbl_yakin_sinif;
-        private System.Windows.Forms.Label lbl_yakin_hobi;
-        private System.Windows.Forms.Label lbl_bakim_hobi;
-        private DevExpress.XtraEditors.ToggleSwitch toggleSwitch_saglik_yakin;
-        private System.Windows.Forms.Label lbl_saglik_sorunu_durumu_yakin;
-        private System.Windows.Forms.DateTimePicker date_olum_tarihi;
-        private DevExpress.XtraEditors.ToggleSwitch toggleSwitch_sag_olu;
-        private System.Windows.Forms.Label lbl_olum_tarihi;
-        private System.Windows.Forms.Label lbl_yasam_hali;
-        private System.Windows.Forms.Label lbl_olum_nedeni;
-        private DevExpress.XtraEditors.GridLookUpEdit gridLookUpEdit_yakin_bilgisi;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridLookUpEdit1View;
-        private System.Windows.Forms.TextBox txt_ad_soyad_yakin;
-        private System.Windows.Forms.TextBox txt_dogum_yeri;
-        private System.Windows.Forms.TextBox txt_sehir;
-        private System.Windows.Forms.TextBox txt_bolum;
-        private System.Windows.Forms.TextBox txt_yakin_okul_derece;
-        private System.Windows.Forms.TextBox txt_yakin_meslek;
-        private System.Windows.Forms.TextBox txt_gelir_yakin;
-        private System.Windows.Forms.TextBox txt_bakim_maas;
-        private System.Windows.Forms.TextBox txt_bakim_yakin;
-        private System.Windows.Forms.TextBox txt_bakim_adsoyad;
-        private System.Windows.Forms.TextBox txt_bakim_dogum_yeri;
-        private System.Windows.Forms.TextBox txt_olum_nedeni;
-        private System.Windows.Forms.TextBox txt_okul_adi;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraGrid.GridControl gridControl3;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
-        private DevExpress.XtraGrid.GridControl gridControl2;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
-        private System.Windows.Forms.TextBox txt_yakin_id;
-        private System.Windows.Forms.TextBox txt_bakim_id;
-        private System.Windows.Forms.Panel panel1;
-        private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage4;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox txt_pdks;
-        private System.Windows.Forms.Label lbl_pdks;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
-        private System.Windows.Forms.Label lbl_cocuk;
-        private System.Windows.Forms.Label label47;
+        public System.Windows.Forms.TextBox txt_dogum_yeri;
+        public System.Windows.Forms.Label label22;
+        public System.Windows.Forms.Label lbl_medeni_hal;
+        public System.Windows.Forms.Label label5;
+        public System.Windows.Forms.Label lbl_soyad;
+        public System.Windows.Forms.Label label3;
+        public System.Windows.Forms.Label lbl_ad;
+        public DevExpress.XtraEditors.SimpleButton simpleButton5;
+        public System.Windows.Forms.MaskedTextBox mtxt_tc_no;
+        public System.Windows.Forms.Label lbl_tc_no;
+        public DevExpress.XtraEditors.PanelControl panelControl1;
+        public System.Windows.Forms.Label lbl_meslek_yakin;
+        public System.Windows.Forms.Label lbl_yakin_hobi_secim;
+        public System.Windows.Forms.DateTimePicker date_dogum_tarihi;
+        public System.Windows.Forms.DateTimePicker date_merasim;
+        public System.Windows.Forms.ComboBox cb_merasim;
+        public System.Windows.Forms.Label lbl_yakin_merasim_tarihi;
+        public System.Windows.Forms.Label lbl_yakin_merasim_turu;
+        public System.Windows.Forms.Label label23;
+        public System.Windows.Forms.TextBox txt_calistiği_yer;
+        public System.Windows.Forms.Label lbl_yakin_okul_adi;
+        public System.Windows.Forms.Label lbl_yakin_calistigi_yer;
+        public System.Windows.Forms.Label lbl_geliri_yakin;
+        public System.Windows.Forms.Label lbl_yakin_medeni_hal;
+        public System.Windows.Forms.ComboBox cb_duzey;
+        public System.Windows.Forms.Label lbl_calisma_durumu_yakin;
+        public System.Windows.Forms.Label lbl_yakin_bolum;
+        public System.Windows.Forms.TextBox txt_yakin_engel_aciklama;
+        public System.Windows.Forms.Label lbl_engel_yakin_aciklama;
+        public System.Windows.Forms.Label lbl_yakin_okul_duzey;
+        public DevExpress.XtraEditors.ToggleSwitch toggleSwitch_yakin_engel;
+        public System.Windows.Forms.Label lbl_engel_durum_yakin;
+        public System.Windows.Forms.Label lbl_yakin_sehir;
+        public System.Windows.Forms.MaskedTextBox mtxt_tel_no_yakin;
+        public System.Windows.Forms.DateTimePicker date_mezuniyet;
+        public System.Windows.Forms.ComboBox cb_kangrubu;
+        public System.Windows.Forms.Label lbl_yakin_okul_giris_tarihi;
+        public System.Windows.Forms.DateTimePicker date_giris_tarihi;
+        public System.Windows.Forms.Label lbl_yakin_cinsiyet;
+        public System.Windows.Forms.Label lbl_yakin_mezuniyet_tarihi;
+        public System.Windows.Forms.ComboBox cb_yakin;
+        public System.Windows.Forms.TextBox txt_saglik_aciklama_yakin;
+        public System.Windows.Forms.Label lbl_yakin_okul_derece;
+        public System.Windows.Forms.Label lbl_yakin_ad_soyad;
+        public System.Windows.Forms.Label lbl_yakin_tel_no;
+        public System.Windows.Forms.Label lbl_yakin_saglik_aciklama;
+        public System.Windows.Forms.Label lbl_yakinlik;
+        public DevExpress.XtraEditors.ToggleSwitch toggleSwitch_okul_durum;
+        public System.Windows.Forms.Label lbl_yakin_kan_grubu;
+        public System.Windows.Forms.Label lbl_yakin_dogum_tarihi;
+        public System.Windows.Forms.Label lbl_yakin_okul_durum;
+        public System.Windows.Forms.Label lbl_yakin_dogum_yeri;
+        public DevExpress.XtraEditors.PanelControl panelControl2;
+        public System.Windows.Forms.Label lbl_bakim_gelir;
+        public System.Windows.Forms.Label lbl_bakim_hobi_list;
+        public System.Windows.Forms.TextBox txt_bakim_engel_aciklama;
+        public System.Windows.Forms.Label lbl_bakim_engel_aciklama;
+        public DevExpress.XtraEditors.LabelControl labelControl2;
+        public DevExpress.XtraEditors.ToggleSwitch toggleSwitch_bakim_engel;
+        public System.Windows.Forms.Label lbl_bakim_angel_durumu;
+        public System.Windows.Forms.TextBox txt_bakim_saglik_aciklama;
+        public System.Windows.Forms.Label lbl_bakim_saglik_aciklama;
+        public DevExpress.XtraEditors.ToggleSwitch toggleSwitch_bakim_saglik;
+        public System.Windows.Forms.Label lbl_bakim_saglik_durum;
+        public System.Windows.Forms.MaskedTextBox mtxt_bakim_tel_no;
+        public System.Windows.Forms.DateTimePicker date_bakim_dogum;
+        public System.Windows.Forms.Label lbl_bakim_dogum_tarihi;
+        public System.Windows.Forms.Label lbl_bakim_dogum_yeri;
+        public System.Windows.Forms.Label lbl_bakim_adsoyad;
+        public System.Windows.Forms.Label lbl_bakim_tel_no;
+        public System.Windows.Forms.Label lbl_bakım_yakin;
+        public DevExpress.XtraEditors.SimpleButton simpleButton7;
+        public DevExpress.XtraEditors.SimpleButton simpleButton4;
+        public DevExpress.XtraEditors.SimpleButton btn_sil;
+        public DevExpress.XtraEditors.SimpleButton btn_guncelle;
+        public System.Windows.Forms.RadioButton radioButton_bayan;
+        public System.Windows.Forms.RadioButton radioButton_bay;
+        public System.Windows.Forms.ComboBox cb_medinhal;
+        public System.Windows.Forms.CheckedListBox checkedListBox1;
+        public System.Windows.Forms.CheckedListBox checkedListBox2;
+        public DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider dxErrorProvider1;
+        public System.Windows.Forms.ComboBox cb_sinif;
+        public System.Windows.Forms.Label lbl_yakin_sinif;
+        public System.Windows.Forms.Label lbl_yakin_hobi;
+        public System.Windows.Forms.Label lbl_bakim_hobi;
+        public DevExpress.XtraEditors.ToggleSwitch toggleSwitch_saglik_yakin;
+        public System.Windows.Forms.Label lbl_saglik_sorunu_durumu_yakin;
+        public System.Windows.Forms.DateTimePicker date_olum_tarihi;
+        public DevExpress.XtraEditors.ToggleSwitch toggleSwitch_sag_olu;
+        public System.Windows.Forms.Label lbl_olum_tarihi;
+        public System.Windows.Forms.Label lbl_yasam_hali;
+        public System.Windows.Forms.Label lbl_olum_nedeni;
+        public DevExpress.XtraEditors.GridLookUpEdit gridLookUpEdit_yakin_bilgisi;
+        public DevExpress.XtraGrid.Views.Grid.GridView gridLookUpEdit1View;
+        public System.Windows.Forms.TextBox txt_ad_soyad_yakin;
+        public System.Windows.Forms.TextBox txt_sehir;
+        public System.Windows.Forms.TextBox txt_bolum;
+        public System.Windows.Forms.TextBox txt_yakin_okul_derece;
+        public System.Windows.Forms.TextBox txt_yakin_meslek;
+        public System.Windows.Forms.TextBox txt_gelir_yakin;
+        public System.Windows.Forms.TextBox txt_bakim_maas;
+        public System.Windows.Forms.TextBox txt_bakim_yakin;
+        public System.Windows.Forms.TextBox txt_bakim_adsoyad;
+        public System.Windows.Forms.TextBox txt_bakim_dogum_yeri;
+        public System.Windows.Forms.TextBox txt_olum_nedeni;
+        public System.Windows.Forms.TextBox txt_okul_adi;
+        public DevExpress.XtraTab.XtraTabPage xtraTabPage1;
+        public DevExpress.XtraGrid.GridControl gridControl1;
+        public DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        public System.Windows.Forms.TextBox txt_yakin_id;
+        public System.Windows.Forms.TextBox txt_bakim_id;
+        public System.Windows.Forms.Panel panel1;
+        public DevExpress.XtraTab.XtraTabPage xtraTabPage3;
+        public System.Windows.Forms.Panel panel2;
+        public System.Windows.Forms.Panel panel3;
+        public System.Windows.Forms.TextBox txt_pdks;
+        public System.Windows.Forms.Label lbl_pdks;
+        public DevExpress.XtraEditors.SimpleButton simpleButton1;
+        public System.Windows.Forms.Label lbl_cocuk;
+        public System.Windows.Forms.Label label47;
+        public DevExpress.XtraEditors.SimpleButton btn_rapor;
+        public System.Windows.Forms.Panel panel4;
+        public System.Windows.Forms.TabControl tabControl1;
+        public System.Windows.Forms.TabPage tabPage1;
+        public DevExpress.XtraGrid.GridControl gridControl4;
+        public DevExpress.XtraGrid.Views.Grid.GridView gridView4;
+        public System.Windows.Forms.TabPage tabPage2;
+        public DevExpress.XtraGrid.GridControl gridControl5;
+        public DevExpress.XtraGrid.Views.Grid.GridView gridView5;
+        public DevExpress.XtraEditors.SimpleButton simpleButton2;
+        public DevExpress.XtraEditors.ToggleSwitch toggleSwitch_yakin_calisma;
     }
 }

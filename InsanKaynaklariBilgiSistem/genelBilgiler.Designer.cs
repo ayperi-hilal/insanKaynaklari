@@ -96,6 +96,8 @@ namespace InsanKaynaklariBilgiSistem
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
+            this.label16 = new System.Windows.Forms.Label();
+            this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.toggleSwitch1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -339,7 +341,7 @@ namespace InsanKaynaklariBilgiSistem
             this.panelControl1.Controls.Add(this.label8);
             this.panelControl1.Controls.Add(this.label9);
             this.panelControl1.Controls.Add(this.label6);
-            this.panelControl1.Location = new System.Drawing.Point(450, 144);
+            this.panelControl1.Location = new System.Drawing.Point(443, 31);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(383, 321);
             this.panelControl1.TabIndex = 124;
@@ -434,9 +436,10 @@ namespace InsanKaynaklariBilgiSistem
             this.panelControl2.Controls.Add(this.tc_no);
             this.panelControl2.Controls.Add(this.label10);
             this.panelControl2.Controls.Add(this.dogum_tarihi);
-            this.panelControl2.Location = new System.Drawing.Point(7, 144);
+            this.panelControl2.Controls.Add(this.panelControl1);
+            this.panelControl2.Location = new System.Drawing.Point(7, 156);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(416, 375);
+            this.panelControl2.Size = new System.Drawing.Size(833, 375);
             this.panelControl2.TabIndex = 125;
             // 
             // txt_o_soyadi
@@ -532,7 +535,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.btn_formu_temizle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_formu_temizle.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.resetmodeldifferences_32x32;
-            this.btn_formu_temizle.Location = new System.Drawing.Point(657, 487);
+            this.btn_formu_temizle.Location = new System.Drawing.Point(726, 501);
             this.btn_formu_temizle.Name = "btn_formu_temizle";
             this.btn_formu_temizle.Size = new System.Drawing.Size(131, 39);
             this.btn_formu_temizle.TabIndex = 113;
@@ -544,7 +547,7 @@ namespace InsanKaynaklariBilgiSistem
             this.btn_sil.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_sil.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btn_sil.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.cancel_32x32;
-            this.btn_sil.Location = new System.Drawing.Point(576, 487);
+            this.btn_sil.Location = new System.Drawing.Point(645, 501);
             this.btn_sil.Name = "btn_sil";
             this.btn_sil.Size = new System.Drawing.Size(75, 40);
             this.btn_sil.TabIndex = 112;
@@ -555,7 +558,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.btn_guncelle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_guncelle.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.refreshallpivottable_32x32;
-            this.btn_guncelle.Location = new System.Drawing.Point(479, 488);
+            this.btn_guncelle.Location = new System.Drawing.Point(548, 502);
             this.btn_guncelle.Name = "btn_guncelle";
             this.btn_guncelle.Size = new System.Drawing.Size(91, 39);
             this.btn_guncelle.TabIndex = 111;
@@ -566,7 +569,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.btn_kaydet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_kaydet.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.apply_32x32;
-            this.btn_kaydet.Location = new System.Drawing.Point(382, 488);
+            this.btn_kaydet.Location = new System.Drawing.Point(451, 502);
             this.btn_kaydet.Name = "btn_kaydet";
             this.btn_kaydet.Size = new System.Drawing.Size(91, 40);
             this.btn_kaydet.TabIndex = 106;
@@ -603,7 +606,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.btn_rapor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_rapor.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.report_32x323;
-            this.btn_rapor.Location = new System.Drawing.Point(794, 485);
+            this.btn_rapor.Location = new System.Drawing.Point(863, 499);
             this.btn_rapor.Name = "btn_rapor";
             this.btn_rapor.Size = new System.Drawing.Size(110, 40);
             this.btn_rapor.TabIndex = 322;
@@ -678,12 +681,37 @@ namespace InsanKaynaklariBilgiSistem
             this.simpleButton3.Text = "Kamerayı Aç";
             this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label16.ForeColor = System.Drawing.Color.Red;
+            this.label16.Location = new System.Drawing.Point(12, 141);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(692, 26);
+            this.label16.TabIndex = 290;
+            this.label16.Text = "YENİ BİR PERSONEL İŞLEMİ GERÇEKLEŞRMEK İÇİN EKRANDA VAR OLAN BİLGİLERİ \"FORMU TEM" +
+    "İZLE\" BUTONU İLE TEMİZLEYİNİZ. \r\nAKSİ TAKTİRDE İŞLEMİNİZ DOĞRU BİR ŞEKİLDE GERÇE" +
+    "KLEŞMEYECEKTİR.";
+            // 
+            // simpleButton4
+            // 
+            this.simpleButton4.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.combobox_32x32;
+            this.simpleButton4.Location = new System.Drawing.Point(832, 238);
+            this.simpleButton4.Name = "simpleButton4";
+            this.simpleButton4.Size = new System.Drawing.Size(141, 43);
+            this.simpleButton4.TabIndex = 327;
+            this.simpleButton4.Text = "İçerikleri Güncelle";
+            this.simpleButton4.Click += new System.EventHandler(this.simpleButton4_Click);
+            // 
             // genelBilgiler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(937, 529);
+            this.ClientSize = new System.Drawing.Size(1006, 543);
+            this.Controls.Add(this.simpleButton4);
+            this.Controls.Add(this.label16);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.simpleButton2);
             this.Controls.Add(this.simpleButton3);
@@ -704,7 +732,6 @@ namespace InsanKaynaklariBilgiSistem
             this.Controls.Add(this.resim);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.txt_gorev_yeri);
@@ -797,5 +824,7 @@ namespace InsanKaynaklariBilgiSistem
         private System.Windows.Forms.TextBox txt_soyad;
         private System.Windows.Forms.TextBox txt_ad;
         private System.Windows.Forms.TextBox txt_uyruk;
+        private System.Windows.Forms.Label label16;
+        private DevExpress.XtraEditors.SimpleButton simpleButton4;
     }
 }

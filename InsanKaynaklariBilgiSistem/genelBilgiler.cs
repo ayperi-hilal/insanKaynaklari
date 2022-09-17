@@ -160,6 +160,14 @@ namespace InsanKaynaklariBilgiSistem
             //cb_gorevi.CharacterCasing = CharacterCasing.Upper;
             //cb_gorev_yeri.CharacterCasing = CharacterCasing.Upper;
 
+            ////meslek kodu
+            //SqlCommand cmd0 = new SqlCommand("select * from meslekKodu", baglantim.baglanti());
+            //SqlDataReader dr0 = cmd0.ExecuteReader();
+            //while (dr0.Read())
+            //{
+            //    comboBox2.Items.Add(dr0[1].ToString() + "-" + dr0[2].ToString());
+            //}
+
 
             //meslek kodu
             SqlCommand cmd = new SqlCommand("select * from meslek_kodlari", baglantim.baglanti());
@@ -218,7 +226,39 @@ namespace InsanKaynaklariBilgiSistem
             comboBox1.SelectedIndex = 0;
 
         }
+        private void simpleButton4_Click(object sender, EventArgs e)
+        {
+            comboBox_meslek_kodu.Items.Clear();
+            cb_gorevi.Items.Clear();
+            cb_gorev_yeri.Items.Clear();
 
+            //meslek kodu
+            SqlCommand cmd = new SqlCommand("select * from meslek_kodlari", baglantim.baglanti());
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                comboBox_meslek_kodu.Items.Add(dr[1].ToString() + "-" + dr[2].ToString());
+            }
+
+            //görevi sekmesi
+            SqlCommand cmdgorevi = new SqlCommand("select * from gorev", baglantim.baglanti());
+            SqlDataReader drgorevi = cmdgorevi.ExecuteReader();
+            while (drgorevi.Read())
+            {
+                cb_gorevi.Items.Add(drgorevi[1].ToString());
+            }
+
+
+
+            //göreviyeri sekmesi
+            SqlCommand cmdgorevyeri = new SqlCommand("select * from deparman", baglantim.baglanti());
+            SqlDataReader drgorevyeri = cmdgorevyeri.ExecuteReader();
+            while (drgorevyeri.Read())
+            {
+                cb_gorev_yeri.Items.Add(drgorevyeri[1].ToString());
+            }
+
+        }
 
         private void ekrani_temizle()
         {
@@ -280,6 +320,151 @@ namespace InsanKaynaklariBilgiSistem
                 dxErrorProvider1.SetError(tc_no, "TC KİMLİK NO 11 KARAKTER OLMALIDIR.");
             else
                 dxErrorProvider1.ClearErrors();
+
+            bool kayit_arama_durumu = false;
+
+            if (tc_no.Text.Length == 11)
+            {
+
+                SqlCommand selectsorgu = new SqlCommand("kisi_arama", baglantim.baglanti());
+                selectsorgu.CommandType = CommandType.StoredProcedure;
+
+                selectsorgu.Parameters.AddWithValue("@TC", tc_no.Text);
+                selectsorgu.Parameters.AddWithValue("@pdks", "");
+
+
+                SqlDataReader kayitokuma = selectsorgu.ExecuteReader();
+                //kayıtokumanın içerisne attığımız değişkenin while döngüsü ile tüm veri tabanında arayalım.
+                while (kayitokuma.Read())
+                {
+                    //kayıt var ise buradan true dönecek.
+                    kayit_arama_durumu = true;
+
+                    if (tc_no.Text != "")
+                        txt_pdks.Text = kayitokuma.GetValue(19).ToString();
+                    else if (txt_pdks.Text != "")
+                        tc_no.Text = kayitokuma.GetValue(1).ToString();
+                    else if (tc_no.Text != "" && txt_pdks.Text != "")
+                    {
+                        SqlCommand selectsorguiki = new SqlCommand("select *from Kisi where TC='" + tc_no.Text + "'", baglantim.baglanti());
+                        SqlDataReader kayitokumaiki = selectsorgu.ExecuteReader();
+
+                        while (kayitokumaiki.Read())
+                        {
+
+                            string gelen;
+                            gelen = kayitokumaiki.GetValue(19).ToString();
+                            if (gelen != txt_pdks.Text)
+                            {
+                                txt_pdks.Text = kayitokumaiki.GetValue(19).ToString();
+                            }
+
+                        }
+                    }
+
+
+                    txt_uyruk.Text = kayitokuma.GetValue(4).ToString();//uyruk
+                                                                       //cinsiyet verisini çekelim.
+                    if (kayitokuma.GetValue(5).ToString() == "Bayan")
+                    {
+                        radioButton_bayan.Checked = true;
+                        radioButton_bay.Checked = false;
+                    }
+                    else if (kayitokuma.GetValue(5).ToString() == "Bay")
+                    {
+                        radioButton_bay.Checked = true;
+                        radioButton_bayan.Checked = false;
+                    }
+
+                    medeni_hal.Text = kayitokuma.GetValue(6).ToString();//medeni hal
+                    txt_ad.Text = kayitokuma.GetValue(2).ToString();//ad
+                    txt_soyad.Text = kayitokuma.GetValue(3).ToString();//soyad
+                    txt_uyruk.Text = kayitokuma.GetValue(4).ToString();//meslek kodu
+
+                    if (kayitokuma.GetDateTime(7) > dogum_tarihi.MaxDate)
+                    { MessageBox.Show("Tarih kaydı alınırken hata oluştu.Doğum tarihini güncelleyiniz.Başarısız olunuz ise yöneticiye başvurunuz"); }
+                    else
+                    {
+                        dogum_tarihi.Value = kayitokuma.GetDateTime(7);//doğum tarihi
+                    }
+                    txt_dogumyeri.Text = kayitokuma.GetValue(8).ToString();//doğum yeri
+                    txt_anneadi.Text = kayitokuma.GetValue(10).ToString();//anne adı
+                    txt_baba_adi.Text = kayitokuma.GetValue(11).ToString();//baba adı
+                    txt_o_soyadi.Text = kayitokuma.GetValue(9).ToString();//önceki soy adı
+                    comboBox_meslek_kodu.Text = kayitokuma.GetValue(12).ToString();//meslek kodu
+                    cb_gorevi.Text = kayitokuma.GetValue(13).ToString();//görevi
+                    cb_gorev_yeri.Text = kayitokuma.GetValue(14).ToString();//görev yeri
+                    giris_tarihi.Value = kayitokuma.GetDateTime(15);//giriş tarihi
+                                                                    //iş durumu
+                    if (kayitokuma.GetValue(16).ToString() == "Çalışıyor.")
+                        toggleSwitch1.IsOn = false;
+                    else
+                        toggleSwitch1.IsOn = true;
+
+                    if (kayitokuma.GetValue(16).ToString() == "Çalışıyor.")
+                    {
+                        // cikis_tarihi.Value = DateTime.MinValue;
+                        cikis_tarihi.Enabled = false;
+                    }
+                    else
+                        cikis_tarihi.Value = kayitokuma.GetDateTime(18);//işten çıkış tarihi
+
+
+                    //resmi çekelim
+                    resim_goruntule();
+
+                    break;
+                }
+                //eğer kayıt okuma durumu gerçekleşmemiş ise kayıt bulunamadı ise
+                if (kayit_arama_durumu == false)
+                {
+                    MessageBox.Show("Arama kayıtı bulunamadı", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+
+                    medeni_hal.Text = string.Empty;
+                    cb_gorevi.Text = string.Empty;
+                    cb_gorev_yeri.Text = string.Empty;
+                    comboBox_meslek_kodu.Text = string.Empty;
+                    txt_pdks.Text = string.Empty;
+                    txt_uyruk.Text = string.Empty;
+                    txt_ad.Text = string.Empty;
+                    txt_soyad.Text = string.Empty;
+                    txt_dogumyeri.Text = string.Empty;
+                    txt_anneadi.Text = string.Empty;
+                    txt_baba_adi.Text = string.Empty;
+                    txt_o_soyadi.Text = string.Empty;
+
+
+                    dogum_tarihi.ResetText();
+                    giris_tarihi.ResetText();
+                    cikis_tarihi.ResetText();
+
+                    label1.ForeColor = Color.Black;
+                    label2.ForeColor = Color.Black;
+                    label3.ForeColor = Color.Black;
+                    label4.ForeColor = Color.Black;
+                    label5.ForeColor = Color.Black;
+                    label6.ForeColor = Color.Black;
+                    label7.ForeColor = Color.Black;
+                    label8.ForeColor = Color.Black;
+                    label9.ForeColor = Color.Black;
+                    label10.ForeColor = Color.Black;
+                    label11.ForeColor = Color.Black;
+                    label12.ForeColor = Color.Black;
+                    label13.ForeColor = Color.Black;
+                    label14.ForeColor = Color.Black;
+                    label15.ForeColor = Color.Black;
+                    label21.ForeColor = Color.Black;
+                    label23.ForeColor = Color.Black;
+
+
+
+                    toggleSwitch1.Reset();
+                }
+                //baglantim.baglanti().Close();
+            }
+
+
         }
 
         //kaydet butonu
@@ -322,6 +507,8 @@ namespace InsanKaynaklariBilgiSistem
                     cinsiyet = "Bay";
                 else if (radioButton_bayan.Checked == true)
                     cinsiyet = "Bayan";
+
+
 
                 //medeni hal seçilmelidir.
                 if (medeni_hal.Text == "")
@@ -526,12 +713,17 @@ namespace InsanKaynaklariBilgiSistem
 
 
                     txt_uyruk.Text = kayitokuma.GetValue(4).ToString();//uyruk
-                    //cinsiyet verisini çekelim.
-                    if (kayitokuma.GetValue(5).ToString() == "BAYAN")
+                    
+                    if (kayitokuma.GetValue(5).ToString() == "Bayan")
+                    {
                         radioButton_bayan.Checked = true;
-                    else
+                        radioButton_bay.Checked = false;
+                    }
+                    else if (kayitokuma.GetValue(5).ToString() == "Bay")
+                    {
                         radioButton_bay.Checked = true;
-
+                        radioButton_bayan.Checked = false;
+                    }
                     medeni_hal.Text = kayitokuma.GetValue(6).ToString();//medeni hal
                     txt_ad.Text = kayitokuma.GetValue(2).ToString();//ad
                     txt_soyad.Text = kayitokuma.GetValue(3).ToString();//soyad
@@ -575,9 +767,9 @@ namespace InsanKaynaklariBilgiSistem
                 if (kayit_arama_durumu == false)
                 {
                     MessageBox.Show("Arama kayıtı bulunamadı", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
+                    ekrani_temizle();
                 }
-                baglantim.baglanti().Close();
+                //baglantim.baglanti().Close();
             }
             else
             {
@@ -709,10 +901,11 @@ namespace InsanKaynaklariBilgiSistem
                     brResim.Close();
                     fsResim.Close();
 
-                    SqlCommand guncellekomutu = new SqlCommand("update Kisi set TC=@TC, ad=@ad, soyad=@soyad, uyruk=@uyruk, cinsiyet=@cinsiyet, medeni_hal=@medeni_hal, dogum_Tarihi=@dogum_Tarihi, dogum_Yeri=@dogum_Yeri, onceki_soyadi=@onceki_soyadi, ana_Adi_Soyadi=@ana_Adi_Soyadi, baba_Adi_Soyadi=@baba_Adi_Soyadi, meslekID=@meslekID, gorevi=@gorevi, gorev_Yeri=@gorev_Yeri, giris_Tarihi=@giris_Tarihi, Aktif=@Aktif, resim=@resim, cikis_Tarihi= @cikis_Tarihi where TC=@TC", baglantim.baglanti());
+                    SqlCommand guncellekomutu = new SqlCommand("update Kisi set TC=@TC,pdks=@pdks, ad=@ad, soyad=@soyad, uyruk=@uyruk, cinsiyet=@cinsiyet, medeni_hal=@medeni_hal, dogum_Tarihi=@dogum_Tarihi, dogum_Yeri=@dogum_Yeri, onceki_soyadi=@onceki_soyadi, ana_Adi_Soyadi=@ana_Adi_Soyadi, baba_Adi_Soyadi=@baba_Adi_Soyadi, meslekID=@meslekID, gorevi=@gorevi, gorev_Yeri=@gorev_Yeri, giris_Tarihi=@giris_Tarihi, Aktif=@Aktif, resim=@resim, cikis_Tarihi= @cikis_Tarihi where TC=@TC", baglantim.baglanti());
 
 
                     guncellekomutu.Parameters.Add("@TC", SqlDbType.NVarChar, 11).Value = tc_no.Text;
+                    guncellekomutu.Parameters.Add("@pdks", SqlDbType.NVarChar, 50).Value = txt_pdks.Text;
                     guncellekomutu.Parameters.Add("@ad", SqlDbType.NVarChar, 50).Value = txt_ad.Text;
                     guncellekomutu.Parameters.Add("@soyad", SqlDbType.NVarChar, 50).Value = txt_soyad.Text;
                     guncellekomutu.Parameters.Add("@uyruk", SqlDbType.NVarChar, 50).Value = txt_uyruk.Text;
@@ -757,9 +950,9 @@ namespace InsanKaynaklariBilgiSistem
                 }
                 catch
                 {
-                    SqlCommand guncellekomutu = new SqlCommand("update Kisi set TC=@TC, ad=@ad, soyad=@soyad, uyruk=@uyruk, cinsiyet=@cinsiyet, medeni_hal=@medeni_hal, dogum_Tarihi=@dogum_Tarihi, dogum_Yeri=@dogum_Yeri, onceki_soyadi=@onceki_soyadi, ana_Adi_Soyadi=@ana_Adi_Soyadi, baba_Adi_Soyadi=@baba_Adi_Soyadi, meslekID=@meslekID, gorevi=@gorevi, gorev_Yeri=@gorev_Yeri, giris_Tarihi=@giris_Tarihi, Aktif=@Aktif, cikis_Tarihi= @cikis_Tarihi where TC=@TC", baglantim.baglanti());
+                    SqlCommand guncellekomutu = new SqlCommand("update Kisi set TC=@TC,pdks=@pdks, ad=@ad, soyad=@soyad, uyruk=@uyruk, cinsiyet=@cinsiyet, medeni_hal=@medeni_hal, dogum_Tarihi=@dogum_Tarihi, dogum_Yeri=@dogum_Yeri, onceki_soyadi=@onceki_soyadi, ana_Adi_Soyadi=@ana_Adi_Soyadi, baba_Adi_Soyadi=@baba_Adi_Soyadi, meslekID=@meslekID, gorevi=@gorevi, gorev_Yeri=@gorev_Yeri, giris_Tarihi=@giris_Tarihi, Aktif=@Aktif, cikis_Tarihi= @cikis_Tarihi where TC=@TC", baglantim.baglanti());
 
-
+                    guncellekomutu.Parameters.Add("@pdks", SqlDbType.NVarChar, 50).Value = txt_pdks.Text;
                     guncellekomutu.Parameters.Add("@TC", SqlDbType.NVarChar, 11).Value = tc_no.Text;
                     guncellekomutu.Parameters.Add("@ad", SqlDbType.NVarChar, 50).Value = txt_ad.Text;
                     guncellekomutu.Parameters.Add("@soyad", SqlDbType.NVarChar, 50).Value = txt_soyad.Text;
@@ -983,5 +1176,7 @@ namespace InsanKaynaklariBilgiSistem
                 cam.Stop();
             }
         }
+
+
     }
 }

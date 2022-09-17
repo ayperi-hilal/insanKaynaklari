@@ -9,6 +9,6 @@ namespace InsanKaynaklariBilgiSistem
     class aktifKullanici
     {
         public static string tcno { get; set; } //tc değişkeni tanımlandı heryerden çağırabileceğiz
-        public static string kisi { get; set; }//ilgili kişi
+        public static string kisi { get; set; }//ilgili kişi,kimin tcsi ile işlem yapılacak ise o kişi
     }
 }

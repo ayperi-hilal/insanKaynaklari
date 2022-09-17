@@ -30,8 +30,6 @@ namespace InsanKaynaklariBilgiSistem
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.mtxt_blok = new System.Windows.Forms.MaskedTextBox();
-            this.mtxt_apartman = new System.Windows.Forms.MaskedTextBox();
             this.lbl_blok = new System.Windows.Forms.Label();
             this.lbl_apartman_adi = new System.Windows.Forms.Label();
             this.lbl_kapi_no = new System.Windows.Forms.Label();
@@ -74,29 +72,20 @@ namespace InsanKaynaklariBilgiSistem
             this.txt_pdks = new System.Windows.Forms.TextBox();
             this.lbl_pdks = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btn_rapor = new DevExpress.XtraEditors.SimpleButton();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.txt_apartman = new System.Windows.Forms.TextBox();
+            this.txt_blok = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // mtxt_blok
-            // 
-            this.mtxt_blok.Location = new System.Drawing.Point(535, 211);
-            this.mtxt_blok.Name = "mtxt_blok";
-            this.mtxt_blok.Size = new System.Drawing.Size(100, 20);
-            this.mtxt_blok.TabIndex = 153;
-            this.mtxt_blok.TextChanged += new System.EventHandler(this.mtxt_blok_TextChanged);
-            // 
-            // mtxt_apartman
-            // 
-            this.mtxt_apartman.Location = new System.Drawing.Point(535, 185);
-            this.mtxt_apartman.Name = "mtxt_apartman";
-            this.mtxt_apartman.Size = new System.Drawing.Size(100, 20);
-            this.mtxt_apartman.TabIndex = 152;
-            this.mtxt_apartman.TextChanged += new System.EventHandler(this.mtxt_apartman_TextChanged);
             // 
             // lbl_blok
             // 
             this.lbl_blok.AutoSize = true;
-            this.lbl_blok.Location = new System.Drawing.Point(444, 213);
+            this.lbl_blok.Location = new System.Drawing.Point(444, 180);
             this.lbl_blok.Name = "lbl_blok";
             this.lbl_blok.Size = new System.Drawing.Size(35, 13);
             this.lbl_blok.TabIndex = 151;
@@ -105,7 +94,7 @@ namespace InsanKaynaklariBilgiSistem
             // lbl_apartman_adi
             // 
             this.lbl_apartman_adi.AutoSize = true;
-            this.lbl_apartman_adi.Location = new System.Drawing.Point(444, 185);
+            this.lbl_apartman_adi.Location = new System.Drawing.Point(444, 152);
             this.lbl_apartman_adi.Name = "lbl_apartman_adi";
             this.lbl_apartman_adi.Size = new System.Drawing.Size(80, 13);
             this.lbl_apartman_adi.TabIndex = 150;
@@ -114,7 +103,7 @@ namespace InsanKaynaklariBilgiSistem
             // lbl_kapi_no
             // 
             this.lbl_kapi_no.AutoSize = true;
-            this.lbl_kapi_no.Location = new System.Drawing.Point(444, 244);
+            this.lbl_kapi_no.Location = new System.Drawing.Point(444, 211);
             this.lbl_kapi_no.Name = "lbl_kapi_no";
             this.lbl_kapi_no.Size = new System.Drawing.Size(50, 13);
             this.lbl_kapi_no.TabIndex = 149;
@@ -132,7 +121,7 @@ namespace InsanKaynaklariBilgiSistem
             // lbl_adres
             // 
             this.lbl_adres.AutoSize = true;
-            this.lbl_adres.Location = new System.Drawing.Point(444, 269);
+            this.lbl_adres.Location = new System.Drawing.Point(444, 265);
             this.lbl_adres.Name = "lbl_adres";
             this.lbl_adres.Size = new System.Drawing.Size(44, 13);
             this.lbl_adres.TabIndex = 147;
@@ -194,6 +183,7 @@ namespace InsanKaynaklariBilgiSistem
             // mtxt_yakini_no
             // 
             this.mtxt_yakini_no.Location = new System.Drawing.Point(295, 309);
+            this.mtxt_yakini_no.Mask = "(999) 000-0000";
             this.mtxt_yakini_no.Name = "mtxt_yakini_no";
             this.mtxt_yakini_no.Size = new System.Drawing.Size(100, 20);
             this.mtxt_yakini_no.TabIndex = 136;
@@ -201,6 +191,7 @@ namespace InsanKaynaklariBilgiSistem
             // mtxt_cep_no
             // 
             this.mtxt_cep_no.Location = new System.Drawing.Point(162, 178);
+            this.mtxt_cep_no.Mask = "(999) 000-0000";
             this.mtxt_cep_no.Name = "mtxt_cep_no";
             this.mtxt_cep_no.Size = new System.Drawing.Size(100, 20);
             this.mtxt_cep_no.TabIndex = 133;
@@ -208,6 +199,7 @@ namespace InsanKaynaklariBilgiSistem
             // mtxt_tel_no
             // 
             this.mtxt_tel_no.Location = new System.Drawing.Point(162, 145);
+            this.mtxt_tel_no.Mask = "(999) 000-0000";
             this.mtxt_tel_no.Name = "mtxt_tel_no";
             this.mtxt_tel_no.Size = new System.Drawing.Size(100, 20);
             this.mtxt_tel_no.TabIndex = 132;
@@ -303,8 +295,9 @@ namespace InsanKaynaklariBilgiSistem
             // 
             // btn_temizle
             // 
+            this.btn_temizle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_temizle.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.resetmodeldifferences_32x32;
-            this.btn_temizle.Location = new System.Drawing.Point(661, 409);
+            this.btn_temizle.Location = new System.Drawing.Point(547, 409);
             this.btn_temizle.Name = "btn_temizle";
             this.btn_temizle.Size = new System.Drawing.Size(139, 39);
             this.btn_temizle.TabIndex = 119;
@@ -313,9 +306,10 @@ namespace InsanKaynaklariBilgiSistem
             // 
             // btn_sil
             // 
+            this.btn_sil.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_sil.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btn_sil.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.cancel_32x32;
-            this.btn_sil.Location = new System.Drawing.Point(568, 407);
+            this.btn_sil.Location = new System.Drawing.Point(454, 407);
             this.btn_sil.Name = "btn_sil";
             this.btn_sil.Size = new System.Drawing.Size(91, 40);
             this.btn_sil.TabIndex = 118;
@@ -324,8 +318,9 @@ namespace InsanKaynaklariBilgiSistem
             // 
             // btn_guncelle
             // 
+            this.btn_guncelle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_guncelle.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.refreshallpivottable_32x32;
-            this.btn_guncelle.Location = new System.Drawing.Point(471, 408);
+            this.btn_guncelle.Location = new System.Drawing.Point(357, 408);
             this.btn_guncelle.Name = "btn_guncelle";
             this.btn_guncelle.Size = new System.Drawing.Size(91, 39);
             this.btn_guncelle.TabIndex = 117;
@@ -334,8 +329,9 @@ namespace InsanKaynaklariBilgiSistem
             // 
             // btn_kaydet
             // 
+            this.btn_kaydet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_kaydet.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.apply_32x32;
-            this.btn_kaydet.Location = new System.Drawing.Point(374, 408);
+            this.btn_kaydet.Location = new System.Drawing.Point(260, 408);
             this.btn_kaydet.Name = "btn_kaydet";
             this.btn_kaydet.Size = new System.Drawing.Size(91, 40);
             this.btn_kaydet.TabIndex = 112;
@@ -378,7 +374,7 @@ namespace InsanKaynaklariBilgiSistem
             this.cb_il.FormattingEnabled = true;
             this.cb_il.Location = new System.Drawing.Point(535, 21);
             this.cb_il.Name = "cb_il";
-            this.cb_il.Size = new System.Drawing.Size(121, 21);
+            this.cb_il.Size = new System.Drawing.Size(241, 21);
             this.cb_il.TabIndex = 157;
             this.cb_il.SelectedIndexChanged += new System.EventHandler(this.cb_il_SelectedIndexChanged);
             // 
@@ -388,21 +384,21 @@ namespace InsanKaynaklariBilgiSistem
             this.cb_ilçe.FormattingEnabled = true;
             this.cb_ilçe.Location = new System.Drawing.Point(535, 56);
             this.cb_ilçe.Name = "cb_ilçe";
-            this.cb_ilçe.Size = new System.Drawing.Size(121, 21);
+            this.cb_ilçe.Size = new System.Drawing.Size(241, 21);
             this.cb_ilçe.TabIndex = 158;
             this.cb_ilçe.SelectedIndexChanged += new System.EventHandler(this.cb_ilçe_SelectedIndexChanged);
             // 
             // txt_kapi
             // 
-            this.txt_kapi.Location = new System.Drawing.Point(535, 244);
+            this.txt_kapi.Location = new System.Drawing.Point(535, 211);
             this.txt_kapi.Name = "txt_kapi";
-            this.txt_kapi.Size = new System.Drawing.Size(100, 20);
+            this.txt_kapi.Size = new System.Drawing.Size(220, 20);
             this.txt_kapi.TabIndex = 161;
             this.txt_kapi.TextChanged += new System.EventHandler(this.txt_kapi_TextChanged);
             // 
             // txt_yakini
             // 
-            this.txt_yakini.Location = new System.Drawing.Point(295, 269);
+            this.txt_yakini.Location = new System.Drawing.Point(295, 265);
             this.txt_yakini.Name = "txt_yakini";
             this.txt_yakini.Size = new System.Drawing.Size(143, 20);
             this.txt_yakini.TabIndex = 162;
@@ -411,7 +407,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.txt_mahalle.Location = new System.Drawing.Point(535, 91);
             this.txt_mahalle.Name = "txt_mahalle";
-            this.txt_mahalle.Size = new System.Drawing.Size(121, 20);
+            this.txt_mahalle.Size = new System.Drawing.Size(241, 20);
             this.txt_mahalle.TabIndex = 163;
             this.txt_mahalle.TextChanged += new System.EventHandler(this.txt_mahalle_TextChanged);
             // 
@@ -419,7 +415,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.txt_sokak.Location = new System.Drawing.Point(535, 120);
             this.txt_sokak.Name = "txt_sokak";
-            this.txt_sokak.Size = new System.Drawing.Size(121, 20);
+            this.txt_sokak.Size = new System.Drawing.Size(241, 20);
             this.txt_sokak.TabIndex = 164;
             this.txt_sokak.TextChanged += new System.EventHandler(this.txt_sokak_TextChanged);
             // 
@@ -442,11 +438,54 @@ namespace InsanKaynaklariBilgiSistem
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(428, 152);
+            this.label1.Location = new System.Drawing.Point(444, 234);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(372, 13);
+            this.label1.Size = new System.Drawing.Size(292, 13);
             this.label1.TabIndex = 287;
-            this.label1.Text = "Mahalle bilgisine \'MAHALLESİ\' ve sokak bilgisine \'SOKAĞI\' ibaresini ekleyiniz.";
+            this.label1.Text = "\'MAHALLESİ\',\'SOKAĞI\',\'BLOĞU\',\'NO\' gibi ibareleri  ekleyiniz.";
+            // 
+            // btn_rapor
+            // 
+            this.btn_rapor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_rapor.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.report_32x323;
+            this.btn_rapor.Location = new System.Drawing.Point(688, 409);
+            this.btn_rapor.Name = "btn_rapor";
+            this.btn_rapor.Size = new System.Drawing.Size(110, 40);
+            this.btn_rapor.TabIndex = 322;
+            this.btn_rapor.Text = "TÜM\r\nKAYITLAR";
+            this.btn_rapor.Click += new System.EventHandler(this.btn_rapor_Click);
+            // 
+            // gridControl1
+            // 
+            this.gridControl1.Location = new System.Drawing.Point(-2, 360);
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(156, 87);
+            this.gridControl1.TabIndex = 323;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            this.gridControl1.Visible = false;
+            // 
+            // gridView1
+            // 
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
+            // 
+            // txt_apartman
+            // 
+            this.txt_apartman.Location = new System.Drawing.Point(535, 146);
+            this.txt_apartman.Name = "txt_apartman";
+            this.txt_apartman.Size = new System.Drawing.Size(241, 20);
+            this.txt_apartman.TabIndex = 164;
+            this.txt_apartman.TextChanged += new System.EventHandler(this.txt_apartman_TextChanged);
+            // 
+            // txt_blok
+            // 
+            this.txt_blok.Location = new System.Drawing.Point(535, 174);
+            this.txt_blok.Name = "txt_blok";
+            this.txt_blok.Size = new System.Drawing.Size(241, 20);
+            this.txt_blok.TabIndex = 164;
+            this.txt_blok.TextChanged += new System.EventHandler(this.txt_blok_TextChanged);
             // 
             // iletisimBilgisi
             // 
@@ -454,9 +493,12 @@ namespace InsanKaynaklariBilgiSistem
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btn_rapor);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txt_pdks);
             this.Controls.Add(this.lbl_pdks);
+            this.Controls.Add(this.txt_blok);
+            this.Controls.Add(this.txt_apartman);
             this.Controls.Add(this.txt_sokak);
             this.Controls.Add(this.txt_mahalle);
             this.Controls.Add(this.txt_yakini);
@@ -465,8 +507,6 @@ namespace InsanKaynaklariBilgiSistem
             this.Controls.Add(this.cb_il);
             this.Controls.Add(this.txt_email);
             this.Controls.Add(this.btn_ara);
-            this.Controls.Add(this.mtxt_blok);
-            this.Controls.Add(this.mtxt_apartman);
             this.Controls.Add(this.lbl_blok);
             this.Controls.Add(this.lbl_apartman_adi);
             this.Controls.Add(this.lbl_kapi_no);
@@ -496,18 +536,19 @@ namespace InsanKaynaklariBilgiSistem
             this.Controls.Add(this.btn_sil);
             this.Controls.Add(this.btn_guncelle);
             this.Controls.Add(this.btn_kaydet);
+            this.Controls.Add(this.gridControl1);
             this.Name = "iletisimBilgisi";
-            this.Text = "İletişim Bilgileri";
+            this.Text = "İLETİŞİM BİLGİLERİ";
             this.Load += new System.EventHandler(this.iletisimBilgisi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.MaskedTextBox mtxt_blok;
-        private System.Windows.Forms.MaskedTextBox mtxt_apartman;
         private System.Windows.Forms.Label lbl_blok;
         private System.Windows.Forms.Label lbl_apartman_adi;
         private System.Windows.Forms.Label lbl_kapi_no;
@@ -550,5 +591,10 @@ namespace InsanKaynaklariBilgiSistem
         private System.Windows.Forms.TextBox txt_pdks;
         private System.Windows.Forms.Label lbl_pdks;
         private System.Windows.Forms.Label label1;
+        private DevExpress.XtraEditors.SimpleButton btn_rapor;
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private System.Windows.Forms.TextBox txt_apartman;
+        private System.Windows.Forms.TextBox txt_blok;
     }
 }

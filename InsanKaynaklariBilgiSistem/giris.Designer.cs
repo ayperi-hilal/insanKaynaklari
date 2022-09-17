@@ -67,6 +67,7 @@ namespace InsanKaynaklariBilgiSistem
             this.button2.TabIndex = 1;
             this.button2.Text = "ÇIKIŞ";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label1
             // 
@@ -94,7 +95,6 @@ namespace InsanKaynaklariBilgiSistem
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(210, 21);
             this.textBox1.TabIndex = 3;
-            this.textBox1.Text = "Admin";
             // 
             // label4
             // 
@@ -162,7 +162,6 @@ namespace InsanKaynaklariBilgiSistem
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(210, 21);
             this.textBox2.TabIndex = 4;
-            this.textBox2.Text = "12asWE+*";
             this.textBox2.UseSystemPasswordChar = true;
             // 
             // fluentDesignFormControl1
@@ -190,6 +189,7 @@ namespace InsanKaynaklariBilgiSistem
             this.FluentDesignFormControl = this.fluentDesignFormControl1;
             this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.None;
             this.Name = "giris";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "GİRİŞ EKRANI";
             this.TransparencyKey = System.Drawing.Color.White;
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;

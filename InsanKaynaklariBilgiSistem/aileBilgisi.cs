@@ -12,6 +12,12 @@ using System.Data.SqlClient;
 using System.Text.RegularExpressions;//görevi güvenli paralo oluşturma için bu kütüphaneden yararlanılacak
 //giriş çıkış işlemlerine ilişkşin kütüphanenin tanımlanması
 using System.IO;//klasör oluşturma var olan klsörü sorguama için kullanılacak
+using System.Xml;
+
+using Excel = Microsoft.Office.Interop.Excel;
+using System.Reflection;
+using System.Configuration;
+
 
 
 namespace InsanKaynaklariBilgiSistem
@@ -25,85 +31,68 @@ namespace InsanKaynaklariBilgiSistem
         //veri tabanı doaya yoluve provider nesnesinin belirlenmesi
         sqlBaglantisi baglantim = new sqlBaglantisi();
 
-        
-        string cinsiyet = "";
+
+        public string cinsiyet = "";
         string yasamBilgisi = "YAŞIYOR.";
-       
+
         string saglik_durumu, engel_durumu, calisma_durumu, mezuniyet_durumu, okul;
         string saglik_durumu_bakım = "", engel_durumu_bakim = "";
-        public void listele_yakin_bilgileri()
-        {
-            SqlCommand sorgu = new SqlCommand("Listele_Yakin_Bilgileri", baglantim.baglanti());
-            sorgu.CommandType = CommandType.StoredProcedure;
-            SqlDataAdapter da = new SqlDataAdapter(sorgu);
-            sorgu.Parameters.AddWithValue("@kisi_tc_no", mtxt_tc_no.Text);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            gridControl3.DataSource = dt;
-            gridView3.Columns["id"].Visible = false;
-
-            gridView3.Columns["kisi_tc"].Caption = "TC NO";
-            gridView3.Columns["yakinlik_derecesi"].Caption = "YAKINLIK DERECESİ";
-            gridView3.Columns["yakin_adi_soyadi"].Caption = "ADI SOYADI";
-            gridView3.Columns["yakin_cinsiyeti"].Caption = "CİNSİYETİ";
-            gridView3.Columns["yakin_dogum_yeri"].Caption = "DOĞUM YERİ";
-            gridView3.Columns["yakin_dogum_tarihi"].Caption = "DOĞUM TARİHİ";
-            gridView3.Columns["yakin_yasam_bilgisi"].Caption = "SAĞ/ÖLÜ";
-            gridView3.Columns["yakin_olum_tarihi"].Caption = "ÖLÜM TARİHİ";
-            gridView3.Columns["yakin_olum_aciklamasi"].Caption = "ÖLÜM NEDENİ";
-            gridView3.Columns["yakin_medeni_hali"].Caption = "MEDENİ HALİ";
-            gridView3.Columns["yakin_kan_grubu"].Caption = "KAN GRUBU";
-            gridView3.Columns["yakin_tel_no"].Caption = "TEEFON NUMARASI";
-            gridView3.Columns["yakin_saglik_sorunu"].Caption = "SAĞLIK SORUNU";
-            gridView3.Columns["yakin_saglik_aciklama"].Caption = "SAĞLIK SORUNU AÇIKLAMASI";
-            gridView3.Columns["yakin_engel_durumu"].Caption = "ENGEL DURUMU";
-            gridView3.Columns["yakin_engel_aciklama"].Caption = "ENGEL DURUMU AÇIKLAMASI";
-            gridView3.Columns["yakin_çalisma_durumu"].Caption = "ÇALIŞMA DURUMU";
-            gridView3.Columns["yakin_meslegi"].Caption = "MESLEĞİ";
-            gridView3.Columns["yakin_geliri"].Caption = "GERLİRİ";
-            gridView3.Columns["yakin_calistigi_yer"].Caption = "ÇALIŞTIĞI YER";
-            gridView3.Columns["yakin_okul"].Caption = "OKUL BİLGİSİ";
-            gridView3.Columns["yakin_okul_adi"].Caption = "OKULUN ADI";
-            gridView3.Columns["yakin_ogrenim_duzeyi"].Caption = "ÖĞRENİM DÜZEYİ";
-            gridView3.Columns["yakin_okul_bolumu"].Caption = "BÖLÜM";
-            gridView3.Columns["yakin_okul_sinif"].Caption = "SINIF";
-            gridView3.Columns["yakin_okul_sehir"].Caption = "ŞEHİR";
-            gridView3.Columns["yakin_okul_giris_tarihi"].Caption = "GİRİŞ TARİHİ";
-            gridView3.Columns["yakin_okul_durumu"].Caption = "DURUM";
-            gridView3.Columns["yakin_okul_mezuniyet_tarihi"].Caption = "MEZUNİYET TARİHİ";
-            gridView3.Columns["yakin_mezuniyet_derecesi"].Caption = "DERECE";
-            gridView3.Columns["yakin_merasim_turu"].Caption = "MERASİM TÜRÜ";
-            gridView3.Columns["yakin_merasim_tarihi"].Caption = "MERASM TARİHİ";
-            gridView3.Columns["yakin_hobileri"].Caption = "HOBİLERİ";
-        }
-        public void listele_bakim()
-        {
-            SqlCommand sorgu2 = new SqlCommand("Listele_Bakim_Bilgileri", baglantim.baglanti());
-            sorgu2.CommandType = CommandType.StoredProcedure;
-            SqlDataAdapter da2 = new SqlDataAdapter(sorgu2);
-            sorgu2.Parameters.AddWithValue("@kisi_tc_no", mtxt_tc_no.Text);
-            DataTable dt2 = new DataTable();
-            da2.Fill(dt2);
-            gridControl2.DataSource = dt2;
-            gridView2.Columns["id"].Visible = false;
-            gridView2.Columns["pdks"].Visible = false;
-
-            gridView2.Columns["kisi_tc"].Caption = "TC NO";
-            gridView2.Columns["adi_soyadi"].Caption = "ADI SOYADI";
-            gridView2.Columns["dogum_yeri"].Caption = "DOĞUM YERİ";
-            gridView2.Columns["dogum_tarihi"].Caption = "DOĞUM TARİHİ";
-            gridView2.Columns["tel_no"].Caption = "TELEFON NUMARASI";
-            gridView2.Columns["saglik_sorunu"].Caption = "SAĞLIK SORUNU DURUMU";
-            gridView2.Columns["saglik_sorunu_aciklama"].Caption = "SAĞLIK SORUNU AÇIKLAMASI";
-            gridView2.Columns["engel_durumu"].Caption = "ENGEL DURUMU";
-            gridView2.Columns["engel_aciklama"].Caption = "ENGEL DURUMU AÇIKLAMASI";
-            gridView2.Columns["geliri"].Caption = "GELİRİ";
-            gridView2.Columns["bakim_yakini"].Caption = "YAKINLIK DERECESİ";
-            gridView2.Columns["bakim_hobi"].Caption = "HOBİLERİ";
-
-        }
 
 
+        DataTable dtb = new DataTable();
+        DataTable dty = new DataTable();
+        //public void combobox_tanimlari()
+        //{
+        //    //yakınlık bbilgileri
+        //    cb_yakin.Items.Add("EŞi");
+        //    cb_yakin.Items.Add("KIZI");
+        //    cb_yakin.Items.Add("OĞLU");
+        //    cb_yakin.Items.Add("ANNESİ");
+        //    cb_yakin.Items.Add("BABASI");
+        //    cb_yakin.Items.Add("KIZ KARDEŞİ");
+        //    cb_yakin.Items.Add("ERKEK KARDEŞİ");
+
+        //    //medeni hal
+        //    cb_medinhal.Items.Add("Bekar");
+        //    cb_medinhal.Items.Add("Evli");
+        //    cb_medinhal.Items.Add("Boşanmış");
+        //    //kan grubu
+        //    cb_kangrubu.Items.Add("0(+)");
+        //    cb_kangrubu.Items.Add("0(-)");
+        //    cb_kangrubu.Items.Add("A(+)");
+        //    cb_kangrubu.Items.Add("A(-)");
+        //    cb_kangrubu.Items.Add("B(+)");
+        //    cb_kangrubu.Items.Add("B(-)");
+        //    cb_kangrubu.Items.Add("AB(+)");
+        //    cb_kangrubu.Items.Add("AB(-)");
+        //    cb_kangrubu.Items.Add("Bilinmiyor");
+
+        //    //öğrenim düzeyi
+        //    cb_duzey.Items.Add("Ana Okulu");
+        //    cb_duzey.Items.Add("İlkokul");
+        //    cb_duzey.Items.Add("Ortaokul");
+        //    cb_duzey.Items.Add("Lise");
+        //    cb_duzey.Items.Add("Üniversite");
+        //    cb_duzey.Items.Add("YÜksek Lisans");
+        //    cb_duzey.Items.Add("Doktora");
+
+
+        //    //sınıf bilgisi
+        //    cb_sinif.Items.Add("Hazırlık");
+        //    cb_sinif.Items.Add("1");
+        //    cb_sinif.Items.Add("2");
+        //    cb_sinif.Items.Add("3");
+        //    cb_sinif.Items.Add("4");
+        //    cb_sinif.Items.Add("5");
+        //    cb_sinif.Items.Add("6");
+        //    cb_sinif.Items.Add("Mezun");
+
+        //    //merasim türü
+        //    cb_merasim.Items.Add("Düğün");
+        //    cb_merasim.Items.Add("Asker");
+        //    cb_merasim.Items.Add("Nişan");
+        //    cb_merasim.Items.Add("Mezuniyet");
+        //}
         private void aileBilgisi_Load(object sender, EventArgs e)
         {
 
@@ -133,7 +122,7 @@ namespace InsanKaynaklariBilgiSistem
 
             txt_bakim_engel_aciklama.CharacterCasing = CharacterCasing.Upper;
 
-            
+
             txt_bakim_maas.MaxLength = 8;
 
 
@@ -141,10 +130,10 @@ namespace InsanKaynaklariBilgiSistem
             mtxt_tel_no_yakin.Mask = "0000000000";//cep no
             mtxt_bakim_tel_no.Mask = "0000000000";//cep no
 
-            
-
             //yakınlık bbilgileri
-            cb_yakin.Items.Add("EŞi");
+            cb_yakin.Items.Add("Seçiniz...");
+            cb_yakin.SelectedIndex = cb_yakin.FindStringExact("Seçiniz...");
+            cb_yakin.Items.Add("EŞİ");
             cb_yakin.Items.Add("KIZI");
             cb_yakin.Items.Add("OĞLU");
             cb_yakin.Items.Add("ANNESİ");
@@ -153,10 +142,14 @@ namespace InsanKaynaklariBilgiSistem
             cb_yakin.Items.Add("ERKEK KARDEŞİ");
 
             //medeni hal
+            cb_medinhal.Items.Add("Seçiniz...");
+            cb_medinhal.SelectedIndex = cb_yakin.FindStringExact("Seçiniz...");
             cb_medinhal.Items.Add("Bekar");
             cb_medinhal.Items.Add("Evli");
             cb_medinhal.Items.Add("Boşanmış");
             //kan grubu
+            cb_kangrubu.Items.Add("Seçiniz...");
+            cb_kangrubu.SelectedIndex = cb_yakin.FindStringExact("Seçiniz...");
             cb_kangrubu.Items.Add("0(+)");
             cb_kangrubu.Items.Add("0(-)");
             cb_kangrubu.Items.Add("A(+)");
@@ -168,6 +161,8 @@ namespace InsanKaynaklariBilgiSistem
             cb_kangrubu.Items.Add("Bilinmiyor");
 
             //öğrenim düzeyi
+            cb_duzey.Items.Add("Seçiniz...");
+            cb_duzey.SelectedIndex = cb_yakin.FindStringExact("Seçiniz...");
             cb_duzey.Items.Add("Ana Okulu");
             cb_duzey.Items.Add("İlkokul");
             cb_duzey.Items.Add("Ortaokul");
@@ -178,6 +173,8 @@ namespace InsanKaynaklariBilgiSistem
 
 
             //sınıf bilgisi
+            cb_sinif.Items.Add("Seçiniz...");
+            cb_sinif.SelectedIndex = cb_yakin.FindStringExact("Seçiniz...");
             cb_sinif.Items.Add("Hazırlık");
             cb_sinif.Items.Add("1");
             cb_sinif.Items.Add("2");
@@ -186,8 +183,10 @@ namespace InsanKaynaklariBilgiSistem
             cb_sinif.Items.Add("5");
             cb_sinif.Items.Add("6");
             cb_sinif.Items.Add("Mezun");
-           
+
             //merasim türü
+            cb_merasim.Items.Add("Seçiniz...");
+            cb_merasim.SelectedIndex = cb_yakin.FindStringExact("Seçiniz...");
             cb_merasim.Items.Add("Düğün");
             cb_merasim.Items.Add("Asker");
             cb_merasim.Items.Add("Nişan");
@@ -201,22 +200,22 @@ namespace InsanKaynaklariBilgiSistem
 
             //yakının doğum tarihi
             date_dogum_tarihi.MinDate = new DateTime(1900, 1, 1);
-            date_dogum_tarihi.MaxDate = new DateTime(yil, ay, gun+1);
+            date_dogum_tarihi.MaxDate = new DateTime(yil, ay, gun + 1);
 
 
 
             //yakının ÖLÜM tarihi
             date_olum_tarihi.MinDate = new DateTime(1900, 1, 1);
-            date_olum_tarihi.MaxDate = new DateTime(yil, ay, gun+1);
+            date_olum_tarihi.MaxDate = new DateTime(yil, ay, gun + 1);
 
             //okulagiriş tarihi
             date_giris_tarihi.MinDate = new DateTime(1900, 1, 1);
-            date_giris_tarihi.MaxDate = new DateTime(yil, ay, gun+1);
+            date_giris_tarihi.MaxDate = new DateTime(yil, ay, gun + 1);
 
 
             //mezuniyet tarihi
             date_mezuniyet.MinDate = new DateTime(1900, 1, 1);
-            date_mezuniyet.MaxDate = new DateTime(yil, ay, gun+1);
+            date_mezuniyet.MaxDate = new DateTime(yil, ay, gun + 1);
 
             //merasim tarihi
             date_merasim.MinDate = new DateTime(1900, 1, 1);
@@ -225,7 +224,7 @@ namespace InsanKaynaklariBilgiSistem
 
             //bakmakla yükümlü olduğu yakının doğum tarihi
             date_bakim_dogum.MinDate = new DateTime(1900, 1, 1);
-            date_bakim_dogum.MaxDate = new DateTime(yil, ay, gun+1);
+            date_bakim_dogum.MaxDate = new DateTime(yil, ay, gun + 1);
 
 
             lbl_olum_tarihi.Visible = false;
@@ -237,19 +236,54 @@ namespace InsanKaynaklariBilgiSistem
 
             date_merasim.Visible = false;
 
-           
-            txt_yakin_meslek.Visible = false;
-            txt_gelir_yakin.Visible = false;
-            txt_calistiği_yer.Visible = false;
-    
-
-      
-
-
             //gridLookUpEdit1View.NewItemRowText =;
             panel1.Visible = false;
-            
 
+            if (toggleSwitch_yakin_calisma.IsOn == false)
+            {
+                txt_yakin_meslek.Enabled = true;
+                txt_calistiği_yer.Enabled = true;
+                txt_gelir_yakin.Enabled = true;
+
+                txt_yakin_meslek.Visible = true;
+                txt_calistiği_yer.Visible = true;
+                txt_gelir_yakin.Visible = true;
+
+
+            }
+            else
+            {
+                txt_yakin_meslek.Visible = false;
+                txt_calistiği_yer.Visible = false;
+                txt_gelir_yakin.Visible = false;
+
+                lbl_meslek_yakin.Visible = false;
+                lbl_yakin_calistigi_yer.Visible = false;
+                lbl_geliri_yakin.Visible = false;
+            }
+
+            if (cb_merasim.Text == "")
+            {
+                date_merasim.Visible = false;
+            }
+            else
+            {
+                date_merasim.Visible = true;
+                date_merasim.Enabled = true;
+            }
+            if (toggleSwitch_okul_durum.IsOn != true) //on = mezun
+            {
+                panel1.Visible = false; //load da da false olmalı..
+            }
+            else
+            {
+                panel1.Visible = true;
+
+                date_mezuniyet.Enabled = true;
+                lbl_yakin_mezuniyet_tarihi.Enabled = true;
+                lbl_yakin_okul_derece.Enabled = true;
+                txt_yakin_okul_derece.Enabled = true;
+            }
 
 
         }
@@ -265,15 +299,13 @@ namespace InsanKaynaklariBilgiSistem
                 {
                     lbl_yakin_hobi.Text += " " + title + ", ";
                     hobiler += " " + title + ", ";
-
-
-
                 }
 
             }
             else
             {
                 hobiler = "";
+                lbl_yakin_hobi.Text = "";
             }
         }
 
@@ -298,14 +330,14 @@ namespace InsanKaynaklariBilgiSistem
             else
             {
                 bakımHobi = "";
+                lbl_bakim_hobi.Text = "";
             }
 
         }
-        
-        
+
+
         private void ekrani_temizle()
         {
-           
             txt_bakim_id.Text = string.Empty;
             txt_yakin_id.Text = string.Empty;
             mtxt_tc_no.Clear();
@@ -333,13 +365,12 @@ namespace InsanKaynaklariBilgiSistem
             mtxt_tc_no.Clear();
             mtxt_tel_no_yakin.Clear();
             mtxt_bakim_tel_no.Clear();
-            cb_yakin.Text = string.Empty;
-            cb_medinhal.Text = string.Empty;
-            cb_kangrubu.Text = string.Empty;
-            cb_duzey.Text = string.Empty;
-            cb_sinif.Text = string.Empty;
-            cb_merasim.Text = string.Empty;
-            cb_yakin.Text = "";
+            cb_yakin.Text = "Seçiniz...";
+            cb_medinhal.Text = "Seçiniz...";
+            cb_kangrubu.Text = "Seçiniz...";
+            cb_duzey.Text = "Seçiniz...";
+            cb_sinif.Text = "Seçiniz...";
+            cb_merasim.Text = "Seçiniz...";
 
             date_dogum_tarihi.ResetText();
             date_olum_tarihi.ResetText();
@@ -351,7 +382,7 @@ namespace InsanKaynaklariBilgiSistem
             label3.Text = string.Empty;
             label5.Text = string.Empty;
             label22.Text = string.Empty;
-
+            lbl_cocuk.Text = "0";
 
 
             toggleSwitch_okul_durum.Reset();
@@ -378,14 +409,13 @@ namespace InsanKaynaklariBilgiSistem
             }
 
             lbl_bakim_hobi.Text = "";
-
-
         }
 
         public void yasam_bilgisi_togled(Boolean deger)
         {
+
             // kişi ölü ise bu bölümleri gözükmesin
-            
+
             label23.Visible = deger;
             lbl_yakin_okul_giris_tarihi.Visible = deger;
             lbl_yakin_mezuniyet_tarihi.Visible = deger;
@@ -429,8 +459,12 @@ namespace InsanKaynaklariBilgiSistem
 
         }
 
-      /*  public void bos()
+        public void bosalt()
         {
+            // kişi ölü ise bu bölümleri gözükmesin
+
+            
+
             cb_medinhal.Text = "";
             cb_kangrubu.Text = "";
             mtxt_tel_no_yakin.Text = "";
@@ -442,23 +476,26 @@ namespace InsanKaynaklariBilgiSistem
             txt_yakin_meslek.Text = "";
             txt_gelir_yakin.Text = "";
             txt_calistiği_yer.Text = "";
-            txt_okul_adi.Text="";
-            cb_duzey.Text="";
-            cb_sinif.Text="";
-            txt_bolum.Text="";
-            txt_sehir.Text="";
-            date_giris_tarihi.Text=null;
+            txt_okul_adi.Text = "";
+            cb_duzey.Text = "";
+            cb_sinif.Text = "";
+            txt_bolum.Text = "";
+            txt_sehir.Text = "";
+            //date_giris_tarihi.Value=""
             toggleSwitch_okul_durum.Reset();
-            date_mezuniyet.Text = null;
-            txt_yakin_okul_derece.Text="";
-            cb_merasim.Text="";
-            date_merasim.Text=null;
-            checkedListBox1.Text="";
+            //date_mezuniyet.Visible = deger;
+            txt_yakin_okul_derece.Text = "";
+            cb_merasim.Text = "";
+            //date_merasim.Visible = deger;
+            checkedListBox1.ResetText();
+
+            //şimdi de labelleri gizleyelim.
+
+            //lbl_medeni_hal.Visible = false; //??//
 
             
+        }
 
-            
-        }*/
 
         //tc karakter kontrolü
         private void mtxt_tc_no_TextChanged(object sender, EventArgs e)
@@ -514,7 +551,7 @@ namespace InsanKaynaklariBilgiSistem
 
             }
         }
-              
+
         private void toggleSwitch_sag_olu_Toggled(object sender, EventArgs e)
         {
             if (toggleSwitch_sag_olu.IsOn != true)
@@ -536,172 +573,40 @@ namespace InsanKaynaklariBilgiSistem
                 txt_olum_nedeni.Visible = true;
 
                 yasam_bilgisi_togled(false);
-             //   bos();
+                //   bos();
                 yasamBilgisi = "ÖLDÜ.";
+                bosalt();
             }
 
         }
 
         private void txt_gelir_yakin_KeyPress(object sender, KeyPressEventArgs e)
         {//sadece sayı girişiyapılabilsin
-            e.Handled =! char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
-     
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+
         }
         private void txt_pdks_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
 
-        //ekranda kayıtların görünmesi-yakın bilgileri
-        private void gridView3_DoubleClick(object sender, EventArgs e)
-        {
-            txt_yakin_id.Text = gridView3.GetFocusedRowCellValue("id").ToString();
-            mtxt_tc_no.Text = gridView3.GetFocusedRowCellValue("kisi_tc").ToString();
-            cb_yakin.Text = gridView3.GetFocusedRowCellValue("yakinlik_derecesi").ToString();
-            txt_ad_soyad_yakin.Text = gridView3.GetFocusedRowCellValue("yakin_adi_soyadi").ToString();
-            cinsiyet = gridView3.GetFocusedRowCellValue("yakin_cinsiyeti").ToString();
-            txt_dogum_yeri.Text = gridView3.GetFocusedRowCellValue("yakin_dogum_yeri").ToString();
-            date_dogum_tarihi.Text = gridView3.GetFocusedRowCellValue("yakin_dogum_tarihi").ToString();
-
-
-            if (gridView3.GetFocusedRowCellValue("yakin_yasam_bilgisi").ToString() == "YAŞIYOR.")
-            {
-                toggleSwitch_sag_olu.IsOn = false;
-            }
-            else
-                toggleSwitch_sag_olu.IsOn = true;
-
-            date_olum_tarihi.Text = gridView3.GetFocusedRowCellValue("yakin_olum_tarihi").ToString();
-
-            txt_olum_nedeni.Text = gridView3.GetFocusedRowCellValue("yakin_olum_aciklamasi").ToString();
-            cb_medinhal.Text = gridView3.GetFocusedRowCellValue("yakin_medeni_hali").ToString();
-            cb_kangrubu.Text = gridView3.GetFocusedRowCellValue("yakin_kan_grubu").ToString();
-            mtxt_tel_no_yakin.Text = gridView3.GetFocusedRowCellValue("yakin_tel_no").ToString();
-
-            if (gridView3.GetFocusedRowCellValue("yakin_saglik_sorunu").ToString() == "Bir sağlık sorunu vardır.")
-            {
-                toggleSwitch_saglik_yakin.IsOn = true;
-            }
-            else
-                toggleSwitch_saglik_yakin.IsOn = false;
-
-
-            txt_saglik_aciklama_yakin.Text = gridView3.GetFocusedRowCellValue("yakin_saglik_aciklama").ToString();
-
-            if (gridView3.GetFocusedRowCellValue("yakin_engel_durumu").ToString() == "Bir engeli vardır.")
-                toggleSwitch_yakin_engel.IsOn = true;
-            else
-                toggleSwitch_yakin_engel.IsOn = false;
-
-            txt_yakin_engel_aciklama.Text = gridView3.GetFocusedRowCellValue("yakin_engel_aciklama").ToString();
-
-            if (gridView3.GetFocusedRowCellValue("yakin_çalisma_durumu").ToString() == "Çalışıyor")
-                toggleSwitch_yakin_calisma.IsOn = true;
-            else
-                toggleSwitch_yakin_calisma.IsOn = false;
-
-            txt_yakin_meslek.Text = gridView3.GetFocusedRowCellValue("yakin_meslegi").ToString();
-            txt_gelir_yakin.Text = gridView3.GetFocusedRowCellValue("yakin_geliri").ToString();
-            txt_calistiği_yer.Text = gridView3.GetFocusedRowCellValue("yakin_calistigi_yer").ToString();
-            txt_okul_adi.Text = gridView3.GetFocusedRowCellValue("yakin_okul_adi").ToString();
-            cb_duzey.Text = gridView3.GetFocusedRowCellValue("yakin_ogrenim_duzeyi").ToString();
-            txt_bolum.Text = gridView3.GetFocusedRowCellValue("yakin_okul_bolumu").ToString();
-            cb_sinif.Text = gridView3.GetFocusedRowCellValue("yakin_okul_sinif").ToString();
-            txt_sehir.Text = gridView3.GetFocusedRowCellValue("yakin_okul_sehir").ToString();
-            date_giris_tarihi.Text = gridView3.GetFocusedRowCellValue("yakin_okul_giris_tarihi").ToString();
-
-            if (gridView3.GetFocusedRowCellValue("yakin_okul_durumu").ToString() == "Mezun")
-                toggleSwitch_okul_durum.IsOn = true;
-            else
-                toggleSwitch_okul_durum.IsOn = false;
-
-            date_mezuniyet.Text = gridView3.GetFocusedRowCellValue("yakin_okul_mezuniyet_tarihi").ToString();
-            txt_yakin_okul_derece.Text = gridView3.GetFocusedRowCellValue("yakin_mezuniyet_derecesi").ToString();
-            cb_merasim.Text = gridView3.GetFocusedRowCellValue("yakin_merasim_turu").ToString();
-            date_merasim.Text = gridView3.GetFocusedRowCellValue("yakin_merasim_tarihi").ToString();
-            string hobilerr = gridView3.GetFocusedRowCellValue("yakin_hobileri").ToString();
-            lbl_yakin_hobi.Text = hobilerr;
-            for (int count = 0; count < checkedListBox1.Items.Count; count++)
-            {
-                if (hobilerr.Contains(checkedListBox1.Items[count].ToString()))
-                {
-                    checkedListBox1.SetItemChecked(count, true);
-                }
-                else
-                {
-                    checkedListBox1.SetItemChecked(count, false);
-                }
-            }
-
-            btn_guncelle.Enabled = true;
-            simpleButton1.Enabled = true;
-            btn_sil.Enabled = true;
-        }
-
-
-        //ekranda kayıtların görünmesi-bakım bilgileri
-        private void gridControl2_DoubleClick(object sender, EventArgs e)
-        {
-            
-            txt_bakim_yakin.Text = gridView2.GetFocusedRowCellValue("bakim_yakini").ToString();
-            mtxt_tc_no.Text = gridView2.GetFocusedRowCellValue("kisi_tc").ToString();
-            txt_bakim_adsoyad.Text = gridView2.GetFocusedRowCellValue("adi_soyadi").ToString();
-            txt_bakim_dogum_yeri.Text = gridView2.GetFocusedRowCellValue("dogum_yeri").ToString();
-            date_bakim_dogum.Text = gridView2.GetFocusedRowCellValue("dogum_tarihi").ToString();
-            mtxt_bakim_tel_no.Text = gridView2.GetFocusedRowCellValue("tel_no").ToString();
-
-            if (gridView2.GetFocusedRowCellValue("saglik_sorunu").ToString() == "Bir sağlık problemi vardır.")
-                toggleSwitch_bakim_saglik.IsOn = true;
-            else
-                toggleSwitch_bakim_saglik.IsOn = false;
-
-            txt_bakim_saglik_aciklama.Text = gridView2.GetFocusedRowCellValue("saglik_sorunu_aciklama").ToString();
-
-            if (gridView2.GetFocusedRowCellValue("engel_durumu").ToString() == "Bir engel durumu söz konusudur.")
-                toggleSwitch_bakim_engel.IsOn = true;
-            else
-                toggleSwitch_bakim_engel.IsOn = false;
-
-            txt_bakim_engel_aciklama.Text = gridView2.GetFocusedRowCellValue("engel_aciklama").ToString();
-            txt_bakim_maas.Text = gridView2.GetFocusedRowCellValue("geliri").ToString();
-
-            string bakim_hobilers = gridView2.GetFocusedRowCellValue("bakim_hobi").ToString();
-            lbl_bakim_hobi.Text = bakim_hobilers;
-            for (int count = 0; count < checkedListBox2.Items.Count; count++)
-            {
-                if (bakim_hobilers.Contains(checkedListBox2.Items[count].ToString()))
-                {
-                    checkedListBox2.SetItemChecked(count, true);
-                }
-                else
-                {
-                    checkedListBox2.SetItemChecked(count, false);
-                }
-            }
-
-            txt_bakim_id.Text = gridView2.GetFocusedRowCellValue("id").ToString();
-
-            btn_guncelle.Enabled = true;
-            simpleButton1.Enabled = true;
-            btn_sil.Enabled = true;
-
-        }
-
-        
         //simpleButton5 =ara butonu
         private void simpleButton5_Click(object sender, EventArgs e)
         {
             //tck yazılarak veri tablosundaki veri araştırılır
             bool kayit_arama_durumu = false;//kayıdın olup olmadığını değerlendirecektir.
-            if (mtxt_tc_no.Text.Length == 11||txt_pdks.Text!="")
+            if (mtxt_tc_no.Text.Length == 11 || txt_pdks.Text != "")
             {  //tck 11 hane olarak yazıldı ise arama yapılabilecek aksi taktirde arama yapmaya gerek yok zaten.
-                
+
                 SqlCommand selectsorgu = new SqlCommand("kisi_arama", baglantim.baglanti());
                 selectsorgu.CommandType = CommandType.StoredProcedure;
 
                 selectsorgu.Parameters.AddWithValue("@TC", mtxt_tc_no.Text);
-                selectsorgu.Parameters.AddWithValue("@pdks",txt_pdks.Text);
+                selectsorgu.Parameters.AddWithValue("@pdks", txt_pdks.Text);
 
+                aktifKullanici.kisi = mtxt_tc_no.Text;
+
+                MessageBox.Show("Test", aktifKullanici.kisi);
 
                 SqlDataReader kayitokuma = selectsorgu.ExecuteReader();
 
@@ -713,18 +618,21 @@ namespace InsanKaynaklariBilgiSistem
                     if (mtxt_tc_no.Text != "")
                         txt_pdks.Text = kayitokuma.GetValue(19).ToString();
                     else if (txt_pdks.Text != "")
-                        mtxt_tc_no.Text = kayitokuma.GetValue(1).ToString();
-                    else if(mtxt_tc_no.Text!="" && txt_pdks.Text!="")
                     {
-                        SqlCommand selectsorguiki = new SqlCommand("select *from Kisi where TC='" + mtxt_tc_no.Text  + "'", baglantim.baglanti());
+                        mtxt_tc_no.Text = kayitokuma.GetValue(1).ToString();
+                        aktifKullanici.kisi = mtxt_tc_no.Text;
+                    }
+                    else if (mtxt_tc_no.Text != "" && txt_pdks.Text != "")
+                    {
+                        SqlCommand selectsorguiki = new SqlCommand("select *from Kisi where TC='" + mtxt_tc_no.Text + "'", baglantim.baglanti());
                         SqlDataReader kayitokumaiki = selectsorgu.ExecuteReader();
-                        
+
                         while (kayitokumaiki.Read())
                         {
-                           
+
                             string gelen;
                             gelen = kayitokumaiki.GetValue(19).ToString();
-                            if(gelen!=txt_pdks.Text)
+                            if (gelen != txt_pdks.Text)
                             {
                                 txt_pdks.Text = kayitokumaiki.GetValue(19).ToString();
                             }
@@ -736,8 +644,8 @@ namespace InsanKaynaklariBilgiSistem
                     label3.Text = kayitokuma.GetValue(2).ToString();//ilgili tck ait değerin veritabanındaki tck getirilecek. veri tabanı 0,1,2,.. diye gider.
                     label5.Text = kayitokuma.GetValue(3).ToString();//ad
                     label22.Text = kayitokuma.GetValue(6).ToString();//soyad
-                  
-                    
+
+
                     btn_guncelle.Enabled = true;
                     simpleButton1.Enabled = true;
                     btn_sil.Enabled = true;
@@ -777,7 +685,7 @@ namespace InsanKaynaklariBilgiSistem
                     simpleButton1.Enabled = false;
                     btn_sil.Enabled = false;
                 }
-                
+
             }
             else
             {
@@ -785,24 +693,26 @@ namespace InsanKaynaklariBilgiSistem
                 MessageBox.Show("Lütfen 11 haneli TC veya geçerli bir pdks giriniz.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 ekrani_temizle();
             }
-            listele_bakim();
-            listele_yakin_bilgileri();
+
         }
 
-        private void toggleSwitch_saglik_yakin_Toggled(object sender, EventArgs e)
+        public void toggleSwitch_saglik_yakin_Toggled(object sender, EventArgs e)
         {
-            if (toggleSwitch_saglik_yakin.IsOn == true)
+            if (toggleSwitch_saglik_yakin.IsOn == false)
             {
                 txt_saglik_aciklama_yakin.Visible = true;
                 txt_saglik_aciklama_yakin.Enabled = true;
+                lbl_yakin_saglik_aciklama.Visible = true;
             }
             else
             {
                 txt_saglik_aciklama_yakin.Enabled = false;
+                txt_saglik_aciklama_yakin.Visible = false;
+                lbl_yakin_saglik_aciklama.Visible = false;
             }
         }
 
-        private void txt_okul_adi_TextChanged(object sender, EventArgs e)
+        public void txt_okul_adi_TextChanged(object sender, EventArgs e)
         {
             cb_duzey.Visible = true;
             cb_sinif.Visible = true;
@@ -821,20 +731,23 @@ namespace InsanKaynaklariBilgiSistem
 
         private void toggleSwitch_yakin_engel_Toggled(object sender, EventArgs e)
         {
-            if (toggleSwitch_yakin_engel.IsOn == true)
+            if (toggleSwitch_yakin_engel.IsOn == false)
             {
                 txt_yakin_engel_aciklama.Enabled = true;
                 txt_yakin_engel_aciklama.Visible = true;
+                lbl_engel_yakin_aciklama.Visible = true;
             }
             else
             {
                 txt_yakin_engel_aciklama.Enabled = false;
+                txt_yakin_engel_aciklama.Visible = false;
+                lbl_engel_yakin_aciklama.Visible = false;
             }
         }
 
         private void toggleSwitch_yakin_calisma_Toggled(object sender, EventArgs e)
         {
-            if (toggleSwitch_yakin_calisma.IsOn == true)
+            if (toggleSwitch_yakin_calisma.IsOn == false)
             {
                 txt_yakin_meslek.Visible = true;
                 txt_calistiği_yer.Visible = true;
@@ -843,12 +756,24 @@ namespace InsanKaynaklariBilgiSistem
                 txt_yakin_meslek.Enabled = true;
                 txt_calistiği_yer.Enabled = true;
                 txt_gelir_yakin.Enabled = true;
+
+                lbl_meslek_yakin.Visible = true;
+                lbl_yakin_calistigi_yer.Visible = true;
+                lbl_geliri_yakin.Visible = true;
             }
             else
             {
                 txt_yakin_meslek.Enabled = false;
                 txt_calistiği_yer.Enabled = false;
                 txt_gelir_yakin.Enabled = false;
+
+                txt_yakin_meslek.Visible = false;
+                txt_calistiği_yer.Visible = false;
+                txt_gelir_yakin.Visible = false;
+
+                lbl_meslek_yakin.Visible = false;
+                lbl_yakin_calistigi_yer.Visible = false;
+                lbl_geliri_yakin.Visible = false;
             }
         }
 
@@ -867,27 +792,33 @@ namespace InsanKaynaklariBilgiSistem
 
         private void toggleSwitch_bakim_saglik_Toggled(object sender, EventArgs e)
         {
-            if (toggleSwitch_bakim_saglik.IsOn == true)
+            if (toggleSwitch_bakim_saglik.IsOn == false)
             {
                 txt_bakim_saglik_aciklama.Visible = true;
                 txt_bakim_saglik_aciklama.Enabled = true;
+                lbl_bakim_saglik_aciklama.Visible = true;
             }
             else
             {
                 txt_bakim_saglik_aciklama.Enabled = false;
+                txt_bakim_saglik_aciklama.Visible = false;
+                lbl_bakim_saglik_aciklama.Visible = false;
             }
         }
 
         private void toggleSwitch_bakim_engel_Toggled(object sender, EventArgs e)
         {
-            if (toggleSwitch_bakim_engel.IsOn == true)
+            if (toggleSwitch_bakim_engel.IsOn == false)
             {
                 txt_bakim_engel_aciklama.Visible = true;
                 txt_bakim_engel_aciklama.Enabled = true;
+                lbl_bakim_engel_aciklama.Visible = true;
             }
             else
             {
                 txt_bakim_engel_aciklama.Enabled = false;
+                txt_bakim_engel_aciklama.Visible = false;
+                lbl_bakim_engel_aciklama.Visible = false;
             }
         }
 
@@ -896,6 +827,8 @@ namespace InsanKaynaklariBilgiSistem
         {
             ekrani_temizle();
         }
+
+
 
         private void txt_bakim_yakin_TextChanged(object sender, EventArgs e)
         {
@@ -909,6 +842,162 @@ namespace InsanKaynaklariBilgiSistem
             //txt_bakim_engel_aciklama.Enabled = true;
             txt_bakim_maas.Enabled = true;
             checkedListBox2.Enabled = true;
+        }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            if (mtxt_tc_no.Text == "")
+            {
+                MessageBox.Show("Lütfen önce personel araması yapınız");
+            }
+            else
+            {
+                aileBilgisiGoster ff = new aileBilgisiGoster();
+                ff.ShowDialog();
+                //aktifKullanici.kisi = mtxt_tc_no.Text;
+                //  this.Hide();
+                ff.Refresh();
+                /////////////////////////////////////////////////////////////////////
+                if (ff.yakin_id != null)
+                {
+                    txt_yakin_id.Text = ff.yakin_id;
+
+                    cb_yakin.Text = ff.yakin_yakinlik_derecesi;
+                    txt_ad_soyad_yakin.Text = ff.yakin_adi_soyadi;
+                    cinsiyet = ff.yakin_cinsiyeti;
+                    txt_dogum_yeri.Text = ff.yakin_dogum_yeri;
+                    date_dogum_tarihi.Text = ff.yakin_dogum_tarihi;
+
+                    if (ff.yakin_yasam_bilgisi == "YAŞIYOR.")
+                    {
+                        toggleSwitch_sag_olu.IsOn = false;
+                    }
+                    else
+                        toggleSwitch_sag_olu.IsOn = true;
+
+                    date_olum_tarihi.Text = ff.yakin_olum_tarihi;
+
+                    txt_olum_nedeni.Text = ff.yakin_olum_aciklamasi;
+                    cb_medinhal.Text = ff.yakin_medeni_hali;
+                    cb_kangrubu.Text = ff.yakin_kan_grubu;
+                    mtxt_tel_no_yakin.Text = ff.yakin_tel_no;
+
+                    if (ff.yakin_saglik_sorunu == "Bir sağlık sorunu vardır.")
+                    {
+                        toggleSwitch_saglik_yakin.IsOn = false;
+                    }
+                    else
+                        toggleSwitch_saglik_yakin.IsOn = true;
+
+
+                    txt_saglik_aciklama_yakin.Text = ff.yakin_saglik_aciklama;
+
+                    if (ff.yakin_engel_durumu == "Bir engeli vardır.")
+                        toggleSwitch_yakin_engel.IsOn = false;
+                    else
+                        toggleSwitch_yakin_engel.IsOn = true;
+
+                    txt_yakin_engel_aciklama.Text = ff.yakin_engel_aciklama;
+
+                    if (ff.yakin_çalisma_durumu == "Çalışıyor.")
+                        toggleSwitch_yakin_calisma.IsOn = false;
+                    else
+                        toggleSwitch_yakin_calisma.IsOn = true;
+
+                    txt_yakin_meslek.Text = ff.yakin_meslegi;
+                    txt_gelir_yakin.Text = ff.yakin_geliri;
+                    txt_calistiği_yer.Text = ff.yakin_calistigi_yer;
+                    txt_okul_adi.Text = ff.yakin_okul_adi;
+                    cb_duzey.Text = ff.yakin_ogrenim_duzeyi;
+                    txt_bolum.Text = ff.yakin_okul_bolumu;
+                    cb_sinif.Text = ff.yakin_okul_sinif;
+                    txt_sehir.Text = ff.yakin_okul_sehir;
+                    date_giris_tarihi.Text = ff.yakin_okul_giris_tarihi;
+
+                    if (ff.yakin_okul_durumu == "Mezun")
+                        toggleSwitch_okul_durum.IsOn = true;
+                    else
+                        toggleSwitch_okul_durum.IsOn = false;
+
+                    date_mezuniyet.Text = ff.yakin_okul_mezuniyet_tarihi;
+                    txt_yakin_okul_derece.Text = ff.yakin_mezuniyet_derecesi;
+                    cb_merasim.Text = ff.yakin_merasim_turu;
+                    date_merasim.Text = ff.yakin_merasim_tarihi;
+                    string hobilerr = ff.yakin_hobileri;
+
+                    lbl_yakin_hobi.Text = hobilerr;
+                    if (!string.IsNullOrEmpty(hobilerr))
+                    {
+                        for (int count = 0; count < checkedListBox1.Items.Count; count++)
+                        {
+                            if (hobilerr.Contains(checkedListBox1.Items[count].ToString()))
+                            {
+                                checkedListBox1.SetItemChecked(count, true);
+                            }
+                            else
+                            {
+                                checkedListBox1.SetItemChecked(count, false);
+                            }
+                        }
+                    }
+                }
+                /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                ///
+
+                if (ff.bakim_id != null)
+                {
+
+                    txt_bakim_yakin.Text = ff.bakim_yakini;
+
+                    txt_bakim_adsoyad.Text = ff.adi_soyadi;
+                    txt_bakim_dogum_yeri.Text = ff.dogum_yeri;
+                    date_bakim_dogum.Text = ff.dogum_tarihi;
+                    mtxt_bakim_tel_no.Text = ff.tel_no;
+
+                    if (ff.saglik_sorunu == "Bir sağlık problemi vardır.")
+                        toggleSwitch_bakim_saglik.IsOn = false;
+                    else
+                        toggleSwitch_bakim_saglik.IsOn = true;
+
+                    txt_bakim_saglik_aciklama.Text = ff.saglik_sorunu_aciklama;
+
+                    if (ff.engel_durumu == "Bir engel durumu söz konusudur.")
+                        toggleSwitch_bakim_engel.IsOn = false;
+                    else
+                        toggleSwitch_bakim_engel.IsOn = true;
+
+                    txt_bakim_engel_aciklama.Text = ff.engel_aciklama;
+                    txt_bakim_maas.Text = ff.geliri;
+
+                    string bakim_hobilers = ff.bakim_hobi;
+                    lbl_bakim_hobi.Text = bakim_hobilers;
+
+                    if (!string.IsNullOrEmpty(bakim_hobilers))
+                    {
+                        for (int count = 0; count < checkedListBox2.Items.Count; count++)
+                        {
+                            if (bakim_hobilers.Contains(checkedListBox2.Items[count].ToString()))
+                            {
+                                checkedListBox2.SetItemChecked(count, true);
+                            }
+                            else
+                            {
+                                checkedListBox2.SetItemChecked(count, false);
+                            }
+                        }
+                    }
+
+                    txt_bakim_id.Text = ff.bakim_id;
+
+                }
+
+
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                btn_guncelle.Enabled = true;
+                simpleButton1.Enabled = true;
+                btn_sil.Enabled = true;
+            }
         }
 
         private void btn_sil_Click(object sender, EventArgs e)
@@ -934,7 +1023,7 @@ namespace InsanKaynaklariBilgiSistem
                         SqlDataReader yakin_sorgula = Yakinsorgula.ExecuteReader();
                         while (yakin_sorgula.Read())
                         {
-                            
+
                             yakin_sorgula_bool = true;
 
                             YakinSilsorgusu.ExecuteNonQuery();
@@ -944,7 +1033,7 @@ namespace InsanKaynaklariBilgiSistem
                         yakin_sorgula.Close();
 
                         //  ekrani_temizle();
-                      
+
                         break;
                     }
                     //girilen tck ya göre bir kayıt bulunmaz ise
@@ -958,9 +1047,9 @@ namespace InsanKaynaklariBilgiSistem
                 {
                     MessageBox.Show("Lütfen 11 haneli TC veya geçerli bir pdks giriniz.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                listele_yakin_bilgileri();
-               // ekrani_temizle();
-                if (txt_bakim_id.Text!= "")
+
+                // ekrani_temizle();
+                if (txt_bakim_id.Text != "")
                 {
                     bool kayit_arama_bakim = false;
                     bool bakim_sorgula_bool = false;
@@ -979,7 +1068,7 @@ namespace InsanKaynaklariBilgiSistem
                         SqlDataReader bakim_sorgula = Bakimsorgula.ExecuteReader();
                         while (bakim_sorgula.Read())
                         {
-                          
+
 
                             bakim_sorgula_bool = true;
 
@@ -989,7 +1078,7 @@ namespace InsanKaynaklariBilgiSistem
                         bakim_sorgula.Close();
 
                         // ekrani_temizle();
-                       
+
                         break;
                     }
                     //girilen tck ya göre bir kayıt bulunmaz ise
@@ -1008,9 +1097,6 @@ namespace InsanKaynaklariBilgiSistem
             }
 
             ekrani_temizle();
-            listele_bakim();
-            
-
         }
 
         private void toggleSwitch_okul_durum_Toggled(object sender, EventArgs e)
@@ -1029,7 +1115,7 @@ namespace InsanKaynaklariBilgiSistem
                 txt_yakin_okul_derece.Enabled = true;
             }
         }
-                
+
         //forma ekle
         private void simpleButton7_Click(object sender, EventArgs e)
         {//bu kısım için veri tabanında ad soyad için bir arama yapılması gerektedir.
@@ -1049,183 +1135,183 @@ namespace InsanKaynaklariBilgiSistem
             }
             //baglantim.baglanti().Close();
 
-                if (mtxt_tc_no.Text.Length < 11 || mtxt_tc_no.Text == "")//tc kimlik numarsaı 11 den küçük olmamalıdr. veya boş olmalaıdr. eğer olur ise tc kimlik no yazısı kırmızı olacaktır.
-                    lbl_tc_no.ForeColor = Color.Red;
+            if (mtxt_tc_no.Text.Length < 11 || mtxt_tc_no.Text == "")//tc kimlik numarsaı 11 den küçük olmamalıdr. veya boş olmalaıdr. eğer olur ise tc kimlik no yazısı kırmızı olacaktır.
+                lbl_tc_no.ForeColor = Color.Red;
+            else
+                lbl_tc_no.ForeColor = Color.Black;
+
+            //yakını bilgisi
+            if (cb_yakin.Text != "")//herhangi bir yakını seçildi ise
+            {
+                //adı soyadı
+                if (txt_ad_soyad_yakin.Text == "" || txt_ad_soyad_yakin.Text.Length < 2)
+
+                    lbl_yakin_ad_soyad.ForeColor = Color.Red;
                 else
-                    lbl_tc_no.ForeColor = Color.Black;
+                    lbl_yakin_ad_soyad.ForeColor = Color.Black;
 
-                //yakını bilgisi
-                if (cb_yakin.Text != "")//herhangi bir yakını seçildi ise
+                if (radioButton_bay.Checked == true)
+                    cinsiyet = "BAY";
+                else if (radioButton_bayan.Checked == true)
+                    cinsiyet = "BAYAN";
+
+                //doğum yeri
+                if (txt_dogum_yeri.Text == "" || txt_dogum_yeri.Text.Length < 2)
+                    lbl_yakin_dogum_yeri.ForeColor = Color.Red;
+                else
+                    lbl_yakin_dogum_yeri.ForeColor = Color.Black;
+
+
+                if (toggleSwitch_sag_olu.IsOn != true)//yaşıyor ise
+
                 {
-                    //adı soyadı
-                    if (txt_ad_soyad_yakin.Text == "" || txt_ad_soyad_yakin.Text.Length < 2)
-
-                        lbl_yakin_ad_soyad.ForeColor = Color.Red;
+                    yasamBilgisi = "YAŞIYOR.";
+                    //medeni hali
+                    if (cb_medinhal.Text == "")
+                        lbl_yakin_medeni_hal.ForeColor = Color.Red;
                     else
-                        lbl_yakin_ad_soyad.ForeColor = Color.Black;
+                        lbl_yakin_medeni_hal.ForeColor = Color.Black;
 
-                    if (radioButton_bay.Checked == true)
-                        cinsiyet = "BAY";
-                    else if (radioButton_bayan.Checked == true)
-                        cinsiyet = "BAYAN";
-
-                    //doğum yeri
-                    if (txt_dogum_yeri.Text == "" || txt_dogum_yeri.Text.Length < 2)
-                        lbl_yakin_dogum_yeri.ForeColor = Color.Red;
+                    //kangrubu
+                    if (cb_kangrubu.Text == "")
+                        lbl_yakin_kan_grubu.ForeColor = Color.Red;
                     else
-                        lbl_yakin_dogum_yeri.ForeColor = Color.Black;
-                    
+                        lbl_yakin_kan_grubu.ForeColor = Color.Black;
 
-                    if(toggleSwitch_sag_olu.IsOn!=true)//yaşıyor ise
+                    //telefonnumarası
+                    if (mtxt_tel_no_yakin.Text == "")
+                        lbl_yakin_tel_no.ForeColor = Color.Red;
+                    else
+                        lbl_yakin_tel_no.ForeColor = Color.Black;
 
+                    //sağlık açıklaması yazılmalıdır.
+                    if (toggleSwitch_saglik_yakin.IsOn == true)
                     {
-                        yasamBilgisi = "YAŞIYOR.";
-                        //medeni hali
-                        if (cb_medinhal.Text == "")
-                            lbl_yakin_medeni_hal.ForeColor = Color.Red;
+                        saglik_durumu = "Bir sağlık sorunu vardır.";
+
+                        txt_saglik_aciklama_yakin.Visible = true;
+                        txt_saglik_aciklama_yakin.Enabled = true;
+
+                        if (txt_saglik_aciklama_yakin.Text == "")
+
+                        { lbl_yakin_saglik_aciklama.ForeColor = Color.Red; }
+
+                    }
+
+                    else
+                    {
+
+                        lbl_yakin_saglik_aciklama.ForeColor = Color.Black;
+                        txt_saglik_aciklama_yakin.Enabled = false;
+                        saglik_durumu = "Bir sağlık sorunu yoktur.";
+
+                    }
+
+                    //engeli var ise  açıklaması yazılmalıdır.
+                    if (toggleSwitch_yakin_engel.IsOn == true)
+                    {
+                        if (txt_yakin_engel_aciklama.Text == "")
+                            lbl_engel_yakin_aciklama.ForeColor = Color.Red;
+                        txt_yakin_engel_aciklama.Enabled = true;
+                        engel_durumu = "Bir engeli vardır.";
+                    }
+
+                    else
+                    {
+                        lbl_engel_yakin_aciklama.ForeColor = Color.Black;
+                        txt_yakin_engel_aciklama.Enabled = false;
+                        engel_durumu = "Bir engeli yoktur.";
+                    }
+
+                    //çalışma durumu var ise  açıklaması yazılmalıdır.
+                    if (toggleSwitch_yakin_calisma.IsOn == true)
+                    {
+                        calisma_durumu = "Çalışıyor.";
+                        //mesleği
+                        if (txt_yakin_meslek.Text == "")
+                            lbl_meslek_yakin.ForeColor = Color.Red;
                         else
-                            lbl_yakin_medeni_hal.ForeColor = Color.Black;
+                            lbl_meslek_yakin.ForeColor = Color.Black;
 
-                        //kangrubu
-                        if (cb_kangrubu.Text == "")
-                            lbl_yakin_kan_grubu.ForeColor = Color.Red;
+                        //geliri
+                        if (txt_gelir_yakin.Text == "")
+                            lbl_geliri_yakin.ForeColor = Color.Red;
                         else
-                            lbl_yakin_kan_grubu.ForeColor = Color.Black;
+                            lbl_geliri_yakin.ForeColor = Color.Black;
 
-                        //telefonnumarası
-                        if (mtxt_tel_no_yakin.Text == "")
-                            lbl_yakin_tel_no.ForeColor = Color.Red;
-                        else
-                            lbl_yakin_tel_no.ForeColor = Color.Black;
-
-                        //sağlık açıklaması yazılmalıdır.
-                        if (toggleSwitch_saglik_yakin.IsOn == true)
+                        //çalıştığı yer
+                        if (txt_calistiği_yer.Text == "" && txt_calistiği_yer.Text.Length < 2)
                         {
-                            saglik_durumu = "Bir sağlık sorunu vardır.";
-                           
-                            txt_saglik_aciklama_yakin.Visible = true;
-                            txt_saglik_aciklama_yakin.Enabled = true;
+                            lbl_yakin_calistigi_yer.ForeColor = Color.Red;
 
-                            if (txt_saglik_aciklama_yakin.Text == "")
-
-                            { lbl_yakin_saglik_aciklama.ForeColor = Color.Red; }
-                                                    
-                        }
-
-                        else
-                        {
-                            
-                            lbl_yakin_saglik_aciklama.ForeColor = Color.Black;
-                            txt_saglik_aciklama_yakin.Enabled = false;
-                            saglik_durumu = "Bir sağlık sorunu yoktur.";
-
-                        }
-
-                        //engeli var ise  açıklaması yazılmalıdır.
-                        if (toggleSwitch_yakin_engel.IsOn == true)
-                        {
-                            if (txt_yakin_engel_aciklama.Text == "")
-                                lbl_engel_yakin_aciklama.ForeColor = Color.Red;
-                            txt_yakin_engel_aciklama.Enabled = true;
-                            engel_durumu = "Bir engeli vardır.";
-                        }
-
-                        else
-                        {
-                            lbl_engel_yakin_aciklama.ForeColor = Color.Black;
-                            txt_yakin_engel_aciklama.Enabled = false;
-                            engel_durumu = "Bir engeli yoktur.";
-                        }
-
-                        //çalışma durumu var ise  açıklaması yazılmalıdır.
-                        if (toggleSwitch_yakin_calisma.IsOn == true)
-                        {
-                            calisma_durumu = "Çalışıyor.";
-                            //mesleği
-                            if (txt_yakin_meslek.Text == "")
-                                lbl_meslek_yakin.ForeColor = Color.Red;
-                            else
-                                lbl_meslek_yakin.ForeColor = Color.Black;
-
-                            //geliri
-                            if (txt_gelir_yakin.Text == "")
-                                lbl_geliri_yakin.ForeColor = Color.Red;
-                            else
-                                lbl_geliri_yakin.ForeColor = Color.Black;
-
-                            //çalıştığı yer
-                            if (txt_calistiği_yer.Text == "" && txt_calistiği_yer.Text.Length < 2)
-                            {
-                                lbl_yakin_calistigi_yer.ForeColor = Color.Red;
-                               
-                            }
-                            else
-                                lbl_yakin_calistigi_yer.ForeColor = Color.Black;
                         }
                         else
+                            lbl_yakin_calistigi_yer.ForeColor = Color.Black;
+                    }
+                    else
+                    {
+                        calisma_durumu = "Çalışmıyor.";
+                        txt_yakin_meslek.Enabled = false;
+                        txt_gelir_yakin.Enabled = false;
+                        txt_calistiği_yer.Enabled = false;
+                    }
+
+
+
+                    //okul bilgisi
+                    if (txt_okul_adi.Text != "" && txt_okul_adi.Text.Length > 2)
+                    {//okul adı kısmına herhangi birşey yazılır ise
+                        okul = "VAR";
+                        //öğrenim düzeyiseçilmeli
+                        if (cb_duzey.Text == "")
+
+                            lbl_yakin_okul_duzey.ForeColor = Color.Red;
+                        else
+                            lbl_yakin_okul_duzey.ForeColor = Color.Black;
+
+                        //sınıf seçmeli
+                        if (cb_sinif.Text == "")
+                            lbl_yakin_sinif.ForeColor = Color.Red;
+                        else
+                            lbl_yakin_sinif.ForeColor = Color.Black;
+
+
+                        //eğer üniversite veya lise düzeyi ise bölüm bilgisi seçilsin
+                        if (cb_duzey.Text == "Lise" || cb_duzey.Text == "Üniversite" || cb_duzey.Text == "Yüksek Lisans" || cb_duzey.Text == "Doktora")
                         {
-                            calisma_durumu = "Çalışmıyor.";
-                            txt_yakin_meslek.Enabled = false;
-                            txt_gelir_yakin.Enabled = false;
-                            txt_calistiği_yer.Enabled = false;
+                            if (txt_bolum.Text == "")
+                                lbl_yakin_bolum.ForeColor = Color.Red;
+                            else
+                                lbl_yakin_bolum.ForeColor = Color.Black;
                         }
+                        else
+                            txt_bolum.Enabled = false;
 
+                        //okuduğu şehir seçilmeli
+                        if (txt_sehir.Text == "")
+                            lbl_yakin_sehir.ForeColor = Color.Red;
+                        else
+                            lbl_yakin_sehir.ForeColor = Color.Black;
 
-
-                        //okul bilgisi
-                        if (txt_okul_adi.Text != "" && txt_okul_adi.Text.Length > 2)
-                        {//okul adı kısmına herhangi birşey yazılır ise
-                            okul = "VAR";
-                            //öğrenim düzeyiseçilmeli
-                            if (cb_duzey.Text == "")
-
-                                lbl_yakin_okul_duzey.ForeColor = Color.Red;
+                        //mezun mu eğer mezun ise mezuniyet tarihi girilmeli değil ise girememeli
+                        if (toggleSwitch_okul_durum.IsOn == true)
+                        {
+                            mezuniyet_durumu = "Mezun";
+                            date_mezuniyet.Enabled = true;
+                            if (txt_yakin_okul_derece.Text == "")
+                                lbl_yakin_okul_derece.ForeColor = Color.Red;
                             else
-                                lbl_yakin_okul_duzey.ForeColor = Color.Black;
-
-                            //sınıf seçmeli
-                            if (cb_sinif.Text == "")
-                                lbl_yakin_sinif.ForeColor = Color.Red;
-                            else
-                                lbl_yakin_sinif.ForeColor = Color.Black;
-
-
-                            //eğer üniversite veya lise düzeyi ise bölüm bilgisi seçilsin
-                            if (cb_duzey.Text == "Lise" || cb_duzey.Text == "Üniversite" || cb_duzey.Text == "Yüksek Lisans" || cb_duzey.Text == "Doktora")
-                            {
-                                if (txt_bolum.Text == "")
-                                    lbl_yakin_bolum.ForeColor = Color.Red;
-                                else
-                                    lbl_yakin_bolum.ForeColor = Color.Black;
-                            }
-                            else
-                                txt_bolum.Enabled = false;
-
-                            //okuduğu şehir seçilmeli
-                            if (txt_sehir.Text == "")
-                                lbl_yakin_sehir.ForeColor = Color.Red;
-                            else
-                                lbl_yakin_sehir.ForeColor = Color.Black;
-
-                            //mezun mu eğer mezun ise mezuniyet tarihi girilmeli değil ise girememeli
-                            if (toggleSwitch_okul_durum.IsOn == true)
-                            {
-                                mezuniyet_durumu = "Mezun";
-                                date_mezuniyet.Enabled = true;
-                                if (txt_yakin_okul_derece.Text == "")
-                                    lbl_yakin_okul_derece.ForeColor = Color.Red;
-                                else
-                                    lbl_yakin_okul_derece.ForeColor = Color.Black;
-                            }
-                            else
-                            {
-                                mezuniyet_durumu = "Okuyor";
-                                date_mezuniyet.Enabled = false;
-                                lbl_yakin_okul_derece.Enabled = false;
-                            }
+                                lbl_yakin_okul_derece.ForeColor = Color.Black;
                         }
                         else
                         {
+                            mezuniyet_durumu = "Okuyor";
+                            date_mezuniyet.Enabled = false;
+                            lbl_yakin_okul_derece.Enabled = false;
+                        }
+                    }
+                    else
+                    {
                         okul = "YOK";
                         cb_duzey.Enabled = false;
                         cb_sinif.Enabled = false;
@@ -1239,31 +1325,37 @@ namespace InsanKaynaklariBilgiSistem
 
                     }
 
-                        //kişi için planlanan herhangi bir mearsim etkinlik var mıdır. varsa tarihi
-                        if (cb_merasim.Text != "")
-                        {
-                            date_merasim.Enabled = true;
-                        }
-                        else
-                            date_merasim.Enabled = false;
-
+                    //kişi için planlanan herhangi bir mearsim etkinlik var mıdır. varsa tarihi
+                    if (cb_merasim.Text != "")
+                    {
+                        date_merasim.Enabled = true;
                     }
                     else
-                    {
-                        yasamBilgisi = "ÖLDÜ.";
-                        lbl_olum_tarihi.Visible = true;
-                        date_olum_tarihi.Visible = true;
-                        lbl_olum_nedeni.Visible = true;
-                        txt_olum_nedeni.Visible = true;
+                        date_merasim.Enabled = false;
 
-                        yasam_bilgisi_togled(false);
-                    }
                 }
-                
-
-                //herhangi bir bakım bilgisi girecek ise bu kısım çalışacakktır.
-                if (txt_bakim_yakin.Text != "")
+                else
                 {
+                    yasamBilgisi = "ÖLDÜ.";
+                    lbl_olum_tarihi.Visible = true;
+                    date_olum_tarihi.Visible = true;
+                    lbl_olum_nedeni.Visible = true;
+                    txt_olum_nedeni.Visible = true;
+                    saglik_durumu = "";
+                    engel_durumu = "";
+                    calisma_durumu = "";
+                    okul = "";
+                    mezuniyet_durumu = "";
+                 
+
+                    yasam_bilgisi_togled(false);
+                }
+            }
+
+
+            //herhangi bir bakım bilgisi girecek ise bu kısım çalışacakktır.
+            if (txt_bakim_yakin.Text != "")
+            {
                 //baktığı kişinin adı soyadı olmalı
                 if (txt_bakim_adsoyad.Text == "")
                     lbl_bakim_adsoyad.ForeColor = Color.Red;
@@ -1277,7 +1369,7 @@ namespace InsanKaynaklariBilgiSistem
                     lbl_bakim_dogum_yeri.ForeColor = Color.Black;
 
                 if (toggleSwitch_bakim_saglik.IsOn == true)
-                    {
+                {
 
                     saglik_durumu_bakım = "Bir sağlık problemi vardır.";
                     //herhangi bir şağlık sorunu var ise açıklama yazsın yoksa yazmasın
@@ -1292,16 +1384,16 @@ namespace InsanKaynaklariBilgiSistem
                     }
 
                 }
-                    else
-                    {
-                        saglik_durumu_bakım = "Bir sağlık problemi yoktur.";
-                        lbl_bakim_saglik_aciklama.ForeColor = Color.Black;
-                        txt_bakim_saglik_aciklama.Enabled = false;
-                    }
+                else
+                {
+                    saglik_durumu_bakım = "Bir sağlık problemi yoktur.";
+                    lbl_bakim_saglik_aciklama.ForeColor = Color.Black;
+                    txt_bakim_saglik_aciklama.Enabled = false;
+                }
 
-                    //engel durmunu sorgulayalım.
-                    if (toggleSwitch_bakim_engel.IsOn == true)
-                    {
+                //engel durmunu sorgulayalım.
+                if (toggleSwitch_bakim_engel.IsOn == true)
+                {
                     engel_durumu_bakim = "Bir engel durumu söz konusudur.";
                     //herhangi bir engeli var ise açıklama yazsın yoksa yazmasın
                     if (txt_bakim_engel_aciklama.Text == "")
@@ -1315,18 +1407,18 @@ namespace InsanKaynaklariBilgiSistem
                     }
 
                 }
-                    else
-                    {
-                        engel_durumu_bakim = "Bir engel durumu yoktur.";
-                        lbl_bakim_engel_aciklama.ForeColor = Color.Black;
-                        txt_bakim_engel_aciklama.Enabled = false;
-                    }
-
-
-                }
-
                 else
                 {
+                    engel_durumu_bakim = "Bir engel durumu yoktur.";
+                    lbl_bakim_engel_aciklama.ForeColor = Color.Black;
+                    txt_bakim_engel_aciklama.Enabled = false;
+                }
+
+
+            }
+
+            else
+            {
                 txt_bakim_adsoyad.Enabled = false;
                 txt_bakim_dogum_yeri.Enabled = false;
                 date_bakim_dogum.Enabled = false;
@@ -1340,15 +1432,15 @@ namespace InsanKaynaklariBilgiSistem
 
             }
 
-                //şimdiye kadar alanların zorunlulukları belirlendi sıra geldi forma ekleme işlemine
+            //şimdiye kadar alanların zorunlulukları belirlendi sıra geldi forma ekleme işlemine
 
-                if (mtxt_tc_no.Text.Length == 11)
+            if (mtxt_tc_no.Text.Length == 11)
+            {
+                if (cb_yakin.Text != "" && txt_ad_soyad_yakin.Text != "")//herhangi bir yakını eklenir ise
                 {
-                    if (cb_yakin.Text != ""&&txt_ad_soyad_yakin.Text!="")//herhangi bir yakını eklenir ise
+
+                    try
                     {
-                                               
-                            try
-                            {
 
                         SqlCommand eklekomutuyakin = new SqlCommand("Kaydet_Yakini_Bilgisi", baglantim.baglanti());
                         eklekomutuyakin.CommandType = CommandType.StoredProcedure;
@@ -1388,29 +1480,25 @@ namespace InsanKaynaklariBilgiSistem
                         eklekomutuyakin.Parameters.AddWithValue("@yakin_hobileri", hobiler);
 
 
-
-
-
-
                         eklekomutuyakin.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
 
-                         MessageBox.Show("Kişinin yakınları ile ilgili bilgiler başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
-                        listele_yakin_bilgileri();
+                        MessageBox.Show("Kişinin yakınları ile ilgili bilgiler başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
+
                         ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
-                            }
-                            catch (Exception hatamjs)
-                            {
-                               //kayıt esnasında herhangi bir hata ile karşılaşıldığında
-                               MessageBox.Show(hatamjs.Message);
-                            }
-                                          
                     }
-                   /* else
-                    { MessageBox.Show("Yakın bilgisi giriniz.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-                   */
-                    if(txt_bakim_yakin.Text!="")//herhangi bir bakım kişisi eklenİr ise
+                    catch (Exception hatamjs)
                     {
+                        //kayıt esnasında herhangi bir hata ile karşılaşıldığında
+                        MessageBox.Show(hatamjs.Message);
+                    }
+
+                }
+                /* else
+                 { MessageBox.Show("Yakın bilgisi giriniz.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                */
+                if (txt_bakim_yakin.Text != "")//herhangi bir bakım kişisi eklenİr ise
+                {
                     try
                     {
                         SqlCommand eklekomutubakim = new SqlCommand("Kaydet_Bakim_Yükümlü_Bilgisi", baglantim.baglanti());
@@ -1432,7 +1520,7 @@ namespace InsanKaynaklariBilgiSistem
                         eklekomutubakim.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
                                                           //baglantim.baglanti().Close();
                                                           //böylece kayıt ekleme işlemi gerçekleştirlmiş oldu
-                        listele_bakim();
+
                         MessageBox.Show("Kişinin bakımı ile yükümlü olduğu bilgiler başarılı bir şekilde kaydedilmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
                         ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
@@ -1451,22 +1539,18 @@ namespace InsanKaynaklariBilgiSistem
 
             else//herhangi bir hata ile karşılaşılır ise 
             {
-                MessageBox.Show("yazı rengi kırmızı olan alanları yeniden gözden geçirniz", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("yazı rengi kırmızı olan alanları yeniden gözden geçiriniz", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
-
-
-
-
         }
-    
+
         //güncelle
         private void btn_guncelle_Click(object sender, EventArgs e)
         {
             //bu kısım için veri tabanında ad soyad için bir arama yapılması gerektedir.
 
             bool kayitkontrol = false;//bir kayıt yaparken daha önceden böyle bir kullanıcı var mı diye kontrolü yapılacak
-                                      //////baglantim.baglanti().Open();
+
             SqlCommand selectsorgu = new SqlCommand("select * from Kisi_Yakini_Bilgileri where kisi_tc='" + mtxt_tc_no.Text + "' and yakin_adi_soyadi='" + txt_ad_soyad_yakin.Text + "'", baglantim.baglanti());
 
             SqlDataReader kayitokuma = selectsorgu.ExecuteReader();//okuduğu sorguları tutuyoruz.
@@ -1478,16 +1562,16 @@ namespace InsanKaynaklariBilgiSistem
                 break;
 
             }
-              //kullnıcı bir tc kimlik no girecektir fakat girdiği numara gerçekten tc numarası mı onun kontrolü yapılmalıdr.
+            //kullnıcı bir tc kimlik no girecektir fakat girdiği numara gerçekten tc numarası mı onun kontrolü yapılmalıdr.
 
-                if (mtxt_tc_no.Text.Length < 11 || mtxt_tc_no.Text == "")//tc kimlik numarsaı 11 den küçük olmamalıdr. veya boş olmalaıdr. eğer olur ise tc kimlik no yazısı kırmızı olacaktır.
-                    lbl_tc_no.ForeColor = Color.Red;
-                else
-                    lbl_tc_no.ForeColor = Color.Black;
+            if (mtxt_tc_no.Text.Length < 11 || mtxt_tc_no.Text == "")//tc kimlik numarsaı 11 den küçük olmamalıdr. veya boş olmalaıdr. eğer olur ise tc kimlik no yazısı kırmızı olacaktır.
+                lbl_tc_no.ForeColor = Color.Red;
+            else
+                lbl_tc_no.ForeColor = Color.Black;
 
-                //yakını bilgisi
-                if (cb_yakin.Text != "")//herhangi bir yakını seçildi ise
-                {
+            //yakını bilgisi
+            if (cb_yakin.Text != "")//herhangi bir yakını seçildi ise
+            {
                 //adı soyadı
                 if (txt_ad_soyad_yakin.Text == "" || txt_ad_soyad_yakin.Text.Length < 2)
 
@@ -1506,8 +1590,8 @@ namespace InsanKaynaklariBilgiSistem
                 else
                     lbl_yakin_dogum_yeri.ForeColor = Color.Black;
 
-                    if (toggleSwitch_sag_olu.IsOn != true)//yaşıyor ise
-                    {   //medeni hali
+                if (toggleSwitch_sag_olu.IsOn != true)//yaşıyor ise
+                {   //medeni hali
                     if (cb_medinhal.Text == "")
                         lbl_yakin_medeni_hal.ForeColor = Color.Red;
                     else
@@ -1535,11 +1619,11 @@ namespace InsanKaynaklariBilgiSistem
                     }
 
                     else
-                        {
-                            lbl_yakin_saglik_aciklama.ForeColor = Color.Black;
-                            txt_saglik_aciklama_yakin.Enabled = false;
-                            saglik_durumu = "Bir sağlık sorunu yoktur.";
-                        }
+                    {
+                        lbl_yakin_saglik_aciklama.ForeColor = Color.Black;
+                        txt_saglik_aciklama_yakin.Enabled = false;
+                        saglik_durumu = "Bir sağlık sorunu yoktur.";
+                    }
 
                     //engeli var ise  açıklaması yazılmalıdır.
                     if (toggleSwitch_yakin_engel.IsOn == true)
@@ -1559,7 +1643,7 @@ namespace InsanKaynaklariBilgiSistem
 
                     //çalışma durumu var ise  açıklaması yazılmalıdır.
                     if (toggleSwitch_yakin_calisma.IsOn == true)
-                        {
+                    {
                         calisma_durumu = "Çalışıyor";
                         //mesleği
                         if (txt_yakin_meslek.Text == "")
@@ -1592,9 +1676,9 @@ namespace InsanKaynaklariBilgiSistem
 
 
 
-                        //okul bilgisi
-                        if (txt_okul_adi.Text != "" && txt_okul_adi.Text.Length > 2)
-                        {//okul adı kısmına herhangi birşey yazılır ise
+                    //okul bilgisi
+                    if (txt_okul_adi.Text != "" && txt_okul_adi.Text.Length > 2)
+                    {//okul adı kısmına herhangi birşey yazılır ise
 
                         //öğrenim düzeyiseçilmeli
                         if (cb_duzey.Text == "")
@@ -1619,34 +1703,34 @@ namespace InsanKaynaklariBilgiSistem
                                 lbl_yakin_bolum.ForeColor = Color.Black;
                         }
                         else
-                             txt_bolum.Enabled = false;
+                            txt_bolum.Enabled = false;
 
-                            //okuduğu şehir seçilmeli
-                            if (txt_sehir.Text == "")
-                                lbl_yakin_sehir.ForeColor = Color.Red;
-                            else
-                                lbl_yakin_sehir.ForeColor = Color.Black;
+                        //okuduğu şehir seçilmeli
+                        if (txt_sehir.Text == "")
+                            lbl_yakin_sehir.ForeColor = Color.Red;
+                        else
+                            lbl_yakin_sehir.ForeColor = Color.Black;
 
-                            //mezun mu eğer mezun ise mezuniyet tarihi girilmeli değil ise girememeli
-                            if (toggleSwitch_okul_durum.IsOn == true)
-                            {
+                        //mezun mu eğer mezun ise mezuniyet tarihi girilmeli değil ise girememeli
+                        if (toggleSwitch_okul_durum.IsOn == true)
+                        {
                             mezuniyet_durumu = "Mezun";
                             date_mezuniyet.Enabled = true;
                             lbl_yakin_okul_derece.Enabled = true;
                             if (txt_yakin_okul_derece.Text == "")
-                                    lbl_yakin_okul_derece.ForeColor = Color.Red;
-                                else
-                                    lbl_yakin_okul_derece.ForeColor = Color.Black;
-                            }
+                                lbl_yakin_okul_derece.ForeColor = Color.Red;
                             else
-                            {
-                                mezuniyet_durumu = "Okuyor";
-                                date_mezuniyet.Enabled = false;
-                                lbl_yakin_okul_derece.Enabled = false;
-                            }
+                                lbl_yakin_okul_derece.ForeColor = Color.Black;
                         }
                         else
                         {
+                            mezuniyet_durumu = "Okuyor";
+                            date_mezuniyet.Enabled = false;
+                            lbl_yakin_okul_derece.Enabled = false;
+                        }
+                    }
+                    else
+                    {
                         cb_duzey.Enabled = false;
                         cb_sinif.Enabled = false;
                         txt_bolum.Enabled = false;
@@ -1658,25 +1742,29 @@ namespace InsanKaynaklariBilgiSistem
 
                     }
 
-                        //kişi için planlanan herhangi bir mearsim etkinlik var mıdır. varsa tarihi
-                        if (cb_merasim.Text != "")
-                        {
-                            date_merasim.Enabled = true;
-                        }
-                        else
-                            date_merasim.Enabled = false;
-
+                    //kişi için planlanan herhangi bir mearsim etkinlik var mıdır. varsa tarihi
+                    if (cb_merasim.Text != "")
+                    {
+                        date_merasim.Enabled = true;
                     }
                     else
-                    {
-                        lbl_olum_tarihi.Visible = true;
-                        date_olum_tarihi.Visible = true;
-                        lbl_olum_nedeni.Visible = true;
-                        txt_olum_nedeni.Visible = true;
+                        date_merasim.Enabled = false;
 
-                        yasam_bilgisi_togled(false);
-                    }
                 }
+                else
+                {
+                    lbl_olum_tarihi.Visible = true;
+                    date_olum_tarihi.Visible = true;
+                    lbl_olum_nedeni.Visible = true;
+                    txt_olum_nedeni.Visible = true;
+                    saglik_durumu = "";
+                    engel_durumu = "";
+                    calisma_durumu = "";
+                    okul = "";
+                    mezuniyet_durumu = "";
+                    yasam_bilgisi_togled(false);
+                }
+            }
 
 
             //okul bilgisi
@@ -1749,7 +1837,7 @@ namespace InsanKaynaklariBilgiSistem
 
             //herhangi bir bakım bilgisi girecek ise bu kısım çalışacakktır.
             if (txt_bakim_yakin.Text != "")
-                {
+            {
                 //baktığı kişinin adı soyadı olmalı
                 if (txt_bakim_adsoyad.Text == "")
                     lbl_bakim_adsoyad.ForeColor = Color.Red;
@@ -1776,15 +1864,15 @@ namespace InsanKaynaklariBilgiSistem
 
                     }
 
-                
+
 
                 }
-                    else
-                    {
-                        saglik_durumu = "Bir sağlık problemi yoktur.";
-                        lbl_bakim_saglik_aciklama.ForeColor = Color.Black;
-                        txt_bakim_saglik_aciklama.Enabled = false;
-                    }
+                else
+                {
+                    saglik_durumu = "Bir sağlık problemi yoktur.";
+                    lbl_bakim_saglik_aciklama.ForeColor = Color.Black;
+                    txt_bakim_saglik_aciklama.Enabled = false;
+                }
 
                 //engel durmunu sorgulayalım.
 
@@ -1813,8 +1901,8 @@ namespace InsanKaynaklariBilgiSistem
 
             }
 
-                else
-                {
+            else
+            {
                 txt_bakim_adsoyad.Enabled = false;
                 txt_bakim_dogum_yeri.Enabled = false;
                 date_bakim_dogum.Enabled = false;
@@ -1826,15 +1914,13 @@ namespace InsanKaynaklariBilgiSistem
                 txt_bakim_maas.Enabled = false;
                 checkedListBox2.Enabled = false;
 
+            }
 
+            //şimdiye kadar alanların zorunlulukları belirlendi sıra geldi forma ekleme işlemine
 
-                }
-
-                //şimdiye kadar alanların zorunlulukları belirlendi sıra geldi forma ekleme işlemine
-
-                if (mtxt_tc_no.Text.Length == 11)
-                {
-                if (cb_yakin.Text != "" && txt_ad_soyad_yakin.Text!="")//herhangi bir yakını eklenir ise
+            if (mtxt_tc_no.Text.Length == 11)
+            {
+                if (cb_yakin.Text != "" && txt_ad_soyad_yakin.Text != "")//herhangi bir yakını eklenir ise
                 {
 
                     try
@@ -1883,7 +1969,6 @@ namespace InsanKaynaklariBilgiSistem
 
                         ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
 
-                        listele_yakin_bilgileri();
                     }
                     catch (Exception hatamjs)
                     {
@@ -1894,8 +1979,8 @@ namespace InsanKaynaklariBilgiSistem
                 else
                  { MessageBox.Show("Yakın bilgisi giriniz.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 */
-                 
-               if (txt_bakim_yakin.Text != "")//herhangi bir bakım kişisi eklenşr ise
+
+                if (txt_bakim_yakin.Text != "")//herhangi bir bakım kişisi eklenşr ise
                 {
                     try
                     {
@@ -1921,14 +2006,10 @@ namespace InsanKaynaklariBilgiSistem
                         guncellekomutubakim.ExecuteNonQuery();//sorgu sonuçları bağlantı tablosuna eklenir
                                                               //baglantim.baglanti().Close();
                                                               //böylece kayıt ekleme işlemi gerçekleştirlmiş oldu
-                        listele_bakim();
+
                         MessageBox.Show("Kişinin bakımı ile yükümlü olduğu bilgiler başarılı bir şekilde güncellenmiştir.", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);//ilk tırnak içi mesaj içeriği ikinci tırnak içi mesaj kutusunun başlığıdır.
 
                         ekrani_temizle();//kayıt işlemi yapıldıktan sonra form temizlendi
-
-
-
-
 
                     }
                     catch (Exception hataamsj)
@@ -1940,22 +2021,66 @@ namespace InsanKaynaklariBilgiSistem
                 }
 
 
-                }
+            }
 
-                else//herhangi bir hata ile karşılaşılır ise 
+            else//herhangi bir hata ile karşılaşılır ise 
+            {
+                MessageBox.Show("Yazı rengi kırmızı olan alanları yeniden gözden geçirniz", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
+        }
+
+        private void btn_rapor_Click(object sender, EventArgs e)
+        {
+            DataSet dataset = new DataSet();
+            dataset.Tables.Add(dtb);
+            dataset.Tables.Add(dty);
+
+            Excel.Application excel = new Excel.Application();
+            var workbook = (Excel._Workbook)(excel.Workbooks.Add(Missing.Value));
+
+            for (var i = 0; i < dataset.Tables.Count; i++)
+            {
+                if (workbook.Sheets.Count < i + 1)
                 {
-                    MessageBox.Show("Yazı rengi kırmızı olan alanları yeniden gözden geçirniz", "Optimak İnsan Kaynakları", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                    workbook.Sheets.Add(Type.Missing, Type.Missing, Type.Missing, Type.Missing);
                 }
+                var currentSheet = (Excel._Worksheet)workbook.Sheets[1];
+                for (var y = 0; y < dataset.Tables[i].Columns.Count; y++)
+                {
+                    currentSheet.Cells[1, y + 1] = dataset.Tables[i].Columns[y].ColumnName;
+                    //for (var x = 0; x < dataset.Tables[i].Columns[y].ColumnName.Count(); x++) //sütun
+                    //{
+                    //currentSheet.Cells[y + 2, x + 1] = dataset.Tables[i].Columns[y];
 
-         }
+
+                    //}
+                }
+                for (var y = 0; y < dataset.Tables[i].Rows.Count; y++)
+                {
+                    for (var x = 0; x < dataset.Tables[i].Rows[y].ItemArray.Count(); x++) //sütun
+                    {
+                        //MessageBox.Show("....", dataset.Tables[i].Rows[y].ItemArray.Count().ToString());
+
+                        currentSheet.Cells[y + 2, x + 1] = dataset.Tables[i].Rows[y].ItemArray[x];
+                    }
+                }
+            }
+            string outfile = @"C:\Dosyalar\Aile.xlsx";
 
 
-     }
+            workbook.Sheets[1].Name = "Bakım";
+            workbook.Sheets[2].Name = "Yakın";
+
+            workbook.SaveAs(outfile, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Excel.XlSaveAsAccessMode.xlNoChange,
+                Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
 
 
-      
-    
+            workbook.Close();
+            excel.Quit();
+            System.Diagnostics.Process.Start(@"C:\Dosyalar\Aile.xlsx");
+        }
 
     }
-
+}

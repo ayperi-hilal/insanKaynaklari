@@ -23,8 +23,24 @@ namespace InsanKaynaklariBilgiSistem
         }
 
         sqlBaglantisi baglantim = new sqlBaglantisi();
+        public void listele_tumu()
+        {
+            SqlCommand sorgu = new SqlCommand("Listele_tüm_egitim", baglantim.baglanti());
+            sorgu.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter(sorgu);
+            
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            gridControl2.DataSource = dt;
+            
 
-        public void listele()
+            gridView2.OptionsBehavior.Editable = false;
+            gridView2.OptionsView.ShowAutoFilterRow = true;
+        }
+
+
+
+            public void listele()
         {
             SqlCommand sorgu = new SqlCommand("Listele_Egitim_Bilgisi", baglantim.baglanti());
             sorgu.CommandType = CommandType.StoredProcedure;
@@ -82,7 +98,8 @@ namespace InsanKaynaklariBilgiSistem
             cb_sinif.Items.Add("5");
             cb_sinif.Items.Add("6");
             cb_sinif.Items.Add("Mezun");
-            
+            cb_sinif.Items.Add("Terk");
+
 
             DateTime zaman = DateTime.Now;
             int yil = int.Parse(zaman.ToString("yyyy"));
@@ -95,8 +112,8 @@ namespace InsanKaynaklariBilgiSistem
 
             //mezuniyet tarihi
             date_mezun.MinDate = new DateTime(1900, 1, 1);
-            
 
+            listele_tumu();
         }
 
         private void ekrani_temizle()
@@ -705,6 +722,62 @@ namespace InsanKaynaklariBilgiSistem
                 date_mezun.Enabled = true;
                 cb_duzey.Enabled = true;
                 cb_sinif.Enabled = true;
+            }
+        }
+
+        private void btn_rapor_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveDialog = new SaveFileDialog())
+            {
+                saveDialog.Filter = "Excel (2003)(.xls)|*.xls|Excel (2010) (.xlsx)|*.xlsx |RichText File (.rtf)|*.rtf |Pdf File (.pdf)|*.pdf |Html File (.html)|*.html";
+                if (saveDialog.ShowDialog() != DialogResult.Cancel)
+                {
+                    string exportFilePath = saveDialog.FileName;
+                    string fileExtenstion = new FileInfo(exportFilePath).Extension;
+
+                    switch (fileExtenstion)
+                    {
+                        case ".xls":
+                            gridControl2.ExportToXls(exportFilePath);
+                            break;
+                        case ".xlsx":
+                            gridControl2.ExportToXlsx(exportFilePath);
+                            break;
+                        case ".rtf":
+                            gridControl2.ExportToRtf(exportFilePath);
+                            break;
+                        case ".pdf":
+                            gridControl2.ExportToPdf(exportFilePath);
+                            break;
+                        case ".html":
+                            gridControl2.ExportToHtml(exportFilePath);
+                            break;
+                        case ".mht":
+                            gridControl2.ExportToMht(exportFilePath);
+                            break;
+                        default:
+                            break;
+                    }
+
+                    if (File.Exists(exportFilePath))
+                    {
+                        try
+                        {
+                            //Try to open the file and let windows decide how to open it.
+                            System.Diagnostics.Process.Start(exportFilePath);
+                        }
+                        catch
+                        {
+                            String msg = "Dosya açılamadı." + Environment.NewLine + Environment.NewLine + "Path: " + exportFilePath;
+                            MessageBox.Show(msg, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        String msg = "Dosya kaydedilemedi." + Environment.NewLine + Environment.NewLine + "Path: " + exportFilePath;
+                        MessageBox.Show(msg, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
     }

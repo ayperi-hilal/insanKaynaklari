@@ -66,11 +66,30 @@ namespace InsanKaynaklariBilgiSistem
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbl_pdks = new System.Windows.Forms.Label();
             this.txt_pdks = new System.Windows.Forms.TextBox();
+            this.btn_rapor = new DevExpress.XtraEditors.SimpleButton();
+            this.gridControl2 = new DevExpress.XtraGrid.GridControl();
+            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.panelControl6 = new DevExpress.XtraEditors.PanelControl();
+            this.lbl_borc_tarihi = new System.Windows.Forms.Label();
+            this.date_borc_tarihi = new System.Windows.Forms.DateTimePicker();
+            this.txt_icra_miktari = new System.Windows.Forms.TextBox();
+            this.radioButton_icra_yok = new System.Windows.Forms.RadioButton();
+            this.mtxt_icra_iban = new System.Windows.Forms.MaskedTextBox();
+            this.radioButton_icra_var = new System.Windows.Forms.RadioButton();
+            this.lbl_icra_iban = new System.Windows.Forms.Label();
+            this.txt_icra_konusu = new System.Windows.Forms.TextBox();
+            this.lbl_icra_durumu = new System.Windows.Forms.Label();
+            this.lbl_icra_kesinti_miktari = new System.Windows.Forms.Label();
+            this.lbl_icra_konusu = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.toggleSwitch1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider1)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl6)).BeginInit();
+            this.panelControl6.SuspendLayout();
             this.SuspendLayout();
             // 
             // cb_sinif
@@ -206,6 +225,9 @@ namespace InsanKaynaklariBilgiSistem
             // 
             // gridControl1
             // 
+            this.gridControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gridControl1.Location = new System.Drawing.Point(357, 2);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
@@ -218,10 +240,12 @@ namespace InsanKaynaklariBilgiSistem
             // 
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.DoubleClick += new System.EventHandler(this.gridView1_DoubleClick);
             // 
             // simpleButton4
             // 
+            this.simpleButton4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.simpleButton4.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.resetmodeldifferences_32x32;
             this.simpleButton4.Location = new System.Drawing.Point(719, 397);
             this.simpleButton4.Name = "simpleButton4";
@@ -232,6 +256,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             // btn_sil
             // 
+            this.btn_sil.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_sil.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btn_sil.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.cancel_32x32;
             this.btn_sil.Location = new System.Drawing.Point(622, 398);
@@ -243,6 +268,7 @@ namespace InsanKaynaklariBilgiSistem
             // 
             // btn_guncelle
             // 
+            this.btn_guncelle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_guncelle.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.refreshallpivottable_32x32;
             this.btn_guncelle.Location = new System.Drawing.Point(525, 401);
             this.btn_guncelle.Name = "btn_guncelle";
@@ -383,12 +409,154 @@ namespace InsanKaynaklariBilgiSistem
             this.txt_pdks.Size = new System.Drawing.Size(64, 20);
             this.txt_pdks.TabIndex = 282;
             // 
+            // btn_rapor
+            // 
+            this.btn_rapor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_rapor.ImageOptions.Image = global::InsanKaynaklariBilgiSistem.Properties.Resources.report_32x323;
+            this.btn_rapor.Location = new System.Drawing.Point(864, 396);
+            this.btn_rapor.Name = "btn_rapor";
+            this.btn_rapor.Size = new System.Drawing.Size(110, 40);
+            this.btn_rapor.TabIndex = 322;
+            this.btn_rapor.Text = "TÜM\r\nKAYITLAR";
+            this.btn_rapor.Click += new System.EventHandler(this.btn_rapor_Click);
+            // 
+            // gridControl2
+            // 
+            this.gridControl2.Location = new System.Drawing.Point(788, 299);
+            this.gridControl2.MainView = this.gridView2;
+            this.gridControl2.Name = "gridControl2";
+            this.gridControl2.Size = new System.Drawing.Size(200, 72);
+            this.gridControl2.TabIndex = 323;
+            this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView2});
+            // 
+            // gridView2
+            // 
+            this.gridView2.GridControl = this.gridControl2;
+            this.gridView2.Name = "gridView2";
+            // 
+            // panelControl6
+            // 
+            this.panelControl6.AutoSize = true;
+            this.panelControl6.Controls.Add(this.lbl_borc_tarihi);
+            this.panelControl6.Controls.Add(this.date_borc_tarihi);
+            this.panelControl6.Controls.Add(this.txt_icra_miktari);
+            this.panelControl6.Controls.Add(this.radioButton_icra_yok);
+            this.panelControl6.Controls.Add(this.mtxt_icra_iban);
+            this.panelControl6.Controls.Add(this.radioButton_icra_var);
+            this.panelControl6.Controls.Add(this.lbl_icra_iban);
+            this.panelControl6.Controls.Add(this.txt_icra_konusu);
+            this.panelControl6.Controls.Add(this.lbl_icra_durumu);
+            this.panelControl6.Controls.Add(this.lbl_icra_kesinti_miktari);
+            this.panelControl6.Controls.Add(this.lbl_icra_konusu);
+            this.panelControl6.Location = new System.Drawing.Point(453, 224);
+            this.panelControl6.Name = "panelControl6";
+            this.panelControl6.Size = new System.Drawing.Size(355, 134);
+            this.panelControl6.TabIndex = 324;
+            this.panelControl6.Visible = false;
+            // 
+            // lbl_borc_tarihi
+            // 
+            this.lbl_borc_tarihi.AutoSize = true;
+            this.lbl_borc_tarihi.Location = new System.Drawing.Point(4, 112);
+            this.lbl_borc_tarihi.Name = "lbl_borc_tarihi";
+            this.lbl_borc_tarihi.Size = new System.Drawing.Size(73, 13);
+            this.lbl_borc_tarihi.TabIndex = 245;
+            this.lbl_borc_tarihi.Text = "BORÇ TARİHİ";
+            // 
+            // date_borc_tarihi
+            // 
+            this.date_borc_tarihi.Location = new System.Drawing.Point(100, 106);
+            this.date_borc_tarihi.Name = "date_borc_tarihi";
+            this.date_borc_tarihi.Size = new System.Drawing.Size(224, 21);
+            this.date_borc_tarihi.TabIndex = 244;
+            // 
+            // txt_icra_miktari
+            // 
+            this.txt_icra_miktari.Location = new System.Drawing.Point(156, 55);
+            this.txt_icra_miktari.Name = "txt_icra_miktari";
+            this.txt_icra_miktari.Size = new System.Drawing.Size(100, 21);
+            this.txt_icra_miktari.TabIndex = 243;
+            // 
+            // radioButton_icra_yok
+            // 
+            this.radioButton_icra_yok.AutoSize = true;
+            this.radioButton_icra_yok.Location = new System.Drawing.Point(189, 10);
+            this.radioButton_icra_yok.Name = "radioButton_icra_yok";
+            this.radioButton_icra_yok.Size = new System.Drawing.Size(45, 17);
+            this.radioButton_icra_yok.TabIndex = 242;
+            this.radioButton_icra_yok.TabStop = true;
+            this.radioButton_icra_yok.Text = "YOK";
+            this.radioButton_icra_yok.UseVisualStyleBackColor = true;
+            // 
+            // mtxt_icra_iban
+            // 
+            this.mtxt_icra_iban.Location = new System.Drawing.Point(156, 82);
+            this.mtxt_icra_iban.Name = "mtxt_icra_iban";
+            this.mtxt_icra_iban.Size = new System.Drawing.Size(100, 21);
+            this.mtxt_icra_iban.TabIndex = 233;
+            // 
+            // radioButton_icra_var
+            // 
+            this.radioButton_icra_var.AutoSize = true;
+            this.radioButton_icra_var.Location = new System.Drawing.Point(136, 10);
+            this.radioButton_icra_var.Name = "radioButton_icra_var";
+            this.radioButton_icra_var.Size = new System.Drawing.Size(45, 17);
+            this.radioButton_icra_var.TabIndex = 241;
+            this.radioButton_icra_var.TabStop = true;
+            this.radioButton_icra_var.Text = "VAR";
+            this.radioButton_icra_var.UseVisualStyleBackColor = true;
+            // 
+            // lbl_icra_iban
+            // 
+            this.lbl_icra_iban.AutoSize = true;
+            this.lbl_icra_iban.Location = new System.Drawing.Point(1, 89);
+            this.lbl_icra_iban.Name = "lbl_icra_iban";
+            this.lbl_icra_iban.Size = new System.Drawing.Size(123, 13);
+            this.lbl_icra_iban.TabIndex = 222;
+            this.lbl_icra_iban.Text = "İCRA HESAP NUMARASI";
+            // 
+            // txt_icra_konusu
+            // 
+            this.txt_icra_konusu.Location = new System.Drawing.Point(91, 33);
+            this.txt_icra_konusu.Name = "txt_icra_konusu";
+            this.txt_icra_konusu.Size = new System.Drawing.Size(233, 21);
+            this.txt_icra_konusu.TabIndex = 231;
+            // 
+            // lbl_icra_durumu
+            // 
+            this.lbl_icra_durumu.AutoSize = true;
+            this.lbl_icra_durumu.Location = new System.Drawing.Point(1, 10);
+            this.lbl_icra_durumu.Name = "lbl_icra_durumu";
+            this.lbl_icra_durumu.Size = new System.Drawing.Size(78, 13);
+            this.lbl_icra_durumu.TabIndex = 160;
+            this.lbl_icra_durumu.Text = "İCRA DURUMU";
+            // 
+            // lbl_icra_kesinti_miktari
+            // 
+            this.lbl_icra_kesinti_miktari.AutoSize = true;
+            this.lbl_icra_kesinti_miktari.Location = new System.Drawing.Point(1, 59);
+            this.lbl_icra_kesinti_miktari.Name = "lbl_icra_kesinti_miktari";
+            this.lbl_icra_kesinti_miktari.Size = new System.Drawing.Size(147, 13);
+            this.lbl_icra_kesinti_miktari.TabIndex = 162;
+            this.lbl_icra_kesinti_miktari.Text = "İCRA  İÇİN KESİNTİ MİKTARI";
+            // 
+            // lbl_icra_konusu
+            // 
+            this.lbl_icra_konusu.AutoSize = true;
+            this.lbl_icra_konusu.Location = new System.Drawing.Point(1, 32);
+            this.lbl_icra_konusu.Name = "lbl_icra_konusu";
+            this.lbl_icra_konusu.Size = new System.Drawing.Size(76, 13);
+            this.lbl_icra_konusu.TabIndex = 161;
+            this.lbl_icra_konusu.Text = "İCRA KONUSU";
+            // 
             // egitim
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1071, 450);
+            this.Controls.Add(this.btn_rapor);
             this.Controls.Add(this.txt_pdks);
             this.Controls.Add(this.lbl_pdks);
             this.Controls.Add(this.panel1);
@@ -419,8 +587,10 @@ namespace InsanKaynaklariBilgiSistem
             this.Controls.Add(this.simpleButton5);
             this.Controls.Add(this.mtxt_tc_no);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.gridControl2);
+            this.Controls.Add(this.panelControl6);
             this.Name = "egitim";
-            this.Text = "Eğitim Bilgisi";
+            this.Text = "EĞİTİM BİLGİSİ";
             this.Load += new System.EventHandler(this.egitim_Load);
             ((System.ComponentModel.ISupportInitialize)(this.toggleSwitch1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
@@ -428,6 +598,11 @@ namespace InsanKaynaklariBilgiSistem
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl6)).EndInit();
+            this.panelControl6.ResumeLayout(false);
+            this.panelControl6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -471,5 +646,20 @@ namespace InsanKaynaklariBilgiSistem
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox txt_pdks;
         private System.Windows.Forms.Label lbl_pdks;
+        private DevExpress.XtraEditors.SimpleButton btn_rapor;
+        private DevExpress.XtraGrid.GridControl gridControl2;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+        private DevExpress.XtraEditors.PanelControl panelControl6;
+        private System.Windows.Forms.Label lbl_borc_tarihi;
+        private System.Windows.Forms.DateTimePicker date_borc_tarihi;
+        private System.Windows.Forms.TextBox txt_icra_miktari;
+        private System.Windows.Forms.RadioButton radioButton_icra_yok;
+        private System.Windows.Forms.MaskedTextBox mtxt_icra_iban;
+        private System.Windows.Forms.RadioButton radioButton_icra_var;
+        private System.Windows.Forms.Label lbl_icra_iban;
+        private System.Windows.Forms.TextBox txt_icra_konusu;
+        private System.Windows.Forms.Label lbl_icra_durumu;
+        private System.Windows.Forms.Label lbl_icra_kesinti_miktari;
+        private System.Windows.Forms.Label lbl_icra_konusu;
     }
 }

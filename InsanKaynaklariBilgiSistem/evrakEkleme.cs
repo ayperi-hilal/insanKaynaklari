@@ -20,7 +20,7 @@ namespace InsanKaynaklariBilgiSistem
 
         string kimlik_dosyaYolu;
         string kimlik_dosyaAdi;
-        string belge="myb2";
+        string belge = "myb2";
 
 
         private void evrakEkleme_Load(object sender, EventArgs e)
@@ -32,29 +32,21 @@ namespace InsanKaynaklariBilgiSistem
             string hedef = (@"C://Dosyalar//" + aktifKullanici.kisi + "/");
             DirectoryInfo di = new DirectoryInfo(hedef);
             FileInfo[] rgFiles = di.GetFiles();
-            foreach(FileInfo fi in rgFiles)
+            foreach (FileInfo fi in rgFiles)
             {
                 listBox1.Items.Add(fi.Name);
             }
 
-
-
-
-
-
-
-
-
             lbl_kisi.Text = aktifKullanici.kisi;
-           // MessageBox.Show(lbl_kisi.Text);
-            MessageBox.Show(aktifKullanici.kisi  + " TC nolu personelin evraklarını yüklüyorsunuz...");
+            // MessageBox.Show(lbl_kisi.Text);
+            MessageBox.Show(aktifKullanici.kisi + " TC nolu personelin evraklarını yüklüyorsunuz...");
 
             // For döngüsü ile kişinin dosyalarını listeleme
             if (Directory.Exists(@"C://Dosyalar//" + aktifKullanici.kisi + "/"))
             {
-                
 
-              //  MessageBox.Show("Test- dosya listesi okey");
+
+                //  MessageBox.Show("Test- dosya listesi okey");
                 string[] dosyalar = Directory.GetFiles(@"C://Dosyalar//" + aktifKullanici.kisi + "/");
                 //MessageBox.Show(dosyalar.Length.ToString()  + " dosyalar dosya sayısı");
                 for (int i = 0; i < dosyalar.Length; i++)
@@ -67,7 +59,7 @@ namespace InsanKaynaklariBilgiSistem
                         btn_kimlik.Tag = dosyalar[i];
                         btn_kimlik.ForeColor = Color.Red;
                     }
-                  else  if (dosyalar[i].Contains("Akciğer Grafiği"))
+                    else if (dosyalar[i].Contains("Akciğer Grafiği"))
                     {
                         btn_akciger.Tag = dosyalar[i];
                         btn_akciger.ForeColor = Color.Red;
@@ -158,26 +150,26 @@ namespace InsanKaynaklariBilgiSistem
                     return;
                 }
             }
-              
-                OpenFileDialog dosya = new OpenFileDialog();
-                dosya.Filter = "PDF Dosyaları(*.pdf)|*.pdf|Tüm Dosyalar|*.*";
 
-                if (dosya.ShowDialog() == DialogResult.OK)
-                {
-                   kimlik_dosyaYolu = dosya.FileName;
+            OpenFileDialog dosya = new OpenFileDialog();
+            dosya.Filter = "PDF Dosyaları(*.pdf)|*.pdf|Tüm Dosyalar|*.*";
 
-                    kimlik_dosyaAdi = Path.GetFileName(kimlik_dosyaYolu); //Dosya adını alma
-                    string kaynak = kimlik_dosyaYolu;
-                    string hedef = (@"C://Dosyalar//" + aktifKullanici.kisi + "/");
-                    MessageBox.Show(hedef);
-                    string yeniad = lbl_kisi.Text + "_" + btn_kimlik.Text + ".pdf"; //Benzersiz isim verme
+            if (dosya.ShowDialog() == DialogResult.OK)
+            {
+                kimlik_dosyaYolu = dosya.FileName;
 
-                    string DosyaYolu = @"C://Dosyalar//" + aktifKullanici.kisi + "/" + yeniad;
-                    File.Copy(kaynak, hedef + yeniad, true);
-                    btn_kimlik.Tag = hedef + yeniad;
-                    btn_kimlik.ForeColor = Color.Red;
-                }
-            
+                kimlik_dosyaAdi = Path.GetFileName(kimlik_dosyaYolu); //Dosya adını alma
+                string kaynak = kimlik_dosyaYolu;
+                string hedef = (@"C://Dosyalar//" + aktifKullanici.kisi + "/");
+                MessageBox.Show(hedef);
+                string yeniad = lbl_kisi.Text + "_" + btn_kimlik.Text + ".pdf"; //Benzersiz isim verme
+
+                string DosyaYolu = @"C://Dosyalar//" + aktifKullanici.kisi + "/" + yeniad;
+                File.Copy(kaynak, hedef + yeniad, true);
+                btn_kimlik.Tag = hedef + yeniad;
+                btn_kimlik.ForeColor = Color.Red;
+            }
+
         }
 
         private void btn_akciger_Click(object sender, EventArgs e)
@@ -211,18 +203,18 @@ namespace InsanKaynaklariBilgiSistem
                 btn_kimlik.Tag = hedef + yeniad;
                 btn_kimlik.ForeColor = Color.Red;
             }
-            
-            
+
+
         }
 
-        
+
         private void btn_tetanoz_Click(object sender, EventArgs e)
         {
-            if (btn_akciger.Tag != null)
+            if (btn_tetanoz.Tag != null)
             {
-                if (!String.IsNullOrWhiteSpace(btn_akciger.Tag.ToString()))
+                if (!String.IsNullOrWhiteSpace(btn_tetanoz.Tag.ToString()))
                 {
-                    System.Diagnostics.Process.Start(btn_akciger.Tag.ToString());
+                    System.Diagnostics.Process.Start(btn_tetanoz.Tag.ToString());
                     return;
                 }
             }
@@ -246,8 +238,8 @@ namespace InsanKaynaklariBilgiSistem
                 btn_kimlik.Tag = hedef + yeniad;
                 btn_kimlik.ForeColor = Color.Red;
             }
-            
-            
+
+
         }
 
         private void btn_kan_Click(object sender, EventArgs e)
@@ -452,7 +444,7 @@ namespace InsanKaynaklariBilgiSistem
                 btn_kimlik.Tag = hedef + yeniad;
                 btn_kimlik.ForeColor = Color.Red;
 
-            }          
+            }
         }
 
         private void btn_sabika_Click(object sender, EventArgs e)
@@ -605,14 +597,14 @@ namespace InsanKaynaklariBilgiSistem
                 string kaynak = kimlik_dosyaYolu;
                 string hedef = (@"C://Dosyalar//" + aktifKullanici.kisi + "/");
                 MessageBox.Show(hedef);
-                string yeniad = lbl_kisi.Text + "_" +btn_myb2.Text+ ".pdf"; //Benzersiz isim verme
+                string yeniad = lbl_kisi.Text + "_" + btn_myb2.Text + ".pdf"; //Benzersiz isim verme
                 string DosyaYolu = @"C://Dosyalar//" + aktifKullanici.kisi + "/" + yeniad;
                 File.Copy(kaynak, hedef + yeniad, true);
                 btn_kimlik.Tag = hedef + yeniad;
                 btn_kimlik.ForeColor = Color.Red;
 
 
-            }                              
+            }
         }
 
         private void btn_dil_Click(object sender, EventArgs e)
@@ -646,7 +638,7 @@ namespace InsanKaynaklariBilgiSistem
 
             }
         }
-        
+
         private void simpleButton2_Click(object sender, EventArgs e)
         {
 
@@ -655,7 +647,7 @@ namespace InsanKaynaklariBilgiSistem
             dosya.Filter = "PDF Dosyaları(*.pdf)|*.pdf|Tüm Dosyalar|*.*";
 
             //bu kısımda dosyaları yenidenadlandırmadan atacağımız için varlıkkontolü yapmamız gerekmektedir.
-            
+
 
             if (dosya.ShowDialog() == DialogResult.OK)
             {
@@ -667,20 +659,20 @@ namespace InsanKaynaklariBilgiSistem
                 string kaynak = kimlik_dosyaYolu;
                 string hedef = (@"C://Dosyalar//" + aktifKullanici.kisi + "/");
                 MessageBox.Show(hedef);
-               // string yeniad = lbl_kisi.Text + "_" + btn_dil.Text + ".pdf"; //Benzersiz isim verme
-                string DosyaYolu = @"C://Dosyalar//" + aktifKullanici.kisi + "/" ;
+                // string yeniad = lbl_kisi.Text + "_" + btn_dil.Text + ".pdf"; //Benzersiz isim verme
+                string DosyaYolu = @"C://Dosyalar//" + aktifKullanici.kisi + "/";
                 string dosyaAdi = hedef + kimlik_dosyaAdi;
                 if (System.IO.File.Exists(dosyaAdi))
                 {
-                    DialogResult result= MessageBox.Show("Dosya bulundu.Değiştirmek istiyor musunuz ?","Optimak İnsan Kaynakaları",MessageBoxButtons.YesNo,MessageBoxIcon.Error);
-                     if(result==DialogResult.Yes)
-                     { 
+                    DialogResult result = MessageBox.Show("Dosya bulundu.Değiştirmek istiyor musunuz ?", "Optimak İnsan Kaynakaları", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                    if (result == DialogResult.Yes)
+                    {
                         MessageBox.Show("dosya oluşturuluyor.");
-                        
-                        File.Copy(kaynak, hedef + kimlik_dosyaAdi,true);
+
+                        File.Copy(kaynak, hedef + kimlik_dosyaAdi, true);
                         btn_kimlik.Tag = hedef;
                         btn_kimlik.ForeColor = Color.Red;
-                     }
+                    }
                     else
                     {
                         MessageBox.Show("dosya oluşturulmadı.");
@@ -693,8 +685,8 @@ namespace InsanKaynaklariBilgiSistem
                     btn_kimlik.Tag = hedef;
                     btn_kimlik.ForeColor = Color.Red;
                 }
-                
-               
+
+
 
 
             }
@@ -723,7 +715,7 @@ namespace InsanKaynaklariBilgiSistem
 
         */
 
-        
+
 
         private void popup_btn_EvrakKaldir_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -739,9 +731,9 @@ namespace InsanKaynaklariBilgiSistem
                     this.ActiveControl.Tag = "";
                     this.ActiveControl.ForeColor = Color.Black;
                 }
-                
+
             }
-           
+
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -752,20 +744,20 @@ namespace InsanKaynaklariBilgiSistem
             MessageBox.Show(select);
             //FileStream fileStream = new FileStream(@"C://Dosyalar//" + aktifKullanici.kisi + "/"+select, FileMode.Open);
             //string yol = @"C://Dosyalar//" + aktifKullanici.kisi + "/" + select;
-            
 
-           // System.Diagnostics.Process.Start(listBox1.SelectedItem.ToString());
+
+            // System.Diagnostics.Process.Start(listBox1.SelectedItem.ToString());
 
 
             try
             {
                 // string yol = @"C://Dosyalar//" + aktifKullanici.kisi + "/" + select;
                 string dir = @"C://Dosyalar//" + aktifKullanici.kisi + "/";
-               // MessageBox.Show(dir);
+                // MessageBox.Show(dir);
                 string file = listBox1.SelectedItem.ToString();
                 string DosyaYolu = @"C://Dosyalar//" + aktifKullanici.kisi + "/" + listBox1.SelectedItem.ToString();
 
-               // MessageBox.Show(DosyaYolu);
+                // MessageBox.Show(DosyaYolu);
                 //MessageBox.Show(file) ;
 
                 System.Diagnostics.Process.Start(DosyaYolu);
