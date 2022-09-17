@@ -186,7 +186,6 @@ C:\Users\DOKÜMANTASYON\source\repos\InsanKaynaklariBilgiSistem\InsanKaynaklariB
 C:\Users\DOKÜMANTASYON\source\repos\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\bin\Debug\ru\DevExpress.Pdf.v19.2.Core.resources.dll
 C:\Users\DOKÜMANTASYON\source\repos\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\obj\Debug\InsanKaynaklariBilgiSistem.exe.licenses
 C:\Users\DOKÜMANTASYON\source\repos\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\obj\Debug\InsanKaynaklariBilgiSistem.csproj.CopyComplete
-C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\obj\Debug\InsanKaynaklariBilgiSistem.csproj.AssemblyReference.cache
 C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\obj\Debug\InsanKaynaklariBilgiSistem.Properties.Resources.resources
 C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\obj\Debug\InsanKaynaklariBilgiSistem.csproj.GenerateResource.cache
 C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\obj\Debug\InsanKaynaklariBilgiSistem.exe.licenses
@@ -417,9 +416,7 @@ C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSi
 C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\bin\Debug\DevExpress.XtraCharts.v19.2.UI.dll
 C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\bin\Debug\DevExpress.XtraCharts.v19.2.UI.xml
 C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\obj\Debug\InsanKaynaklariBilgiSistem.durumGrafiği.resources
-C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\bin\Debug\Interop.AcroPDFLib.dll
 C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\bin\Debug\AxInterop.AcroPDFLib.dll
-C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\obj\Debug\Interop.AcroPDFLib.dll
 C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\obj\Debug\AxInterop.AcroPDFLib.dll
 C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\bin\Debug\DevExpress.Dashboard.v19.2.Core.dll
 C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\bin\Debug\DevExpress.Dashboard.v19.2.Win.dll
@@ -459,3 +456,29 @@ C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSi
 C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\bin\Debug\DevExpress.Mvvm.v19.2.dll
 C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\bin\Debug\DevExpress.Mvvm.v19.2.xml
 C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\obj\Debug\InsanKaynaklariBilgiSistem.firmaImkanları.resources
+C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\bin\Debug\AForge.dll
+C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\bin\Debug\AForge.Video.DirectShow.dll
+C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\bin\Debug\AForge.Video.dll
+C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\bin\Debug\AForge.xml
+C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\bin\Debug\AForge.Video.xml
+C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\bin\Debug\AForge.Video.DirectShow.xml
+C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\obj\Debug\InsanKaynaklariBilgiSistem.aileBilgisiGoster.resources
+C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\obj\Debug\InsanKaynaklariBilgiSistem.perfomansDurumu.resources
+C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\obj\Debug\InsanKaynaklariBilgiSistem.borcDurumu.resources
+C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\obj\Debug\InsanKaynaklariBilgiSistem.maddiDurum.resources
+C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\bin\Debug\Interop.AcroPDFLib.dll
+C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\obj\Debug\Interop.AcroPDFLib.dll
+C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\obj\Debug\InsanKaynaklariBilgiSistem.havuzKayit.resources
+C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\obj\Debug\InsanKaynaklariBilgiSistem.havuzolustur.resources
+C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\obj\Debug\InsanKaynaklariBilgiSistem.performans.resources
+C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\obj\Debug\InsanKaynaklariBilgiSistem.performansDurum.resources
+C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\obj\Debug\InsanKaynaklariBilgiSistem.departmanOlustur.resources
+C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\obj\Debug\InsanKaynaklariBilgiSistem.gorevOlustur.resources
+C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\obj\Debug\InsanKaynaklariBilgiSistem.kkdBilgisi.resources
+C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\obj\Debug\InsanKaynaklariBilgiSistem.meslekKodu.resources
+C:\Users\DOKÜMANTASYON\source\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\obj\Debug\InsanKaynaklariBilgiSistem.csproj.AssemblyReference.cache
+E:\YAZILIM PROJELERİ\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\obj\Debug\InsanKaynaklariBilgiSistem.csproj.AssemblyReference.cache
+E:\YAZILIM PROJELERİ\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\obj\Debug\Interop.AcroPDFLib.dll
+E:\YAZILIM PROJELERİ\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\obj\Debug\AxInterop.AcroPDFLib.dll
+E:\YAZILIM PROJELERİ\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\obj\Debug\InsanKaynaklariBilgiSistem.exe
+E:\YAZILIM PROJELERİ\InsanKaynaklariBilgiSistem\InsanKaynaklariBilgiSistem\obj\Debug\InsanKaynaklariBilgiSistem.pdb
